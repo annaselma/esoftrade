@@ -1,16 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>ma.esoftech</groupId>
-  <artifactId>esoftrade</artifactId>
-  <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>esoftrade Maven Webapp</name>
-  <url>http://maven.apache.org</url>
-  
-    <properties>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>ma.esoftech</groupId>
+	<artifactId>esoftrade</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>esoftrade Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
 		<spring.version>3.2.8.RELEASE</spring.version>
-		<tiles.version>2.2.2</tiles.version>
+		<tiles.version>3.0.5</tiles.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<hibernate.annotations.version>3.3.0.ga</hibernate.annotations.version>
 		<spring.security.version>3.2.3.RELEASE</spring.security.version>
@@ -116,10 +116,10 @@
 			<version>${spring.security.version}</version>
 		</dependency>
 		<dependency>
-  <groupId>org.springframework.security</groupId>
-  <artifactId>spring-security-taglibs</artifactId>
-  <version>${spring.security.version}</version>
-</dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
 
 		<!-- Apache Commons Upload -->
 		<dependency>
@@ -154,9 +154,6 @@
 			<artifactId>tiles-servlet</artifactId>
 			<version>${tiles.version}</version>
 		</dependency>
-
-
-
 		<!-- Hibernate -->
 		<dependency>
 			<groupId>mysql</groupId>
