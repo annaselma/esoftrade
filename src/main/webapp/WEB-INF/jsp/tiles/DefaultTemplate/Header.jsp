@@ -1,230 +1,312 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<!DOCTYPE html>
+
 <c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
-	
-		<!-- BEGIN TOP NAVIGATION BAR -->
-		<div class="navbar-inner">
-			<div class="container-fluid">
-				<!-- BEGIN LOGO -->
-				<a class="brand" href="index.html">
-				<img src="${baseURL}/assets/img/logo.png" alt="Conquer" />
-				</a>
-				<!-- END LOGO -->
-				<!-- BEGIN RESPONSIVE MENU TOGGLER -->
-				<a class="btn btn-navbar collapsed" id="main_menu_trigger" data-toggle="collapse" data-target=".nav-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="arrow"></span>
-				</a>          
-				<!-- END RESPONSIVE MENU TOGGLER -->				
-				<div class="top-nav">
-					<!-- BEGIN QUICK SEARCH FORM -->
-					<form class="navbar-search hidden-phone">
-						<div class="search-input-icon">
-							<input type="text" class="search-query dropdown-toggle" id="quick_search" placeholder="Search" data-toggle="dropdown" />
-							<i class="icon-search"></i>
-							<!-- BEGIN QUICK SEARCH RESULT PREVIEW -->
-							<ul class="dropdown-menu extended">
-								<li>
-									<span class="arrow"></span>
-									<p>Found 23 results</p>
-								</li>
-								<li>
-									<a href="#">
-									<span class="label label-success"><i class="icon-user"></i></span>
-									Nick Kim, Technical Mana...<i class="icon icon-arrow-right"></i>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AdminLTE | Dashboard</title>
+<meta
+	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
+	name='viewport'>
+<link href="${baseURL}/assets/css/bootstrap.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- font Awesome -->
+<link href="${baseURL}/assets/css/font-awesome.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- Ionicons -->
+<link href="${baseURL}/assets/css/ionicons.min.css" rel="stylesheet"
+	type="text/css" />
+<!-- Theme style -->
+<link href="${baseURL}/assets/css/AdminLTE.css" rel="stylesheet"
+	type="text/css" />
+
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+</head>
+<body class="skin-blue">
+	<!-- header logo: style can be found in header.less -->
+	<header class="header">
+		<!--             <a href="#" class="logo"> -->
+		<!--                 LOGO -->
+		<!--             </a> -->
+		<nav class="navbar navbar-static-top" role="navigation">
+			<!-- Sidebar toggle button-->
+			<a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas"
+				role="button"> <span class="sr-only">Toggle navigation</span> <span
+				class="icon-bar"></span> <span class="icon-bar"></span> <span
+				class="icon-bar"></span>
+			</a>
+			<div class="navbar-right">
+				<ul class="nav navbar-nav">
+					<!-- Notifications: style can be found in dropdown.less -->
+					<li class="dropdown notifications-menu"><a href="#"
+						class="dropdown-toggle" data-toggle="dropdown"> <i
+							class="fa fa-warning"></i> <span class="label label-warning">10</span>
+					</a>
+						<ul class="dropdown-menu">
+							<li class="header">You have 10 notifications</li>
+							<li>
+								<!-- inner menu: contains the actual data -->
+								<ul class="menu">
+									<li><a href="#"> <i class="ion ion-ios7-people info"></i>
+											5 new members joined today
+									</a></li>
+									<li><a href="#"> <i class="fa fa-warning danger"></i>
+											Very long description here that may not fit into the page and
+											may cause design problems
+									</a></li>
+									<li><a href="#"> <i class="fa fa-users warning"></i> 5
+											new members joined
+									</a></li>
+
+									<li><a href="#"> <i class="ion ion-ios7-cart success"></i>
+											25 sales made
+									</a></li>
+									<li><a href="#"> <i class="ion ion-ios7-person danger"></i>
+											You changed your username
+									</a></li>
+								</ul>
+							</li>
+							<li class="footer"><a href="#">View all</a></li>
+						</ul></li>
+					<!-- Tasks: style can be found in dropdown.less -->
+					<li class="dropdown tasks-menu"><a href="#"
+						class="dropdown-toggle" data-toggle="dropdown"> <i
+							class="fa fa-tasks"></i> <span class="label label-danger">9</span>
+					</a>
+						<ul class="dropdown-menu">
+							<li class="header">You have 9 tasks</li>
+							<li>
+								<!-- inner menu: contains the actual data -->
+								<ul class="menu">
+									<li>
+										<!-- Task item --> <a href="#">
+											<h3>
+												Design some buttons <small class="pull-right">20%</small>
+											</h3>
+											<div class="progress xs">
+												<div class="progress-bar progress-bar-aqua"
+													style="width: 20%" role="progressbar" aria-valuenow="20"
+													aria-valuemin="0" aria-valuemax="100">
+													<span class="sr-only">20% Complete</span>
+												</div>
+											</div>
 									</a>
-								</li>
-								<li>
-									<a href="#">
-									<span class="label label-info"><i class="icon-money"></i></span>
-									Anual Report,Dec 20...<i class="icon icon-arrow-right"></i>
+									</li>
+									<!-- end task item -->
+									<li>
+										<!-- Task item --> <a href="#">
+											<h3>
+												Create a nice theme <small class="pull-right">40%</small>
+											</h3>
+											<div class="progress xs">
+												<div class="progress-bar progress-bar-green"
+													style="width: 40%" role="progressbar" aria-valuenow="20"
+													aria-valuemin="0" aria-valuemax="100">
+													<span class="sr-only">40% Complete</span>
+												</div>
+											</div>
 									</a>
-								</li>
-								<li>
-									<a href="#">
-									<span class="label label-warning"><i class="icon-comment"></i></span>
-									Re: Nick Dalton, Sep 11:...<i class="icon icon-arrow-right"></i>
+									</li>
+									<!-- end task item -->
+									<li>
+										<!-- Task item --> <a href="#">
+											<h3>
+												Some task I need to do <small class="pull-right">60%</small>
+											</h3>
+											<div class="progress xs">
+												<div class="progress-bar progress-bar-red"
+													style="width: 60%" role="progressbar" aria-valuenow="20"
+													aria-valuemin="0" aria-valuemax="100">
+													<span class="sr-only">60% Complete</span>
+												</div>
+											</div>
 									</a>
-								</li>
-								<li>
-									<a href="#">
-									<span class="label label-important"><i class="icon-bullhorn"></i></span>
-									Office Setup, Mar 12...<i class="icon icon-arrow-right"></i>
+									</li>
+									<!-- end task item -->
+									<li>
+										<!-- Task item --> <a href="#">
+											<h3>
+												Make beautiful transitions <small class="pull-right">80%</small>
+											</h3>
+											<div class="progress xs">
+												<div class="progress-bar progress-bar-yellow"
+													style="width: 80%" role="progressbar" aria-valuenow="20"
+													aria-valuemin="0" aria-valuemax="100">
+													<span class="sr-only">80% Complete</span>
+												</div>
+											</div>
 									</a>
-								</li>
-								<li>
-									<a href="#">
-									<span class="label label-info"><i class="icon-envelope"></i></span>
-									Re: Order Status, Jan 12...<i class="icon icon-arrow-right"></i>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-									<span class="label label-info"><i class="icon-paper-clip"></i></span>
-									project_2011.docx, Feb 12...<i class="icon icon-arrow-right"></i>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-									See all results...
-									</a>
-								</li>
-							</ul>
-							<!-- END QUICK SEARCH RESULT PREVIEW -->
-						</div>
-					</form>
-					<!-- END QUICK SEARCH FORM -->
-					<!-- BEGIN TOP NAVIGATION MENU -->					
-					<ul class="nav pull-right" id="top_menu">
-						<!-- BEGIN NOTIFICATION DROPDOWN -->	
-						<li class="dropdown" id="header_notification_bar">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="icon-warning-sign"></i>
-							<span class="label label-important">15</span>
-							</a>
-							<ul class="dropdown-menu extended notification">
-								<li>
-									<p>You have 14 new notifications</p>
-								</li>
-								<li>
-									<a href="#">
-									<span class="label label-success"><i class="icon-plus"></i></span>
-									New user registered. 
-									<span class="small italic">Just now</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-									<span class="label label-important"><i class="icon-bolt"></i></span>
-									Server #12 overloaded. 
-									<span class="small italic">15 mins</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-									<span class="label label-warning"><i class="icon-bell"></i></span>
-									Server #2 not respoding.
-									<span class="small italic">22 mins</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-									<span class="label label-info"><i class="icon-bullhorn"></i></span>
-									Application error.
-									<span class="small italic">40 mins</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-									<span class="label label-important"><i class="icon-bolt"></i></span>
-									Database overloaded 68%. 
-									<span class="small italic">2 hrs</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-									<span class="label label-important"><i class="icon-bolt"></i></span>
-									2 user IP addresses blacklisted.
-									<span class="small italic">5 hrs</span>
-									</a>
-								</li>
-								<li>
-									<a href="#">See all notifications</a>
-								</li>
-							</ul>
-						</li>
-						<!-- END NOTIFICATION DROPDOWN -->
-						<!-- BEGIN INBOX DROPDOWN -->
-						<li class="dropdown" id="header_inbox_bar">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="icon-envelope-alt"></i>
-							<span class="label label-success">5</span>
-							</a>
-							<ul class="dropdown-menu extended inbox">
-								<li>
-									<p>You have 12 new messages</p>
-								</li>
-								<li>
-									<a href="#">
-									<span class="photo"><img src="${baseURL}/assets/img/avatar-mini.png" alt="avatar" /></span>
-									<span class="subject">
-									<span class="from">Lisa Wong</span>
-									<span class="time">Just Now</span>
-									</span>
-									<span class="message">
-									Vivamus sed auctor nibh congue nibh.
-									</span>  
-									</a>
-								</li>
-								<li>
-									<a href="#">
-									<span class="photo"><img src="${baseURL}/assets/img/avatar-mini.png" alt="avatar" /></span>
-									<span class="subject">
-									<span class="from">Alina Fionovna</span>
-									<span class="time">16 mins</span>
-									</span>
-									<span class="message">
-									Vivamus sed auctor nibh congue.
-									</span>  
-									</a>
-								</li>
-								<li>
-									<a href="#">
-									<span class="photo"><img src="${baseURL}/assets/img/avatar-mini.png" alt="avatar" /></span>
-									<span class="subject">
-									<span class="from">Mila Rock</span>
-									<span class="time">2 hrs</span>
-									</span>
-									<span class="message">
-									Vivamus sed auctor nibh congue.
-									</span>  
-									</a>
-								</li>
-								<li>
-									<a href="#">See all messages</a>
-								</li>
-							</ul>
-						</li>
-						<!-- END INBOX DROPDOWN -->
-						<li class="divider-vertical hidden-phone hidden-tablet"></li>
-						<!-- BEGIN USER LOGIN DROPDOWN -->
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="icon-wrench"></i>
-							<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="#"><i class="icon-cogs"></i> System Settings</a></li>
-								<li><a href="#"><i class="icon-pushpin"></i> Shortcuts</a></li>
-								<li><a href="#"><i class="icon-trash"></i> Trash</a></li>
-							</ul>
-						</li>
-						<!-- END USER LOGIN DROPDOWN -->
-						<li class="divider-vertical hidden-phone hidden-tablet"></li>
-						<!-- BEGIN USER LOGIN DROPDOWN -->
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="icon-user"></i>
-							<b class="caret"></b>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="#"><i class="icon-user"></i> Mark King</a></li>
-								<li><a href="#"><i class="icon-envelope-alt"></i> Inbox</a></li>
-								<li><a href="#"><i class="icon-tasks"></i> Tasks</a></li>
-								<li><a href="#"><i class="icon-ok"></i> Calendar</a></li>
-								<li class="divider"></li>
-								<li><a href="login.html"><i class="icon-key"></i> Log Out</a></li>
-							</ul>
-						</li>
-						<!-- END USER LOGIN DROPDOWN -->
-					</ul>
-					<!-- END TOP NAVIGATION MENU -->	
-				</div>
+									</li>
+									<!-- end task item -->
+								</ul>
+							</li>
+							<li class="footer"><a href="#">View all tasks</a></li>
+						</ul></li>
+					<!-- User Account: style can be found in dropdown.less -->
+					<li class="dropdown user user-menu"><a href="#"
+						class="dropdown-toggle" data-toggle="dropdown"> <i
+							class="glyphicon glyphicon-user"></i> <span>Jane Doe <i
+								class="caret"></i></span>
+					</a>
+						<ul class="dropdown-menu">
+							<!-- User image -->
+							<li class="user-header bg-light-blue"><img
+								src="${baseURL}/assets/img/avatar3.png" class="img-circle"
+								alt="User Image" />
+								<p>
+									Jane Doe - Web Developer <small>Member since Nov. 2012</small>
+								</p></li>
+							<!-- Menu Body -->
+							<li class="user-body">
+								<div class="col-xs-4 text-center">
+									<a href="#">Followers</a>
+								</div>
+								<div class="col-xs-4 text-center">
+									<a href="#">Sales</a>
+								</div>
+								<div class="col-xs-4 text-center">
+									<a href="#">Friends</a>
+								</div>
+							</li>
+							<!-- Menu Footer-->
+							<li class="user-footer">
+								<div class="pull-left">
+									<a href="#" class="btn btn-default btn-flat">Profile</a>
+								</div>
+								<div class="pull-right">
+									<a href="#" class="btn btn-default btn-flat">Sign out</a>
+								</div>
+							</li>
+						</ul></li>
+				</ul>
 			</div>
-		</div>
-		<!-- END TOP NAVIGATION BAR -->
-      
-	
+		</nav>
+	</header>
+	<div class="wrapper row-offcanvas row-offcanvas-left">
+		<!-- Left side column. contains the logo and sidebar -->
+		<aside class="left-side sidebar-offcanvas">
+			<!-- sidebar: style can be found in sidebar.less -->
+			<section class="sidebar">
+				<!-- sidebar menu: : style can be found in sidebar.less -->
+				<ul class="sidebar-menu">
+					<li class="active"><a href="#"> <i
+							class="fa fa-dashboard"></i> <span>Tableau de bord</span>
+					</a></li>
+					<li class="treeview"><a href="#"> <i
+							class="fa fa-user"></i> <span>Tiers</span> <i
+							class="fa fa-angle-left pull-right"></i>
+					</a>
+						<ul class="treeview-menu">
+							<li><a href="#"><i
+									class="fa fa-angle-double-right"></i> Nouveau Client</a></li>
+							<li><a href="pages/charts/flot.html"><i
+									class="fa fa-angle-double-right"></i> Liste des Clients</a></li>
+							<li><a href="pages/charts/inline.html"><i
+									class="fa fa-angle-double-right"></i> Creer Fournisseur</a></li>
+									<li><a href="pages/charts/inline.html"><i
+									class="fa fa-angle-double-right"></i> Liste des Fournisseurs</a></li>
+						</ul></li>
+					<li class="treeview"><a href="#"> <i class="fa fa-shopping-cart"></i>
+							<span>Produits & Services</span> <i class="fa fa-angle-left pull-right"></i>
+					</a>
+						<ul class="treeview-menu">
+							<li><a href="#"><i
+									class="fa fa-angle-double-right"></i> Creer Produit/Service</a></li>
+							<li><a href="pages/UI/icons.html"><i
+									class="fa fa-angle-double-right"></i> Liste Produits/Services</a></li>
+							
+						</ul></li>
+					<li class="treeview"><a href="#"> <i class="fa fa-edit"></i>
+							<span>Devis</span> <i class="fa fa-angle-left pull-right"></i>
+					</a>
+						<ul class="treeview-menu">
+							<li><a href="#"><i
+									class="fa fa-angle-double-right"></i> Creer Devis</a></li>
+							<li><a href="pages/forms/advanced.html"><i
+									class="fa fa-angle-double-right"></i> Liste des devis</a></li>
+						</ul></li>
+					<li class="treeview"><a href="#"> <i class="fa fa-tag"></i>
+							<span>Commandes</span> <i class="fa fa-angle-left pull-right"></i>
+					</a>
+						<ul class="treeview-menu">
+							<li><a href="#"><i
+									class="fa fa-angle-double-right"></i> Creer Commande</a></li>
+							<li><a href="pages/tables/data.html"><i
+									class="fa fa-angle-double-right"></i> Liste des Commandes</a></li>
+						</ul></li>
+						<li class="treeview"><a href="#"> <i class="fa fa-file-text"></i>
+							<span>Bons de Livraison</span> <i class="fa fa-angle-left pull-right"></i>
+					</a>
+						<ul class="treeview-menu">
+							<li><a href="#"><i
+									class="fa fa-angle-double-right"></i> Creer Bon de Livraison</a></li>
+							<li><a href="pages/tables/data.html"><i
+									class="fa fa-angle-double-right"></i> Liste Bons Livraison</a></li>
+						</ul></li>
+						<li class="treeview"><a href="#"> <i class="fa fa-file-text-o"></i>
+							<span>Factures</span> <i class="fa fa-angle-left pull-right"></i>
+					</a>
+						<ul class="treeview-menu">
+							<li><a href="#"><i
+									class="fa fa-angle-double-right"></i> Creer Facture</a></li>
+							<li><a href="pages/tables/data.html"><i
+									class="fa fa-angle-double-right"></i> Liste des Factures</a></li>
+						</ul></li>
+					<li><a href="#"> <i class="fa fa-truck"></i> <span>Stock</span> <small
+							class="badge pull-right bg-green">10</small>
+					</a></li>
+					<li><a href="#"> <i class="fa fa-users"></i> <span>GRH</span> <small
+							class="badge pull-right bg-red">3</small>
+					</a></li>
+					
+				</ul>
+			</section>
+			<!-- /.sidebar -->
+		</aside>
+
+		<!-- Right side column. Contains the navbar and content of the page -->
+		<aside class="right-side">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<h1>
+					variable <small>la page en actu</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+					<li class="active">page actu</li>
+				</ol>
+			</section>
+
+			<!-- Main content -->
+			<section class="content"></section>
+			<!-- /.content -->
+		</aside>
+		<!-- /.right-side -->
+	</div>
+	<!-- ./wrapper -->
+
+
+	<!-- jQuery 2.0.2 -->
+	<script
+		src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="${baseURL}/assets/js/plugins/bootstrap.min.js"
+		type="text/javascript"></script>
+	<!-- AdminLTE App -->
+	<script src="${baseURL}/assets/js/plugins/AdminLTE/app.js"
+		type="text/javascript"></script>
+
+</body>
+</html>

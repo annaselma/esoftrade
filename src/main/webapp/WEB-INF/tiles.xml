@@ -7,10 +7,10 @@
 
 		<put-attribute name="header"
 			value="/WEB-INF/jsp/tiles/DefaultTemplate/Header.jsp" />
-		<put-attribute name="titlepage"
-			value="/WEB-INF/jsp/tiles/DefaultTemplate/titlePage.jsp" />
-		<put-attribute name="sidebar"
-			value="/WEB-INF/jsp/tiles/DefaultTemplate/SideBar.jsp" />
+<!-- 		<put-attribute name="titlepage" -->
+<!-- 			value="/WEB-INF/jsp/tiles/DefaultTemplate/titlePage.jsp" /> -->
+<!-- 		<put-attribute name="sidebar" -->
+<!-- 			value="/WEB-INF/jsp/tiles/DefaultTemplate/SideBar.jsp" /> -->
 		<put-attribute name="page" value="" />
 		<put-attribute name="footer"
 			value="/WEB-INF/jsp/tiles/DefaultTemplate/Footer.jsp" />
