@@ -18,4 +18,13 @@
 	<definition name="hello" extends="Template">
 	<put-attribute name="page" value="/WEB-INF/jsp/page/hello.jsp" />
 	</definition>
+	<definition name="client" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/client.jsp" />
+	</definition>
+	<definition name="fournisseur" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/fournisseur.jsp" />
+	</definition>
+	<definition name="produit" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/produit.jsp" />
+	</definition>
 </tiles-definitions>

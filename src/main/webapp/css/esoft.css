@@ -1,0 +1,5 @@
+@CHARSET "UTF-8";
+
+body .form-horizontal label.esoft-left{
+	text-align: left;
+}

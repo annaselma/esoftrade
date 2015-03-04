@@ -8,9 +8,9 @@
 
 <c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
 <header class="header">
-            <a href="index.html" class="logo">
+            <a href="#" class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
-                AdminLTE
+               Esoftrade
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
@@ -40,10 +40,10 @@
                                                     <img src="img/avatar3.png" class="img-circle" alt="User Image"/>
                                                 </div>
                                                 <h4>
-                                                    Support Team
+                                                    Support
                                                     <small><i class="fa fa-clock-o"></i> 5 mins</small>
                                                 </h4>
-                                                <p>Why not buy a new awesome theme?</p>
+                                                <p>tester</p>
                                             </a>
                                         </li><!-- end message -->
                                         <li>
@@ -52,10 +52,10 @@
                                                     <img src="img/avatar2.png" class="img-circle" alt="user image"/>
                                                 </div>
                                                 <h4>
-                                                    AdminLTE Design Team
+                                                    Kelmo
                                                     <small><i class="fa fa-clock-o"></i> 2 hours</small>
                                                 </h4>
-                                                <p>Why not buy a new awesome theme?</p>
+                                                <p>Kelmo</p>
                                             </a>
                                         </li>
                                         <li>
@@ -64,10 +64,10 @@
                                                     <img src="img/avatar.png" class="img-circle" alt="user image"/>
                                                 </div>
                                                 <h4>
-                                                    Developers
+                                                    Technicien
                                                     <small><i class="fa fa-clock-o"></i> Today</small>
                                                 </h4>
-                                                <p>Why not buy a new awesome theme?</p>
+                                                <p>test</p>
                                             </a>
                                         </li>
                                         <li>
@@ -215,14 +215,14 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <span>Jane Doe <i class="caret"></i></span>
+                                <span>Khaddach K <i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
                                     <img src="img/avatar3.png" class="img-circle" alt="User Image" />
                                     <p>
-                                        Jane Doe - Web Developer
+                                        Kelmo-Ingenieur
                                         <small>Member since Nov. 2012</small>
                                     </p>
                                 </li>
