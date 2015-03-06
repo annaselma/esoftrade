@@ -6,7 +6,7 @@
 		<div class="col-md-1"><label>Société</label></div>
 		<div class="col-md-1" style="margin-left:-27px">
 			<input type="radio"  class="rad" name="optionsRadios" 
-				value="Sociéte" checked>
+				value="Societe" checked="checked">
 		</div>
 		<div class="col-md-2"><label>Individu Privé</label></div>
 		<div class="col-lg-1" style="margin-left:-81px">
@@ -421,12 +421,19 @@
 						</div>
 					</div>
 
-				</div>
+				
 
 </form>
 
 			</div>
-			<div class="box box-primary sec" style="display:none" id="div1">
+			
+
+			<div class="box-footer">
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</div>
+		
+	</div>
+	<div class="box box-primary sec" id="div1">
 			<div class="form-group">
                     <label for="type" class="col-sm-1 control-label esoft-left">type</label>
 						<div class="col-md-4">
@@ -458,23 +465,21 @@
 			
 			</div>
 			<!-- /.box-body -->
-
-			<div class="box-footer">
-				<button type="submit" class="btn btn-primary">Submit</button>
-			</div>
-		
-	</div>
-	
 	<script type="text/javascript">
+	
     $(document).ready(function(){
 		$(".sec").hide();
 		
-		alert("hello");
+// 		$('input:radio[name="optionsRadios"]').change(
+// 			    function(){
+// 			        console.log("radio");
+// 			    });
+		$(".box-footer").on("click",".btn-primary",function(){
+			console.log("click");
+		})
 		$(".rad").click(function(){
-		
-			var value=$('input[name=optionsRadios]:checked', 'body').val();
-
-			if(	value=="Sociéte"){
+			var value=$('input[name=optionsRadios]:checked', 'body').val();                    
+			if(	value=="Societe"){
 				$(".sec").hide();
 				$(".first").show();
 				

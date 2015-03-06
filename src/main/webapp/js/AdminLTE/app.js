@@ -129,10 +129,10 @@ $(function() {
      * iCheck plugin in.
      * You can find the documentation at http://fronteed.com/iCheck/
      */
-    $("input[type='checkbox'], input[type='radio']").iCheck({
-        checkboxClass: 'icheckbox_minimal',
-        radioClass: 'iradio_minimal'
-    });
+//    $("input[type='checkbox'], input[type='radio']").iCheck({
+//        checkboxClass: 'icheckbox_minimal',
+//        radioClass: 'iradio_minimal'
+//    });
 
     /* For demo purposes */
     var demo = $("<div />").css({
@@ -202,8 +202,8 @@ $(function() {
         }
     });
 
-    $("body").append(demo);
-    $("body").append(demo_settings);
+   // $("body").append(demo);
+    //$("body").append(demo_settings);
 });
 function fix_sidebar() {
     //Make sure the body tag has the .fixed class

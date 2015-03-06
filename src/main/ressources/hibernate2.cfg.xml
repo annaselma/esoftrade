@@ -22,6 +22,6 @@
 			<property name="hibernate.connection.username" >root</property>
 			<property name="hibernate.connection.password"></property>
 		<!-- mapping files  -->	
-		<mapping class="ma.esoftech.esoftrade.model.Customer"/>
+<!-- 		<mapping class="ma.esoftech.esoftrade.model.Customer"/> -->
 	</session-factory>
 </hibernate-configuration>
