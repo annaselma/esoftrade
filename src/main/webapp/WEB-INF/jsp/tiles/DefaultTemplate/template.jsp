@@ -55,9 +55,6 @@
         <script src="${baseURL}/js/plugins/fullcalendar/fullcalendar.min.js" type="text/javascript"></script>
         <!-- jQuery Knob Chart -->
         <script src="${baseURL}/js/plugins/jqueryKnob/jquery.knob.js" type="text/javascript"></script>
-        <!-- daterangepicker -->
-        <script src="${baseURL}js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
-        <!-- Bootstrap WYSIHTML5 -->
         <script src="${baseURL}/js/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js" type="text/javascript"></script>
         <!-- iCheck -->
         <script src="${baseURL}/js/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
@@ -68,7 +65,7 @@
         <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
               
         
-    </head>
+   </head>
     <body class="skin-blue">
         <!-- header logo: style can be found in header.less -->
         <tiles:insertAttribute name="header"/>
@@ -98,7 +95,5 @@
         <!-- add new calendar event modal -->
 
         <!-- jQuery UI 1.10.3 -->
-        
-        
     </body>
 </html>

@@ -20,10 +20,7 @@ public class SpringTilesController {
     
     @RequestMapping(value="viewPeson")
     public ModelAndView viewPersons(Model model) {
-        Map<String, List<Person>> persons =
-                new HashMap<String, List<Person>>();
-        persons.put("persons", Person.createPersons());
-        return new ModelAndView("personList", persons);
+return null;
     }
     
 }

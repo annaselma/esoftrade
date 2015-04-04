@@ -12,8 +12,7 @@ public class AccountManager {
 	 @RequestMapping(method = RequestMethod.GET)
 	public String afficher(ModelMap model){
 		model.addAttribute("tiers", "Information");
-		
 		return "client";
 	}
-
+	 
 }
