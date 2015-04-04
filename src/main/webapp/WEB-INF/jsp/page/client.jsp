@@ -15,7 +15,7 @@
 		</div>
 	</div>
 </div>
-	<div class="box box-primary first" >
+	<div class="box box-primary " >
 		<div class="box-header">
 			<h3 class="box-title">Entreprise</h3>
 		</div>
@@ -426,7 +426,7 @@
 </form>
 
 			</div>
-			<div class="box box-primary sec" style="display:none" id="div1">
+			<div class=" sec" style="display:none" id="div1">
 			<div class="form-group">
                     <label for="type" class="col-sm-1 control-label esoft-left">type</label>
 						<div class="col-md-4">
@@ -469,18 +469,17 @@
     $(document).ready(function(){
 		$(".sec").hide();
 		
-		alert("hello");
 		$(".rad").click(function(){
 		
 			var value=$('input[name=optionsRadios]:checked', 'body').val();
 
 			if(	value=="Sociéte"){
 				$(".sec").hide();
-				$(".first").show();
+				$(".box box-primary").show();
 				
 			}
 			else{
-			    $(".first").hide();
+			    $(".box box-primary").hide();
 				$(".sec").show();
 				
 

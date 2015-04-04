@@ -10,7 +10,8 @@
 <header class="header">
             <a href="#" class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
-               Esoftrade
+                ElmoSoft
+<%--               <input type="image" src="${baseURL}/img/logo.png"/> Esoftrade --%>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
