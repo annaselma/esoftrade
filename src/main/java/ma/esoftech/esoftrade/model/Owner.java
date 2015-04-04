@@ -5,32 +5,60 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-@Entity
-@Table(name="OWNER")
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.Index;
 
+@Entity
+@Table(name="ELMO_OWNER")
 public class Owner extends Person {
 	
 	private static final long serialVersionUID = 1L;
+	
+	public Owner(){
+		super();
+	}
 
-	@Column(name="DISABLE", nullable=false, length=255)
-	private boolean disable;
-	@Column(name="LOGIN" ,length=255 , nullable=false, unique=true)
+	@Column(name="ELMO_DISABLE", nullable=false, length=255)
+	private boolean disable=false;
+	
+	@Index(name="ELMO_INDEX_LOGIN")
+	@Column(name="ELMO_LOGIN" ,length=255 , nullable=false, unique=true)
 	private String login;
-	@Column(name="PASSWD" ,length=255 , nullable=false)
+	
+	@Column(name="ELMO_PASSWD" ,length=255 , nullable=false)
 	private String passwd;
-	 @ManyToMany
-	 @JoinTable(name="OWNER_ROLE" ,
+	
+	@Column(name="ELMO_lAST_NAME" ,length=255 )
+	private String lastName;
+	
+	@Column(name="ELMO_PICTURE" ,length=255 )
+	private String picture;
+	 @ManyToMany()
+	 @JoinTable(name="ELMO_OWNER_ROLE" ,
 	   joinColumns={
-			@JoinColumn(name="OWNER_ID" , nullable=false)
+			@JoinColumn(name="ELMO_OWNER_ID" , nullable=false)
 	} ,inverseJoinColumns={
-			@JoinColumn(name="ROLE_ID" , nullable=false)}
+			@JoinColumn(name="ELMO_ROLE_ID" , nullable=false)}
 	)
 	 private List<Role> roles=new ArrayList<Role>();
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	public String getPicture() {
+		return picture;
+	}
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
 	public boolean getDisable() {
 		return disable;
 	}
@@ -49,7 +77,7 @@ public class Owner extends Person {
 	public void setPasswd(String passwd) {
 		this.passwd = passwd;
 	}
-	public Owner (){}
+	
 	public List<Role> getRoles() {
 		return roles;
 	}

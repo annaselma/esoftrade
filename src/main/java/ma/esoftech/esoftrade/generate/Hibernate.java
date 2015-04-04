@@ -11,6 +11,7 @@ public class Hibernate {
 		Configuration cfg= new Configuration().configure("hibernate2.cfg.xml");
 	SchemaUpdate sh= new SchemaUpdate(cfg);	
 	sh.execute(true, true);
+
 	}
 }
 /**/

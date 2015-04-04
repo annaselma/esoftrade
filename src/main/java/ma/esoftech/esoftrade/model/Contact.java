@@ -1,44 +1,62 @@
 package ma.esoftech.esoftrade.model;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+
 @Entity
-@Table(name="Contact")
-public class Contact extends Person  {
+@Table(name = "ELMO_CONTACT")
+public class Contact extends Person {
+
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
+
+	@Column(name = "ELMO_STATUT")
+	private boolean statut;
+
+	@Column(name = "ELMO_LAST_NAME", length = 255, nullable = false)
+	private String lastName;
 	
-	@Column(name="ETAT")
-	private boolean etat;
+	@Column(name = "ELMO_JOB", length = 255)
+	private String job;
 	
-	@Column(name="FOURNISSEUR")
- private boolean fournisseur;
-	
-	@Column(name="CLIENT")
-	private boolean client;
-	
-	public boolean isFournisseur() {
-		return fournisseur;
+	@Column(name = "ELMO_TYPE", length = 255)
+	private String type;
+
+	public boolean isStatut() {
+		return statut;
 	}
 
-	public void setFournisseur(boolean fournisseur) {
-		this.fournisseur = fournisseur;
+	public void setStatut(boolean statut) {
+		this.statut = statut;
 	}
 
-	public boolean isClient() {
-		return client;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setClient(boolean client) {
-		this.client = client;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	public boolean isEtat() {
-		return etat;
+	public String getJob() {
+		return job;
 	}
 
-	public void setEtat(boolean etat) {
-		this.etat = etat;
+	public void setJob(String job) {
+		this.job = job;
 	}
-	
- public Contact(){}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public Contact() {
+	}
 }

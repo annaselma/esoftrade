@@ -12,27 +12,42 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CascadeType;
+
 @Entity
-@Table(name="ROLE")
-public class Role {
-	@Id
-	@GeneratedValue
-	@Column(name="ROLE_ID" ,nullable=false , unique=true)
-	private int id ;
-	public int getId() {
-		return id;
+@Table(name="ELMO_ROLE")
+public class Role extends MetaObject {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
+
+	@Column(name="ELMO_ROLE" , nullable=false , length=255)
+	private String role;
+	
+	
+	@ManyToMany
+	@JoinTable(name="ELMO_PERM_ROLE" ,
+	   joinColumns={
+			@JoinColumn(name="ELMO_PERMISSION_ID" , nullable=false)
+	} ,inverseJoinColumns={
+			@JoinColumn(name="ELMO_ROLE_ID" , nullable=false)}
+	)
+	private List<Permission> permissions=  new ArrayList<Permission>();
+	
+	public Role(){
+		super();
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 	public String getRole() {
 		return role;
 	}
 	public void setRole(String role) {
 		this.role = role;
 	}
-	@Column(name="ROLE" , nullable=false , length=255)
-	private String role;
 	
 	public List<Permission> getPermissions() {
 		return permissions;
@@ -40,13 +55,4 @@ public class Role {
 	public void setPermissions(List<Permission> permissions) {
 		this.permissions = permissions;
 	}
-	@ManyToMany
-	@JoinTable(name="PERM_ROLE" ,
-	   joinColumns={
-			@JoinColumn(name="PERMISSION_ID" , nullable=false)
-	} ,inverseJoinColumns={
-			@JoinColumn(name="ROLE_ID" , nullable=false)}
-	)
-	private List<Permission> permissions=  new ArrayList<Permission>();
-	public Role(){}
 }

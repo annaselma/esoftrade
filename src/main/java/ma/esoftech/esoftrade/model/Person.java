@@ -6,28 +6,21 @@ import java.util.Set;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.Table;
+import javax.persistence.MappedSuperclass;
 
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Index;
-@Entity
-@Table(name="ELMO_PERSON")
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+
+@MappedSuperclass
 public  abstract class Person extends MetaObject implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	
+
 	@Column(name="ELMO_REF",nullable= false,unique=true,length= 255)
-	@Index(name="REF_INDEX")
+	@Index(name="ELMO_REF_INDEX")
 	private String ref;
 	@Column(name="ELMO_NAME", length= 255)
 	private String name;
@@ -44,7 +37,7 @@ public  abstract class Person extends MetaObject implements Serializable {
 	@Column(name="ELMO_TEL",length=255)
 	private String telephone;
 	@Column(name="ELMO_TELPRO",length=255)
-	private String telephone_pro;
+	private String telephonePro;
 	@Column(name="ELMO_FAX",length=255)
 	private String fax;
 	@ElementCollection(fetch=FetchType.EAGER)
@@ -52,6 +45,12 @@ public  abstract class Person extends MetaObject implements Serializable {
 	  @CollectionTable(name="EMAIL", joinColumns=@JoinColumn(name="Person_ID"))
 	  @Column(name="ELMO_EMAIL")
 	private Set<String> email;
+	
+	public Person(){
+		
+			super();
+		
+	}
 	public Set<String>  getEmail() {
 		return email;
 	}
@@ -91,11 +90,11 @@ public  abstract class Person extends MetaObject implements Serializable {
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
-	public String getTelephone_pro() {
-		return telephone_pro;
+	public String getTelephonePro() {
+		return telephonePro;
 	}
-	public void setTelephone_pro(String telephone_pro) {
-		this.telephone_pro = telephone_pro;
+	public void setTelephonePro(String telephone_pro) {
+		this.telephonePro = telephone_pro;
 	}
 	public String getFax() {
 		return fax;
@@ -122,6 +121,6 @@ public  abstract class Person extends MetaObject implements Serializable {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	public Person (){}
+	
 	
 }

@@ -4,41 +4,43 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="PERMISSION")
-public class Permission {
-	@Id
-	@GeneratedValue
-	@Column(name="PERMISSION_ID" ,nullable=false , unique=true)
-	private int id ;
-	public int getId() {
-		return id;
+@Table(name = "ELMO_PERMISSION")
+public class Permission extends MetaObject {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Column(name = "ELMO_LABEL", nullable = false, length = 255)
+	private String label;
+	@Column(name = "ELMO_DESCRIPTION", length = 255)
+	private String description;
+
+	public Permission() {
+
+		super();
+
 	}
-	public void setId(int id) {
-		this.id = id;
+
+	public String getLabel() {
+		return label;
 	}
+
 	
-	@Column(name="LIBEL" , nullable=false , length=255)
-	private String Libel;
-	@Column(name="Description", nullable=false, length=255)
-	private  String description;
-	
-	public String getLibel() {
-		return Libel;
+	public void setLabel(String label) {
+		this.label = label;
 	}
-	public void setLibel(String libel) {
-		Libel = libel;
-	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Permission(){}
+
 }
