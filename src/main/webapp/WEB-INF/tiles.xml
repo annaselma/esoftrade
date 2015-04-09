@@ -27,4 +27,7 @@
 	<definition name="produit" extends="Template">
 	<put-attribute name="page" value="/WEB-INF/jsp/page/produit.jsp" />
 	</definition>
+	<definition name="welcome" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/welcome.jsp" />
+	</definition>
 </tiles-definitions>

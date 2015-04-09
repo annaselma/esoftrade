@@ -16,16 +16,16 @@ import org.hibernate.annotations.Index;
 
 @Entity
 @Table(name="ELMO_OWNER")
-public class Owner extends Person {
+public class User extends Person {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public Owner(){
+	public User(){
 		super();
 	}
 
 	@Column(name="ELMO_DISABLE", nullable=false, length=255)
-	private boolean disable=false;
+	private boolean active =true;
 	
 	@Index(name="ELMO_INDEX_LOGIN")
 	@Column(name="ELMO_LOGIN" ,length=255 , nullable=false, unique=true)
@@ -36,7 +36,16 @@ public class Owner extends Person {
 	
 	@Column(name="ELMO_lAST_NAME" ,length=255 )
 	private String lastName;
+	@Column(name="EMO_fonction",length=255)
+	private String fonction;
 	
+	public String getFonction() {
+		return fonction;
+	}
+	public void setFonction(String fonction) {
+		this.fonction = fonction;
+	}
+
 	@Column(name="ELMO_PICTURE" ,length=255 )
 	private String picture;
 	 @ManyToMany()
@@ -59,11 +68,11 @@ public class Owner extends Person {
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
-	public boolean getDisable() {
-		return disable;
+	public boolean getActive() {
+		return active;
 	}
-	public void setDisable(Boolean disable) {
-		this.disable = disable;
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 	public String getLogin() {
 		return login;
@@ -84,7 +93,5 @@ public class Owner extends Person {
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-	public void setDisable(boolean disable) {
-		this.disable = disable;
-	}
+	
 }
