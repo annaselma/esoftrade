@@ -9,6 +9,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -40,22 +41,23 @@ public  abstract class Person extends MetaObject implements Serializable {
 	private String telephonePro;
 	@Column(name="ELMO_FAX",length=255)
 	private String fax;
-	@ElementCollection(fetch=FetchType.EAGER)
+	
+	@ElementCollection(fetch=FetchType.EAGER,targetClass=String.class)
 	@Fetch(value = FetchMode.SELECT)
-	  @CollectionTable(name="EMAIL", joinColumns=@JoinColumn(name="Person_ID"))
+	  @CollectionTable(name="ELMO_EMAIL", joinColumns=@JoinColumn(name="Person_ID"))
 	  @Column(name="ELMO_EMAIL")
-	private Set<String> email;
+	private Set<String> emails;
 	
 	public Person(){
 		
 			super();
 		
 	}
-	public Set<String>  getEmail() {
-		return email;
+	public Set<String>  getEmails() {
+		return emails;
 	}
-	public void setEmail(Set<String> email) {
-		this.email = email;
+	public void setEmails(Set<String> emails) {
+		this.emails = emails;
 	}
 	
 	public String getName() {

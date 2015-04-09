@@ -18,5 +18,10 @@
 			<property name="hibernate.c3p0.idle_test_period">3000</property>
 		<!-- mapping files  -->	
 <!-- 		<mapping class="ma.esoftech.esoftrade.model.Customer"/> -->
+<mapping class="ma.esoftech.esoftrade.model.Person"/>
+	<mapping class="ma.esoftech.esoftrade.model.User"/>
+	<mapping class="ma.esoftech.esoftrade.model.MetaObject"/>
+	<mapping class="ma.esoftech.esoftrade.model.Role"/>
+	<mapping class="ma.esoftech.esoftrade.model.Permission"/> 
 	</session-factory>
 </hibernate-configuration>

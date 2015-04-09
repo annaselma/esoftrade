@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+	<mapping map-id="a">
+		<class-a>ma.esoftech.esoftrade.generate.Entity</class-a>
+		<class-b>ma.esoftech.esoftrade.generate.EntityDTO</class-b>
+		<field>
+			<a>ent</a>
+			<b>ent</b>
+		</field>
+		<field>
+			<a>childs.name</a>
+			<b>childs</b>
+		    <a-hint>java.lang.String</a-hint> 
+			<b-hint>java.lang.String</b-hint> 
+		</field>
+
+	</mapping>
+</mappings>

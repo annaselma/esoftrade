@@ -37,10 +37,10 @@ public abstract class MetaObject implements Serializable {
 	private Date lastEdit;
 	@ManyToOne
 	@JoinColumn(name = "ELMO_CREATOR_ID")
-	private Owner creator;
+	private User creator;
 	@ManyToOne
 	@JoinColumn(name = "ELMO_MODIFIER_ID")
-	private Owner modifier;
+	private User modifier;
 
 	
 	
@@ -81,19 +81,19 @@ public abstract class MetaObject implements Serializable {
 		this.lastEdit = lastEdit;
 	}
 
-	public Owner getCreator() {
+	public User getCreator() {
 		return creator;
 	}
 
-	public void setCreator(Owner creator) {
+	public void setCreator(User creator) {
 		this.creator = creator;
 	}
 
-	public Owner getModifier() {
+	public User getModifier() {
 		return modifier;
 	}
 
-	public void setModifier(Owner modifier) {
+	public void setModifier(User modifier) {
 		this.modifier = modifier;
 	}
 

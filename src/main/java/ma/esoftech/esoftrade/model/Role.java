@@ -25,7 +25,7 @@ public class Role extends MetaObject {
 
 
 
-	@Column(name="ELMO_ROLE" , nullable=false , length=255)
+	@Column(name="ELMO_ROLE" , nullable=false , length=255,unique=true)
 	private String role;
 	
 	
