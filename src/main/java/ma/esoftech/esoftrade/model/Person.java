@@ -1,6 +1,7 @@
 package ma.esoftech.esoftrade.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
@@ -8,11 +9,15 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Index;
+import org.hibernate.validator.constraints.Email;
+
+//import com.mchange.v2.c3p0.impl.NewProxyResultSet;
 
 @MappedSuperclass
 public  abstract class Person extends MetaObject implements Serializable {
@@ -40,22 +45,24 @@ public  abstract class Person extends MetaObject implements Serializable {
 	private String telephonePro;
 	@Column(name="ELMO_FAX",length=255)
 	private String fax;
+	
 	@ElementCollection(fetch=FetchType.EAGER)
 	@Fetch(value = FetchMode.SELECT)
 	  @CollectionTable(name="EMAIL", joinColumns=@JoinColumn(name="Person_ID"))
 	  @Column(name="ELMO_EMAIL")
-	private Set<String> email;
+	private Set<String> emails= new HashSet<String>();
+	
 	
 	public Person(){
 		
 			super();
 		
 	}
-	public Set<String>  getEmail() {
-		return email;
+	public Set<String>  getEmails() {
+		return emails;
 	}
-	public void setEmail(Set<String> email) {
-		this.email = email;
+	public void setEmails(Set<String> emails) {
+		this.emails = emails;
 	}
 	
 	public String getName() {
