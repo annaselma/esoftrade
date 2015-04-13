@@ -45,6 +45,8 @@ public  abstract class Person extends MetaObject implements Serializable {
 	private String telephonePro;
 	@Column(name="ELMO_FAX",length=255)
 	private String fax;
+	@Column(name="ELMO_CIVILITE" ,length=255)
+	private String civilite;
 	
 	@ElementCollection(fetch=FetchType.EAGER)
 	@Fetch(value = FetchMode.SELECT)
@@ -127,6 +129,12 @@ public  abstract class Person extends MetaObject implements Serializable {
 	}
 	public void setCity(String city) {
 		this.city = city;
+	}
+	public String getCivilite() {
+		return civilite;
+	}
+	public void setCivilite(String civilite) {
+		this.civilite = civilite;
 	}
 	
 	

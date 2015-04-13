@@ -39,6 +39,9 @@ public class User extends Person {
 	@Column(name="EMO_fonction",length=255)
 	private String fonction;
 	
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 	public String getFonction() {
 		return fonction;
 	}

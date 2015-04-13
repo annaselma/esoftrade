@@ -6,19 +6,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-@RequestMapping("/hello")
+@RequestMapping("/profile")
 public class HelloController{
 	final static Logger logger = Logger.getLogger(HelloController.class);
    @RequestMapping(method = RequestMethod.GET)
    public String printHello(ModelMap model) {
-String str="eee";
-
-
-	 logger.info("this is message");
-	 logger.debug("this is for dev");
-      model.addAttribute("message", "Hello Spring MVC Framework!");
-      model.addAttribute("labelSide", "ui");
-      return "hello";
+//String str="eee";
+//
+//
+//	 logger.info("this is message");
+//	 logger.debug("this is for dev");
+//      model.addAttribute("message", "Hello Spring MVC Framework!");
+      model.addAttribute("fourn", "ui");
+      return "profile";
    }
 
 }

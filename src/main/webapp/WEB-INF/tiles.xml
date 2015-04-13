@@ -26,6 +26,9 @@
 	<definition name="fournisseur" extends="Template">
 	<put-attribute name="page" value="/WEB-INF/jsp/page/fournisseur.jsp" />
 	</definition>
+	<definition name="profile" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/user/profile.jsp" />
+	</definition>
 	<definition name="produit" extends="Template">
 	<put-attribute name="page" value="/WEB-INF/jsp/page/produit.jsp" />
 	</definition>

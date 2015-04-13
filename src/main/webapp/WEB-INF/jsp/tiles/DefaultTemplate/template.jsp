@@ -32,7 +32,8 @@
         <link href="${baseURL}/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
         <link href="${baseURL}/css/AdminLTE.css" rel="stylesheet" type="text/css" />
-
+         <!-- bootstrap-switch -->
+         <link href="${baseURL}/css/bootstrap-switch.css" rel="stylesheet" type="text/css" />
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
