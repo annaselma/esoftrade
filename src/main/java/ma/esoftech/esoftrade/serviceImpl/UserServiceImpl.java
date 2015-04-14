@@ -84,9 +84,10 @@ class UserServiceImpl implements IUserService {
 	@Override
 	@Transactional(rollbackFor=Exception.class)
 	public void createUser(UserDTO user) {
-        User u= new User();
-        		mapper.map(u, UserDTO.class);
-			userDao.createUser(u);
+		//convertir le UserDto vers User via mapper dozer
+		User userEntity=(User) mapper.map(user, User.class);
+		userDao.createUser(userEntity);
+
 	}
 
 	@Override
@@ -104,7 +105,7 @@ class UserServiceImpl implements IUserService {
 	@Override
 	public void updateUser(UserDTO user) {
 		// TODO Auto-generated method stub
-		
+		//update
 	}
 
 	@Override
