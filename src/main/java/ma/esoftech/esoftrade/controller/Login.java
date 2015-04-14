@@ -24,8 +24,6 @@ public class Login {
  
 		ModelAndView model = new ModelAndView();
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//    UserDTO u= userService.findByName("salma");
-//    System.out.println("login"+u.getLogin());
 		if (!(auth instanceof AnonymousAuthenticationToken)) {
 		    /* The user is logged in :) */
 		    return new ModelAndView("forward:/client.html");

@@ -3,6 +3,7 @@ package ma.esoftech.esoftrade.serviceImpl;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.service.IUserService;
 
+import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,7 +17,7 @@ public class LoginService  implements UserDetailsService{
 	private IUserService userService;
 
 
-	SessionFactory sessionFactory;
+	static private Logger logger=Logger.getLogger(LoginService.class);
 
 	 public LoginService() {
 		// TODO Auto-generated constructor stub
@@ -26,19 +27,10 @@ public class LoginService  implements UserDetailsService{
 			throws UsernameNotFoundException {
 		 System.out.println("naamgggge"+username);
 		 UserDTO user=null;
-		 if(sessionFactory==null){
-			 System.out.println("session null");
-			 
-		 }else
-			 
-			 System.out.println("not null session");
-		 if(userService==null)
-			 System.out.println("is nnull");
 		  user= userService.findByName(username);
-	System.out.println("complet");
-		System.out.println("password"+user.getLogin()+user.getPassword());
+		logger.debug("username: "+user.getLogin()+"password: "+user.getPassword());
 		if( user == null){
-			System.out.println("nulll");
+			logger.debug("no user found");
 			throw new UsernameNotFoundException("user not found");
 		}
 		 return Assembler.buildUserSpringFromUserDTO(user);
@@ -50,13 +42,7 @@ public class LoginService  implements UserDetailsService{
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
 	}
-	public SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
-	
+
 		 
 
 }
