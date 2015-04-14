@@ -20,7 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 class UserServiceImpl implements IUserService {
-    @Autowired
+    
+	@Autowired
     Mapper mapper;
     @Autowired
     IUserDao userDao;
@@ -66,9 +67,9 @@ class UserServiceImpl implements IUserService {
 		List<User> user= userDao.getAllUsers(start, length, sorting, filter);
 		UserConverter converter= new UserConverter();
 		UserDTO userFinal= mapper.map(user, UserDTO.class);
-//		for (User index : user) {  rectifier error
-//			userFinal.setRoles(converter.toRoleNameList(user.get(index)));
-//		}
+       for (User utilisateur : user) {
+		
+	}
 		
 		return null ;
 	}
@@ -83,7 +84,9 @@ class UserServiceImpl implements IUserService {
 	@Override
 	@Transactional(rollbackFor=Exception.class)
 	public void createUser(UserDTO user) {
-		
+        User u= new User();
+        		mapper.map(u, UserDTO.class);
+			userDao.createUser(u);
 	}
 
 	@Override
