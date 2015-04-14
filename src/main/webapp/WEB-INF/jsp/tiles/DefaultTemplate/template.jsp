@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>AdminLTE | Dashboard</title>
+        <title>KelmoSoft</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
         <link href="${baseURL}/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -28,6 +28,8 @@
         <link href="${baseURL}/css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
         <!-- Daterange picker -->
         <link href="${baseURL}/css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+         <!-- DATA TABLES -->
+        <link href="${baseURL}/css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
         <!-- bootstrap wysihtml5 - text editor -->
         <link href="${baseURL}/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
@@ -44,6 +46,8 @@
         <script src="${baseURL}/js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
         <!-- Bootstrap -->
         <script src="${baseURL}/js/bootstrap.min.js" type="text/javascript"></script>
+        <!-- KelmoSoft -->
+        <script src="${baseURL}/js/KelmoSoft/App.js" type="text/javascript"></script>
         <!-- Morris.js charts -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
         <script src="${baseURL}/js/plugins/morris/morris.min.js" type="text/javascript"></script>
