@@ -1,14 +1,16 @@
 package ma.esoftech.esoftrade.generate;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import org.dozer.Mapper;
+import ma.esoftech.esoftrade.DTO.RoleDTO;
+import ma.esoftech.esoftrade.model.Role;
+import ma.esoftech.esoftrade.model.User;
+
+import org.dozer.DozerBeanMapper;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 public class test {
@@ -20,17 +22,45 @@ public class test {
 //		 List myMappingFiles= new ArrayList<>();
 //		 myMappingFiles.add("dozerMapping.xml");
 //		 map.setMappingFiles(myMappingFiles);
-//		 ma.esoftech.esoftrade.model.User
-//		  u= new ma.esoftech.esoftrade.model.User();
-//		 u.setId(3);
-//		 u.getEmails().add("del");
-//		UserDTO dto=(UserDTO) map.map(u, UserDTO.class);
 //
-//		System.out.println(dto.getId());
-//		System.out.println(dto.getEmail().size());
+//		 
+//		 Role role=new Role();
+//		 role.setId(1);
+//		 role.setRole("role");
+//		 ma.esoftech.esoftrade.model.User user=new ma.esoftech.esoftrade.model.User();
+//		 user.setId(3);
+//	     user.setLastName("last");
+//	     user.setName("last");
+//		 role.setCreator(user);
+//		 role.setModifier(user);
+//		 RoleDTO roleDTO=(RoleDTO)map.map(role,RoleDTO.class);
+//		 Role r1=new Role();
+//		 r1.setId(1);
+//		 Role r2=new Role();
+//		 r2.setId(1);
+//		 System.out.println("ref r1"+r1);
+//		 System.out.println("ref r2"+r2);
+//         List<Role>list=new ArrayList<Role>();
+//         list.add(r1);
+//         //je vaiwx utiliser ta méthode pour te montrer qu'elle n'a aucune influence
+//         list.remove(r2);
+//         //taille de la liste rada tb9a hiya hiya egale 1
+//         System.out.println(list.size());
+//		 System.out.println("ref"+roleDTO);
+		 //makibrich dir liya autocomplet
 		SessionFactory sessionFactory=new Configuration().configure("hibernate2.cfg.xml").buildSessionFactory();
 		Session session=sessionFactory.openSession();
-		session.get(ma.esoftech.esoftrade.model.User.class, new Long(0));
+		 session.beginTransaction();
+		 User  u=new User();
+		u.setLogin("logffg");
+		u.setPasswd("eee");
+		u.setRef("rgr");
+		u.setActive(true);
+		u.setDeleted(false);
+		Long l=(Long)session.save(u);
+		u.setId(l);
+		u.setRef("fgh");
+		 session.getTransaction().commit();
 		session.close();
 	}
 	public static void cascadeCreateExemple(){

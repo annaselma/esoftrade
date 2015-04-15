@@ -1,6 +1,7 @@
 package ma.esoftech.esoftrade.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -43,16 +44,15 @@ public  abstract class Person extends MetaObject implements Serializable {
 	private String telephone;
 	@Column(name="ELMO_TELPRO",length=255)
 	private String telephonePro;
+	@Column(name="ELMO_BIRDAY",length=255)
+	private Date birdDay;
 	@Column(name="ELMO_FAX",length=255)
 	private String fax;
 	@Column(name="ELMO_CIVILITE" ,length=255)
 	private String civilite;
-	
-	@ElementCollection(fetch=FetchType.EAGER)
-	@Fetch(value = FetchMode.SELECT)
-	  @CollectionTable(name="EMAIL", joinColumns=@JoinColumn(name="Person_ID"))
-	  @Column(name="ELMO_EMAIL")
-	private Set<String> emails= new HashSet<String>();
+
+	@Column(name="ELMO_EMAIL")
+	private String email;
 	
 	
 	public Person(){
@@ -60,11 +60,17 @@ public  abstract class Person extends MetaObject implements Serializable {
 			super();
 		
 	}
-	public Set<String>  getEmails() {
-		return emails;
+	public Date getBirdDay() {
+		return birdDay;
 	}
-	public void setEmails(Set<String> emails) {
-		this.emails = emails;
+	public void setBirdDay(Date birdDay) {
+		this.birdDay = birdDay;
+	}
+	public String  getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	public String getName() {

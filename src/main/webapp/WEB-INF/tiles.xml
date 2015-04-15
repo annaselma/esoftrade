@@ -32,6 +32,9 @@
 	<definition name="produit" extends="Template">
 	<put-attribute name="page" value="/WEB-INF/jsp/page/produit.jsp" />
 	</definition>
+	<definition name="createUser" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/user/createUser.jsp" />
+	</definition>
 	
 	<definition name="login" template="/WEB-INF/jsp/page/login.jsp"/>
 </tiles-definitions>

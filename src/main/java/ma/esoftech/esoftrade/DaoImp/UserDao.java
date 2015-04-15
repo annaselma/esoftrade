@@ -86,17 +86,18 @@ public class UserDao implements IUserDao {
 	public List<Role> getRolesByUser(User user) {
 		// TODO Auto-generated method stub
 		session= sessionFactory.getCurrentSession();
-		Query query= session.createQuery("From Role as role where user.id= :id");
+		Query query= session.createQuery("From Role as role inner join role.user as user where user.id= :id");
 		query.setParameter("id", user.getId());
 		List<Role> roles= query.list();
 		return roles;
 	}
 
 	@Override
-	public void createUser(User user) {
+	public Long createUser(User user) {
 		// TODO Auto-generated method stub
 		session = sessionFactory.getCurrentSession();
-		session.save(user);
+		Long idReturn=(Long)session.save(user);
+		return idReturn;
 	}
 
 	@Override

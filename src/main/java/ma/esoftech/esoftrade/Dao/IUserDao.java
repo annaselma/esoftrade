@@ -11,7 +11,7 @@ public interface IUserDao {
 	public User findByRef(String ref);
 	public List<User> getAllUsers(int start, int length,String sorting, String filter);
     public List<Role> getRolesByUser(User user);
-	public void createUser(User user);
+	public Long createUser(User user);
     public void updateUser(User user);
     public void deleteUser(User user);
     public long userCount( String filter);
