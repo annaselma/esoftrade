@@ -39,10 +39,17 @@
   <!-- DATA TABES SCRIPT -->
         <script src="${baseURL}/js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
         <script src="${baseURL}/js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+         <script src="${baseURL}/js/plugins/datatables/dataTables.ColumnFilter.js" type="text/javascript"></script>
         <script type="text/javascript">
+        
             $(function() {
-            	$("#example33").dataTable({});
-                $('#example1').dataTable({
+            	   $('#example1 thead th').each( function () {
+                       var title = $('#example1 thead th').eq( $(this).index() ).text();
+                       $(this).prepend( '<input  id="me" type="text" placeholder="Search '+title+'" /><br>' );
+                   } );
+                
+            	$("#example33").DataTable({});
+               var table= $('#example1').DataTable({
                     "paging": true,
                     "lengthChange": true,
                     "searching": true,
@@ -52,7 +59,7 @@
                     "processing": true,
                     "serverSide": true,
                     "ajax": {
-                        "url": "produtos-source",
+                        "url": "${baseURL}/table/getList.html",
                         "data": function(data) {
                             planify(data);  
                         } 
@@ -62,6 +69,18 @@
                     	"name":"hello"
                     
                     }]
-                });"src/main/webapp/js/plugins/slimScroll"
+                });
+              table.columns( ).every( function (i) {
+            	    console.log("index:"+this.index());
+               });
+                
+               $('#example1 tfoot th ').on( 'keyup',"#me", function () {
+            	   console.log("hello");
+            	    table
+            	        .columns( 3 )
+            	        .search( this.value )
+            	        .draw();
+            	} );
+                
             });
         </script>

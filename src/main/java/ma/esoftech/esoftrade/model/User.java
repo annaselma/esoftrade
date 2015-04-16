@@ -51,8 +51,8 @@ public class User extends Person {
 
 	@Column(name="ELMO_PICTURE" ,length=255 )
 	private String picture;
-	 @ManyToMany()
-	 @JoinTable(name="ELMO_OWNER_ROLE" ,
+	 @ManyToMany
+	 @JoinTable(name="ELMO_OWNER_ROLE" , 
 	   joinColumns={
 			@JoinColumn(name="ELMO_OWNER_ID" , nullable=false)
 	} ,inverseJoinColumns={
