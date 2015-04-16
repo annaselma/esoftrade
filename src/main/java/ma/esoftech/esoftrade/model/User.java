@@ -1,8 +1,11 @@
 package ma.esoftech.esoftrade.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,6 +22,7 @@ import org.hibernate.annotations.Index;
 public class User extends Person {
 	
 	private static final long serialVersionUID = 1L;
+	private static final String PREFIX_REF_USER="US";
 	
 	public User(){
 		super();
@@ -51,14 +55,14 @@ public class User extends Person {
 
 	@Column(name="ELMO_PICTURE" ,length=255 )
 	private String picture;
-	 @ManyToMany
+	 @ManyToManys
 	 @JoinTable(name="ELMO_OWNER_ROLE" , 
 	   joinColumns={
 			@JoinColumn(name="ELMO_OWNER_ID" , nullable=false)
 	} ,inverseJoinColumns={
 			@JoinColumn(name="ELMO_ROLE_ID" , nullable=false)}
 	)
-	 private List<Role> roles=new ArrayList<Role>();
+	 private Set<Role> roles=new HashSet<Role>();
 	public String getLastName() {
 		return lastName;
 	}
@@ -90,11 +94,20 @@ public class User extends Person {
 		this.passwd = passwd;
 	}
 	
-	public List<Role> getRoles() {
+	public Set<Role> getRoles() {
 		return roles;
 	}
-	public void setRoles(List<Role> roles) {
+	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+	public String generateReference(){
+		String ref="";
+		ref.concat(PREFIX_REF_USER);
+		ref.concat(String.valueOf(this.getId()));
+		ref.concat("-");
+		ref.concat(String.valueOf(this.getCreateDate().getTime()));
+		this.setRef(ref);
+	return ref;	
 	}
 	
 }

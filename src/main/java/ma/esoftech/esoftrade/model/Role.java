@@ -18,17 +18,12 @@ import org.hibernate.annotations.CascadeType;
 @Table(name="ELMO_ROLE")
 public class Role extends MetaObject {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 
 
 	@Column(name="ELMO_ROLE" , nullable=false , length=255)
-	private String role;
-	
-	
+	private String role;	
 	@ManyToMany
 	@JoinTable(name="ELMO_PERM_ROLE" ,
 	   joinColumns={

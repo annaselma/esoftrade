@@ -33,11 +33,11 @@ public abstract class MetaObject implements Serializable {
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "ELMO_GEN")
 	@Column(name = "ELMO_ID", nullable = false, unique = true)
 	private long id;
-	@Column(name = "ELMO_CREATE_DATE", nullable = false)
+	@Column(name = "ELMO_CREATE_DATE")
 	private Date createDate;
-	@Column(name = "ELMO_DELETED", nullable = false)
+	@Column(name = "ELMO_DELETED")
 	private boolean deleted = false;
-	@Column(name = "ELMO_LAST_EDIT", nullable = false)
+	@Column(name = "ELMO_LAST_EDIT")
 	private Date lastEdit;
 	@ManyToOne
 	@JoinColumn(name = "ELMO_CREATOR_ID")

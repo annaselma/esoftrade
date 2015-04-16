@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Index;
 
@@ -51,7 +52,7 @@ public abstract class BusinessDocument extends MetaObject{
 	@JoinColumn(name="ELMO_ATTACHED_FILE_ID")
     private List<File> attachedFiles;
 	
-	@ManyToOne
+	@OneToMany
 	@JoinColumn(name="ELMO_DOCUMENT_LINE_ID")
     private List<DocumentLine> documentLines;
 	

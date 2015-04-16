@@ -4,6 +4,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javassist.expr.NewArray;
 
 public class UserDTO {
@@ -11,9 +17,13 @@ private long id;
 private String login;
 private boolean active;
 private String creator;
+
 private Date createDate;
 private String ref;
+@NotEmpty
 private String name;
+@DateTimeFormat(pattern="dd/MM/yyyy")
+private Date birdDay;
 private String password;
 private String lastName;
 private String fonction;
@@ -26,7 +36,10 @@ private String telephone;
 private String telephonePro;
 private String fax;
 private String picture;
-private List<String>email= new ArrayList<String>();
+private String civilite;
+@Email
+private String email;
+@Size(max=100,min=200,message="erro.fdgs.sdgs")
 private List<String>roles= new ArrayList<String>();
 private List<String>permissions= new ArrayList<String>();
 public long getId() {
@@ -132,10 +145,10 @@ public String getFax() {
 public void setFax(String fax) {
 	this.fax = fax;
 }
-public List<String> getEmail() {
+public String getEmail() {
 	return email;
 }
-public void setEmail(List<String> email) {
+public void setEmail(String email) {
 	this.email = email;
 }
 public List<String> getRoles() {
@@ -165,6 +178,22 @@ public String getPicture() {
 public void setPicture(String picture) {
 	this.picture = picture;
 }
-public UserDTO(){}
+
+public String getCivilite() {
+	return civilite;
+}
+public void setCivilite(String civilite) {
+	this.civilite = civilite;
+}
+
+public Date getBirdDay() {
+	return birdDay;
+}
+public void setBirdDay(Date birdDay) {
+	this.birdDay = birdDay;
+}
+public UserDTO(){
+	setBirdDay(new Date());
+}
 
 }

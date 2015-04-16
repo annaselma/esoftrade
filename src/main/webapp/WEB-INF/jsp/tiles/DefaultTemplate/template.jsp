@@ -28,6 +28,8 @@
         <link href="${baseURL}/css/fullcalendar/fullcalendar.css" rel="stylesheet" type="text/css" />
         <!-- Daterange picker -->
         <link href="${baseURL}/css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+        <!-- datepicker -->
+        <link href="${baseURL}/css/datepicker.css" rel="stylesheet" type="text/css" />
          <!-- DATA TABLES -->
         <link href="${baseURL}/css/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
         <!-- bootstrap wysihtml5 - text editor -->
@@ -44,6 +46,7 @@
         <![endif]-->
         <script src="${baseURL}/js/jquery-2.1.3.js" type="text/javascript"></script>
         <script src="${baseURL}/js/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
+        <script src="${baseURL}/js/bootstrap-datepicker.js"></script>
         <!-- Bootstrap -->
         <script src="${baseURL}/js/bootstrap.min.js" type="text/javascript"></script>
         <!-- KelmoSoft -->
@@ -67,7 +70,8 @@
         <script src="${baseURL}/js/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
         <!-- AdminLTE App -->
         <script src="${baseURL}/js/AdminLTE/app.js" type="text/javascript"></script>
-        <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+        <!-- dateranpicker -->
+        <script src="${baseURL}/js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
               
         
    </head>
@@ -79,7 +83,7 @@
             <aside class="left-side sidebar-offcanvas">
             <tiles:insertAttribute name="sidebar"/>
 </aside>
-            <!-- Right side column. Contains the navbar and content of the page -->
+            <!-- -->
             <aside class="right-side">
                 <!-- Content Header (Page header) -->
                 <tiles:insertAttribute name="titlepage"/>
@@ -96,9 +100,5 @@
 <tiles:insertAttribute name="footer"/>
 	</div>
 	<!-- END FOOTER -->
-
-        <!-- add new calendar event modal -->
-
-        <!-- jQuery UI 1.10.3 -->
     </body>
 </html>
