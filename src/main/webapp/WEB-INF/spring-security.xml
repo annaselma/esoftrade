@@ -13,6 +13,8 @@
 <!-- 	<access-denied-handler error-page="/error/403.html" /> -->
 
 		  <intercept-url pattern="/client**" access="isAuthenticated()"  />
+		  <intercept-url pattern="/user**" access="isAuthenticated()"  />
+		  <intercept-url pattern="/user/**" access="isAuthenticated()"  />
 		<form-login login-page="/login.html" 
 		    default-target-url="/client.html"
 			authentication-failure-url="/login.html?error=failed"

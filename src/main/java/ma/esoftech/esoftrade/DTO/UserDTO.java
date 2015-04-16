@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import javassist.expr.NewArray;
 
 public class UserDTO {
 private long id;
@@ -21,8 +21,10 @@ private String creator;
 private Date createDate;
 private String ref;
 @NotEmpty
+@Size(min=5)
 private String name;
 @DateTimeFormat(pattern="dd/MM/yyyy")
+@NotNull(message="nuulll") @Past
 private Date birdDay;
 private String password;
 private String lastName;
@@ -39,7 +41,6 @@ private String picture;
 private String civilite;
 @Email
 private String email;
-@Size(max=100,min=200,message="erro.fdgs.sdgs")
 private List<String>roles= new ArrayList<String>();
 private List<String>permissions= new ArrayList<String>();
 public long getId() {

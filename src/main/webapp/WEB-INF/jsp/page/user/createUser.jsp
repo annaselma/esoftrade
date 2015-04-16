@@ -38,7 +38,7 @@
 
 		<form:form method="POST" commandName="user" id="userF"
 			data-toggle="validator" cssClass="form-horizontal"
-			enctype="multipart/form-data">
+			>
 			<div class="form-group">
 				<label for="nameField" class="col-sm-1 control-label esoft-left">Nom</label>
 				<!-- <input ..... name -->
@@ -355,8 +355,8 @@
 					<form:errors path="country" cssClass="error" />
 				</div>
 				<div>
-					<button type="submit" class="btn btn-primary btn pull-right">Submit</button>
-					<button type="Cancel" class="btn btn-default btn pull-right">Cancel</button>
+					<input type="submit" class="btn btn-primary btn pull-right" value="envoyer">
+					<input type="reset" class="btn btn-default btn pull-right" value="vider"/>
 				</div>
 
 			</div>
@@ -382,43 +382,43 @@
 	<!-- form start -->
 
 	<div class="box-body">
-		<form data-toggle="validator" role="form" class="form-horizontal">
-			<div class="form-group">
-				<label for="name" class="col-sm-1 control-label esoft-left">Login:</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control" id="login"
-						placeholder="login">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="passwordField" class="col-sm-1 control-label esoft-left">Mot
-					de Passe:</label>
-				<div class="col-sm-4">
-					<input type="password" class="form-control" id="password"
-						placeholder="Insertion de mot de passe">
-				</div>
+<%-- 		<form data-toggle="validator" role="form" class="form-horizontal"> --%>
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="name" class="col-sm-1 control-label esoft-left">Login:</label> -->
+<!-- 				<div class="col-sm-4"> -->
+<!-- 					<input type="text" class="form-control" id="login" -->
+<!-- 						placeholder="login"> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="passwordField" class="col-sm-1 control-label esoft-left">Mot -->
+<!-- 					de Passe:</label> -->
+<!-- 				<div class="col-sm-4"> -->
+<!-- 					<input type="password" class="form-control" id="password" -->
+<!-- 						placeholder="Insertion de mot de passe"> -->
+<!-- 				</div> -->
 
-			</div>
-			<div class="form-group">
-				<label for="passwdConfField"
-					class="col-sm-1 control-label esoft-left">mot de Passe:</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control" id="lastname"
-						placeholder="Confirmation de mot de passe">
-				</div>
+<!-- 			</div> -->
+<!-- 			<div class="form-group"> -->
+<!-- 				<label for="passwdConfField" -->
+<!-- 					class="col-sm-1 control-label esoft-left">mot de Passe:</label> -->
+<!-- 				<div class="col-sm-4"> -->
+<!-- 					<input type="text" class="form-control" id="lastname" -->
+<!-- 						placeholder="Confirmation de mot de passe"> -->
+<!-- 				</div> -->
 
-			</div>
+<!-- 			</div> -->
 
-		</form>
+<%-- 		</form> --%>
 	</div>
 
 </div>
-<Form role="form" class="form-horizontal">
-	<div>
-		<button type="submit" class="btn btn-primary btn pull-right">Submit</button>
-		<button type="Cancel" class="btn btn-default btn pull-right">Cancel</button>
-	</div>
-</Form>
+<!-- <Form role="form" class="form-horizontal"> -->
+<!-- 	<div> -->
+<!-- 		<button type="submit" class="btn btn-primary btn pull-right">Submit</button> -->
+<!-- 		<button type="Cancel" class="btn btn-default btn pull-right">Cancel</button> -->
+<!-- 	</div> -->
+<!-- </Form> -->
 <script src="${baseURL}/js/bootstrap-datepicker.js"></script>
 <script>
 	$(function() {

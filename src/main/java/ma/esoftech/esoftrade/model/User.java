@@ -55,7 +55,7 @@ public class User extends Person {
 
 	@Column(name="ELMO_PICTURE" ,length=255 )
 	private String picture;
-	 @ManyToManys
+	 @ManyToMany
 	 @JoinTable(name="ELMO_OWNER_ROLE" , 
 	   joinColumns={
 			@JoinColumn(name="ELMO_OWNER_ID" , nullable=false)
@@ -63,6 +63,7 @@ public class User extends Person {
 			@JoinColumn(name="ELMO_ROLE_ID" , nullable=false)}
 	)
 	 private Set<Role> roles=new HashSet<Role>();
+	 
 	public String getLastName() {
 		return lastName;
 	}

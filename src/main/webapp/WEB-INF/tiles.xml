@@ -37,4 +37,8 @@
 	</definition>
 	
 	<definition name="login" template="/WEB-INF/jsp/page/login.jsp"/>
+	<definition name="customer"
+		template="/WEB-INF/jsp/page/custumer.jsp"/>
+			<definition name="done"
+		template="/WEB-INF/jsp/page/done.jsp"/>
 </tiles-definitions>
