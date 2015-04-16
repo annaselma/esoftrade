@@ -36,9 +36,6 @@ public class UserManager {
 	@RequestMapping(value="/create",method=RequestMethod.GET)
 public String DisplayUserForm(ModelMap model){
     UserDTO userDto=new UserDTO();
-    System.out.println("hereee");
-    logger.info("here");
-	model.addAttribute("title","gotit" );
 	model.addAttribute("user",userDto);
 	return"createUser";
 }

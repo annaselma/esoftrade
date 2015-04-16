@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -14,32 +16,51 @@ import javassist.expr.NewArray;
 
 public class UserDTO {
 private long id;
+@NotEmpty
+@Size(min=4, max=20)
 private String login;
+@NotEmpty
 private boolean active;
 private String creator;
-
 private Date createDate;
 private String ref;
 @NotEmpty
 private String name;
 @DateTimeFormat(pattern="dd/MM/yyyy")
+@Past
 private Date birdDay;
+@NotEmpty
+@Size(max=5, min=25)
 private String password;
+@NotEmpty
 private String lastName;
+@NotEmpty
+@Size(min=5, max=50)
 private String fonction;
+@Size(min=5, max=100)
 private String adresse1;
+@Size(min=5, max=100)
 private String adresse2;
+@Size(min=2,max=10)
 private String zipCode;
+@NotEmpty
 private String country;
+@NotEmpty
 private String city;
+@NotEmpty
+@Size(min=3,max=20)
 private String telephone;
+@NotEmpty
+@Size(min=3,max=20)
 private String telephonePro;
+@NotEmpty
+@Size(min=3,max=20)
 private String fax;
 private String picture;
+@NotEmpty
 private String civilite;
 @Email
 private String email;
-@Size(max=100,min=200,message="erro.fdgs.sdgs")
 private List<String>roles= new ArrayList<String>();
 private List<String>permissions= new ArrayList<String>();
 public long getId() {

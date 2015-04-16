@@ -9,7 +9,7 @@
 .error {
 	color: #ff0000;
 }
- 
+
 .errorblock {
 	color: #000;
 	background-color: #ffEEEE;
@@ -19,17 +19,10 @@
 }
 </style>
 <c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
+
 <div class="box box-solid box-primary">
 	<div class="box-header">
 		<h3 class="box-title">Informations Personnelle</h3>
-		<div class="box-tools pull-right">
-			<button class="btn btn-primary btn-sm" data-widget="collapse">
-				<i class="fa fa-minus"></i>
-			</button>
-			<button class="btn btn-primary btn-sm" data-widget="remove">
-				<i class="fa fa-times"></i>
-			</button>
-		</div>
 	</div>
 	<!-- /.box-header -->
 	<!-- form start -->
@@ -40,8 +33,7 @@
 			data-toggle="validator" cssClass="form-horizontal"
 			enctype="multipart/form-data">
 			<div class="form-group">
-				<label for="nameField" class="col-sm-1 control-label esoft-left">Nom</label>
-				<!-- <input ..... name -->
+				<label for="nameField" class="col-sm-1 control-label esoft-left">Nom:</label>
 				<div class="col-sm-4">
 					<form:input path="name" cssClass="form-control" />
 					<form:errors path="name" cssClass="error" />
@@ -49,60 +41,80 @@
 
 			</div>
 			<div class="form-group">
-				<label for="lastnameField" class="col-sm-1 control-label esoft-left">Prenom</label>
+				<label for="lastnameField" class="col-sm-1 control-label esoft-left">Prenom:</label>
 				<div class="col-sm-4">
 					<form:input path="lastName" cssClass="form-control" />
 					<form:errors path="lastName" cssClass="error" />
 				</div>
 
 			</div>
-						<div class="form-group">
-				<label for="name" class="col-sm-1 control-label esoft-left">Login:</label>
-				<div class="col-sm-4">
-					<form:input path="login" cssClass="form-control" />
-					<form:errors path="login" cssClass="error" />
-				</div>
-			</div>
+			
 			<div class="form-group">
-				<label for="passwordField" class="col-sm-1 control-label esoft-left">Mot
-					de Passe:</label>
+				<label for="dateField" class="col-sm-1 control-label esoft-left"><small>Date Naissance:</small></label>
 				<div class="col-sm-4">
-					<form:input path="password" cssClass="form-control" />
-					<form:errors path="password" cssClass="error" />
+					<form:input path="birdDay" cssClass="form-control " />
+					<form:errors path="birdDay" cssClass="error" />
 				</div>
 
 			</div>
 			<div class="form-group">
-				<label for="emailField" class="col-sm-1 control-label esoft-left">Email</label>
+				<label for="emailField" class="col-sm-1 control-label esoft-left">Email:</label>
 				<div class="col-sm-4">
 					<form:input path="email" cssClass="form-control"
 						placeholder="exemple@hotmail.com" />
-						<form:errors path="email" cssClass="error" />
+					<form:errors path="email" cssClass="error" />
 				</div>
 
 			</div>
-<!-- 			<div class="form-group"> -->
-<!-- 				<label for="birdField" class="col-sm-2 control-label esoft-left">Date -->
-<!-- 					Naissance</label> -->
-<!-- 				<div class="col-sm-4"> -->
-<!-- 					<div class="input-append date" id="dp3" data-date="18-02-2014" -->
-<!-- 						data-date-format="dd-mm-yyyy"> -->
-<!-- 						<input class="span3" size="18" type="text" value="18-02-2014"> -->
-<%-- 						<form:input path="birdDay" cssClass="form-control" /> --%>
-<!-- 						<span class="add-on"><i class="fa fa-calendar"></i></span> -->
-<%-- 						<form:errors path="birdDAy" cssClass="error" /> --%>
-<!-- 					</div> -->
-<!-- 				</div> -->
+			<div class="form-group">
+				<label for="phoneField" class="col-sm-1 control-label esoft-left">Telephone:</label>
+				<div class="col-sm-4">
+					<form:input path="telephone" cssClass="form-control" />
+					<form:errors path="telephone" cssClass="error" />
+				</div>
 
-<!-- 			</div> -->
+			</div>
+			<div class="form-group">
+				<label for="fonctionField" class="col-sm-1 control-label esoft-left">Fonction:</label>
+				<div class="col-sm-4">
+					<form:input path="fonction" cssClass="form-control" />
+					<form:errors path="fonction" cssClass="error" />
+				</div>
 
+			</div>
+			
+			<div class="form-group">
+				<label for="adresseField" class="col-sm-1 control-label esoft-left">Adresse:</label>
+				<div class="col-sm-4">
+					<form:textarea path="adresse1" rows="2" cols="50" />
+					<form:errors path="adresse1" cssClass="error" />
+				</div>
 
+			</div>
+			<div class="form-group">
+				<label for="CPField" class="col-sm-1 control-label esoft-left">code Postal:</label>
+				<div class="col-sm-4">
+					<form:input path="zipCode" cssClass="form-control input-lg" />
+					<form:errors path="zipCode" cssClass="error" />
+				</div>
+
+			</div>
+			<div class="form-group">
+				<label for="cityField" class="col-sm-1 control-label esoft-left">Ville:</label>
+				<div class="col-sm-4">
+					<form:input path="city" cssClass="form-control" />
+					<form:errors path="city" cssClass="error" />
+				</div>
+
+			</div>
+			
 			<div class="form-group">
 
-				<label for="paysField" class="col-sm-1 control-label esoft-left">Pays</label>
-				<div class="col-md-2">
+				<label for="paysField" class="col-sm-1 control-label esoft-left">Pays:
+				</label>
+				<div class="col-md-4">
 					<form:select path="country"
-						cssClass="form-control input-sm bfh-countries">
+						cssClass="form-control  bfh-countries">
 
 						<option value="0"></option>
 						<option value="30">Afghanistan (AF)</option>
@@ -354,71 +366,43 @@
 					</form:select>
 					<form:errors path="country" cssClass="error" />
 				</div>
-				<div>
-					<button type="submit" class="btn btn-primary btn pull-right">Submit</button>
-					<button type="Cancel" class="btn btn-default btn pull-right">Cancel</button>
+
+			</div>
+			<hr class="bs-docs-separator ">
+        <h4 class="fa fa-sign-in" style=""> Information d'authentification</h4>
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label esoft-left">Login:</label>
+				<div class="col-sm-4">
+					<form:input path="login" cssClass="form-control" />
+					<form:errors path="login" cssClass="error" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="passwordField" class="col-sm-2 control-label esoft-left"><small>Mot
+					de Passe:</small></label>
+				<div class="col-sm-4">
+					<form:input path="password" type="password" cssClass="form-control input-lg" />
+					<form:errors path="password" cssClass="error" />
 				</div>
 
+			</div>
+			<div class="form-group">
+				<label for="passwordField" class="col-sm-2 control-label esoft-left" ><small>Mot de Passe</small></label>
+				<div class="col-sm-4">
+					<form:input path="password"  type="password" cssClass="form-control input-lg" />
+					<form:errors path="password" cssClass="error" />
+				</div>
+
+			</div>
+
+             <div class="form-group">
+				<button type="submit" class="btn btn-primary btn pull-right">Ajouter</button>
+				<button type="button" class="btn btn-default btn pull-right">Annuler</button>
 			</div>
 		</form:form>
 	</div>
 </div>
 <!-- /.box-body -->
-
-<!-- body box two -->
-<div class="box box-solid box-primary">
-	<div class="box-header">
-		<h3 class="box-title">Informations d'authentification</h3>
-		<div class="box-tools pull-right">
-			<button class="btn btn-primary btn-sm" data-widget="collapse">
-				<i class="fa fa-minus"></i>
-			</button>
-			<button class="btn btn-primary btn-sm" data-widget="remove">
-				<i class="fa fa-times"></i>
-			</button>
-		</div>
-	</div>
-	<!-- /.box-header -->
-	<!-- form start -->
-
-	<div class="box-body">
-		<form data-toggle="validator" role="form" class="form-horizontal">
-			<div class="form-group">
-				<label for="name" class="col-sm-1 control-label esoft-left">Login:</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control" id="login"
-						placeholder="login">
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="passwordField" class="col-sm-1 control-label esoft-left">Mot
-					de Passe:</label>
-				<div class="col-sm-4">
-					<input type="password" class="form-control" id="password"
-						placeholder="Insertion de mot de passe">
-				</div>
-
-			</div>
-			<div class="form-group">
-				<label for="passwdConfField"
-					class="col-sm-1 control-label esoft-left">mot de Passe:</label>
-				<div class="col-sm-4">
-					<input type="text" class="form-control" id="lastname"
-						placeholder="Confirmation de mot de passe">
-				</div>
-
-			</div>
-
-		</form>
-	</div>
-
-</div>
-<Form role="form" class="form-horizontal">
-	<div>
-		<button type="submit" class="btn btn-primary btn pull-right">Submit</button>
-		<button type="Cancel" class="btn btn-default btn pull-right">Cancel</button>
-	</div>
-</Form>
 <script src="${baseURL}/js/bootstrap-datepicker.js"></script>
 <script>
 	$(function() {
