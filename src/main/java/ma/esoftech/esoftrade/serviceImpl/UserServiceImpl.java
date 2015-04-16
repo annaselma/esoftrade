@@ -110,10 +110,13 @@ public class UserServiceImpl implements IUserService {
 		ServiceUtils.buildEntityModel(creator, userEntity);
 		String hashedPassword=ServiceUtils.getHashedPasswordBySHA(userEntity.getPasswd());
 		userEntity.setRef(ServiceUtils.TMP_REF);
+		userEntity.setRoles(new HashSet<Role>());
 		userEntity.setPasswd(hashedPassword);
 		Long idUser=userDao.createUser(userEntity);
 		userEntity.setId(idUser);
 		userEntity.generateReference();
+		System.out.println("id: "+userEntity.getCreator().getId());
+		System.out.println("id: "+userEntity.getModifier().getId());
 		System.out.println("referenceccc: "+userEntity.getRef());
 		userDao.updateUser(userEntity);
 

@@ -16,48 +16,41 @@ private long id;
 @NotEmpty
 @Size(min=4, max=20)
 private String login;
-@NotEmpty
 private boolean active;
 private String creator;
 private Date createDate;
 private String ref;
 @NotEmpty
-@Size(min=5)
+@Size(min=2, max=20)
 private String name;
 @DateTimeFormat(pattern="dd/MM/yyyy")
 @Past
 @NotNull(message="nuulll")
 private Date birdDay;
 @NotEmpty
-@Size(max=5, min=25)
+@Size(max=25, min=5)
 private String password;
-@NotEmpty
+@Size(max=50,min=5)
 private String lastName;
-@NotEmpty
-@Size(min=5, max=50)
+@Size(max=50)
 private String fonction;
-@Size(min=5, max=100)
+@Size(max=100)
 private String adresse1;
-@Size(min=5, max=100)
+@Size(max=100)
 private String adresse2;
-@Size(min=2,max=10)
+@Size(max=10)
 private String zipCode;
-@NotEmpty
 private String country;
-@NotEmpty
 private String city;
-@NotEmpty
-@Size(min=3,max=20)
+@Size(max=20)
 private String telephone;
-@NotEmpty
-@Size(min=3,max=20)
+@Size(max=20)
 private String telephonePro;
-@NotEmpty
-@Size(min=3,max=20)
+@Size(max=20)
 private String fax;
 private String picture;
-@NotEmpty
 private String civilite;
+@NotEmpty
 @Email
 private String email;
 private List<String>roles= new ArrayList<String>();

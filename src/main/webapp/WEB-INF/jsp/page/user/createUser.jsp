@@ -31,7 +31,7 @@
 
 		<form:form method="POST" commandName="user" id="userF"
 			data-toggle="validator" cssClass="form-horizontal"
-			enctype="multipart/form-data">
+			>
 			<div class="form-group">
 				<label for="nameField" class="col-sm-1 control-label esoft-left">Nom:</label>
 				<div class="col-sm-4">
@@ -114,7 +114,7 @@
 				</label>
 				<div class="col-md-4">
 					<form:select path="country"
-						cssClass="form-control  bfh-countries">
+						cssClass="form-control  bfh-countries" >
 
 						<option value="0"></option>
 						<option value="30">Afghanistan (AF)</option>
@@ -369,7 +369,7 @@
 
 			</div>
 			<hr class="bs-docs-separator ">
-        <h4 class="fa fa-sign-in" style=""> Information d'authentification</h4>
+        <h4 class="fa fa-sign-in" style="">Information d'authentification</h4>
 			<div class="form-group">
 				<label for="name" class="col-sm-2 control-label esoft-left">Login:</label>
 				<div class="col-sm-4">
@@ -382,14 +382,6 @@
 					de Passe:</small></label>
 				<div class="col-sm-4">
 					<form:input path="password" type="password" cssClass="form-control input-lg" />
-					<form:errors path="password" cssClass="error" />
-				</div>
-
-			</div>
-			<div class="form-group">
-				<label for="passwordField" class="col-sm-2 control-label esoft-left" ><small>Mot de Passe</small></label>
-				<div class="col-sm-4">
-					<form:input path="password"  type="password" cssClass="form-control input-lg" />
 					<form:errors path="password" cssClass="error" />
 				</div>
 
