@@ -2,6 +2,8 @@ package ma.esoftech.esoftrade.controller;
 
 import java.util.List;
 
+import ma.esoftech.esoftrade.datatablesAPI.RequestTable;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -33,14 +35,12 @@ public class tableController {
 //		
 		//System.out.println(((RequestTable)model.get("req")).getName());
 		
-		return "hello"+req.getName();
+		return "hello";
 	}
 	
 	/*@ModelAttribute(value="req")*/
 	public RequestTable getRequest(){
 		RequestTable req=new RequestTable();
-		req.setAge("30");
-		req.setName("toto");
 		return req;
 	}
 }

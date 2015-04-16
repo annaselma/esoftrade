@@ -48,19 +48,31 @@
 		</property>
 	</bean>
 	<tx:annotation-driven />
-	
+
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
+
 	<bean id="org.dozer.Mapper" class="org.dozer.DozerBeanMapper">
-  <property name="mappingFiles">
-    <list>
-      <value>dozerMapping.xml</value>
-    </list>
-  </property>
-</bean>
+		<property name="mappingFiles">
+			<list>
+				<value>dozerMapping.xml</value>
+			</list>
+		</property>
+	</bean>
+<!-- 	<tx:advice id="txAdvice" transaction-manager="transactionManager"> -->
+<!-- 		<tx:attributes> -->
+<!-- 			<tx:method name="find*" read-only="true" /> -->
+<!-- 			<tx:method name="*" /> -->
+<!-- 		</tx:attributes> -->
+<!-- 	</tx:advice> -->
+ 
+<!-- 	<aop:config> -->
+<!-- 		<aop:pointcut id="userServicePointCut" -->
+<!-- 			expression="execution(* ma.esoftech.esoftrade.serviceImpl.*Service.*(..))" /> -->
+<!-- 		<aop:advisor advice-ref="txAdvice" pointcut-ref="userServicePointCut" /> -->
+<!-- 	</aop:config> -->
          
 	
 	

@@ -36,6 +36,7 @@ public class LoginService  implements UserDetailsService{
 		 
 	}
 	public IUserService getUserService() {
+		
 		return userService;
 	}
 	public void setUserService(IUserService userService) {

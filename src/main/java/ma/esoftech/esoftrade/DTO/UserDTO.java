@@ -3,16 +3,13 @@ package ma.esoftech.esoftrade.DTO;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
-
-import javassist.expr.NewArray;
 
 public class UserDTO {
 private long id;
@@ -25,9 +22,11 @@ private String creator;
 private Date createDate;
 private String ref;
 @NotEmpty
+@Size(min=5)
 private String name;
 @DateTimeFormat(pattern="dd/MM/yyyy")
 @Past
+@NotNull(message="nuulll")
 private Date birdDay;
 @NotEmpty
 @Size(max=5, min=25)
