@@ -30,7 +30,7 @@
 	<div class="box-body">
 
 		<form:form method="POST" commandName="user" id="userF"
-			data-toggle="validator" cssClass="form-horizontal">
+			data-toggle="validator" cssClass="form-horizontal" action="${baseURL}/user/update">
 			<div class="form-group">
 				<label for="nameField" class="col-sm-2 control-label esoft-left">Nom:</label>
 				<div class="col-sm-4">
@@ -50,30 +50,22 @@
 				<label for="activ" class="col-sm-2 control-label esoft-left">compte
 					activé:</label>
 				<div class="col-sm-4">
-					<form:checkbox path="active"  />
+					<form:checkbox path="active" />
 					<form:errors path="active" cssClass="error" />
 				</div>
 
 			</div>
 
-<!-- 			<div class="form-group"> -->
-<!-- 				<label for="dateField" class="col-sm-2 control-label esoft-left">Date -->
-<!-- 					Naissance:</label> -->
-<!-- 				<div class="col-sm-4"> -->
-<%-- 					<form:input path="birdDay" cssClass="form-control " /> --%>
-<%-- 					<form:errors path="birdDay" cssClass="error" /> --%>
-<!-- 				</div> -->
-
-<!-- 			</div> -->
+<%-- 	<form:errors path="*" cssClass="errorblock" /> --%>
 			<div class="form-group">
-			<label for="dateField" class="col-sm-2 control-label esoft-left">Date
-				de Naissance:</label>
-					
+				<label for="dateField" class="col-sm-2 control-label esoft-left">Date
+					de Naissance:</label>
+
 				<div class="input-append date col-sm-4" data-date="12-02-2012"
 					data-date-format="dd-mm-yyyy">
-					<form:input  path="birdDay" id="dp3" /> <span
-						class="add-on"><span class="fa fa-calendar" id="cal2"></span></span>
-				   <form:errors path="birdDay"  />		
+					<form:input path="birdDay" id="dp3" />
+					<span class="add-on"><span class="fa fa-calendar" id="cal2"></span></span>
+					<form:errors path="birdDay" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -394,8 +386,6 @@
 				</div>
 
 			</div>
-			<hr class="bs-docs-separator ">
-			<h4 class="fa fa-sign-in" style=""></h4>
 			<div class="form-group">
 				<label for="name" class="col-sm-2 control-label esoft-left">Login:</label>
 				<div class="col-sm-4">
@@ -403,18 +393,8 @@
 					<form:errors path="login" cssClass="error" />
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="passwordField" class="col-sm-2 control-label esoft-left"><small>Mot
-						de Passe:</small></label>
-				<div class="col-sm-4">
-					<form:input path="password" type="password"
-						cssClass="form-control input-lg" />
-					<form:errors path="password" cssClass="error" />
-				</div>
-
-			</div>
-
-
+			<form:hidden path="password" />
+			<form:hidden path="id"/>
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary btn pull-right">Ajouter</button>
 				<button type="button" class="btn btn-default btn pull-right">Annuler</button>
@@ -423,6 +403,40 @@
 	</div>
 </div>
 <!-- /.box-body -->
+<div class="box box-solid box-primary">
+	<div class="box-header">
+		<h3 class="box-title">Modification de mot de passe</h3>
+	</div>
+	<!-- /.box-header -->
+	<!-- form start -->
+	<div class="box-body">
+		<form:form action="${baseURL}/user/editPassword" method="POST"
+			commandName="password" data-toggle="validator"
+			cssClass="form-horizontal">
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label esoft-left">Mot de passe</label>
+				<div class="col-sm-4">
+					<form:password path="password1" cssClass="form-control" />
+					<form:errors path="password1" cssClass="error" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label esoft-left">Confirmer mot de passe</label>
+				<div class="col-sm-4">
+					<form:password path="password2" cssClass="form-control" />
+					<form:errors path="password2" cssClass="error" />
+				</div>
+			</div>
+			<form:hidden path="id" />
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary btn pull-right">modifier</button>
+				<button type="button" class="btn btn-default btn pull-right">Annuler</button>
+			</div>
+		</form:form>
+
+
+	</div>
+</div>
 <script src="${baseURL}/js/bootstrap-datepicker.js"></script>
 <script>
 $(document).ready(function(){

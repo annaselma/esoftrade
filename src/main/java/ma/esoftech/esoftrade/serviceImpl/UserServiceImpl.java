@@ -177,7 +177,7 @@ public class UserServiceImpl implements IUserService {
 	     if(usertmp==null){
 	    	 throw new UserNotFoundException();
 	     }
-	     if(!userEntity.getLogin().equals(usertmp.getLogin())){
+	     if(hasChangeUserName(userEntity.getLogin(), usertmp.getLogin())){
 	    	 if(isUserNameExist(userEntity.getLogin())){
 	    		 throw new UserNameException("userName: "+user.getLogin()+" is already exist");
 	    	 }
@@ -191,13 +191,18 @@ public class UserServiceImpl implements IUserService {
 	     userEntity.setLastEdit(new Date());
 		userDao.updateUser(userEntity);
 	}
+	
+	private boolean hasChangeUserName(String newUserName,String oldUserName){
+		return !newUserName.equals(oldUserName);
+	}
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public void editPassword(String newPassword, long id) throws UserNotFoundException {
 		 User user=userDao.findById(id);
 		 if(user==null){
 			 throw new UserNotFoundException();
 		 }
-		 user.setPasswd(newPassword);
+		 user.setPasswd(ServiceUtils.getHashedPasswordBySHA(newPassword));
 		 userDao.updateUser(user);
 	}
     

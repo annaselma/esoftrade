@@ -28,7 +28,7 @@ private String name;
 @NotNull(message="nuulll")
 private Date birdDay;
 @NotEmpty
-@Size(max=25, min=5)
+@Size(max=1000, min=5)
 private String password;
 @Size(max=50,min=5)
 private String lastName;
