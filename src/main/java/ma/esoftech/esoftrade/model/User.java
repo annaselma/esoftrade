@@ -103,10 +103,10 @@ public class User extends Person {
 	}
 	public String generateReference(){
 		String ref="";
-		ref.concat(PREFIX_REF_USER);
-		ref.concat(String.valueOf(this.getId()));
-		ref.concat("-");
-		ref.concat(String.valueOf(this.getCreateDate().getTime()));
+		ref=ref.concat(PREFIX_REF_USER);
+		ref=ref.concat(String.valueOf(this.getId()));
+		ref=ref.concat("-");
+		ref=ref.concat(String.valueOf(this.getCreateDate().getTime()));
 		this.setRef(ref);
 	return ref;	
 	}

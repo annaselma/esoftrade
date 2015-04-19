@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 
@@ -24,10 +24,22 @@
 						style="text-align: center; padding: 21% 0">
 						<img src="${baseURL}/img/avatar3.png" alt="Profile Picture"
 							class="img-thumbnail">
-						<h3>Jonathan Smith</h3>
+						<h3>
+							<c:out value="${user.name}" />
+						</h3>
 						<div class="">
-						<div id="statut">Statut<div id="statut" class="label label-success">Active</div></div>
-						
+							<div id="statut">
+								Statut &nbsp;
+								<c:choose>
+									<c:when test="${user.active}">
+										<div id="statut" class="label label-success">Active</div>
+									</c:when>
+									<c:otherwise>
+										<div id="statut" class="label label-danger">innactive</div>
+									</c:otherwise>
+								</c:choose>
+							</div>
+
 						</div>
 					</div>
 				</div>
@@ -40,40 +52,45 @@
 								Information
 							</h4>
 							<p class="data-row">
+								<span id="identifiant" class="label label-default">référence</span>
+								<span class="data-value"><c:out value="${user.ref}"/> </span>
+							</p>
+							<p class="data-row">
 								<span id="identifiant" class="label label-default">Identifiant</span>
-								<span class="data-value">jonass</span>
+								<span class="data-value"><c:out value="${user.login}"/> </span>
 							</p>
 							<p class="data-row">
 								<span id="prenom" class="label label-default">Prenom</span> <span
-									class="data-value">Adam </span>
+									class="data-value"><c:out value="${user.lastName}"/></span>
 							</p>
 							<p class="data-row">
 								<span id="nom" class="label label-default">Nom</span> <span
-									class="data-value">Male</span>
+									class="data-value"><c:out value="${user.name}"/></span>
 							</p>
 							<p class="data-row">
 								<span id="dateN" class="label label-default">Date
-									Naissance</span> <span class="data-value">21/02/1996</span>
+									Naissance</span> <span class="data-value">
+									<fmt:formatDate pattern="dd/MM/yyyy" value="${user.birdDay}" /></span>
 							</p>
 							<p class="data-row">
 								<span id="tel" class="label label-default">Telephone</span> <span
-									class="data-value">0002154</span>
+									class="data-value"><c:out value="${user.telephone}"/></span>
 							</p>
 							<p class="data-row">
 								<span id="adresse" class="label label-default">Adresse</span> <span
-									class="data-value">Bd lalala</span>
+									class="data-value"><c:out value="${user.adresse1}"/> </span>
 							</p>
 							<p>
 								<span id="CP" class="label label-default">Code Postal</span> <span
-									class="data-value">2000</span>
+									class="data-value"><c:out value="${user.zipCode}"/></span>
 							</p>
 							<p class="data-row">
 								<span id="ville" class="label label-default">Ville</span> <span
-									class="data-value">Californie</span>
+									class="data-value"><c:out value="${user.city}"/></span>
 							</p>
 							<p>
 								<span id="pays" class="label label-default">pays</span> <span
-									class="data-value">USA</span>
+									class="data-value"><c:out value="${user.country}"/></span>
 							</p>
 
 						</div>

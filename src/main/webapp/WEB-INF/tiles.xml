@@ -35,7 +35,13 @@
 	<definition name="createUser" extends="Template">
 	<put-attribute name="page" value="/WEB-INF/jsp/page/user/createUser.jsp" />
 	</definition>
+	<definition name="userList" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/user/userList.jsp" />
+	</definition>
 	
+	<definition name="updateUser" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/user/updateUser.jsp" />
+	</definition>
 	<definition name="login" template="/WEB-INF/jsp/page/login.jsp"/>
 	<definition name="customer"
 		template="/WEB-INF/jsp/page/custumer.jsp"/>

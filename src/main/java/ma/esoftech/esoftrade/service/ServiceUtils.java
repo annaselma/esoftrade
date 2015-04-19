@@ -12,6 +12,7 @@ public class ServiceUtils {
 
 	public static final String TMP_REF="TMP_REF";
 	public static MetaObject buildEntityModel(UserDTO creator, MetaObject object) {
+		System.out.println("createur:"+creator.getId());
 		object.setCreateDate(new Date());
 		object.setLastEdit(new Date());
 		User user = new User();

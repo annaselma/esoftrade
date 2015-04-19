@@ -26,10 +26,13 @@ public class LoginService  implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username)
 			throws UsernameNotFoundException {
 		 UserDTO user=null;
-		  user= userService.findByName(username);
-		logger.debug("username: "+user.getLogin()+"password: "+user.getPassword());
+		 logger.info("entre");
+		 
+		 try{user= userService.findByName(username);
+		 }catch(Exception e){ System.out.println("afficher:"+ e.getMessage());}
+		logger.info("username: "+user.getLogin()+"password: "+user.getPassword());
 		if( user == null){
-			logger.debug("no user found");
+			logger.info("no user found");
 			throw new UsernameNotFoundException("user not found");
 		}
 		 return Assembler.buildUserSpringFromUserDTO(user);

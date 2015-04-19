@@ -43,7 +43,7 @@ public class UserDao implements IUserDao {
 	@Override
 	public User findById(long id) {
 		// TODO verifier fetch pour role et doit générer les autres méthodes
-		String sql = "From User as user join fetch  user.role where user.id= :id";
+		String sql = " select user From User as user left join fetch  user.roles where user.id= :id";
 		session = sessionFactory.getCurrentSession();
 
 		Query query = null;
@@ -60,7 +60,7 @@ public class UserDao implements IUserDao {
 		// TODO Auto-generated method stub
 		session = sessionFactory.getCurrentSession();
 		Query query = session
-				.createQuery("From User as user join fetch user.role where user.ref= :ref");
+				.createQuery("From User as user  left join fetch user.roles where user.ref= :ref");
 		query.setString("ref", ref);
 		User user = (User) query.uniqueResult();
 		return user;
@@ -86,8 +86,8 @@ public class UserDao implements IUserDao {
 	public List<Role> getRolesByUser(User user) {
 		// TODO Auto-generated method stub
 		session= sessionFactory.getCurrentSession();
-		Query query= session.createQuery("From Role as role inner join role.user as user where user.id= :id");
-		query.setParameter("id", user.getId());
+		Query query= session.createQuery("select role from User as user inner join user.roles as role where user=:user");
+		query.setParameter("user", user);
 		List<Role> roles= query.list();
 		return roles;
 	}
@@ -104,6 +104,7 @@ public class UserDao implements IUserDao {
 	public void updateUser(User user) {
 		// TODO Auto-generated method stub
 		session = sessionFactory.getCurrentSession();
+		session.clear();
 		session.update(user);
 	}
 

@@ -3,7 +3,6 @@ package ma.esoftech.esoftrade.DTO;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
@@ -14,31 +13,44 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class UserDTO {
 private long id;
+@NotEmpty
+@Size(min=4, max=20)
 private String login;
 private boolean active;
 private String creator;
-
 private Date createDate;
 private String ref;
 @NotEmpty
-@Size(min=5)
+@Size(min=2, max=20)
 private String name;
 @DateTimeFormat(pattern="dd/MM/yyyy")
-@NotNull(message="nuulll") @Past
+@Past
+@NotNull(message="nuulll")
 private Date birdDay;
+@NotEmpty
+@Size(max=1000, min=5)
 private String password;
+@Size(max=50,min=5)
 private String lastName;
+@Size(max=50)
 private String fonction;
+@Size(max=100)
 private String adresse1;
+@Size(max=100)
 private String adresse2;
+@Size(max=10)
 private String zipCode;
 private String country;
 private String city;
+@Size(max=20)
 private String telephone;
+@Size(max=20)
 private String telephonePro;
+@Size(max=20)
 private String fax;
 private String picture;
 private String civilite;
+@NotEmpty
 @Email
 private String email;
 private List<String>roles= new ArrayList<String>();

@@ -110,10 +110,13 @@ public class UserServiceImpl implements IUserService {
 		ServiceUtils.buildEntityModel(creator, userEntity);
 		String hashedPassword=ServiceUtils.getHashedPasswordBySHA(userEntity.getPasswd());
 		userEntity.setRef(ServiceUtils.TMP_REF);
+		userEntity.setRoles(new HashSet<Role>());
 		userEntity.setPasswd(hashedPassword);
 		Long idUser=userDao.createUser(userEntity);
 		userEntity.setId(idUser);
 		userEntity.generateReference();
+		System.out.println("id: "+userEntity.getCreator().getId());
+		System.out.println("id: "+userEntity.getModifier().getId());
 		System.out.println("referenceccc: "+userEntity.getRef());
 		userDao.updateUser(userEntity);
 
@@ -174,7 +177,7 @@ public class UserServiceImpl implements IUserService {
 	     if(usertmp==null){
 	    	 throw new UserNotFoundException();
 	     }
-	     if(!userEntity.getLogin().equals(usertmp.getLogin())){
+	     if(hasChangeUserName(userEntity.getLogin(), usertmp.getLogin())){
 	    	 if(isUserNameExist(userEntity.getLogin())){
 	    		 throw new UserNameException("userName: "+user.getLogin()+" is already exist");
 	    	 }
@@ -188,13 +191,18 @@ public class UserServiceImpl implements IUserService {
 	     userEntity.setLastEdit(new Date());
 		userDao.updateUser(userEntity);
 	}
+	
+	private boolean hasChangeUserName(String newUserName,String oldUserName){
+		return !newUserName.equals(oldUserName);
+	}
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public void editPassword(String newPassword, long id) throws UserNotFoundException {
 		 User user=userDao.findById(id);
 		 if(user==null){
 			 throw new UserNotFoundException();
 		 }
-		 user.setPasswd(newPassword);
+		 user.setPasswd(ServiceUtils.getHashedPasswordBySHA(newPassword));
 		 userDao.updateUser(user);
 	}
     

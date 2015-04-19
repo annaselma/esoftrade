@@ -202,7 +202,7 @@
 					<ul class="dropdown-menu">
 						<!-- User image -->
 						<li class="user-header bg-light-blue"><img
-							src="img/avatar3.png" class="img-circle" alt="User Image" />
+							src="${baseURL}/img/avatar3.png" class="img-circle" alt="User Image" />
 							<p>
 								Kelmo-Ingenieur <small>Member since Nov. 2012</small>
 							</p></li>
