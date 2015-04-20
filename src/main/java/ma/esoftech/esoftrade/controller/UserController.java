@@ -1,6 +1,5 @@
 package ma.esoftech.esoftrade.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -14,18 +13,13 @@ import ma.esoftech.esoftrade.datatablesAPI.RequestTable.SearchCriterias;
 import ma.esoftech.esoftrade.datatablesAPI.ResponseTable;
 import ma.esoftech.esoftrade.exeption.UserNameException;
 import ma.esoftech.esoftrade.exeption.UserNotFoundException;
-import ma.esoftech.esoftrade.generate.Entity;
 import ma.esoftech.esoftrade.service.IUserService;
-import ma.esoftech.esoftrade.service.ServiceUtils;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.memory.UserAttribute;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -62,7 +56,7 @@ public class UserController extends AbstractController {
 			return "createUser";
 		} else {
 			try {
-
+             
 				userService.createUser(currentUser, user);
 			} catch (UserNameException e) {
 				result.rejectValue("login", "login.error.exist",

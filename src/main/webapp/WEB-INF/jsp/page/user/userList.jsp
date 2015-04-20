@@ -6,7 +6,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
-
 <div class="box">
 	<div class="box-header">
 		<h3 class="box-title">la liste des utilisateurs</h3>

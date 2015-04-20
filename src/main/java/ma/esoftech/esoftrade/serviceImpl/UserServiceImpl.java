@@ -101,8 +101,7 @@ public class UserServiceImpl implements IUserService {
 	
 	@Override
 	@Transactional(rollbackFor=Exception.class)
-	public void createUser(UserDTO creator,UserDTO user) throws UserNameException {
-		//convertir le UserDto vers User via mapper dozer
+	public long createUser(UserDTO creator,UserDTO user) throws UserNameException {
 		if(isUserNameExist(user.getLogin())){
 			throw new  UserNameException("userName: "+user.getLogin()+" is already exist");
 		}
@@ -115,11 +114,11 @@ public class UserServiceImpl implements IUserService {
 		Long idUser=userDao.createUser(userEntity);
 		userEntity.setId(idUser);
 		userEntity.generateReference();
-		System.out.println("id: "+userEntity.getCreator().getId());
-		System.out.println("id: "+userEntity.getModifier().getId());
-		System.out.println("referenceccc: "+userEntity.getRef());
+//		System.out.println("id: "+userEntity.getCreator().getId());
+//		System.out.println("id: "+userEntity.getModifier().getId());
+//		System.out.println("referenceccc: "+userEntity.getRef());
 		userDao.updateUser(userEntity);
-
+		return idUser;
 	}
 	@Override
 	@Transactional(rollbackFor=Exception.class)
