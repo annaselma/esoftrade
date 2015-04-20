@@ -104,6 +104,7 @@ public class UserDao implements IUserDao {
 	public void updateUser(User user) {
 		// TODO Auto-generated method stub
 		session = sessionFactory.getCurrentSession();
+		session.flush();
 		session.clear();
 		session.update(user);
 	}

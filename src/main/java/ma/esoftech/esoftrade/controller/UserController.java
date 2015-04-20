@@ -62,7 +62,7 @@ public class UserController extends AbstractController {
 			return "createUser";
 		} else {
 			try {
-
+             
 				userService.createUser(currentUser, user);
 			} catch (UserNameException e) {
 				result.rejectValue("login", "login.error.exist",

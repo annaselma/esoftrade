@@ -27,7 +27,7 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                               <th>Rèfèrence</th>
+                                               <th>Réfèrence</th>
                                                 <th>Nom</th>
                                                 <th>Prènom</th>
                                                 <th>Login</th>
@@ -51,7 +51,7 @@
 //                    } );
                 
             	$("#example33").DataTable({});
-               var table= $('#example1').DataTable({
+               var table= $('#list1').DataTable({
                     "paging": true,
                     "lengthChange": true,
                     "searching": true,
@@ -98,7 +98,7 @@
                     },
                     {
                     	"targets":[5],
-                    	"name":"ac+tive",
+                    	"name":"active",
                     	"data":"active",
                     	 "render": function ( data, type, full, meta ) {
                     	      return '<a href="'+data+'">active '+data+'</a>';

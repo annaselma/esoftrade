@@ -14,7 +14,7 @@ public interface IUserService {
 	public UserDTO findByRef(String ref);
 	public List<UserDTO> getAllUsers(int start, int length,String sorting, String filter);
     public List<RoleDTO> getRolesByUser(UserDTO user);
-	public void createUser(UserDTO creator,UserDTO user) throws UserNameException;
+	public long createUser(UserDTO creator,UserDTO user) throws UserNameException;
 	public void addRoleToUser(RoleDTO role, UserDTO userDTO) ;
 	public void deleteRoleFromUser(RoleDTO role, UserDTO userDTO);
     public void updateUser(UserDTO modifer,UserDTO user)throws UserNameException,UserNotFoundException;
