@@ -50,7 +50,7 @@ public class Order {
 			order.setName(getColumnName(request, column));
 			
 		}
-		return null;
+		return order;
 	}
 	
 	private static String getColumnName(RequestTable request,int index){

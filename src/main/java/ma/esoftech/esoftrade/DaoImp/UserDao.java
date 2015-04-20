@@ -4,6 +4,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import ma.esoftech.esoftrade.Dao.IUserDao;
+import ma.esoftech.esoftrade.datatablesAPI.FilterCriterias;
+import ma.esoftech.esoftrade.datatablesAPI.Order;
 import ma.esoftech.esoftrade.model.Role;
 import ma.esoftech.esoftrade.model.User;
 
@@ -104,6 +106,7 @@ public class UserDao implements IUserDao {
 	public void updateUser(User user) {
 		// TODO Auto-generated method stub
 		session = sessionFactory.getCurrentSession();
+		session.flush();
 		session.clear();
 		session.update(user);
 	}
@@ -128,6 +131,19 @@ public class UserDao implements IUserDao {
 	}
 
 	public UserDao() {
+	}
+
+	@Override
+	public List<User> getAllUsers(int start, int length, Order sorting,
+			FilterCriterias filters) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public long userCount(FilterCriterias filters) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

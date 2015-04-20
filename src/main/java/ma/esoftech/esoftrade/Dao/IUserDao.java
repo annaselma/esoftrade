@@ -2,6 +2,8 @@ package ma.esoftech.esoftrade.Dao;
 
 import java.util.List;
 
+import ma.esoftech.esoftrade.datatablesAPI.FilterCriterias;
+import ma.esoftech.esoftrade.datatablesAPI.Order;
 import ma.esoftech.esoftrade.model.Role;
 import ma.esoftech.esoftrade.model.User;
 
@@ -15,4 +17,8 @@ public interface IUserDao {
     public void updateUser(User user);
     public void deleteUser(User user);
     public long userCount( String filter);
+	public List<User> getAllUsers(int start, int length,Order sorting, FilterCriterias filters);
+	public long userCount( FilterCriterias filters);
+
+
 }

@@ -174,6 +174,7 @@ public class UserController extends AbstractController {
 			}
 			Order ordre=Order.createOrderFromRequestTable(req);
 			String search=req.getSearch().get(SearchCriterias.value);
+			ordre.toString();
 			int start=req.getStart();
 			int  length=req.getLength();
 			int draw=req.getDraw();
