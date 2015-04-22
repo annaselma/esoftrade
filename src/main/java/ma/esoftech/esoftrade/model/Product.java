@@ -27,7 +27,6 @@ public class Product  extends MetaObject implements Serializable {
 	@Column(name="ELMO_ALERT_TRESHOLD",nullable=false,length= 255)
 	 private Integer alertTreshold;
 	private String nature;
-	private 
 	
 	@Column(name="ELMO_DESCRIPTION",length= 255)
 	 private String description;
