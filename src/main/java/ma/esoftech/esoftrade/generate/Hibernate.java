@@ -23,4 +23,3 @@ public class Hibernate {
 		sh.execute(true, true);
 	}
 }
-/**/

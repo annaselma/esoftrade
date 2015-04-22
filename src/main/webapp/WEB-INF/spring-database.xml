@@ -61,6 +61,13 @@
 			</list>
 		</property>
 	</bean>
+	<bean id="org.dozer.Mapper" class="org.dozer.DozerBeanMapper">
+		<property name="mappingFiles">
+			<list>
+				<value>dozerMappingProduct.xml</value>
+			</list>
+		</property>
+	</bean>
 <!-- 	<tx:advice id="txAdvice" transaction-manager="transactionManager"> -->
 <!-- 		<tx:attributes> -->
 <!-- 			<tx:method name="find*" read-only="true" /> -->

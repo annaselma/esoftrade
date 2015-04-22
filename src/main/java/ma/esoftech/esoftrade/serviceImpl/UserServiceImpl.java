@@ -39,7 +39,7 @@ public class UserServiceImpl implements IUserService {
 		if(user==null){
 			return null;
 		}
-		UserConverter converter= new UserConverter();//
+		UserConverter converter= new UserConverter();
 		UserDTO userFinal=mapper.map(user, UserDTO.class);
 		userFinal.setRoles(converter.toRoleNameList(user.getRoles()));
 		userFinal.setPermissions(converter.toPermissionList(user.getRoles()));

@@ -18,23 +18,24 @@
 			<property name="hibernate.c3p0.idle_test_period">3000</property>
 			
 		<!-- mapping files  -->	
-    <mapping class="ma.esoftech.esoftrade.model.Company"/>
-	<mapping class="ma.esoftech.esoftrade.model.Contact"/>
-	<mapping class="ma.esoftech.esoftrade.model.MetaObject"/>
-	<mapping class="ma.esoftech.esoftrade.model.Permission"/>
-	<mapping class="ma.esoftech.esoftrade.model.Person"/>
-	<mapping class="ma.esoftech.esoftrade.model.Product"/>
-	<mapping class="ma.esoftech.esoftrade.model.Role"/>
-	<mapping class="ma.esoftech.esoftrade.model.User"/>
-<!-- 	<mapping class="ma.esoftech.esoftrade.model.BusinessDocument"/> -->
-<!-- 	<mapping class="ma.esoftech.esoftrade.model.CommercialProposal"/> -->
-	
-<!-- 	<mapping class="ma.esoftech.esoftrade.model.DeliveryLine"/> -->
-<!-- 	<mapping class="ma.esoftech.esoftrade.model.DeliveryOrder"/> -->
-<!-- 	<mapping class="ma.esoftech.esoftrade.model.DocumentLine"/> -->
-<!-- 	<mapping class="ma.esoftech.esoftrade.model.File"/> -->
+    <mapping class="ma.esoftech.esoftrade.model.Company" />
+		<mapping class="ma.esoftech.esoftrade.model.Contact" />
+		<mapping class="ma.esoftech.esoftrade.model.MetaObject" />
+		<mapping class="ma.esoftech.esoftrade.model.Permission" />
+		<mapping class="ma.esoftech.esoftrade.model.Person" />
+		<mapping class="ma.esoftech.esoftrade.model.Product" />
+		<mapping class="ma.esoftech.esoftrade.model.Role" />
+		<mapping class="ma.esoftech.esoftrade.model.User" />
+		<mapping class="ma.esoftech.esoftrade.model.ProductCategory" />
+		<mapping class="ma.esoftech.esoftrade.model.File" />
+<!-- 			<mapping class="ma.esoftech.esoftrade.model.Order" /> -->
+<!-- 	<mapping class="ma.esoftech.esoftrade.model.DeliveryOrder"/>  -->
+<!--     <mapping class="ma.esoftech.esoftrade.model.DocumentLine"/>  -->
+<!--    <mapping class="ma.esoftech.esoftrade.model.DeliveryLine"/> -->
+<!--    <mappin class="ma.esoftech.esoftrade.model.Mouvement"/> -->
+     
 <!-- 	<mapping class="ma.esoftech.esoftrade.model.Invoice"/> -->
-<!-- 	<mapping class="ma.esoftech.esoftrade.model.Order"/> -->
+	
 <!-- 	<mapping class="ma.esoftech.esoftrade.model.PaymentType"/> -->
 	
 <!-- 	<mapping class="ma.esoftech.esoftrade.model.ShippingMethod"/> -->
