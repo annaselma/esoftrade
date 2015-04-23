@@ -51,7 +51,7 @@
 								<i class="fa fa-user" style="margin-right: 2%"></i>Information personnelle
 							</h4>
 							<form method="POST" name="user" id="userF">
-							<button type="button" class="btn btn-primary pull-right" style="margin-right: 3%;" onclick="location.href='http://localhost:8080/esoftrade/user/update?id=${user.id}'">Modifier</button>
+							<button type="button" class="btn btn-primary pull-right" style="margin-right: 3%;" onclick="location.href='${baseURL}/user/update?id=${user.id}'">Modifier</button>
 							</form>
 							<p class="data-row">
 								<label class="col-sm-2 ">Num Compte:</label>

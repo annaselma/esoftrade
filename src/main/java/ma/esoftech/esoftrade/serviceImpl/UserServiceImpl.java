@@ -41,7 +41,6 @@ public class UserServiceImpl implements IUserService {
 		}
 		UserConverter converter= new UserConverter();//
 		UserDTO userFinal=mapper.map(user, UserDTO.class);
-		userFinal.setRoles(converter.toRoleNameList(user.getRoles()));
 		userFinal.setPermissions(converter.toPermissionList(user.getRoles()));
 		return userFinal;
 	}
@@ -55,7 +54,6 @@ public class UserServiceImpl implements IUserService {
 		}
 		UserConverter converter= new UserConverter();
 		UserDTO userFinal= mapper.map(user, UserDTO.class);
-		userFinal.setRoles(converter.toRoleNameList(user.getRoles()));
 		userFinal.setPermissions(converter.toPermissionList(user.getRoles()));
 		return userFinal;
 	}
@@ -69,7 +67,6 @@ public class UserServiceImpl implements IUserService {
 	}
 	UserConverter converter= new UserConverter();
 	UserDTO userFinal= mapper.map(user, UserDTO.class);
-	userFinal.setRoles(converter.toRoleNameList(user.getRoles()));
 	userFinal.setPermissions(converter.toPermissionList(user.getRoles()));
 	return userFinal;
 	}
@@ -209,6 +206,9 @@ public class UserServiceImpl implements IUserService {
 	@Transactional(rollbackFor=Exception.class)
 	public void deleteUser(UserDTO user) {
 		User userEntity= (User) mapper.map(user, User.class);
+		userEntity=new User();
+		userEntity.setId(user.getId());
+		System.out.println("id houwa"+userEntity.getId());
 		userDao.deleteUser(userEntity);
 	}
 	

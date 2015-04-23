@@ -53,7 +53,7 @@ private String civilite;
 @NotEmpty
 @Email
 private String email;
-private List<String>roles= new ArrayList<String>();
+private List<RoleAssociated>roles= new ArrayList<RoleAssociated>();
 private List<String>permissions= new ArrayList<String>();
 public long getId() {
 	return id;
@@ -164,10 +164,10 @@ public String getEmail() {
 public void setEmail(String email) {
 	this.email = email;
 }
-public List<String> getRoles() {
+public List<RoleAssociated> getRoles() {
 	return roles;
 }
-public void setRoles(List<String> roles) {
+public void setRoles(List<RoleAssociated> roles) {
 	this.roles = roles;
 }
 public List<String> getPermissions() {

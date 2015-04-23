@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import ma.esoftech.esoftrade.DTO.PasswordDTO;
+import ma.esoftech.esoftrade.DTO.RoleDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.controller.session.SessionBean;
 import ma.esoftech.esoftrade.datatablesAPI.Order;
@@ -181,6 +182,11 @@ public class UserController extends AbstractController {
 			response.setRecordsTotal(recordsTotal);
 			response.setData(list);
 			return response;
+		}
+		@ModelAttribute("rolesItems")
+		public List<RoleDTO> getRoles(){
+			List<RoleDTO> roles=null;
+			return roles;
 		}
 
 }

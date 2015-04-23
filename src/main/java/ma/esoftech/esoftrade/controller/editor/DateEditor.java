@@ -1,4 +1,4 @@
-package ma.esoftech.esoftrade.controller;
+package ma.esoftech.esoftrade.controller.editor;
 
 import java.beans.PropertyEditorSupport;
 import java.text.ParseException;
