@@ -6,43 +6,55 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
-
-                            <div class="box">
-                                <div class="box-header">
-                                    <h3 class="box-title">la liste des utilisateurs</h3>                                    
-                                </div><!-- /.box-header -->
-                                <div class="box-body table-responsive">
-                                    <table id="list1" class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Rèfèrence</th>
-                                                <th>Nom</th>
-                                                <th>Prènom</th>
-                                                <th>Login</th>
-                                                <th>fonction</th>
-                                                <th>statut</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                               <th>Réfèrence</th>
-                                                <th>Nom</th>
-                                                <th>Prènom</th>
-                                                <th>Login</th>
-                                                <th>fonction</th>
-                                                <th>statut</th>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div><!-- /.box-body -->
-                            </div><!-- /.box -->
-  <!-- DATA TABES SCRIPT -->
-        <script src="${baseURL}/js/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
-        <script src="${baseURL}/js/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
-         <script src="${baseURL}/js/plugins/datatables/dataTables.ColumnFilter.js" type="text/javascript"></script>
-        <script type="text/javascript">
+<div class="box">
+	<div class="box-header">
+		<h3 class="box-title">la liste des utilisateurs</h3>
+		<div class="box-tools pull-right">
+			<a class="btn btn-primary btn-sm" href="${baseURL}/user/create"
+				style="color: white;">+ Utilisateur</a> &nbsp;
+		</div>
+	</div>
+	<!-- /.box-header -->
+	<div class="box-body table-responsive">
+		<table id="list1" class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Rèfèrence</th>
+					<th>Nom</th>
+					<th>Prènom</th>
+					<th>Login</th>
+					<th>fonction</th>
+					<th>statut</th>
+					<th>profile/consulter/supprimer</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th>Rèfèrence</th>
+					<th>Nom</th>
+					<th>Prènom</th>
+					<th>Login</th>
+					<th>fonction</th>
+					<th>statut</th>
+					<th>profile/consulter/supprimer</th>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+	<!-- /.box-body -->
+</div>
+<!-- /.box -->
+<!-- DATA TABES SCRIPT -->
+<script src="${baseURL}/js/plugins/datatables/jquery.dataTables.js"
+	type="text/javascript"></script>
+<script src="${baseURL}/js/plugins/datatables/dataTables.bootstrap.js"
+	type="text/javascript"></script>
+<script
+	src="${baseURL}/js/plugins/datatables/dataTables.ColumnFilter.js"
+	type="text/javascript"></script>
+<script type="text/javascript">
         
             $(function() {
 //             	   $('#example1 thead th').each( function () {
@@ -101,7 +113,25 @@
                     	"name":"active",
                     	"data":"active",
                     	 "render": function ( data, type, full, meta ) {
-                    	      return '<a href="'+data+'">active '+data+'</a>';
+                    		 $active='<div id="statut" class="label label-success">Active</div>';
+                    		 $inactive='<div id="statut" class="label label-danger">innactive</div>';
+                    		 if(data==true){
+                    			 return $active;
+                    		 }
+                    	      return $inactive;
+                    	    }
+                    
+                    },
+                    {
+                    	"targets":[6],
+                    	"name":"id",
+                    	"data":"id",
+                    	"orderable": false,
+                    	 "render": function ( data, type, full, meta ) {
+                    		 $html='<a href="${baseURL}/user/profile?id='+data+'"  class="btn btn-info btn-xs"><i class="fa   fa-search"></i></a>&nbsp;';
+                    		 $html+='<a href="${baseURL}/user/update?id='+data+'"  class="btn btn-default btn-xs"><i class="fa   fa-edit"></i></a>&nbsp;';
+                    		 $html+='<a href="${baseURL}/user/delete?id='+data+'"  class="btn btn-danger btn-xs"><i class="fa   fa-trash-o"></i></a>';
+                    		 return $html;
                     	    }
                     
                     }]

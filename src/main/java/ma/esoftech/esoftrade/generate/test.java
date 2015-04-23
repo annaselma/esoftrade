@@ -3,7 +3,6 @@ package ma.esoftech.esoftrade.generate;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import ma.esoftech.esoftrade.DTO.RoleDTO;
 import ma.esoftech.esoftrade.model.Role;
 import ma.esoftech.esoftrade.model.User;
@@ -31,8 +30,8 @@ public class test {
 //		Session session=sessionFactory.openSession();
 //		session.get(ma.esoftech.esoftrade.model.User.class, new Long(0));
 //		session.close();
-	//	lazyExemple();
-		cascadeCreateExemple();
+		lazyExemple();
+		//cascadeCreateExemple();
 	}
 	public static void cascadeCreateExemple(){
 		SessionFactory sessionFactory=new Configuration().configure("hibernate2.cfg.xml").buildSessionFactory();
@@ -52,10 +51,11 @@ public class test {
 		Devis devis= null;
 		String hql= "select u from User as u left  join fetch  u.roles Where 1=1 and u.id=:id";
 		Query query=session.createQuery(hql);
-		query.setParameter("id", new Long(1));
+		Object id=new Long(1);
+		query.setParameter("id", id);
 		 User u=(User)query.uniqueResult();
 		 session.beginTransaction();
-		 session.update(u);
+		 //session.update(u);
 		 session.getTransaction().commit();
 		System.out.println("lignes "+query.list().size());
 		session.close();

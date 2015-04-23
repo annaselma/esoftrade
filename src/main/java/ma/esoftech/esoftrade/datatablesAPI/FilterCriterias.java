@@ -12,6 +12,7 @@ import ma.esoftech.esoftrade.datatablesAPI.RequestTable.SearchCriterias;
 public class FilterCriterias {
 
 	private Map<String, String> filterCriterias;
+	public static String GLOBAL_SEARCH="GlobalSearch";
 
 	private FilterCriterias() {
 		filterCriterias = new HashMap<String, String>();
@@ -61,7 +62,7 @@ public class FilterCriterias {
 
 	private static void addDefaultFilter(FilterCriterias filterCriterias,
 			RequestTable request) {
-		filterCriterias.addFilter("GlobalCriteria",
+		filterCriterias.addFilter(GLOBAL_SEARCH,
 				request.getSearch().get(SearchCriterias.value));
 	}
 

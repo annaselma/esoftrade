@@ -1,11 +1,11 @@
 package ma.esoftech.esoftrade.controller;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import ma.esoftech.esoftrade.DTO.PasswordDTO;
+import ma.esoftech.esoftrade.DTO.RoleDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.controller.session.SessionBean;
 import ma.esoftech.esoftrade.datatablesAPI.Order;
@@ -14,18 +14,13 @@ import ma.esoftech.esoftrade.datatablesAPI.RequestTable.SearchCriterias;
 import ma.esoftech.esoftrade.datatablesAPI.ResponseTable;
 import ma.esoftech.esoftrade.exeption.UserNameException;
 import ma.esoftech.esoftrade.exeption.UserNotFoundException;
-import ma.esoftech.esoftrade.generate.Entity;
 import ma.esoftech.esoftrade.service.IUserService;
-import ma.esoftech.esoftrade.service.ServiceUtils;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.memory.UserAttribute;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -174,6 +169,7 @@ public class UserController extends AbstractController {
 			}
 			Order ordre=Order.createOrderFromRequestTable(req);
 			String search=req.getSearch().get(SearchCriterias.value);
+			ordre.toString();
 			int start=req.getStart();
 			int  length=req.getLength();
 			int draw=req.getDraw();
@@ -186,6 +182,11 @@ public class UserController extends AbstractController {
 			response.setRecordsTotal(recordsTotal);
 			response.setData(list);
 			return response;
+		}
+		@ModelAttribute("rolesItems")
+		public List<RoleDTO> getRoles(){
+			List<RoleDTO> roles=null;
+			return roles;
 		}
 
 }

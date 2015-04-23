@@ -3,8 +3,8 @@ package ma.esoftech.esoftrade.serviceImpl;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
+import ma.esoftech.esoftrade.DTO.RoleAssociated;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -22,7 +22,7 @@ public class Assembler {
 	    boolean accountNonExpired = userDto.isActive();
 	    boolean credentialsNonExpired = userDto.isActive();
 	    boolean accountNonLocked = userDto.isActive();
-		  List<String> roles= userDto.getRoles();
+		  List<RoleAssociated> roles= userDto.getRoles();
 		  Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		  attachRolesToAuthorities(roles, authorities);
 		  List<String> permissions=userDto.getPermissions();
@@ -32,10 +32,10 @@ public class Assembler {
 		     return finalUser;
 	}
 		
-	private static void attachRolesToAuthorities(List<String> roles,
+	private static void attachRolesToAuthorities(List<RoleAssociated> roles,
 			Collection<GrantedAuthority> authorities){
-		  for (String role : roles) {
-			  authorities.add(new  GrantedAuthorityImpl(role));
+		  for (RoleAssociated role : roles) {
+			  authorities.add(new  GrantedAuthorityImpl(role.getName()));
 		}
 	}
 	
