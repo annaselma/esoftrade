@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import ma.esoftech.esoftrade.Dao.IProductDao;
 import ma.esoftech.esoftrade.model.Product;
+import ma.esoftech.esoftrade.model.ProductCategory;
 import ma.esoftech.esoftrade.model.User;
 
 @Repository
@@ -97,4 +98,24 @@ public class ProductDao  implements IProductDao{
 		
 	}
 
+	@Override
+	public List<Product> getProductByCategory(int start, int length,
+			String sorting, ProductCategory category) {
+		// TODO Auto-generated method stub
+		session=sessionFactory.getCurrentSession();
+		if(sorting ==null ||sorting.equals("")){
+			sorting ="id ASC";
+		}
+	     String hql="Select product From Product as product inner join product.ProductCategory category  where caategory.id=:id"
+	     		+ "order by product."+sorting;
+	     org.hibernate.Query query=session.createQuery(hql);
+	     query.setLong("id", category.getId());
+	     query.setFirstResult(start).setMaxResults(length);
+	     List<Product>product=query.list();
+		return product;
+		
+	}
+
+
+	
 }
