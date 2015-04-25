@@ -3,9 +3,12 @@ package ma.esoftech.esoftrade.DTO;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
+
+import ma.esoftech.esoftrade.DTO.associated.RoleAssociated;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;

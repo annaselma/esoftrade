@@ -33,7 +33,7 @@
 	
 	<mapping>
 	<class-a>ma.esoftech.esoftrade.model.User</class-a>
-    <class-b>ma.esoftech.esoftrade.DTO.EditorDTO</class-b>
+    <class-b>ma.esoftech.esoftrade.DTO.associated.EditorDTO</class-b>
 		<field>
 			<a>id</a>
 			<b>id</b>

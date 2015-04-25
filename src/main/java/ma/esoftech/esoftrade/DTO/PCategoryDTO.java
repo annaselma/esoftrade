@@ -2,24 +2,29 @@ package ma.esoftech.esoftrade.DTO;
 
 import java.util.Date;
 
+import ma.esoftech.esoftrade.DTO.associated.EditorDTO;
+import ma.esoftech.esoftrade.DTO.associated.PCategoryAssociatedDTO;
+
 public class PCategoryDTO {
 
 	private long id;
-	private String creator;
+	private EditorDTO creator;
 	 private Date createDate;
-	 private Date modifier;
-	 private String name;
+	 private EditorDTO modifier;
+	 private Date lastEdit;
 	 private String description;
-	public long getId() {
-		return id;
+	 private String name;
+	
+	public Date getLastEdit() {
+		return lastEdit;
 	}
-	public void setId(long id) {
-		this.id = id;
+	public void setLastEdit(Date lastEdit) {
+		this.lastEdit = lastEdit;
 	}
-	public String getCreator() {
+	public EditorDTO getCreator() {
 		return creator;
 	}
-	public void setCreator(String creator) {
+	public void setCreator(EditorDTO creator) {
 		this.creator = creator;
 	}
 	public Date getCreateDate() {
@@ -28,11 +33,26 @@ public class PCategoryDTO {
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
-	public Date getModifier() {
+	public EditorDTO getModifier() {
 		return modifier;
 	}
-	public void setModifier(Date modifier) {
+	public void setModifier(EditorDTO modifier) {
 		this.modifier = modifier;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	 
+	 public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
 	}
 	public String getName() {
 		return name;
@@ -40,12 +60,5 @@ public class PCategoryDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	 
-	 private PCategoryDTO(){}
+	private PCategoryDTO(){}
 }

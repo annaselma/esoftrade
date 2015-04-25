@@ -106,10 +106,10 @@ public class ProductDao  implements IProductDao{
 		if(sorting ==null ||sorting.equals("")){
 			sorting ="id ASC";
 		}
-	     String hql="Select product From Product as product inner join product.ProductCategory category  where caategory.id=:id"
+	     String hql="Select product From Product as product inner join product.category as category  where category=:cat"
 	     		+ "order by product."+sorting;
 	     org.hibernate.Query query=session.createQuery(hql);
-	     query.setLong("id", category.getId());
+	     query.setParameter("cat", category);
 	     query.setFirstResult(start).setMaxResults(length);
 	     List<Product>product=query.list();
 		return product;

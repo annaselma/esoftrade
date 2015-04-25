@@ -5,19 +5,19 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import ma.esoftech.esoftrade.DTO.associated.RoleAssociated;
+import ma.esoftech.esoftrade.DTO.associated.PCategoryAssociatedDTO;
 
-public class RoleEditor extends PropertyEditorSupport {
+public class CategoryProductEditor  extends PropertyEditorSupport {
     public void setAsText(String value) {
-    	RoleAssociated role=new RoleAssociated();
-    	//role.setId();
- setValue(null);
+    	PCategoryAssociatedDTO category=new PCategoryAssociatedDTO();
+    	category.setId(Long.valueOf(value));
+         setValue(category);
       }
 
       public String getAsText() {
         String s = "";
         if (getValue() != null) {
-           s = new SimpleDateFormat("dd/MM/yyyy").format((Date) getValue());
+           s=String.valueOf(((PCategoryAssociatedDTO)getValue()).getId());
         }
         return s;
       }

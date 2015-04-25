@@ -182,6 +182,7 @@ public class UserServiceImpl implements IUserService {
 	     userEntity.setRoles(usertmp.getRoles());
 	     userEntity.setCreator(usertmp.getCreator());
 	     userEntity.setCreateDate(usertmp.getCreateDate());
+	     ServiceUtils.EditEntityModel(modifer, userEntity);
 	     userEntity.setDeleted(false);
 	     userEntity.setPasswd(usertmp.getPasswd());
 	     userEntity.setLastEdit(new Date());

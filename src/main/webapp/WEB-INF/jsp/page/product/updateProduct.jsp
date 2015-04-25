@@ -23,6 +23,14 @@
 <div class="box box-solid box-primary">
 	<div class="box-header">
 		<h3 class="box-title">Informations Personnelle</h3>
+		<div class="box-tools pull-right">
+			<button class="btn btn-primary btn-sm" data-widget="collapse">
+				<i class="fa fa-minus"></i>
+			</button>
+			<button class="btn btn-primary btn-sm" data-widget="remove">
+				<i class="fa fa-times"></i>
+			</button>
+		</div>
 	</div>
 	<!-- /.box-header -->
 	<!-- form start -->
@@ -30,7 +38,8 @@
 	<div class="box-body">
 
 		<form:form method="POST" commandName="user" id="userF"
-			data-toggle="validator" cssClass="form-horizontal">
+			data-toggle="validator" cssClass="form-horizontal"
+			action="${baseURL}/user/update">
 			<div class="form-group">
 				<label for="nameField" class="col-sm-2 control-label esoft-left">Nom:</label>
 				<div class="col-sm-4">
@@ -55,6 +64,8 @@
 				</div>
 
 			</div>
+
+			<%-- 	<form:errors path="*" cssClass="errorblock" /> --%>
 			<div class="form-group">
 				<label for="dateField" class="col-sm-2 control-label esoft-left">Date
 					de Naissance:</label>
@@ -82,7 +93,7 @@
 			<div class="form-group">
 				<label for="phoneField" class="col-sm-2 control-label esoft-left">Telephone:</label>
 				<div class="col-sm-4">
-					<form:input path="telephone" cssClass=" form-control" />
+					<form:input path="telephone" cssClass="form-control" />
 					<form:errors path="telephone" cssClass="error" />
 				</div>
 				<div class="col-sm-6">
@@ -405,7 +416,6 @@
 				</div>
 
 			</div>
-			<hr class="bs-docs-separator ">
 			<div class="form-group">
 				<label for="name" class="col-sm-2 control-label esoft-left">Login:</label>
 				<div class="col-sm-4">
@@ -413,39 +423,74 @@
 					<form:errors path="login" cssClass="error" />
 				</div>
 			</div>
+			<form:hidden path="password" />
+			<form:hidden path="id" />
 			<div class="form-group">
-				<label for="passwordField" class="col-sm-2 control-label esoft-left"><small>Mot
-						de Passe:</small></label>
-				<div class="col-sm-4">
-					<form:input path="password" type="password"
-						cssClass="form-control input-lg" />
-					<form:errors path="password" cssClass="error" />
-				</div>
-
-			</div>
-
-
-			<div class="form-group">
-			<button type="submit" class="btn btn-danger btn pull-right" style="margin-right: 1%;">Annuler</button>
-			<button type="submit" class="btn btn-primary btn pull-right" style="margin-right: 3%;">Ajouter</button>
+				<button type="submit" class="btn btn-danger btn pull-right"style="margin-right: 3%;">Annuler</button>
+			    <button type="submit" class="btn btn-primary btn pull-right" style="margin-right: 1%;">Modifier</button>
 			</div>
 		</form:form>
 	</div>
 </div>
 <!-- /.box-body -->
+<div class="box box-solid box-primary">
+	<div class="box-header">
+		<h3 class="box-title">Modification de mot de passe</h3>
+		<div class="box-tools pull-right">
+			<button class="btn btn-primary btn-sm" data-widget="collapse">
+				<i class="fa fa-minus"></i>
+			</button>
+			<button class="btn btn-primary btn-sm" data-widget="remove">
+				<i class="fa fa-times"></i>
+			</button>
+		</div>
+	</div>
+	<!-- /.box-header -->
+	<!-- form start -->
+	<div class="box-body">
+		<form:form action="${baseURL}/user/editPassword" method="POST"
+			commandName="password" data-toggle="validator"
+			cssClass="form-horizontal">
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label esoft-left">Mot
+					de passe</label>
+				<div class="col-sm-4">
+					<form:password path="password1" cssClass="form-control" />
+					<form:errors path="password1" cssClass="error" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label esoft-left">Confirmer
+					mot de passe</label>
+				<div class="col-sm-4">
+					<form:password path="password2" cssClass="form-control" />
+					<form:errors path="password2" cssClass="error" />
+				</div>
+			</div>
+			<form:hidden path="id" />
+			<div class="form-group">
+				<button type="button" class="btn btn-danger btn pull-right"style="margin-right: 3%;">Annuler</button>
+			    <button type="submit" class="btn btn-primary btn pull-right" style="margin-right: 1%;">Modifier</button>
+			</div>
+		</form:form>
+
+
+	</div>
+</div>
 <script src="${baseURL}/js/bootstrap-datepicker.js"></script>
 <script>
-	$(document).ready(function() {
-		$('#dp3').datepicker();
-	});
+$(document).ready(function(){
+    $('#dp3').datepicker();
+  });
 </script>
 
 <script>
-	// $("[name='active']").bootstrapSwitch({
-	// 	"on-label":"actif",
-	// 	"off-label":"désSactif"
-
-	// });
-	// $("[name='active']").bootstrapSwitch('setOnLabel', 'I');
-	// $("[name='active']").bootstrapSwitch('setOffLabel', 'O');
+// $("[name='active']").bootstrapSwitch({
+// 	"on-label":"actif",
+// 	"off-label":"désSactif"
+	
+	
+// });
+// $("[name='active']").bootstrapSwitch('setOnLabel', 'I');
+// $("[name='active']").bootstrapSwitch('setOffLabel', 'O');
 </script>

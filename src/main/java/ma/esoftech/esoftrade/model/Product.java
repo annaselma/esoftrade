@@ -18,6 +18,8 @@ public class Product  extends MetaObject implements Serializable {
 	@Column(name="ELMO_ref", nullable= false,unique=true,length= 255)
 	@Index(name="ELMO_REF_INDEX")
 	 private String ref;
+	@Column(name="ELMO_Libelle",nullable=false,length=255)
+	private String libelle;
 	@Column(name="ELMO_PURCHASINGSTATE", nullable= false)
 	 private Boolean purchasingState= true;
 	@Column(name="ELMO_SELLINGSTATE", nullable= false)
@@ -29,7 +31,7 @@ public class Product  extends MetaObject implements Serializable {
 	@Column(name="ELMO_NATURE",nullable=false, length=255)
 	private String nature;
 	
-	@Column(name="ELMO_DESCRIPTION",length= 255)
+	@Column(name="ELMO_DESCRIPTION",length= 1000)
 	 private String description;
 	@Column(name="ELMO_WHEIGHT",length= 255)
 	 private float wheight;
@@ -43,6 +45,8 @@ public class Product  extends MetaObject implements Serializable {
 	 private float price;
 	@Column(name="ELMO_PICTURE",length= 255)
 	 private float picture;
+	@Column(name="ELMO_QUANTITY",nullable=false)
+	private Integer quantity;
 	@Column(name="ELMO_BARRECODE", unique=true,length= 255)
 	 private String barreCode;
 
@@ -154,9 +158,41 @@ public class Product  extends MetaObject implements Serializable {
 		return barreCode;
 	}
 
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+
+	public String getNature() {
+		return nature;
+	}
+
+	public void setNature(String nature) {
+		this.nature = nature;
+	}
+
+	public ProductCategory getCategory() {
+		return category;
+	}
+
+	public void setCategory(ProductCategory category) {
+		this.category = category;
+	}
+
 	public void setBarreCode(String barreCode) {
 		this.barreCode = barreCode;
 	}
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
 	public String generateReference(){
 		String ref="";
 		ref=ref.concat(PREFIX_REF_PRODUCT);
