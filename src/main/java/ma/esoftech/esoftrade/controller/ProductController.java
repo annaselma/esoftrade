@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/product")
 public class ProductController extends AbstractController {
 	private static final String REDIRECT="redirect:";
-	private static final String PATH_PROFIL=REDIRECT+"/product/productProfile";
+	private static final String PATH_PROFIL=REDIRECT+"/product/profile";
 	@Autowired
 	IProductService productService;
 	@Autowired
@@ -50,7 +50,7 @@ public class ProductController extends AbstractController {
 		this.currentUser = sessionBean.getUserDTO();
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="/profile",method = RequestMethod.GET)
 	public String loadProduct(@RequestParam long id, ModelMap model){
 		ProductDTO product=null;
 		try {

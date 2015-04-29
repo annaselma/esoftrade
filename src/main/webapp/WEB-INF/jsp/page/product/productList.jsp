@@ -8,10 +8,10 @@
 <c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
 <div class="box">
 	<div class="box-header">
-		<h3 class="box-title">la liste des utilisateurs</h3>
+		<h3 class="box-title">la liste des produits</h3>
 		<div class="box-tools pull-right">
-			<a class="btn btn-primary btn-sm" href="${baseURL}/user/create"
-				style="color: white;">+ Utilisateur</a> &nbsp;
+			<a class="btn btn-primary btn-sm" href="${baseURL}/product/create"
+				style="color: white;">+ Ajouter produit</a> &nbsp;
 		</div>
 	</div>
 	<!-- /.box-header -->
@@ -20,12 +20,14 @@
 			<thead>
 				<tr>
 					<th>Rèfèrence</th>
-					<th>Nom</th>
-					<th>Prènom</th>
-					<th>Login</th>
-					<th>fonction</th>
-					<th>statut</th>
-					<th>profile/consulter/supprimer</th>
+					<th>Libellé</th>
+					<th>Code barre</th>
+					<th>categorie</th>
+					<th>Quantité</th>
+					<th>Prix</th>
+					<th>Vente</th>
+					<th>achat</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -33,12 +35,14 @@
 			<tfoot>
 				<tr>
 					<th>Rèfèrence</th>
-					<th>Nom</th>
-					<th>Prènom</th>
-					<th>Login</th>
-					<th>fonction</th>
-					<th>statut</th>
-					<th>profile/consulter/supprimer</th>
+					<th>Libellé</th>
+					<th>Code barre</th>
+					<th>categorie</th>
+					<th>Quantité</th>
+					<th>Prix</th>
+					<th>Vente</th>
+					<th>achat</th>
+					<th>Actions</th>
 				</tr>
 			</tfoot>
 		</table>
@@ -73,7 +77,7 @@
                     "processing": true,
                     "serverSide": true,
                     "ajax": {
-                        "url": "${baseURL}/user/getList",
+                        "url": "${baseURL}/product/getList",
                         "data": function(data) {
                             planify(data);  
                         } 
@@ -86,35 +90,55 @@
                     },
                     {
                     	"targets":[1],
-                    	"name":"name",
-                    	"data":"name",
+                    	"name":"libelle",
+                    	"data":"libelle",
                     
                     },
                     {
                     	"targets":[2],
-                    	"name":"lastName",
-                    	"data":"lastName",
+                    	"name":"barreCode",
+                    	"data":"barreCode",
                     
                     },
                     {
                     	"targets":[3],
-                    	"name":"login",
-                    	"data":"login",
+                    	"name":"category.name",
+                    	"data":"category.name",
                     
                     },
                     {
                     	"targets":[4],
-                    	"name":"fonction",
-                    	"data":"fonction",
+                    	"name":"quantity",
+                    	"data":"quantity",
                     
                     },
                     {
                     	"targets":[5],
-                    	"name":"active",
-                    	"data":"active",
+                    	"name":"price",
+                    	"data":"price",
+                    
+                    },
+                    {
+                    	"targets":[6],
+                    	"name":"sellingState",
+                    	"data":"sellingState",
+                    	"render": function ( data, type, full, meta ) {
+                   		 $active='<div id="statut" class="label label-success">en vente</div>';
+                   		 $inactive='<div id="statut" class="label label-danger">hors vente</div>';
+                   		 if(data==true){
+                   			 return $active;
+                   		 }
+                   	      return $inactive;
+                   	    }
+                    
+                    },
+                    {
+                    	"targets":[7],
+                    	"name":"purchasingState",
+                    	"data":"purchasingState",
                     	 "render": function ( data, type, full, meta ) {
-                    		 $active='<div id="statut" class="label label-success">Active</div>';
-                    		 $inactive='<div id="statut" class="label label-danger">innactive</div>';
+                    		 $active='<div id="statut" class="label label-success">en achat</div>';
+                    		 $inactive='<div id="statut" class="label label-danger">hors achat</div>';
                     		 if(data==true){
                     			 return $active;
                     		 }
@@ -123,14 +147,14 @@
                     
                     },
                     {
-                    	"targets":[6],
+                    	"targets":[8],
                     	"name":"id",
                     	"data":"id",
                     	"orderable": false,
                     	 "render": function ( data, type, full, meta ) {
-                    		 $html='<a href="${baseURL}/user/profile?id='+data+'"  class="btn btn-info btn-xs"><i class="fa   fa-search"></i></a>&nbsp;';
-                    		 $html+='<a href="${baseURL}/user/update?id='+data+'"  class="btn btn-default btn-xs"><i class="fa   fa-edit"></i></a>&nbsp;';
-                    		 $html+='<a href="${baseURL}/user/delete?id='+data+'"  class="btn btn-danger btn-xs"><i class="fa   fa-trash-o"></i></a>';
+                    		 $html='<a href="${baseURL}/product/profile?id='+data+'"  class="btn btn-info btn-xs"><i class="fa   fa-search"></i></a>&nbsp;';
+                    		 $html+='<a href="${baseURL}/product/update?id='+data+'"  class="btn btn-default btn-xs"><i class="fa   fa-edit"></i></a>&nbsp;';
+                    		 $html+='<a href="${baseURL}/product/delete?id='+data+'"  class="btn btn-danger btn-xs"><i class="fa   fa-trash-o"></i></a>';
                     		 return $html;
                     	    }
                     

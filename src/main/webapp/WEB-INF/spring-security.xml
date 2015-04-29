@@ -15,6 +15,8 @@
 		  <intercept-url pattern="/client**" access="isAuthenticated()"  />
 		  <intercept-url pattern="/user**" access="isAuthenticated()"  />
 		  <intercept-url pattern="/user/**" access="isAuthenticated()"  />
+		  	  <intercept-url pattern="/product**" access="isAuthenticated()"  />
+		  <intercept-url pattern="/product/**" access="isAuthenticated()"  />
 		<form-login login-page="/login.html" 
 		    default-target-url="/client.html"
 			authentication-failure-url="/login.html?error=failed"

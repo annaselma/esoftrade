@@ -2,11 +2,17 @@ package ma.esoftech.esoftrade.DTO;
 
 import java.util.Date;
 
+import javax.validation.OverridesAttribute;
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import ma.esoftech.esoftrade.DTO.associated.EditorDTO;
 import ma.esoftech.esoftrade.DTO.associated.PCategoryAssociatedDTO;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 
@@ -20,12 +26,11 @@ public class ProductDTO {
 	 private Date createDate;
 	 private EditorDTO modifier;
 	 private Date lastEditor;
-	 @NotEmpty
 	 private Boolean purchasingState= true;
-	 @NotEmpty
 	 private Boolean sellingState= true;
+	 @Min(1)
 	 private Integer desieredTreshold;
-	 @NotEmpty
+	 @Min(1)
 	 private Integer alertTreshold;
 	 private String description;
 	 @NotEmpty
@@ -33,12 +38,12 @@ public class ProductDTO {
 	 private float wheight;
 	 private float lenght;
 	 private float surface;
-	 @NotEmpty
+	 @Min(1)
 	 private Integer quantity;
 	 private float volume;
-	 @NotEmpty
+	 @NotNull
 	 private float price;
-	 private float picture;
+	 private String picture;
 	 private String barreCode;
 	 private PCategoryAssociatedDTO category;
 	 public ProductDTO(){
@@ -154,10 +159,10 @@ public class ProductDTO {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	public float getPicture() {
+	public String getPicture() {
 		return picture;
 	}
-	public void setPicture(float picture) {
+	public void setPicture(String picture) {
 		this.picture = picture;
 	}
 	public String getBarreCode() {

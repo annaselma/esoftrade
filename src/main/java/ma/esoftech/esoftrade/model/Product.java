@@ -33,18 +33,18 @@ public class Product  extends MetaObject implements Serializable {
 	
 	@Column(name="ELMO_DESCRIPTION",length= 1000)
 	 private String description;
-	@Column(name="ELMO_WHEIGHT",length= 255)
+	@Column(name="ELMO_WHEIGHT")
 	 private float wheight;
-	@Column(name="ELMO_LENGHT",length= 255)
+	@Column(name="ELMO_LENGHT")
 	 private float lenght;
-	@Column(name="ELMO_SURFACE", length= 255)
+	@Column(name="ELMO_SURFACE")
 	 private float surface;
-	@Column(name="ELMO_VOLUME",length= 255)
+	@Column(name="ELMO_VOLUME")
 	 private float volume;
-	@Column(name="ELMO_PRICE",nullable=false,length= 255)
+	@Column(name="ELMO_PRICE",nullable=false)
 	 private float price;
 	@Column(name="ELMO_PICTURE",length= 255)
-	 private float picture;
+	 private String picture;
 	@Column(name="ELMO_QUANTITY",nullable=false)
 	private Integer quantity;
 	@Column(name="ELMO_BARRECODE", unique=true,length= 255)
@@ -146,11 +146,11 @@ public class Product  extends MetaObject implements Serializable {
 		this.price = price;
 	}
 
-	public float getPicture() {
+	public String getPicture() {
 		return picture;
 	}
 
-	public void setPicture(float picture) {
+	public void setPicture(String picture) {
 		this.picture = picture;
 	}
 

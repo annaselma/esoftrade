@@ -30,7 +30,7 @@
 	<definition name="produit" extends="Template">
 	<put-attribute name="page" value="/WEB-INF/jsp/page/produit.jsp" />
 	</definition>
-	<definition name="consultProduct" extends="Template">
+	<definition name="productProfile" extends="Template">
 	<put-attribute name="page" value="/WEB-INF/jsp/page/product/productProfile.jsp" />
 	</definition>
 	<definition name="createProduct" extends="Template">

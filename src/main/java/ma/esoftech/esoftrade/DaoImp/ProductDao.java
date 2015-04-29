@@ -25,7 +25,7 @@ public class ProductDao  implements IProductDao{
 	public Product findById(long id) {
 		// TODO Auto-generated method stub
 	session= sessionFactory.getCurrentSession();	
-	String hql=" From Product as prod left join fetch prod.category where prod.id=: id";
+	String hql=" select prod From Product as prod left join fetch prod.category where prod.id= :id";
 	org.hibernate.Query query= null;
 	query= session.createQuery(hql);
 	query.setLong("id", id);
