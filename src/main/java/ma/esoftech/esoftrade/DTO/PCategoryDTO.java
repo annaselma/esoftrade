@@ -2,6 +2,8 @@ package ma.esoftech.esoftrade.DTO;
 
 import java.util.Date;
 
+import javax.validation.constraints.Size;
+
 import ma.esoftech.esoftrade.DTO.associated.EditorDTO;
 import ma.esoftech.esoftrade.DTO.associated.PCategoryAssociatedDTO;
 
@@ -13,8 +15,9 @@ public class PCategoryDTO {
 	 private EditorDTO modifier;
 	 private Date lastEdit;
 	 private String description;
+	 @Size(min=4,max=100)
 	 private String name;
-	
+	 
 	public Date getLastEdit() {
 		return lastEdit;
 	}
@@ -60,5 +63,5 @@ public class PCategoryDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	private PCategoryDTO(){}
+	public PCategoryDTO(){}
 }

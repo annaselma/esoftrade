@@ -43,6 +43,20 @@
 	<put-attribute name="page" value="/WEB-INF/jsp/page/product/updateProduct.jsp" />
 	</definition>
 	<!-- /Product Pages -->
+	<!-- CategoryProduct Pages -->
+	<definition name="categoryProfile" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/CategoryProduit/categoryProfile.jsp" />
+	</definition>
+	<definition name="createCategory" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/CategoryProduit/createCategory.jsp" />
+	</definition>
+	<definition name="categoryList" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/CategoryProduit/categoryList.jsp" />
+	</definition>
+	<definition name="updateCategory" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/CategoryProduit/updateCategory.jsp" />
+	</definition>
+	<!-- /CategoryProduct Pages -->
 	<!-- User Pages -->
 	<definition name="userProfile" extends="Template">
 	<put-attribute name="page" value="/WEB-INF/jsp/page/user/userProfile.jsp" />

@@ -1,6 +1,8 @@
 package ma.esoftech.esoftrade.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,8 +18,7 @@ private String name;
 	@Column(name="ELMO_DESCRIPTION")
 private String description;
 	
-	
-	private ProductCategory(){
+	public ProductCategory(){
 		super();
 	}
 	
@@ -33,6 +34,7 @@ private String description;
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 
 
 
