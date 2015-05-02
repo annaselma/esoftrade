@@ -29,7 +29,7 @@
 
 	<div class="box-body">
 
-		<form:form method="POST" commandName="category" id="categoryF"
+		<form:form method="POST" commandName="warehouse" id="warehouseF"
 			data-toggle="validator" cssClass="form-horizontal">
 			<div class="form-group">
 				<label for="nameField" class="col-sm-2 control-label esoft-left">name:</label>
@@ -46,6 +46,42 @@
 					<form:textarea id="editor1" path="description" name="editor1" rows="4" cols="80"/>
 				</div>
 			</div>
+			<div class="form-group">
+				<label for="adresseField" class="col-sm-2 control-label esoft-left">Adresse:</label>
+				<div class="col-sm-4">
+					<form:textarea path="adresse1" rows="2" cols="50" />
+					<form:errors path="adresse1" cssClass="error" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="CPField" class="col-sm-2 control-label esoft-left">code
+					Postal:</label>
+				<div class="col-sm-4">
+					<form:input path="zipCode" cssClass="form-control input-lg" />
+					<form:errors path="zipCode" cssClass="error" />
+				</div>
+
+			</div>
+			<div class="form-group">
+				<label for="cityField" class="col-sm-2 control-label esoft-left">Ville:</label>
+				<div class="col-sm-4">
+					<form:input path="city" cssClass="form-control" />
+					<form:errors path="city" cssClass="error" />
+				</div>
+
+			</div>
+
+			<div class="form-group">
+
+				<label for="paysField" class="col-sm-2 control-label esoft-left">Pays:
+				</label>
+				<div class="col-md-4">
+					<form:select path="country" cssClass="form-control  bfh-countries">
+
+						<option value="Maroc">Maroc</option>
+						<option value="France(F)">France (F))</option>
+						<option value="Tunisie">Tunisie (T)</option>
+						</form:select></div></div>
 			<div class="form-group">
 				<button type="submit" class="btn btn-danger btn pull-right"
 					style="margin-right: 1%;">Annuler</button>

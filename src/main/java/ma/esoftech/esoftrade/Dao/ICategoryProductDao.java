@@ -17,4 +17,6 @@ public interface ICategoryProductDao {
     public void updateCategory(ProductCategory category);
     public void deleteCategory(ProductCategory category);
     public long categoryCount(String filter);
+    public List<Product> getListProductBycategory(int lenght, int start, String sorting,String filter,ProductCategory category);
+    public long productCountBycategory(String filter, ProductCategory category);
 }

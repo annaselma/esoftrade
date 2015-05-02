@@ -37,9 +37,9 @@ private String password;
 private String lastName;
 @Size(max=50)
 private String fonction;
-@Size(max=100)
+@Size(max=50)
 private String adresse1;
-@Size(max=100)
+@Size(max=50)
 private String adresse2;
 @Size(max=10)
 private String zipCode;

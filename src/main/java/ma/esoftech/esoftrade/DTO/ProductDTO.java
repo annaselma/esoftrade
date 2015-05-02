@@ -20,7 +20,7 @@ public class ProductDTO {
      private long id;
      private String ref;
      @NotEmpty
-     @Size(max=100,min=4)
+     @Size(max=20,min=4)
      private String libelle;
 	 private EditorDTO creator;
 	 private Date createDate;
@@ -38,8 +38,6 @@ public class ProductDTO {
 	 private float wheight;
 	 private float lenght;
 	 private float surface;
-	 @Min(1)
-	 private Integer quantity;
 	 private float volume;
 	 @NotNull
 	 private float price;
@@ -72,12 +70,6 @@ public class ProductDTO {
 	}
 	public void setCreator(EditorDTO creator) {
 		this.creator = creator;
-	}
-	public Integer getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
 	}
 	public Date getCreateDate() {
 		return createDate;

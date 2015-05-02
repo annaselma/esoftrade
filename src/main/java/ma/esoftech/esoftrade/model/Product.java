@@ -45,8 +45,6 @@ public class Product  extends MetaObject implements Serializable {
 	 private float price;
 	@Column(name="ELMO_PICTURE",length= 255)
 	 private String picture;
-	@Column(name="ELMO_QUANTITY",nullable=false)
-	private Integer quantity;
 	@Column(name="ELMO_BARRECODE", unique=true,length= 255)
 	 private String barreCode;
 
@@ -185,14 +183,7 @@ public class Product  extends MetaObject implements Serializable {
 	public void setBarreCode(String barreCode) {
 		this.barreCode = barreCode;
 	}
-	public Integer getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
-
+	
 	public String generateReference(){
 		String ref="";
 		ref=ref.concat(PREFIX_REF_PRODUCT);

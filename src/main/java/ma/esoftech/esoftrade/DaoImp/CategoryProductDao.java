@@ -41,6 +41,16 @@ public class CategoryProductDao implements ICategoryProductDao {
 		query.setFirstResult(start).setMaxResults(length);
 		return query.list();
 	}
+	@Override
+	public List<Product> getListProductBycategory(int lenght, int start,
+			String sorting, String filter, ProductCategory category) {
+		session= sessionFactory.getCurrentSession();
+		String hql="Select prod From Product as prod where prod.category= :category";
+		Query query= session.createQuery(hql);
+		query.setParameter("category", category);
+		query.setFirstResult(start).setMaxResults(lenght);
+		return query.list();
+	}
 
 	@Override
 	public ProductCategory findById(long id) {
@@ -90,6 +100,18 @@ public class CategoryProductDao implements ICategoryProductDao {
 	public long categoryCount(String filter) {
 		session=sessionFactory.getCurrentSession();
 		Long count=(Long)session.createQuery(" Select count(ProductCategory) from ProductCategory as category").uniqueResult();
+		return count;
+	}
+
+	
+
+	@Override
+	public long productCountBycategory(String filter, ProductCategory category) {
+		session=sessionFactory.getCurrentSession();
+		String hql=" Select count(Product) from Product as prod where prod.category= :category";
+		Query query= session.createQuery(hql);
+		query.setParameter("category", category);
+		Long count= (Long)query.uniqueResult();
 		return count;
 	}
 

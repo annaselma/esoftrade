@@ -22,7 +22,7 @@
 
 <div class="box box-solid box-primary">
 	<div class="box-header">
-		<h3 class="box-title">Nouvelle Catégorie</h3>
+		<h3 class="box-title">Modifier Catégorie</h3>
 	</div>
 	<!-- /.box-header -->
 	<!-- form start -->
@@ -41,7 +41,7 @@
 			</div>
             
 			<div class="form-group">
-				<label for="DescriptionField" class="col-sm-2 control-label esoft-left">Description:</label>
+				<label for="nameField" class="col-sm-2 control-label esoft-left">Description:</label>
 				<div class="col-sm-10">
 					<form:textarea id="editor1" path="description" name="editor1" rows="4" cols="80"/>
 				</div>

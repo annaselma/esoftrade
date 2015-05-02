@@ -86,15 +86,6 @@
 						</div></div>
 			
 			<div class="form-group">
-				<label for="quantityField" class="col-sm-2 control-label esoft-left">quantité:</label>
-				<div class="col-sm-2">
-					<form:input path="quantity" cssClass="form-control" />
-					<form:errors path="quantity" cssClass="error" />
-				</div>
-
-			</div>
-			
-			<div class="form-group">
 				<label for="wheightField" class="col-sm-2 control-label esoft-left">Poids:</label>
 				<div class="col-sm-2">
 					<form:input path="wheight" cssClass="form-control" />
@@ -128,17 +119,11 @@
 			</div>
 			<div class="form-group">
 				<label for="priceField" class="col-sm-2 control-label esoft-left">Prix:</label>
-				<div class="col-sm-4">
+				<div class="col-sm-2">
 					<form:input path="price" cssClass="form-control" />
 					<form:errors path="price" cssClass="error" />
 				</div>
 
-			</div>
-			<div class="form-group">
-				<label for="nameField" class="col-sm-2 control-label esoft-left">Description:</label>
-				<div class="col-sm-10">
-					<form:textarea id="editor1" path="description" name="editor1" rows="4" cols="80"/>
-				</div>
 			</div>
 			<div class="form-group">
 				<label for="stockdField" class="col-sm-2 control-label esoft-left">Stock désiré:</label>
@@ -157,10 +142,17 @@
 
 			</div>
 			<div class="form-group">
+				<label for="nameField" class="col-sm-2 control-label esoft-left">Description:</label>
+				<div class="col-sm-10">
+					<form:textarea id="editor1" path="description" name="editor1" rows="4" cols="80"/>
+				</div>
+			</div>
+			
+			<div class="form-group">
 				<button type="submit" class="btn btn-danger btn pull-right"
-					style="margin-right: 1%;">Annuler</button>
+					style="margin-right: 2%;">Annuler</button>
 				<button type="submit" class="btn btn-primary btn pull-right"
-					style="margin-right: 3%;">Ajouter</button>
+					style="margin-right: 2%;">Ajouter</button>
 			</div>
 		</form:form>
 	</div>

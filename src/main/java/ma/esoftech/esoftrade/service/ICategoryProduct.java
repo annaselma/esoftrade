@@ -19,4 +19,6 @@ public interface ICategoryProduct {
     public void updateCategory(PCategoryDTO category, UserDTO modifier)throws PCatNotFoundException;
     public void deleteCategory(PCategoryDTO category);
     public long categoryCount(String filter);
+    public List<ProductDTO> getListProductBycategory(int lenght, int start, String sorting,String filter,PCategoryDTO category);
+    public long productCountBycategory(String filter, PCategoryDTO category);
 }

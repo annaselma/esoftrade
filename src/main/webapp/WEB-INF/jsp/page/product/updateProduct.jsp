@@ -86,15 +86,6 @@
 						</div></div>
 			
 			<div class="form-group">
-				<label for="quantityField" class="col-sm-2 control-label esoft-left">quantité:</label>
-				<div class="col-sm-2">
-					<form:input path="quantity" cssClass="form-control" />
-					<form:errors path="quantity" cssClass="error" />
-				</div>
-
-			</div>
-			
-			<div class="form-group">
 				<label for="wheightField" class="col-sm-2 control-label esoft-left">Poids:</label>
 				<div class="col-sm-2">
 					<form:input path="wheight" cssClass="form-control" />
@@ -135,12 +126,6 @@
 
 			</div>
 			<div class="form-group">
-				<label for="nameField" class="col-sm-2 control-label esoft-left">Description:</label>
-				<div class="col-sm-10">
-					<form:textarea id="editor1" path="description" name="editor1" rows="4" cols="80"/>
-				</div>
-			</div>
-			<div class="form-group">
 				<label for="stockdField" class="col-sm-2 control-label esoft-left">Stock désiré:</label>
 				<div class="col-sm-2">
 					<form:input path="desieredTreshold" cssClass="form-control" />
@@ -156,6 +141,13 @@
 				</div>
 
 			</div>
+			<div class="form-group">
+				<label for="nameField" class="col-sm-2 control-label esoft-left">Description:</label>
+				<div class="col-sm-10">
+					<form:textarea id="editor1" path="description" name="editor1" rows="4" cols="80"/>
+				</div>
+			</div>
+			
 			<div class="form-group">
 				<button type="submit" class="btn btn-danger btn pull-right"
 					style="margin-right: 1%;">Annuler</button>

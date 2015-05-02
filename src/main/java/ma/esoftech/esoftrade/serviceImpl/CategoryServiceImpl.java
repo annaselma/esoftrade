@@ -113,6 +113,26 @@ public class CategoryServiceImpl implements ICategoryProduct {
 		// TODO Auto-generated method stub
 		return categoryDao.categoryCount(filter);
 	}
+	@Override
+	@Transactional(readOnly=true)
+	public List<ProductDTO> getListProductBycategory(int lenght, int start,String sorting, String filter, PCategoryDTO category) {
+			ProductCategory categoryEntity= mapper.map(category, ProductCategory.class);
+			List<Product>ListProductEntity= categoryDao.getListProductBycategory(lenght, start, sorting, filter, categoryEntity);
+			List<ProductDTO>ListProductDTO= new ArrayList<ProductDTO>();
+			for (Product product : ListProductEntity) {
+				ListProductDTO.add(mapper.map(product, ProductDTO.class));
+			}
+			return ListProductDTO;
+	}
+	@Override
+	@Transactional(readOnly=true)
+	public long productCountBycategory(String filter, PCategoryDTO category) {
+		// TODO Auto-generated method stub
+		ProductCategory categoryEntity= mapper.map(category, ProductCategory.class);	
+		categoryEntity= new ProductCategory();
+		categoryEntity.setId(category.getId());
+		return categoryDao.productCountBycategory(filter, categoryEntity);
+	}
 
 	
 	

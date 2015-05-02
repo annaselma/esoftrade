@@ -23,8 +23,8 @@
 					<th>Libellé</th>
 					<th>Code barre</th>
 					<th>categorie</th>
-					<th>Quantité</th>
-					<th>Prix</th>
+					<th>Stock désiré</th>
+					<th>Prix en DH</th>
 					<th>Vente</th>
 					<th>achat</th>
 					<th>Actions</th>
@@ -38,8 +38,8 @@
 					<th>Libellé</th>
 					<th>Code barre</th>
 					<th>categorie</th>
-					<th>Quantité</th>
-					<th>Prix</th>
+					<th>Stock désiré</th>
+					<th>Prix en DH</th>
 					<th>Vente</th>
 					<th>achat</th>
 					<th>Actions</th>
@@ -108,8 +108,8 @@
                     },
                     {
                     	"targets":[4],
-                    	"name":"quantity",
-                    	"data":"quantity",
+                    	"name":"desieredTreshold",
+                    	"data":"desieredTreshold",
                     
                     },
                     {

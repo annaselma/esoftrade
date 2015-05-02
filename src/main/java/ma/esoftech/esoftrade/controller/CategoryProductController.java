@@ -18,6 +18,7 @@ import ma.esoftech.esoftrade.model.Product;
 import ma.esoftech.esoftrade.model.ProductCategory;
 import ma.esoftech.esoftrade.service.ICategoryProduct;
 
+import org.jboss.logging.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -74,7 +75,8 @@ public CategoryProductController() {
 		} else {
             
 			try {
-				categoryService.createCategory(category, currentUser);
+				long id=categoryService.createCategory(category, currentUser);
+				category.setId(id);
 			} catch (Exception e) {
 				result.rejectValue("name", "name.error.exist",
 						"name exsist!!");
@@ -158,5 +160,31 @@ public CategoryProductController() {
 			response.setData(list);
 			return response;
 		}
+		@RequestMapping(value="/getListProduct",method=RequestMethod.GET,produces = "application/json")
+		public @ResponseBody ResponseTable<ProductDTO> loadTables(@Valid RequestTable req,@RequestParam long id,BindingResult bindingResult,ModelMap model){
+			if(bindingResult.hasErrors()){
+				return null;
+			}
+			Order ordre=Order.createOrderFromRequestTable(req);
+			String search=req.getSearch().get(SearchCriterias.value);
+			ordre.toString();
+			int start=req.getStart();
+			int  length=req.getLength();
+			int draw=req.getDraw();
+            PCategoryDTO cat=new PCategoryDTO();
+            cat.setId(id);
+			List<ProductDTO> list=categoryService.getListProductBycategory(length, start,ordre.toString(), search, cat);
+			long recordsFiltered=categoryService.productCountBycategory(search, cat);
+			long recordsTotal=categoryService.productCountBycategory("",cat);
+			ResponseTable<ProductDTO> response=new ResponseTable<ProductDTO>();
+			response.setDraw(draw);
+			response.setRecordsFiltered(recordsFiltered);
+			response.setRecordsTotal(recordsTotal);
+			response.setData(list);
+			return response;
+		}
+
+
+		
 
 }
