@@ -31,7 +31,7 @@ $(document).ready(function(){
 <div class="nav-tabs-custom">
 	<ul id="tabs" class="nav nav-tabs">
 		<li class="active"><a href="#fiche" data-toggle="tab"
-			aria-expanded="true"><i class="fa fa-file"></i>&nbsp;Fiche Category</a></li>
+			aria-expanded="true"><i class="fa fa-file"></i>&nbsp;Fiche entepot</a></li>
 		<li class=""><a href="#category" data-toggle="tab"
 			aria-expanded="false"><i class="fa fa-bars" style=""></i>&nbsp;Liste Produits</a></li>
 
@@ -41,7 +41,7 @@ $(document).ready(function(){
 			<div class="tab-pane  active" id="fiche-tab">
 				<div class="row">
 					<div class="col-md-12">
-						<div class="category-info"
+						<div class="warehouse-info"
 							style="padding-left: 1%; padding-top: 4%;">
 							<div class="global-info">
 									<div class=" col-sm-12 table-responsive">
@@ -49,11 +49,23 @@ $(document).ready(function(){
 											<tbody>
 												<tr>
 													<th style="width: 50%"><label>Nom:</label></th>
-													<td><span class="text-muted"><c:out value="${category.name}" /></span></td>
+													<td><span class="text-muted"><c:out value="${warehouse.name}" /></span></td>
 												</tr>
 												<tr>
 													<th><label>Description:</label></th>
-													<td><c:out value="${category.description}" escapeXml="false" /></td>
+													<td><c:out value="${warehouse.description}" escapeXml="false" /></td>
+												</tr>
+												<tr>
+													<th><label>Description:</label></th>
+													<td><c:out value="${warehouse.zipCode}"/></td>
+												</tr>
+												<tr>
+													<th><label>Description:</label></th>
+													<td><c:out value="${warehouse.city}"/></td>
+												</tr>
+												<tr>
+													<th><label>Description:</label></th>
+													<td><c:out value="${warehouse.country}"/></td>
 												</tr>
 											</tbody>
 										</table>

@@ -32,7 +32,7 @@
 		<form:form method="POST" commandName="category" id="categoryF"
 			data-toggle="validator" cssClass="form-horizontal">
 			<div class="form-group">
-				<label for="nameField" class="col-sm-2 control-label esoft-left">name:</label>
+				<label for="nameField" class="col-sm-2 control-label esoft-left">name:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:input path="name" cssClass="form-control" />
 					<form:errors path="name" cssClass="error" />

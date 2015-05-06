@@ -57,6 +57,20 @@
 	<put-attribute name="page" value="/WEB-INF/jsp/page/CategoryProduit/updateCategory.jsp" />
 	</definition>
 	<!-- /CategoryProduct Pages -->
+	<!-- Warehouse Pages -->
+	<definition name="warehouseProfile" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/warehouseProfile.jsp" />
+	</definition>
+	<definition name="createWarehouse" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/createWarehouse.jsp" />
+	</definition>
+	<definition name="updateWarehouse" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/warehouseList.jsp" />
+	</definition>
+	<definition name="updateWarehouse" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/updateWarehouse.jsp" />
+	</definition>
+	<!-- /Warehouse Pages -->
 	<!-- User Pages -->
 	<definition name="userProfile" extends="Template">
 	<put-attribute name="page" value="/WEB-INF/jsp/page/user/userProfile.jsp" />

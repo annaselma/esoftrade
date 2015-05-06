@@ -41,7 +41,7 @@
 			data-toggle="validator" cssClass="form-horizontal"
 			action="${baseURL}/user/update">
 			<div class="form-group">
-				<label for="nameField" class="col-sm-2 control-label esoft-left">Nom:</label>
+				<label for="nameField" class="col-sm-2 control-label esoft-left">Nom:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:input path="name" cssClass="form-control" />
 					<form:errors path="name" cssClass="error" />
@@ -49,7 +49,7 @@
 
 			</div>
 			<div class="form-group form-horizontal">
-				<label for="lastnameField" class="col-sm-2 control-label esoft-left">Prenom:</label>
+				<label for="lastnameField" class="col-sm-2 control-label esoft-left">Prenom:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:input path="lastName" cssClass="form-control" />
 					<form:errors path="lastName" cssClass="error" />
@@ -57,7 +57,7 @@
 			</div>
 			<div class="form-group form-horizontal">
 				<label for="activ" class="col-sm-2 control-label esoft-left">compte
-					activé:</label>
+					activé:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:checkbox path="active" />
 					<form:errors path="active" cssClass="error" />
@@ -68,7 +68,7 @@
 			<%-- 	<form:errors path="*" cssClass="errorblock" /> --%>
 			<div class="form-group">
 				<label for="dateField" class="col-sm-2 control-label esoft-left">Date
-					de Naissance:</label>
+					de Naissance:&nbsp;<span class="error">*</span></label>
 
 				<div class="input-append date col-sm-4" data-date="12-02-2012"
 					data-date-format="dd-mm-yyyy">
@@ -78,7 +78,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="emailField" class="col-sm-2 control-label esoft-left">Email:</label>
+				<label for="emailField" class="col-sm-2 control-label esoft-left">Email:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:input path="email" cssClass="form-control"
 						placeholder="exemple@hotmail.com" />

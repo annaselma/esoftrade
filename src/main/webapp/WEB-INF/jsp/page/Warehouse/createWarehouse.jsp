@@ -22,7 +22,7 @@
 
 <div class="box box-solid box-primary">
 	<div class="box-header">
-		<h3 class="box-title">Nouvelle Catégorie</h3>
+		<h3 class="box-title">Nouvel entrepot</h3>
 	</div>
 	<!-- /.box-header -->
 	<!-- form start -->
@@ -32,25 +32,18 @@
 		<form:form method="POST" commandName="warehouse" id="warehouseF"
 			data-toggle="validator" cssClass="form-horizontal">
 			<div class="form-group">
-				<label for="nameField" class="col-sm-2 control-label esoft-left">name:</label>
+				<label for="nameField" class="col-sm-2 control-label esoft-left">name:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:input path="name" cssClass="form-control" />
 					<form:errors path="name" cssClass="error" />
 				</div>
 
 			</div>
-            
-			<div class="form-group">
-				<label for="DescriptionField" class="col-sm-2 control-label esoft-left">Description:</label>
-				<div class="col-sm-10">
-					<form:textarea id="editor1" path="description" name="editor1" rows="4" cols="80"/>
-				</div>
-			</div>
 			<div class="form-group">
 				<label for="adresseField" class="col-sm-2 control-label esoft-left">Adresse:</label>
 				<div class="col-sm-4">
-					<form:textarea path="adresse1" rows="2" cols="50" />
-					<form:errors path="adresse1" cssClass="error" />
+					<form:textarea path="adresse" rows="2" cols="50" />
+					<form:errors path="adresse" cssClass="error" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -82,6 +75,13 @@
 						<option value="France(F)">France (F))</option>
 						<option value="Tunisie">Tunisie (T)</option>
 						</form:select></div></div>
+						
+						<div class="form-group">
+				<label for="DescriptionField" class="col-sm-2 control-label esoft-left">Description:</label>
+				<div class="col-sm-10">
+					<form:textarea id="editor1" path="description" name="editor1" rows="4" cols="80"/>
+				</div>
+			</div>
 			<div class="form-group">
 				<button type="submit" class="btn btn-danger btn pull-right"
 					style="margin-right: 1%;">Annuler</button>

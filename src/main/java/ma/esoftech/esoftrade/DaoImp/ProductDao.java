@@ -90,7 +90,7 @@ public class ProductDao  implements IProductDao{
 	public long ProductCount(String filter) {
 		// TODO Auto-generated method stub
 		session=sessionFactory.getCurrentSession();
-		Long count=(Long)session.createQuery(" Select count(Product) from Product as product").uniqueResult();
+		Long count=(Long)session.createQuery(" Select count(product) from Product as product").uniqueResult();
 		return count;
 	}
 	

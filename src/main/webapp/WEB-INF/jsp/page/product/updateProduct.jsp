@@ -32,7 +32,7 @@
 		<form:form method="POST" commandName="product" id="productF"
 			data-toggle="validator" cssClass="form-horizontal">
 			<div class="form-group">
-				<label for="nameField" class="col-sm-2 control-label esoft-left">Libéllé:</label>
+				<label for="nameField" class="col-sm-2 control-label esoft-left">Libéllé:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:input path="libelle" cssClass="form-control" />
 					<form:errors path="libelle" cssClass="error" />
@@ -40,7 +40,7 @@
 
 			</div>
             <div class="form-group">
-				<label for="nameField" class="col-sm-2 control-label esoft-left">Code à barre:</label>
+				<label for="nameField" class="col-sm-2 control-label esoft-left">Code à barre:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:input path="libelle" cssClass="form-control" />
 					<form:errors path="libelle" cssClass="error" />
@@ -48,11 +48,11 @@
 
 			</div>
 			<div class="form-group form-horizontal">
-				<label for="statut" class="col-sm-2 control-label esoft-left">Statut (en vente)</label>
+				<label for="statut" class="col-sm-2 control-label esoft-left">Statut (en vente) &nbsp;<span class="error">*</span></label>
 				<div class="col-sm-1" style="margin-top:1%">
 					<form:checkbox path="sellingState" />
 					<form:errors path="sellingState" cssClass="error" /></div>
-				    <label for="achat" class="col-sm-2 control-label">( en achat):</label>
+				    <label for="achat" class="col-sm-2 control-label">( en achat): &nbsp;<span class="error">*</span></label>
 				<div class="col-sm-1"style="margin-top:1%">
 					<form:checkbox path="purchasingState" />
 					<form:errors path="purchasingState" cssClass="error" />
