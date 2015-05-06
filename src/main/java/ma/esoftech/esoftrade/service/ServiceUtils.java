@@ -36,24 +36,22 @@ public class ServiceUtils {
 		object.setModifier(creator);
 		return object;
 	}
-
 	public static MetaObject EditEntityModel(User modifier, MetaObject object) {
 		object.setLastEdit(new Date());
 		object.setModifier(modifier);
 		return object;
 	}
 	public static String getHashedPasswordBySHA(String key) {
-
 		byte[] uniqueKey = key.getBytes();
 		byte[] hash = null;
 
 		try {
 			hash = MessageDigest.getInstance("SHA-1").digest(uniqueKey); // MD2,
-																			// MD5,
-																			// SHA-1,
-																			// SHA-256,
-																			// SHA-384,
-																			// SHA-512
+																		// MD5,
+																		// SHA-1,
+																		// SHA-256,
+																		// SHA-384,
+																		// SHA-512
 
 		} catch (NoSuchAlgorithmException e) {
 			throw new Error("no MD5 support in this VM");

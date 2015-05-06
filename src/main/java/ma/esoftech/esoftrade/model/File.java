@@ -18,13 +18,12 @@ public class File extends MetaObject{
 	@Index(name="ELMO_NAME_INDEX")
 	@Column(name="ELMO_NAME",nullable=false,length=255)
 	private String name;
-	
+	@Column(name="ELMO_DESCRIPTION",length=1024)
+	private String description;
 	@Column(name="ELMO_PATH",nullable=false,length=255)	
 	private String path;
-	
 	@Column(name="ELMO_SIZE",nullable=false)
 	private float size;
-	
 	@Column(name="ELMO_MASK")
 	private int mask;
 	@Column(name="ELMO_TYPE")	
@@ -32,6 +31,10 @@ public class File extends MetaObject{
 	
 	public File(){
 		super();
+		initialize();
+	}
+	private void initialize(){
+		this.mask=777;
 	}
 
 
@@ -83,6 +86,13 @@ public class File extends MetaObject{
 	public void setType(String type) {
 		this.type = type;
 	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
 	
 
 }

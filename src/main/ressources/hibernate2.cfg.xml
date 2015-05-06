@@ -33,5 +33,6 @@
 	<mapping class="ma.esoftech.esoftrade.model.Product"/>
 	<mapping class="ma.esoftech.esoftrade.model.Role"/>
 	<mapping class="ma.esoftech.esoftrade.model.User"/>
+	<mapping class="ma.esoftech.esoftrade.model.File"/>
 	</session-factory>
 </hibernate-configuration>
