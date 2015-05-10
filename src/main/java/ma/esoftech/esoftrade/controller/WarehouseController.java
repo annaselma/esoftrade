@@ -3,6 +3,7 @@ package ma.esoftech.esoftrade.controller;
 import java.util.List;
 
 import javax.validation.Valid;
+
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.DTO.WarehouseDTO;
 import ma.esoftech.esoftrade.controller.session.SessionBean;
@@ -10,8 +11,9 @@ import ma.esoftech.esoftrade.datatablesAPI.Order;
 import ma.esoftech.esoftrade.datatablesAPI.RequestTable;
 import ma.esoftech.esoftrade.datatablesAPI.ResponseTable;
 import ma.esoftech.esoftrade.datatablesAPI.RequestTable.SearchCriterias;
-import ma.esoftech.esoftrade.exeption.WarehouseNotFoundException;
+import ma.esoftech.esoftrade.exception.WarehouseNotFoundException;
 import ma.esoftech.esoftrade.service.IWarehouseService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -49,7 +51,7 @@ public String loadWarehouse(@RequestParam long id, ModelMap model){
 		return "error";
 	}
 
-    model.addAttribute("wrehouse", warehouse);
+    model.addAttribute("warehouse", warehouse);
 	
 	return "warehouseProfile";
 	}
@@ -63,14 +65,9 @@ public String addWarehouse(@ModelAttribute("warehouse") @Valid WarehouseDTO ware
 		return "createWarehouse";
 	} else {
         
-		try {
 			long id=warehouseService.createWarehouse(warehouse, currentUser);
 			warehouse.setId(id);
-		} catch (Exception e) {
-			result.rejectValue("name", "name.error.exist.warehouse",
-					"name exsist!!");
-			return "createWarehouse";
-		}
+
 			return PATH_PROFIL+"?id="+warehouse.getId();
 		}
 		
@@ -124,7 +121,7 @@ public String updateWarehouse( @ModelAttribute("warehouse") @Valid WarehouseDTO 
 @RequestMapping(value="/list",method=RequestMethod.GET)
  public String loadWarehouseListProfil(ModelMap model){
 	 
-	 return "warehouseList";
+	 return "warehouselist";
  }
 	@RequestMapping(value="/getList",method=RequestMethod.GET,produces = "application/json")
 	public @ResponseBody ResponseTable<WarehouseDTO> loadTables(@Valid RequestTable req,BindingResult bindingResult,ModelMap model){

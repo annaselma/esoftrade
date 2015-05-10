@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
+import ma.esoftech.esoftrade.DTO.associated.EditorDTO;
 import ma.esoftech.esoftrade.DTO.associated.RoleAssociated;
 
 import org.hibernate.validator.constraints.Email;
@@ -20,10 +21,12 @@ private long id;
 @Size(min=4, max=20)
 private String login;
 private boolean active;
-private String creator;
+private EditorDTO creator;
 private Date createDate;
+private EditorDTO modifier;
+private Date lastEdit;
 private String ref;
-@NotEmpty
+@NotEmpty(message="champs obligatoire")
 @Size(min=2, max=20)
 private String name;
 @DateTimeFormat(pattern="dd/MM/yyyy")
@@ -31,7 +34,7 @@ private String name;
 @NotNull(message="nuulll")
 private Date birdDay;
 @NotEmpty
-@Size(max=1000, min=5)
+@Size(max=15, min=5)
 private String password;
 @Size(max=50,min=5)
 private String lastName;
@@ -53,7 +56,7 @@ private String telephonePro;
 private String fax;
 private String picture;
 private String civilite;
-@NotEmpty
+@NotEmpty(message="Veillez saisir une adresse électronique valide")
 @Email
 private String email;
 private List<RoleAssociated>roles= new ArrayList<RoleAssociated>();
@@ -64,10 +67,10 @@ public long getId() {
 public void setId(long id) {
 	this.id = id;
 }
-public String getCreator() {
+public EditorDTO getCreator() {
 	return creator;
 }
-public void setCreator(String creator) {
+public void setCreator(EditorDTO creator) {
 	this.creator = creator;
 }
 public Date getCreateDate() {
@@ -207,6 +210,18 @@ public Date getBirdDay() {
 }
 public void setBirdDay(Date birdDay) {
 	this.birdDay = birdDay;
+}
+public EditorDTO getModifier() {
+	return modifier;
+}
+public void setModifier(EditorDTO modifier) {
+	this.modifier = modifier;
+}
+public Date getLastEdit() {
+	return lastEdit;
+}
+public void setLastEdit(Date lastEdit) {
+	this.lastEdit = lastEdit;
 }
 public UserDTO(){
 	setBirdDay(new Date());

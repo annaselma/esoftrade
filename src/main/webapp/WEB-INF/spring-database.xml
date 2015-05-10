@@ -58,7 +58,6 @@
 		<property name="mappingFiles">
 			<list>
 				<value>dozerMapping.xml</value>
-				<value>dozerMappingProduct.xml</value>
 			</list>
 		</property>
 	</bean>

@@ -20,12 +20,12 @@ public class ProductDTO {
      private long id;
      private String ref;
      @NotEmpty
-     @Size(max=20,min=4)
+     @Size(max=20, min=2)
      private String libelle;
 	 private EditorDTO creator;
 	 private Date createDate;
 	 private EditorDTO modifier;
-	 private Date lastEditor;
+	 private Date lastEdit;
 	 private Boolean purchasingState= true;
 	 private Boolean sellingState= true;
 	 @Min(1)
@@ -163,11 +163,11 @@ public class ProductDTO {
 	public void setBarreCode(String barreCode) {
 		this.barreCode = barreCode;
 	}
-	public Date getLastEditor() {
-		return lastEditor;
+	public Date getLastEdit() {
+		return lastEdit;
 	}
-	public void setLastEditor(Date lastEditor) {
-		this.lastEditor = lastEditor;
+	public void setLastEdit(Date lastEdit) {
+		this.lastEdit = lastEdit;
 	}
 	 
 		public PCategoryAssociatedDTO getCategory() {

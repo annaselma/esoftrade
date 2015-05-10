@@ -10,8 +10,8 @@
 	<div class="box-header">
 		<h3 class="box-title">la liste des produits</h3>
 		<div class="box-tools pull-right">
-			<a class="btn btn-primary btn-sm" href="${baseURL}/category/create"
-				style="color: white;">+ Ajouter categorie</a> &nbsp;
+			<a class="btn btn-primary btn-sm" href="${baseURL}/warehouse/create"
+				style="color: white;">+ créer entrepot</a> &nbsp;
 		</div>
 	</div>
 	<!-- /.box-header -->
@@ -19,9 +19,9 @@
 		<table id="list1" class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th>Id</th>
+					<th>Réf.</th>
 					<th>Name</th>
-					<th>Description</th>
+					<th>ville</th>
 					<th>Date modification</th>
 					<th>Actions</th>
 				</tr>
@@ -30,9 +30,9 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<th>Id</th>
+					<th>Réf.</th>
 					<th>Name</th>
-					<th>Description</th>
+					<th>ville</th>
 					<th>Date modification</th>
 					<th>Actions</th>
 				</tr>
@@ -69,15 +69,15 @@
                     "processing": true,
                     "serverSide": true,
                     "ajax": {
-                        "url": "${baseURL}/category/getList",
+                        "url": "${baseURL}/warehouse/getList",
                         "data": function(data) {
                             planify(data);  
                         } 
                     },
                     "columnDefs":[{
                     	"targets":[0],
-                    	"name":"id",
-                    	"data":"id",
+                    	"name":"ref",
+                    	"data":"ref",
                     
                     },
                     {
@@ -88,8 +88,8 @@
                     },
                     {
                     	"targets":[2],
-                    	"name":"description",
-                    	"data":"description",
+                    	"name":"city",
+                    	"data":"city",
                     
                     },
                     {
@@ -109,9 +109,9 @@
                     	"data":"id",
                     	"orderable": false,
                     	 "render": function ( data, type, full, meta ) {
-                    		 $html='<a href="${baseURL}/category/profile?id='+data+'"  class="btn btn-info btn-xs"><i class="fa   fa-search"></i></a>&nbsp;';
-                    		 $html+='<a href="${baseURL}/category/update?id='+data+'"  class="btn btn-default btn-xs"><i class="fa   fa-edit"></i></a>&nbsp;';
-                    		 $html+='<a href="${baseURL}/category/delete?id='+data+'"  class="btn btn-danger btn-xs"><i class="fa   fa-trash-o"></i></a>';
+                    		 $html='<a href="${baseURL}/warehouse/profile?id='+data+'"  class="btn btn-info btn-xs"><i class="fa   fa-search"></i></a>&nbsp;';
+                    		 $html+='<a href="${baseURL}/warehouse/update?id='+data+'"  class="btn btn-default btn-xs"><i class="fa   fa-edit"></i></a>&nbsp;';
+                    		 $html+='<a href="${baseURL}/warehouse/delete?id='+data+'"  class="btn btn-danger btn-xs"><i class="fa   fa-trash-o"></i></a>';
                     		 return $html;
                     	    }
                     

@@ -5,19 +5,23 @@ import java.util.List;
 
 import ma.esoftech.esoftrade.DTO.MouvementDTO;
 import ma.esoftech.esoftrade.DTO.ProductDTO;
+import ma.esoftech.esoftrade.DTO.ProductWarehouseDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.DTO.WarehouseDTO;
 import ma.esoftech.esoftrade.Dao.IMouvementDao;
 import ma.esoftech.esoftrade.model.Mouvement;
 import ma.esoftech.esoftrade.model.Mouvement.MouvementType;
 import ma.esoftech.esoftrade.model.Product;
+import ma.esoftech.esoftrade.model.ProductWarehouse;
 import ma.esoftech.esoftrade.model.Warehouse;
 import ma.esoftech.esoftrade.service.IMouvementService;
 import ma.esoftech.esoftrade.service.ServiceUtils;
+import ma.esoftech.esoftrade.utils.DozerHelper;
 
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 @Service
 
 public class MouvementServiceImpl implements IMouvementService {
@@ -27,6 +31,7 @@ public class MouvementServiceImpl implements IMouvementService {
 	IMouvementDao mouvementdao;
 	
 	@Override
+	@Transactional(readOnly=true)
 	public MouvementDTO FindByID(long id) {
 		Mouvement mouvement= mouvementdao.FindByID(id);
 		if(mouvement==null){
@@ -37,6 +42,7 @@ public class MouvementServiceImpl implements IMouvementService {
 	}
 
 	@Override
+	@Transactional(rollbackFor=Exception.class)
 	public long createMouvement(MouvementDTO mouvement,UserDTO creator) {
 		
 		Mouvement mouvEntity= mapper.map(mouvement, Mouvement.class);
@@ -45,6 +51,7 @@ public class MouvementServiceImpl implements IMouvementService {
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public List<MouvementDTO> getListMouvement(int start, int length,
 			String sorting, String filter) {
 		List<Mouvement> mouvementEntity= mouvementdao.getListMouvement(start, length, sorting, filter);
@@ -56,25 +63,33 @@ public class MouvementServiceImpl implements IMouvementService {
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public long MouvementCount(String filter) {
-		// TODO Auto-generated method stub
 		return mouvementdao.MouvementCount(filter);
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public List<MouvementDTO> getListMouvementByWarehouse(int start,
 			int length, String sorting, String filter, WarehouseDTO warehouse) {
-		// TODO Auto-generated method stub
-		return null;
+		Warehouse warehouseEntity= new Warehouse();
+		warehouseEntity.setId(warehouse.getId());
+		
+		List<Mouvement> listEntiy=mouvementdao.getListMouvementByWarehouse(start, length, sorting, filter, warehouseEntity);
+
+		return DozerHelper.map(mapper, listEntiy,MouvementDTO.class);
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public long MouvementCountByWarehouse(String filter, WarehouseDTO warehouse) {
-		// TODO Auto-generated method stub
-		return 0;
+		Warehouse warehouseEntity= new Warehouse();
+		warehouseEntity.setId(warehouse.getId());
+		return mouvementdao.MouvementCountByWarehouse(filter, warehouseEntity);
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public void correctStock(WarehouseDTO warehouse, ProductDTO product,
 			int nbre,String notes,UserDTO creator) {
 	Mouvement mouvement= buildMouvement(warehouse,product,nbre,notes,creator);
@@ -97,6 +112,7 @@ public class MouvementServiceImpl implements IMouvementService {
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public void transfertStock(WarehouseDTO source, WarehouseDTO target,
 			ProductDTO product, int nbre,String notes,UserDTO creator) {
 		int negatifNumber=nbre*-1;//
@@ -107,6 +123,29 @@ public class MouvementServiceImpl implements IMouvementService {
 		mouvementdao.createMouvement(mouvementSource);
 		
 		
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<ProductWarehouseDTO> getListProductByWarehouse(int start,
+			int length, String sorting, String filter, WarehouseDTO warehouse) {
+		Warehouse warehouseEntity= new Warehouse();
+		warehouseEntity.setId(warehouse.getId());
+		List<ProductWarehouse>listEntity=mouvementdao.ListProductByWarehouse(start, length, sorting, filter, warehouseEntity);
+		List<ProductWarehouseDTO>listDTO= new ArrayList<ProductWarehouseDTO>();
+		for (ProductWarehouse productWehouse : listEntity) {
+			listDTO.add(mapper.map(productWehouse, ProductWarehouseDTO.class));
+			
+		}
+		return listDTO;
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public long ProductCountByWarehouse(String filter, WarehouseDTO warehouse) {
+		Warehouse warehouseEntity= new Warehouse();
+		warehouseEntity.setId(warehouse.getId());
+		return mouvementdao.ProductCountByWarehouse(filter, warehouseEntity);
 	}
 
 }

@@ -42,10 +42,11 @@ Session session;
 	@Override
 	public List<Warehouse> getListWarehouse(int start, int length,
 			String sorting, String filter) {
+		session=sessionFactory.getCurrentSession();
 		if(sorting ==null ||sorting.equals("")){
 			sorting ="id ASC";
 		}
-	     String hql="From Warehouse as warehouse order by warehouse."+sorting;
+	     String hql="select w From Warehouse as w order by w."+sorting;
 	     Query query=session.createQuery(hql);
 	     query.setFirstResult(start).setMaxResults(length);
 	     List<Warehouse>warehouse=query.list();

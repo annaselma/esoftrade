@@ -11,8 +11,8 @@ import ma.esoftech.esoftrade.DTO.RoleDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.Dao.IUserDao;
 import ma.esoftech.esoftrade.converter.UserConverter;
-import ma.esoftech.esoftrade.exeption.UserNameException;
-import ma.esoftech.esoftrade.exeption.UserNotFoundException;
+import ma.esoftech.esoftrade.exception.UserNameException;
+import ma.esoftech.esoftrade.exception.UserNotFoundException;
 import ma.esoftech.esoftrade.model.Role;
 import ma.esoftech.esoftrade.model.User;
 import ma.esoftech.esoftrade.service.IUserService;
@@ -120,10 +120,7 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	@Transactional(rollbackFor=Exception.class)
 	public void addRoleToUser(RoleDTO role, UserDTO userDTO) {
-		//List<String>role= userDTO.getRoles().iterator();
-		//pour récuperer et persister l'utilisateur ainsi récupérer tous 
 		User usertmp=userDao.findById(userDTO.getId());
-		// pour assurer que le role n'éxiste pas encore dans les role de user
 		if(roleIsIncluded(usertmp.getRoles(),role.getId())){
 			return;
 		}

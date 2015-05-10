@@ -1,4 +1,4 @@
-package ma.esoftech.esoftrade.exeption;
+package ma.esoftech.esoftrade.exception;
 
 public class UserNotFoundException extends Exception {
 	

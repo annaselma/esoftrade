@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.DTO.WarehouseDTO;
 import ma.esoftech.esoftrade.Dao.IWarehouseDao;
-import ma.esoftech.esoftrade.exeption.WarehouseNotFoundException;
+import ma.esoftech.esoftrade.exception.WarehouseNotFoundException;
 import ma.esoftech.esoftrade.model.Warehouse;
 import ma.esoftech.esoftrade.service.IWarehouseService;
 import ma.esoftech.esoftrade.service.ServiceUtils;
@@ -62,8 +62,11 @@ IWarehouseDao warehouseDao;
 	public long createWarehouse(WarehouseDTO warehouse, UserDTO creator) {
 		Warehouse warehouseEntity= mapper.map(warehouse, Warehouse.class);
 		ServiceUtils.buildEntityModel(creator, warehouseEntity);
+		
+		warehouseEntity.setRef(ServiceUtils.TMP_REF);
 	 long idWarehouse=warehouseDao.createWarehouse(warehouseEntity);
 	 warehouseEntity.setId(idWarehouse);
+	 warehouseEntity.generateReference();
 	 warehouseDao.updateWarehouse(warehouseEntity);
 		return idWarehouse;
 	}
@@ -102,6 +105,5 @@ IWarehouseDao warehouseDao;
 	public long warehouseCount(String filter) {
 		return warehouseDao.warehouseCount(filter);
 	}
-	//TO DO list Product
 
 }

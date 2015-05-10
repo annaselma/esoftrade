@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import ma.esoftech.esoftrade.Dao.IMouvementDao;
 import ma.esoftech.esoftrade.model.Mouvement;
+import ma.esoftech.esoftrade.model.ProductWarehouse;
 import ma.esoftech.esoftrade.model.Warehouse;
 @Repository
 public class MouvementDao implements IMouvementDao {
@@ -53,7 +54,7 @@ public MouvementDao() {
 	@Override
 	public long MouvementCount(String filter) {
 		session=sessionFactory.getCurrentSession();
-		long count=(long)session.createQuery("Select count(mouvement) From mouvement as mouvement ").uniqueResult();
+		long count=(Long)session.createQuery("Select count(mouvement) From mouvement as mouvement ").uniqueResult();
 	return count;
 	}
 	@Override
@@ -74,8 +75,33 @@ public MouvementDao() {
 	public long MouvementCountByWarehouse(String filter, Warehouse warehouse) {
 		session=sessionFactory.getCurrentSession();
 		long count=(long)session.
-				createQuery("Select count(mouvement) From mouvement as mouvement where mouvement.warehouse=:warehouse")
+				createQuery("Select count(mouvement) From Mouvement as mouvement where mouvement.warehouse=:warehouse")
 				.setParameter("warehouse", warehouse).uniqueResult();
+	    return count;
+	}
+	@Override
+	public List<ProductWarehouse> ListProductByWarehouse(int start, int length,
+			String sorting, String filter, Warehouse warehouse) {
+		session=sessionFactory.getCurrentSession();
+		if(sorting ==null ||sorting.equals("")){
+			sorting ="id ASC";
+		}
+		String hql="select mouvement.product, count(mouvement.quantity) From Mouvement as mouvement "
+				+ "where mouvement.warehouse = :warehouse GROUP BY mouvement.product order by mouvement."+sorting;
+		Query query= session.createQuery(hql);
+		query.setParameter("warehouse", warehouse);
+		query.setFirstResult(start).setMaxResults(length);
+	
+		return(List<ProductWarehouse>) query.list();
+	}
+	@Override
+	public long ProductCountByWarehouse(String filter, Warehouse warehouse) {
+		session=sessionFactory.getCurrentSession();
+		String hql="Select count(distinct mouvement.product) From Mouvement as mouvement "
+				+ "where mouvement.warehouse=:warehouse  ";
+				Query query =session.createQuery(hql);
+				query.setParameter("warehouse", warehouse);
+				Long count=(Long)query.uniqueResult();
 	    return count;
 	}
 	

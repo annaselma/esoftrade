@@ -64,11 +64,14 @@
 	<definition name="createWarehouse" extends="Template">
 	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/createWarehouse.jsp" />
 	</definition>
-	<definition name="updateWarehouse" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/warehouseList.jsp" />
+	<definition name="warehouselist" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/warehouselist.jsp" />
 	</definition>
 	<definition name="updateWarehouse" extends="Template">
 	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/updateWarehouse.jsp" />
+	</definition>
+	<definition name="Mouvement" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/Mouvement.jsp" />
 	</definition>
 	<!-- /Warehouse Pages -->
 	<!-- User Pages -->

@@ -6,6 +6,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 import ma.esoftech.esoftrade.DTO.associated.EditorDTO;
+import ma.esoftech.esoftrade.DTO.associated.ProductAssociatedDTO;
+import ma.esoftech.esoftrade.DTO.associated.WarehouseAssociatedDTO;
 import ma.esoftech.esoftrade.model.Mouvement.MouvementType;
 
 public class MouvementDTO {
@@ -16,8 +18,9 @@ public class MouvementDTO {
 	 private Date lastEdit;
 	 private String motif;
 	 private int quantity;
-	 @Enumerated(EnumType.STRING)
-		private MouvementType type;
+	private MouvementType type;
+	private WarehouseAssociatedDTO warehouse;
+	private ProductAssociatedDTO product;
 	public long getId() {
 		return id;
 	}
@@ -67,5 +70,17 @@ public class MouvementDTO {
 		this.type = type;
 	}
 	 
-	 public MouvementDTO(){}
+	 public WarehouseAssociatedDTO getWarehouse() {
+		return warehouse;
+	}
+	public void setWarehouse(WarehouseAssociatedDTO warehouse) {
+		this.warehouse = warehouse;
+	}
+	public ProductAssociatedDTO getProduct() {
+		return product;
+	}
+	public void setProduct(ProductAssociatedDTO product) {
+		this.product = product;
+	}
+	public MouvementDTO(){}
 }

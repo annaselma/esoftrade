@@ -4,7 +4,7 @@ import java.util.List;
 
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.DTO.WarehouseDTO;
-import ma.esoftech.esoftrade.exeption.WarehouseNotFoundException;
+import ma.esoftech.esoftrade.exception.WarehouseNotFoundException;
 
 public interface IWarehouseService {
 	public WarehouseDTO findById(long id) throws WarehouseNotFoundException;

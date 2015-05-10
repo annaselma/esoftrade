@@ -51,11 +51,7 @@
 													<th><label>Nature:</label></th>
 													<td><c:out value="${product.nature}" /></td>
 												</tr>
-												<tr>
-													<th><label>Quantité:</label></th>
-													<td><c:out value="${product.quantity}" /><i>&nbsp;<strong>unités</strong></i></td>
-												</tr>
-												<tr>
+																								<tr>
 													<th><label>Description:</label></th>
 													<td><c:out value="${product.description}" escapeXml="false" /></td>
 												</tr>
@@ -152,8 +148,48 @@ fdjhdhhdd
 
 	</div>
 </div>
+<div class="box box-solid box-primary">
+	<div class="box-header">
+		<h3 class="box-title fa fa-eye">Traçabilité</h3>
+	</div>
+	<!-- /.box-header -->
+	<!-- form start -->
 
+	<div class="box-body">
 
+		<div class="">
+			<table class="table">
+				<tbody>
+					<tr>
+						<th><label class="">Créé par:</label></th>
+						<td><img src="${baseURL}/img/salma.jpg" class="img-circle" alt="User Image" style="width: 29px; height: 28px;"><span class="data-value label label-inverse">
+							<a href="<c:out value="${baseURL}/user/profile?id=${product.creator.id}"/>"><c:out
+															value="${product.creator.lastName} ${product.creator.firstName}" /></a>
+						 </span></td>
+					</tr>
+					<tr>
+						<th><label>Date création:</label></th>
+						<td>Le:&nbsp;<fmt:formatDate
+									pattern="dd/MM/yyyy" value="${product.createDate}" /></td>
+					</tr>
+					<tr>
+						<th><label>Modifié par:</label></th>
+						<td><img src="${baseURL}/img/salma.jpg" class="img-circle" alt="User Image" style="width: 29px; height: 28px;"><span class="data-value label label-important">
+							<a href="<c:out value="${baseURL}/user/profile?id=${product.modifier.id}"/>"><c:out
+															value="${product.modifier.lastName} ${product.modifier.firstName}" /></a>
+						 </span></td>
+					</tr>
+					<tr>
+						<th>Date de modification:</th>
+						<td><span class="data-value">Le:&nbsp;<fmt:formatDate
+									pattern="dd/MM/yyyy" value="${product.lastEdit}" /></span></td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
 <script type="text/javascript">
     $('#tabs a').click(function (e) {
     	  e.preventDefault()

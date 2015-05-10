@@ -10,7 +10,7 @@ import org.hibernate.annotations.Index;
 @Entity
 @Table(name="ELMO_WAREHOUSE")
 public class Warehouse extends MetaObject implements Serializable{
-	private static final String PREFIX_REF_USER="ENT";
+	private static final String PREFIX_REF_ENT="ENT";
 	private static final long serialVersionUID = 1L;
 	@Column(name="ELMO_ref", nullable= false,unique=true,length= 255)
 	@Index(name="ELMO_REF_INDEX")
@@ -81,7 +81,7 @@ public class Warehouse extends MetaObject implements Serializable{
 	}
 	public String generateReference(){
 		String ref="";
-		ref=ref.concat(PREFIX_REF_USER);
+		ref=ref.concat(PREFIX_REF_ENT);
 		ref=ref.concat(String.valueOf(this.getId()));
 		ref=ref.concat("-");
 		ref=ref.concat(String.valueOf(this.getCreateDate().getTime()));

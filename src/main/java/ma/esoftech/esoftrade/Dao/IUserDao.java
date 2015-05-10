@@ -17,8 +17,5 @@ public interface IUserDao {
     public void updateUser(User user);
     public void deleteUser(User user);
     public long userCount( String filter);
-	public List<User> getAllUsers(int start, int length,Order sorting, FilterCriterias filters);
-	public long userCount( FilterCriterias filters);
-
 
 }

@@ -12,8 +12,8 @@ import ma.esoftech.esoftrade.datatablesAPI.Order;
 import ma.esoftech.esoftrade.datatablesAPI.RequestTable;
 import ma.esoftech.esoftrade.datatablesAPI.RequestTable.SearchCriterias;
 import ma.esoftech.esoftrade.datatablesAPI.ResponseTable;
-import ma.esoftech.esoftrade.exeption.UserNameException;
-import ma.esoftech.esoftrade.exeption.UserNotFoundException;
+import ma.esoftech.esoftrade.exception.UserNameException;
+import ma.esoftech.esoftrade.exception.UserNotFoundException;
 import ma.esoftech.esoftrade.service.IUserService;
 
 import org.apache.log4j.Logger;
@@ -57,13 +57,14 @@ public class UserController extends AbstractController {
 			return "createUser";
 		} else {
 			try {
-             
-				userService.createUser(currentUser, user);
+				long id=userService.createUser(currentUser, user);
+				user.setId(id);
 			} catch (UserNameException e) {
 				result.rejectValue("login", "login.error.exist",
 						"login exsist!!");
 				return "createUser";
 			}
+			
 			return PATH_PROFIL+"?id="+user.getId();
 		}
 
