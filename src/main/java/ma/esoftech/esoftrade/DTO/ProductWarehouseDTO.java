@@ -4,18 +4,17 @@ import ma.esoftech.esoftrade.DTO.associated.ProductAssociatedDTO;
 
 public class ProductWarehouseDTO {
 private ProductAssociatedDTO product;
-private int quanity;
+private long quantity;
 public ProductAssociatedDTO getProduct() {
 	return product;
 }
 public void setProduct(ProductAssociatedDTO product) {
 	this.product = product;
 }
-public int getQuanity() {
-	return quanity;
+public long getQuantity() {
+	return quantity;
 }
-public void setQuanity(int quanity) {
-	this.quanity = quanity;
+public void setQuantity(long quantity) {
+	this.quantity = quantity;
 }
-
 }

@@ -89,7 +89,7 @@ public class MouvementServiceImpl implements IMouvementService {
 	}
 
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional(rollbackFor=Exception.class)
 	public void correctStock(WarehouseDTO warehouse, ProductDTO product,
 			int nbre,String notes,UserDTO creator) {
 	Mouvement mouvement= buildMouvement(warehouse,product,nbre,notes,creator);
@@ -112,7 +112,7 @@ public class MouvementServiceImpl implements IMouvementService {
 	}
 
 	@Override
-	@Transactional(readOnly=true)
+	@Transactional(rollbackFor=Exception.class)
 	public void transfertStock(WarehouseDTO source, WarehouseDTO target,
 			ProductDTO product, int nbre,String notes,UserDTO creator) {
 		int negatifNumber=nbre*-1;//
@@ -134,6 +134,7 @@ public class MouvementServiceImpl implements IMouvementService {
 		List<ProductWarehouse>listEntity=mouvementdao.ListProductByWarehouse(start, length, sorting, filter, warehouseEntity);
 		List<ProductWarehouseDTO>listDTO= new ArrayList<ProductWarehouseDTO>();
 		for (ProductWarehouse productWehouse : listEntity) {
+			System.out.println("ge"+productWehouse.getQuantity());
 			listDTO.add(mapper.map(productWehouse, ProductWarehouseDTO.class));
 			
 		}

@@ -19,8 +19,8 @@ public class MouvementDTO {
 	 private String motif;
 	 private int quantity;
 	private MouvementType type;
-	private WarehouseAssociatedDTO warehouse;
-	private ProductAssociatedDTO product;
+	private WarehouseAssociatedDTO warehouse=new WarehouseAssociatedDTO();
+	private ProductAssociatedDTO product=new ProductAssociatedDTO () ;
 	public long getId() {
 		return id;
 	}

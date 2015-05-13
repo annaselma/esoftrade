@@ -86,7 +86,7 @@ public MouvementDao() {
 		if(sorting ==null ||sorting.equals("")){
 			sorting ="id ASC";
 		}
-		String hql="select mouvement.product, count(mouvement.quantity) From Mouvement as mouvement "
+		String hql="select new ma.esoftech.esoftrade.model.ProductWarehouse(mouvement.product,SUM(mouvement.quantity)) From Mouvement as mouvement "
 				+ "where mouvement.warehouse = :warehouse GROUP BY mouvement.product order by mouvement."+sorting;
 		Query query= session.createQuery(hql);
 		query.setParameter("warehouse", warehouse);
@@ -95,7 +95,7 @@ public MouvementDao() {
 		return(List<ProductWarehouse>) query.list();
 	}
 	@Override
-	public long ProductCountByWarehouse(String filter, Warehouse warehouse) {
+	public long ProductCountByWarehouse(String filter, Warehouse warehouse) { 
 		session=sessionFactory.getCurrentSession();
 		String hql="Select count(distinct mouvement.product) From Mouvement as mouvement "
 				+ "where mouvement.warehouse=:warehouse  ";

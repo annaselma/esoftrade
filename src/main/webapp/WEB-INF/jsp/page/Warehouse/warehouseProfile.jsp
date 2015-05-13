@@ -54,20 +54,25 @@ $(document).ready(function(){
 													<td><span class="text-muted"><c:out value="${warehouse.name}" /></span></td>
 												</tr>
 												<tr>
-													<th><label>Description:</label></th>
-													<td><c:out value="${warehouse.description}" escapeXml="false" /></td>
+													<th><label>Adresse:</label></th>
+													<td><c:out value="${warehouse.adresse}"/></td>
 												</tr>
+												
 												<tr>
-													<th><label>Description:</label></th>
+													<th><label>Code Postal:</label></th>
 													<td><c:out value="${warehouse.zipCode}"/></td>
 												</tr>
 												<tr>
-													<th><label>Description:</label></th>
+													<th><label>Ville:</label></th>
 													<td><c:out value="${warehouse.city}"/></td>
 												</tr>
 												<tr>
-													<th><label>Description:</label></th>
+													<th><label>Pays:</label></th>
 													<td><c:out value="${warehouse.country}"/></td>
+												</tr>
+												<tr>
+													<th><label>Description:</label></th>
+													<td><c:out value="${warehouse.description}" escapeXml="false" /></td>
 												</tr>
 											</tbody>
 										</table>
@@ -217,7 +222,7 @@ $(document).ready(function(){
                     	"name":"product",
                     	"data":"product",
                     	"render": function ( data, type, full, meta ) {
-                   		 $link='<a href="${baseURL}/product/profile?id='+data.id+'">'+data.name+'</a>';
+                   		 $link='<a href="${baseURL}/product/profile?id='+data.id+'">'+data.libelle+'</a>';
                    	
                    	      return $link;
                    	    }
@@ -340,7 +345,7 @@ $(document).ready(function(){
                     	"name":"product",
                     	"data":"product",
                     	"render": function ( data, type, full, meta ) {
-                      		 $link='<a href="${baseURL}/product/profile?id='+data.id+'">'+data.name+'</a>';
+                      		 $link='<a href="${baseURL}/product/profile?id='+data.id+'">'+data.libelle+'</a>';
                       	
                       	      return $link;
                       	    }

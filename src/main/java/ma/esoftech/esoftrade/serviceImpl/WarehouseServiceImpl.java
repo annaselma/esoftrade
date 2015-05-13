@@ -106,4 +106,15 @@ IWarehouseDao warehouseDao;
 		return warehouseDao.warehouseCount(filter);
 	}
 
+	@Override
+	@Transactional(readOnly=true)
+	public List<WarehouseDTO> getListWarehouse(int start, int length) {
+		List<Warehouse>WrehouseEntitylist= warehouseDao.getListWarehouses(start, length);
+		List<WarehouseDTO>ListWarehouseDTO= new ArrayList<WarehouseDTO>();
+		for (Warehouse warehouse : WrehouseEntitylist) {
+			ListWarehouseDTO.add(mapper.map(warehouse, WarehouseDTO.class));
+		}
+		return ListWarehouseDTO;
+	}
+
 }

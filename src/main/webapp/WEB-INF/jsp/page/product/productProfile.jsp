@@ -16,8 +16,8 @@
 			aria-expanded="false"><i class="fa fa-truck" style=""></i>&nbsp;Stock</a></li>
 		<li class=""><a href="#fichierjoint" data-toggle="tab"
 			aria-expanded="false"><i class="fa fa-folder" style=""></i>&nbsp;Fichiers joints</a></li>
-		<li class=""><a href="#category" data-toggle="tab"
-			aria-expanded="false"><i class="fa fa-bars" style=""></i>&nbsp;Catégorie</a></li>
+		<li class=""><a href="#suivi" data-toggle="tab"
+			aria-expanded="false"><i class="fa fa-eye" style=""></i>&nbsp;Traçabilité</a></li>
 
 	</ul>
 	<div id="myTabContent" class="tab-content">
@@ -84,8 +84,15 @@
 						</div>
 					</div>
 					<div class="col-md-3">
+					<div class=""><form method="POST" name="product" id="productF">
+							<button type="button" class="btn btn-primary pull-right "
+								style="margin-top:10%; margin-right: 3%;"
+								onclick="location.href='${baseURL}/product/update?id=${product.id}'">
+								<i class="fa fa-pencil-square-o"></i>&nbsp;Modifier
+							</button>
+						</form></div>
 						<div class="user-info-right"
-							style="text-align: center; padding: 21% 0">
+							style="text-align: center; padding: 21% 0;margin-top:22%;margin-right:7%;">														
 							<img src="${baseURL}/img/produit.jpg" alt="Profile Picture"
 								class="img-thumbnail">
 							<div class="">
@@ -119,15 +126,7 @@
 							
 						</div>
 					</div>
-					<div>
-						<form method="POST" name="product" id="productF">
-							<button type="button" class="btn btn-primary pull-right "
-								style="margin-top: 30%; margin-right: 3%;"
-								onclick="location.href='${baseURL}/product/update?id=${product.id}'">
-								<i class="fa fa-pencil-square-o"></i>&nbsp;Modifier
-							</button>
-						</form>
-					</div>
+					
 				</div>
 
 			</div>
@@ -140,28 +139,13 @@ fdjhdhhdd
 		<div class="tab-pane fade" id="fichierjoint">
 			<h3>bhalal</h3>
 		</div>
-		<div class="tab-pane fade" id="category">
-			<h3>
-				categoriiii<br />catatta
-			</h3>
-		</div>
-
-	</div>
-</div>
-<div class="box box-solid box-primary">
-	<div class="box-header">
-		<h3 class="box-title fa fa-eye">Traçabilité</h3>
-	</div>
-	<!-- /.box-header -->
-	<!-- form start -->
-
-	<div class="box-body">
-
-		<div class="">
-			<table class="table">
+		<div class="tab-pane fade" id="suivi">
+			<div class="col-md-12">
+			<table class="table ">
 				<tbody>
-					<tr>
-						<th><label class="">Créé par:</label></th>
+				<tr class=" box box-solid bg-red"><th><h5></h5></th><td></td></tr>
+					<tr class=" box box-solid bg-">
+						<th class=""><label class="">Créé par:</label></th>
 						<td><img src="${baseURL}/img/salma.jpg" class="img-circle" alt="User Image" style="width: 29px; height: 28px;"><span class="data-value label label-inverse">
 							<a href="<c:out value="${baseURL}/user/profile?id=${product.creator.id}"/>"><c:out
 															value="${product.creator.lastName} ${product.creator.firstName}" /></a>
@@ -172,7 +156,7 @@ fdjhdhhdd
 						<td>Le:&nbsp;<fmt:formatDate
 									pattern="dd/MM/yyyy" value="${product.createDate}" /></td>
 					</tr>
-					<tr>
+					<tr class=" box box-solid bg-">
 						<th><label>Modifié par:</label></th>
 						<td><img src="${baseURL}/img/salma.jpg" class="img-circle" alt="User Image" style="width: 29px; height: 28px;"><span class="data-value label label-important">
 							<a href="<c:out value="${baseURL}/user/profile?id=${product.modifier.id}"/>"><c:out
@@ -187,9 +171,12 @@ fdjhdhhdd
 
 				</tbody>
 			</table>
+		</div>*
 		</div>
+
 	</div>
 </div>
+
 <script type="text/javascript">
     $('#tabs a').click(function (e) {
     	  e.preventDefault()

@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Table(name="ELMO_MOUVEMENT")
 public class Mouvement extends MetaObject implements Serializable {
 	private static final long serialVersionUID = 1L;
-	@Column(name="ELMO_MOTIF", nullable= false,unique=true,length= 255)
+	@Column(name="ELMO_MOTIF", nullable= false,length= 255)
 	private String motif;
 	@Column(name="ELMO_QUANTITY", nullable= false)
 	private int quantity;
