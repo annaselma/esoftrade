@@ -258,7 +258,7 @@ $(document).ready(function(){
                     	"data":"product.id",
                     	"orderable":false,
                     	"render": function ( data, type, full, meta ) {
-                      		 $link='<a href="#">corrigerStock</a>';
+                      		 $link='<a href="${baseURL}/mouvement/correctionProduit?id='+data+'">corrigerStock</a>';
                       	
                       	      return $link;
                       	    }
@@ -270,7 +270,7 @@ $(document).ready(function(){
                     	"data":"product.id",
                     	"orderable":false,
                     	"render": function ( data, type, full, meta ) {
-                      		 $link='<a href="#">transférer Stock</a>';
+                      		 $link='<a href="${baseURL}/mouvement/transfertStock?id='+data+'">transférer Stock</a>';
                       	
                       	      return $link;
                       	    }

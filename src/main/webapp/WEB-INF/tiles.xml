@@ -70,8 +70,8 @@
 	<definition name="updateWarehouse" extends="Template">
 	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/updateWarehouse.jsp" />
 	</definition>
-	<definition name="Mouvement" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/Mouvement.jsp" />
+	<definition name="mouvementlist" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/mouvementlist.jsp" />
 	</definition>
 	<definition name="correctionStock" extends="Template">
 	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/correctionStock.jsp" />

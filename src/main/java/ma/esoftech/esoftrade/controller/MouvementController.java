@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import ma.esoftech.esoftrade.DTO.MouvementDTO;
 import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.ProductWarehouseDTO;
+import ma.esoftech.esoftrade.DTO.Transfertdto;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.DTO.WarehouseDTO;
 import ma.esoftech.esoftrade.DTO.associated.ProductAssociatedDTO;
@@ -144,27 +145,27 @@ public class MouvementController extends AbstractController {
 			return "redirect:/warehouse/profile?id="+warehousedto.getId();}
 		
 		@RequestMapping(value = "/transfertStock", method = RequestMethod.POST)
-		public String transfertStock(@ModelAttribute("mouvement") @Valid MouvementDTO mouvementdto,BindingResult result, ModelMap model) {
+		public String transfertStock(@ModelAttribute("transfert") @Valid Transfertdto transfert,BindingResult result, ModelMap model) {
 			
 			if(result.hasErrors()){
 				return "transfertStock";
 			}
 			initialize();
 			ProductDTO productdto= new ProductDTO();
-			productdto.setId(mouvementdto.getProduct().getId());
-			WarehouseDTO warehousedto= new WarehouseDTO();
-			warehousedto.setId(mouvementdto.getWarehouse().getId());
+			productdto.setId(transfert.getProduct().getId());
 			WarehouseDTO source= new WarehouseDTO();
+			source.setId(transfert.getSource().getId());
 			WarehouseDTO target=new WarehouseDTO();
-			int nombre=mouvementdto.getQuantity();
-			String note=mouvementdto.getMotif();
+			target.setId(transfert.getTarget().getId());
+			int nombre=transfert.getQuantity();
+			String note=transfert.getMotif();
 			mouventService.transfertStock(source, target, productdto, nombre, note, currentUser);
 			return "redirect:/product/profile?id="+productdto.getId();}
 		
 		@RequestMapping(value = "/transfertStock", method = RequestMethod.GET)
 		public String loadtransfertStock(@RequestParam long id, ModelMap model) {	 
 			ProductDTO product=null;
-			 MouvementDTO mouvement=new MouvementDTO();
+			Transfertdto transfert= new Transfertdto();
 			try {
 				 product= productService.findProductById(id);
 			} catch( ProductNotFoundException e) {
@@ -177,10 +178,10 @@ public class MouvementController extends AbstractController {
 			 }
 			ProductAssociatedDTO associatedProduct= new ProductAssociatedDTO();
 			associatedProduct.setId(id);
-			mouvement.setProduct(associatedProduct);
+			transfert.setProduct(associatedProduct);
 			List<WarehouseDTO>listWarehouse= warehouseService.getListWarehouse(0, 1000);
 			 model.addAttribute("warehouseItems", listWarehouse);
-				model.addAttribute("mouvement",mouvement);
+				model.addAttribute("transfert",transfert);
 			return "transfertStock";
 			}
 		

@@ -54,7 +54,7 @@ public MouvementDao() {
 	@Override
 	public long MouvementCount(String filter) {
 		session=sessionFactory.getCurrentSession();
-		long count=(Long)session.createQuery("Select count(mouvement) From mouvement as mouvement ").uniqueResult();
+		long count=(Long)session.createQuery("Select count(mouvement) From Mouvement as mouvement ").uniqueResult();
 	return count;
 	}
 	@Override

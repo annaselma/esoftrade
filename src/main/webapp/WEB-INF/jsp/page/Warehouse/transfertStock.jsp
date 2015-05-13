@@ -29,26 +29,26 @@
 
 	<div class="box-body">
 
-		<form:form method="POST" commandName="mouvement" id="correctF"
+		<form:form method="POST" commandName="transfert" id="correctF"
 			data-toggle="validator" cssClass="form-horizontal">
 			<div class="form-group">
 				<label for="sourceENTField" class="col-sm-2 control-label esoft-left">Entrepot source:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-2">
-					<form:select path="warehouse" cssClass="form-control" id="source">
+					<form:select path="source" cssClass="form-control" id="source">
 						<form:options items="${warehouseItems}" itemLabel="name"
 							itemValue="id" />
 					</form:select>
-					<form:errors path="warehouse" cssClass="error" />
+					<form:errors path="source" cssClass="error" />
 				</div>
 				<label for="destENTField" class="col-sm-4 control-label esoft-left">Entrepot
 					destination:&nbsp;<span class="error">*</span>
 				</label>
 				<div class="col-sm-2">
-					<form:select path="warehouse" cssClass="form-control" id="target" style="margin-left:-121%;" >
+					<form:select path="target" cssClass="form-control" id="target" style="margin-left:-121%;" >
 						<form:options items="${warehouseItems}" itemLabel="name"
 							itemValue="id"/>
 					</form:select>
-					<form:errors path="product" cssClass="error" />
+					<form:errors path="target" cssClass="error" />
 				</div>
 			</div>
 			
@@ -66,7 +66,7 @@
 				</div>
 			</div>
             
-			<form:hidden path="warehouse"/>
+			<form:hidden path="product"/>
 			<div class="form-group">
 				<button type="submit" class="btn btn-danger btn pull-right"
 					style="margin-right: 1%;">Annuler</button>

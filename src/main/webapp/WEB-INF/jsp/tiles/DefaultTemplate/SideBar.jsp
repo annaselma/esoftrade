@@ -54,7 +54,7 @@
 							<li><a href="pages/tables/data.html"><i
 									class="fa fa-angle-double-right"></i> Liste des Factures</a></li>
 						</ul></li>
-					<li><a href="#"> <i class="fa fa-truck"></i> <span>Stock</span> <small
+					<li><a href="${baseURL}/mouvement/list"> <i class="fa fa-truck"></i> <span>Stock</span> <small
 							class="badge pull-right bg-green">10</small>
 					</a></li>
 					<li><a href="#"> <i class="fa fa-users"></i> <span>Statistique</span> <small

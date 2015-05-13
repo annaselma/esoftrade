@@ -22,5 +22,8 @@ public class WarehouseAssociatedDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public WarehouseAssociatedDTO() {
+		// TODO Auto-generated constructor stub
+	}
 	
 }
