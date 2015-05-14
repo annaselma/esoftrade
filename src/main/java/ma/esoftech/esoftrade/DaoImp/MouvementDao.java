@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import ma.esoftech.esoftrade.Dao.IMouvementDao;
 import ma.esoftech.esoftrade.model.Mouvement;
+import ma.esoftech.esoftrade.model.Product;
 import ma.esoftech.esoftrade.model.ProductWarehouse;
 import ma.esoftech.esoftrade.model.Warehouse;
 @Repository
@@ -104,6 +105,34 @@ public MouvementDao() {
 				Long count=(Long)query.uniqueResult();
 	    return count;
 	}
+	@Override
+	public List<ProductWarehouse> getListWarehouseByProduct(int start,
+			int length, String sorting, String filter, Product product) {
+		session=sessionFactory.getCurrentSession();
+		if(sorting ==null ||sorting.equals("")){
+			sorting ="id ASC";
+		}
+		String hql="select "
+				+ "new ma.esoftech.esoftrade.model."
+				+ "ProductWarehouse(mouvement.warehouse,SUM(mouvement.quantity) as QTE) From Mouvement as mouvement "
+				+ "where mouvement.product = :product  GROUP BY mouvement.warehouse  having SUM(mouvement.quantity)>0 order by mouvement."+sorting;
+		Query query= session.createQuery(hql);
+		query.setParameter("product", product);
+		query.setFirstResult(start).setMaxResults(length);
+	
+		return(List<ProductWarehouse>) query.list();
+	}
+	@Override
+	public long WarehouseCountByProduct(String filter, Product product) {
+		session=sessionFactory.getCurrentSession();
+		String hql="Select count(distinct mouvement.warehouse) From Mouvement as mouvement  "
+				+ "where mouvement.product=:product GROUP BY mouvement.warehouse having SUM(mouvement.quantity)>0 ";
+				Query query =session.createQuery(hql);
+				query.setParameter("product", product);
+				Long count=(Long)query.uniqueResult();
+	    return count;
+	}
+	
 	
 	
 

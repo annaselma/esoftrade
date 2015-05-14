@@ -133,10 +133,30 @@
 
 		</div>
 	<div class="tab-pane fade" id="stock">
-fdjhdhhdd
-		</div>
-	
-		<div class="tab-pane fade" id="fichierjoint">
+	<div class="">
+		<table id="list1" class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Entrepot</th>
+					<th>Unités</th>
+					<th>corriger Stock</th>
+					<th>Transfert</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th>Entrepot</th>
+					<th>Unités</th>
+					<th>corriger Stock</th>
+					<th>Transfert</th>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</div>
+<div class="tab-pane fade" id="fichierjoint">
 			<h3>bhalal</h3>
 		</div>
 		<div class="tab-pane fade" id="suivi">
@@ -174,12 +194,81 @@ fdjhdhhdd
 		</div>*
 		</div>
 
+		</div>
+	
+		
 	</div>
-</div>
-
 <script type="text/javascript">
     $('#tabs a').click(function (e) {
     	  e.preventDefault()
     	  $(this).tab('show')
     	})
 </script>
+<script src="${baseURL}/js/plugins/datatables/jquery.dataTables.js"
+	type="text/javascript"></script>
+<script src="${baseURL}/js/plugins/datatables/dataTables.bootstrap.js"
+	type="text/javascript"></script>
+<script
+	src="${baseURL}/js/plugins/datatables/dataTables.ColumnFilter.js"
+	type="text/javascript"></script>
+<script type="text/javascript">
+        
+            $(function() {
+               var table= $('#list1').DataTable({
+                    "paging": true,
+                    "lengthChange": true,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": true,
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": {
+                        "url": "${baseURL}/mouvement/getListWarehouseByP?id=${product.id}",
+                        "data": function(data) {
+                            planify(data);  
+                        } 
+                    },
+                    "columnDefs":[{
+                    	"targets":[0],
+                    	"name":"warehouse",
+                    	"data":"warehouse",
+                    	"render": function ( data, type, full, meta ) {
+                    		$link='<a href="${baseURL}/product/profile?id='+data.id+'">'+data.name+'</a>';
+                           	
+                     	      return $link;
+                   	    }
+                   
+                   },
+                    {
+                    	"targets":[1],
+                    	"name":"quantity",
+                    	"data":"quantity",
+                    
+                    },
+                    
+                    {
+                    	"targets":[2],
+                    	"name":"product.id",
+                    	"data":"product.id",
+                    	"orderable":false,
+                    	"render": function ( data, type, full, meta ) {
+                      		 $link='<a href="${baseURL}/mouvement/correctionProduit?id='+data+'">corrigerStock</a>';
+                      	
+                      	      return $link;
+                      	    }
+                    },
+                    {
+                    	"targets":[3],
+                    	"name":"product.id",
+                    	"data":"product.id",
+                    	"orderable":false,
+                    	"render": function ( data, type, full, meta ) {
+                      		 $link='<a href="${baseURL}/mouvement/transfertStock?id='+data+'">transférer Stock</a>';
+                      	
+                      	      return $link;
+                      	    }
+                    },
+                    ]
+                });});
+        </script>

@@ -116,7 +116,7 @@
                     	"name":"product",
                     	"data":"product",
                     	"render": function ( data, type, full, meta ) {
-                      		 $link='<a href="${baseURL}/product/profile?id='+data.id+'">'+data.name+'</a>';
+                      		 $link='<a href="${baseURL}/product/profile?id='+data.id+'">'+data.libelle+'</a>';
                       	
                       	      return $link;
                       	    }
@@ -129,7 +129,7 @@
                     	"data":"warehouse",
                     	"orderable":false,
                     	"render": function ( data, type, full, meta ) {
-                     		 $link='<a href="${baseURL}/warehouse/profile?id='+data.id+'">'+data.name+'</a>';
+                     		 $link='<a href="${baseURL}/warehouse/profile?id='+data.id+'" class=" fa fa-truck">&nbsp;'+data.name+'</a>';
                      	
                      	      return $link;
                      	    }

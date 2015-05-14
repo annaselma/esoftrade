@@ -28,7 +28,7 @@
 	<!-- form start -->
 
 	<div class="box-body">
-
+ <span class="error">Veillez sasir les champs obligatoire(*)</span>
 		<form:form method="POST" commandName="product" id="productF"
 			data-toggle="validator" cssClass="form-horizontal">
 			<div class="form-group">
@@ -40,10 +40,10 @@
 
 			</div>
             <div class="form-group">
-				<label for="nameField" class="col-sm-2 control-label esoft-left">Code à barre:&nbsp;<span class="error">*</span></label>
+				<label for="codeField" class="col-sm-2 control-label esoft-left">Code à barre:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
-					<form:input path="libelle" cssClass="form-control" />
-					<form:errors path="libelle" cssClass="error" />
+					<form:input path="barreCode" cssClass="form-control" />
+					<form:errors path="barreCode" cssClass="error" />
 				</div>
 
 			</div>
@@ -62,7 +62,7 @@
 			
 			</div>
 			<div class="form-group">
-				<label for="caegoryField" class="col-sm-2 control-label esoft-left">Catégorie:</label>
+				<label for="caegoryField" class="col-sm-2 control-label esoft-left">Catégorie:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:select path="category" cssClass="form-control ">
 						<form:options items="${categoryItems}" itemLabel="name"
@@ -134,7 +134,7 @@
 
 			</div>
 			<div class="form-group">
-				<label for="stockAField" class="col-sm-2 control-label esoft-left">alert stock:</label>
+				<label for="stockAField" class="col-sm-2 control-label esoft-left">alert stock:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-2">
 					<form:input path="alertTreshold" cssClass="form-control" />
 					<form:errors path="alertTreshold" cssClass="error" />

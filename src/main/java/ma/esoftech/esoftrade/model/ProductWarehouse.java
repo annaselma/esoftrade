@@ -3,6 +3,7 @@ package ma.esoftech.esoftrade.model;
 public class ProductWarehouse {
 	
 private Product product;
+private Warehouse warehouse;
 private long quantity;
 
 
@@ -22,6 +23,17 @@ public long getQuantity() {
 }
 public void setQuantity(long quantity) {
 	this.quantity = quantity;
+}
+public Warehouse getWarehouse() {
+	return warehouse;
+}
+public ProductWarehouse( Warehouse warehouse, long quantity) {
+	super();
+	this.warehouse = warehouse;
+	this.quantity = quantity;
+}
+public void setWarehouse(Warehouse warehouse) {
+	this.warehouse = warehouse;
 }
 public ProductWarehouse(){}
 }

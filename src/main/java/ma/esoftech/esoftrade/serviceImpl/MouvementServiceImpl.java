@@ -149,4 +149,28 @@ public class MouvementServiceImpl implements IMouvementService {
 		return mouvementdao.ProductCountByWarehouse(filter, warehouseEntity);
 	}
 
+	@Override
+	@Transactional(readOnly=true)
+	public List<ProductWarehouseDTO> getListWarehouseByProduct(int start,
+			int length, String sorting, String filter, ProductDTO product) {
+		Product productEntity= new Product();
+		productEntity.setId(product.getId());
+		List<ProductWarehouse>listEntity=mouvementdao.getListWarehouseByProduct(start, length, sorting, filter, productEntity);
+		List<ProductWarehouseDTO>listDTO= new ArrayList<ProductWarehouseDTO>();
+		for (ProductWarehouse productWehouse : listEntity) {
+			System.out.println("ge"+productWehouse.getQuantity());
+			listDTO.add(mapper.map(productWehouse, ProductWarehouseDTO.class));
+			
+		}
+		return listDTO;
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public long ProductCountByProduct(String filter, ProductDTO product) {
+		Product productEntity=new Product();
+		productEntity.setId(product.getId());
+		return mouvementdao.WarehouseCountByProduct(filter, productEntity);
+	}
+
 }

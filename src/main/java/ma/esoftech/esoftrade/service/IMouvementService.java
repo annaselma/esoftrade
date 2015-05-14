@@ -20,4 +20,6 @@ public interface IMouvementService {
 	public void transfertStock(WarehouseDTO source,WarehouseDTO target,ProductDTO product, int nbre,String notes,UserDTO creator);
     public List<ProductWarehouseDTO> getListProductByWarehouse(int start, int length, String sorting, String filter,WarehouseDTO warehouse);
     public long ProductCountByWarehouse(String filter,WarehouseDTO warehouse);
+    public List<ProductWarehouseDTO> getListWarehouseByProduct(int start, int length, String sorting, String filter,ProductDTO product);
+    public long ProductCountByProduct(String filter,ProductDTO product);
 }

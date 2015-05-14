@@ -31,6 +31,7 @@ public class ProductDTO {
 	 @Min(1)
 	 private Integer desieredTreshold;
 	 @Min(1)
+	 @NotEmpty
 	 private Integer alertTreshold;
 	 private String description;
 	 @NotEmpty
@@ -42,6 +43,8 @@ public class ProductDTO {
 	 @NotNull
 	 private float price;
 	 private String picture;
+	 @NotEmpty
+	 @Min(2)
 	 private String barreCode;
 	 private PCategoryAssociatedDTO category;
 	 public ProductDTO(){

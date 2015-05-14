@@ -103,6 +103,29 @@ public class MouvementController extends AbstractController {
 			return response;
 		}
 		
+		@RequestMapping(value="/getListWarehouseByP",method=RequestMethod.GET,produces = "application/json")
+		public @ResponseBody ResponseTable<ProductWarehouseDTO> loadTableWarehouse(@Valid RequestTable req,BindingResult bindingResult,@RequestParam(value="id") long productId,ModelMap model){
+			if(bindingResult.hasErrors()){
+				return null;
+			}
+			ProductDTO productdto= new ProductDTO();
+			productdto.setId(productId);
+			Order ordre=Order.createOrderFromRequestTable(req);
+			String search=req.getSearch().get(SearchCriterias.value);
+			ordre.toString();
+			int start=req.getStart();
+			int  length=req.getLength();
+			int draw=req.getDraw();
+			List<ProductWarehouseDTO> list=mouventService.getListWarehouseByProduct(start, length, ordre.toString(),search, productdto);
+					long recordsFiltered=mouventService.ProductCountByProduct(search, productdto);
+			long recordsTotal=mouventService.ProductCountByProduct(search, productdto);
+			ResponseTable<ProductWarehouseDTO> response=new ResponseTable<ProductWarehouseDTO>();
+			response.setDraw(draw);
+			response.setRecordsFiltered(recordsFiltered);
+			response.setRecordsTotal(recordsTotal);
+			response.setData(list);
+			return response;
+		}
 		@RequestMapping(value="/getListByWarehouse",method=RequestMethod.GET,produces = "application/json")
 		public @ResponseBody ResponseTable<MouvementDTO> loadTablesByWarehouse(@Valid RequestTable req,BindingResult bindingResult,@RequestParam(value="id") long warehouseId,ModelMap model){
 			if(bindingResult.hasErrors()){
