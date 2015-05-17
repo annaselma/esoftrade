@@ -20,3 +20,12 @@ Date.prototype.format=function(){
 	//return n(day1)+"/"+n(month1)+"/"+year1+" - "+n(hour1)+":"+n(min1)+":"+n(sec1);
 	 return n(day1)+"/"+n(month1)+"/"+year1;
 };
+Date.prototype.formatDetail=function(){
+	 year1=this.getFullYear();
+	 month1=this.getMonth()+1; 
+	 day1=this.getDate();
+	 hour1=this.getHours();
+	 min1=this.getMinutes();
+	 sec1=this.getSeconds();
+	return n(day1)+"/"+n(month1)+"/"+year1+" "+n(hour1)+":"+n(min1)+":"+n(sec1);
+};

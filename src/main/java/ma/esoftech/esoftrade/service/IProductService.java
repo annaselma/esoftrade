@@ -4,7 +4,7 @@ import java.util.List;
 
 import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
-import ma.esoftech.esoftrade.exeption.ProductNotFoundException;
+import ma.esoftech.esoftrade.exception.ProductNotFoundException;
 
 public interface IProductService {
 

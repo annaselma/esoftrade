@@ -3,8 +3,12 @@ package ma.esoftech.esoftrade.controller;
 import java.util.Date;
 
 import ma.esoftech.esoftrade.DTO.associated.PCategoryAssociatedDTO;
+import ma.esoftech.esoftrade.DTO.associated.ProductAssociatedDTO;
+import ma.esoftech.esoftrade.DTO.associated.WarehouseAssociatedDTO;
 import ma.esoftech.esoftrade.controller.editor.CategoryProductEditor;
 import ma.esoftech.esoftrade.controller.editor.DateEditor;
+import ma.esoftech.esoftrade.controller.editor.ProductEditor;
+import ma.esoftech.esoftrade.controller.editor.WarehouseEditor;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
@@ -19,5 +23,8 @@ public  class AbstractController {
     public void binder(WebDataBinder binder) {
       binder.registerCustomEditor(Date.class, new DateEditor());
       binder.registerCustomEditor(PCategoryAssociatedDTO.class, new CategoryProductEditor());
+      binder.registerCustomEditor(WarehouseAssociatedDTO.class,new WarehouseEditor());
+      binder.registerCustomEditor(ProductAssociatedDTO.class,new ProductEditor());
+     
     }
 }

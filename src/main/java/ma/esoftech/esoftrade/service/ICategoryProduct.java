@@ -5,7 +5,7 @@ import java.util.List;
 import ma.esoftech.esoftrade.DTO.PCategoryDTO;
 import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
-import ma.esoftech.esoftrade.exeption.PCatNotFoundException;
+import ma.esoftech.esoftrade.exception.PCatNotFoundException;
 import ma.esoftech.esoftrade.model.Product;
 import ma.esoftech.esoftrade.model.ProductCategory;
 

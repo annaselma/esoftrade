@@ -8,6 +8,7 @@ import ma.esoftech.esoftrade.DTO.associated.EditorDTO;
 
 public class WarehouseDTO {
 	private long id;
+	private String ref;
 	private EditorDTO creator;
 	 private Date createDate;
 	 private EditorDTO modifier;
@@ -85,6 +86,12 @@ public class WarehouseDTO {
 	}
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
+	}
+	public String getRef() {
+		return ref;
+	}
+	public void setRef(String ref) {
+		this.ref = ref;
 	}
 	 
 	 

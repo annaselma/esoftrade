@@ -4,8 +4,8 @@ import java.util.List;
 
 import ma.esoftech.esoftrade.DTO.RoleDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
-import ma.esoftech.esoftrade.exeption.UserNameException;
-import ma.esoftech.esoftrade.exeption.UserNotFoundException;
+import ma.esoftech.esoftrade.exception.UserNameException;
+import ma.esoftech.esoftrade.exception.UserNotFoundException;
 
 public interface IUserService {
 

@@ -32,15 +32,16 @@
 		<form:form method="POST" commandName="user" id="userF"
 			data-toggle="validator" cssClass="form-horizontal">
 			<div class="form-group">
-				<label for="nameField" class="col-sm-2 control-label esoft-left">Nom:</label>
+				<label for="nameField" class="col-sm-2 control-label esoft-left">Nom:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:input path="name" cssClass="form-control" />
 					<form:errors path="name" cssClass="error" />
 				</div>
-
+<div class="form-group" >&nbsp;<span class="error" style="margin-left: 28%;">(*)champs requis</span></div>
 			</div>
+			
 			<div class="form-group form-horizontal">
-				<label for="lastnameField" class="col-sm-2 control-label esoft-left">Prenom:</label>
+				<label for="lastnameField" class="col-sm-2 control-label esoft-left">Prenom:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:input path="lastName" cssClass="form-control" />
 					<form:errors path="lastName" cssClass="error" />
@@ -48,7 +49,7 @@
 			</div>
 			<div class="form-group form-horizontal">
 				<label for="activ" class="col-sm-2 control-label esoft-left">compte
-					activé:</label>
+					activé:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:checkbox path="active" />
 					<form:errors path="active" cssClass="error" />
@@ -57,7 +58,7 @@
 			</div>
 			<div class="form-group">
 				<label for="dateField" class="col-sm-2 control-label esoft-left">Date
-					de Naissance:</label>
+					de Naissance:&nbsp;<span class="error">*</span></label>
 
 				<div class="input-append date col-sm-4" data-date="12-02-2012"
 					data-date-format="dd-mm-yyyy">
@@ -67,7 +68,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="emailField" class="col-sm-2 control-label esoft-left">Email:</label>
+				<label for="emailField" class="col-sm-2 control-label esoft-left">Email:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:input path="email" cssClass="form-control"
 						placeholder="exemple@hotmail.com" />
@@ -407,7 +408,7 @@
 			</div>
 			<hr class="bs-docs-separator ">
 			<div class="form-group">
-				<label for="name" class="col-sm-2 control-label esoft-left">Login:</label>
+				<label for="name" class="col-sm-2 control-label esoft-left">Login:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:input path="login" cssClass="form-control" />
 					<form:errors path="login" cssClass="error" />
@@ -415,7 +416,7 @@
 			</div>
 			<div class="form-group">
 				<label for="passwordField" class="col-sm-2 control-label esoft-left"><small>Mot
-						de Passe:</small></label>
+						de Passe:&nbsp;<span class="error">*</span></small></label>
 				<div class="col-sm-4">
 					<form:input path="password" type="password"
 						cssClass="form-control input-lg" />
@@ -426,8 +427,8 @@
 
 
 			<div class="form-group">
-			<button type="submit" class="btn btn-danger btn pull-right" style="margin-right: 1%;">Annuler</button>
-			<button type="submit" class="btn btn-primary btn pull-right" style="margin-right: 3%;">Ajouter</button>
+			<button type="submit" class="btn btn-danger btn pull-right" style="margin-right: 2%;">Annuler</button>
+			<button type="submit" class="btn btn-primary btn pull-right" style="margin-right: 1%;">Ajouter</button>
 			</div>
 		</form:form>
 	</div>

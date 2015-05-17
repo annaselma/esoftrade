@@ -35,6 +35,8 @@
 		<mapping class="ma.esoftech.esoftrade.model.User" />
 		<mapping class="ma.esoftech.esoftrade.model.ProductCategory" />
 		<mapping class="ma.esoftech.esoftrade.model.File" />
+		<mapping class="ma.esoftech.esoftrade.model.Mouvement" />
+		<mapping class="ma.esoftech.esoftrade.model.Warehouse" />
 <!-- 		<mapping class="ma.esoftech.esoftrade.model.Order" /> -->
 		<!-- <mapping class="ma.esoftech.esoftrade.model.BusinessDocument"/> -->
 		<!-- <mapping class="ma.esoftech.esoftrade.model.DeliveryOrder"/> -->

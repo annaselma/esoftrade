@@ -132,17 +132,4 @@ public class UserDao implements IUserDao {
 	public UserDao() {
 	}
 
-	@Override
-	public List<User> getAllUsers(int start, int length, Order sorting,
-			FilterCriterias filters) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public long userCount(FilterCriterias filters) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }

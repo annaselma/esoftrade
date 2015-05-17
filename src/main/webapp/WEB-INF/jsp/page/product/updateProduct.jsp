@@ -28,11 +28,11 @@
 	<!-- form start -->
 
 	<div class="box-body">
-
+ <span class="error">Veillez sasir les champs obligatoire(*)</span>
 		<form:form method="POST" commandName="product" id="productF"
 			data-toggle="validator" cssClass="form-horizontal">
 			<div class="form-group">
-				<label for="nameField" class="col-sm-2 control-label esoft-left">Libéllé:</label>
+				<label for="nameField" class="col-sm-2 control-label esoft-left">Libéllé:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:input path="libelle" cssClass="form-control" />
 					<form:errors path="libelle" cssClass="error" />
@@ -40,19 +40,19 @@
 
 			</div>
             <div class="form-group">
-				<label for="nameField" class="col-sm-2 control-label esoft-left">Code à barre:</label>
+				<label for="codeField" class="col-sm-2 control-label esoft-left">Code à barre:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
-					<form:input path="libelle" cssClass="form-control" />
-					<form:errors path="libelle" cssClass="error" />
+					<form:input path="barreCode" cssClass="form-control" />
+					<form:errors path="barreCode" cssClass="error" />
 				</div>
 
 			</div>
 			<div class="form-group form-horizontal">
-				<label for="statut" class="col-sm-2 control-label esoft-left">Statut (en vente)</label>
+				<label for="statut" class="col-sm-2 control-label esoft-left">Statut (en vente) &nbsp;<span class="error">*</span></label>
 				<div class="col-sm-1" style="margin-top:1%">
 					<form:checkbox path="sellingState" />
 					<form:errors path="sellingState" cssClass="error" /></div>
-				    <label for="achat" class="col-sm-2 control-label">( en achat):</label>
+				    <label for="achat" class="col-sm-2 control-label">( en achat): &nbsp;<span class="error">*</span></label>
 				<div class="col-sm-1"style="margin-top:1%">
 					<form:checkbox path="purchasingState" />
 					<form:errors path="purchasingState" cssClass="error" />
@@ -62,7 +62,7 @@
 			
 			</div>
 			<div class="form-group">
-				<label for="caegoryField" class="col-sm-2 control-label esoft-left">Catégorie:</label>
+				<label for="caegoryField" class="col-sm-2 control-label esoft-left">Catégorie:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:select path="category" cssClass="form-control ">
 						<form:options items="${categoryItems}" itemLabel="name"
@@ -134,7 +134,7 @@
 
 			</div>
 			<div class="form-group">
-				<label for="stockAField" class="col-sm-2 control-label esoft-left">alert stock:</label>
+				<label for="stockAField" class="col-sm-2 control-label esoft-left">alert stock:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-2">
 					<form:input path="alertTreshold" cssClass="form-control" />
 					<form:errors path="alertTreshold" cssClass="error" />

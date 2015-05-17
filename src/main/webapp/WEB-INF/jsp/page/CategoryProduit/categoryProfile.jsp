@@ -44,12 +44,12 @@ $(document).ready(function(){
 						<div class="category-info"
 							style="padding-left: 1%; padding-top: 4%;">
 							<div class="global-info">
-									<div class=" col-sm-12 table-responsive">
-										<table class="table">
+									<div class=" col-sm-10 table-responsive">
+										<table class="table" style="margin-left: 8%;">
 											<tbody>
 												<tr>
 													<th style="width: 50%"><label>Nom:</label></th>
-													<td><span class="text-muted"><c:out value="${category.name}" /></span></td>
+													<td><a class="label label-info"  style="font-size: small;" href="#"><c:out value="${category.name}" /></a></td>
 												</tr>
 												<tr>
 													<th><label>Description:</label></th>
@@ -203,7 +203,7 @@ $(document).ready(function(){
                     	"name":"sellingState",
                     	"data":"sellingState",
                     	"render": function ( data, type, full, meta ) {
-                   		 $active='<div id="statut" class="label label-success">en vente</div>';
+                   		 $active='<div id="statut" class="label label-info">en vente</div>';
                    		 $inactive='<div id="statut" class="label label-danger">hors vente</div>';
                    		 if(data==true){
                    			 return $active;
@@ -217,7 +217,7 @@ $(document).ready(function(){
                     	"name":"purchasingState",
                     	"data":"purchasingState",
                     	 "render": function ( data, type, full, meta ) {
-                    		 $active='<div id="statut" class="label label-success">en achat</div>';
+                    		 $active='<div id="statut" class="label label-warning">en achat</div>';
                     		 $inactive='<div id="statut" class="label label-danger">hors achat</div>';
                     		 if(data==true){
                     			 return $active;

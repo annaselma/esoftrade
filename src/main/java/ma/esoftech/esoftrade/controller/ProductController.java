@@ -13,9 +13,9 @@ import ma.esoftech.esoftrade.datatablesAPI.Order;
 import ma.esoftech.esoftrade.datatablesAPI.RequestTable;
 import ma.esoftech.esoftrade.datatablesAPI.ResponseTable;
 import ma.esoftech.esoftrade.datatablesAPI.RequestTable.SearchCriterias;
-import ma.esoftech.esoftrade.exeption.ProductNotFoundException;
-import ma.esoftech.esoftrade.exeption.UserNameException;
-import ma.esoftech.esoftrade.exeption.UserNotFoundException;
+import ma.esoftech.esoftrade.exception.ProductNotFoundException;
+import ma.esoftech.esoftrade.exception.UserNameException;
+import ma.esoftech.esoftrade.exception.UserNotFoundException;
 import ma.esoftech.esoftrade.service.ICategoryProduct;
 import ma.esoftech.esoftrade.service.IProductService;
 

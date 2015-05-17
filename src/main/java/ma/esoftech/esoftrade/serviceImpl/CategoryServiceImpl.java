@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 
 import org.dozer.Mapper;
-import org.springframework.aop.ThrowsAdvice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,8 +13,7 @@ import ma.esoftech.esoftrade.DTO.PCategoryDTO;
 import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.Dao.ICategoryProductDao;
-import ma.esoftech.esoftrade.exeption.PCatNotFoundException;
-import ma.esoftech.esoftrade.exeption.ProductNotFoundException;
+import ma.esoftech.esoftrade.exception.PCatNotFoundException;
 import ma.esoftech.esoftrade.model.Product;
 import ma.esoftech.esoftrade.model.ProductCategory;
 import ma.esoftech.esoftrade.service.ICategoryProduct;

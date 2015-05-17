@@ -57,6 +57,32 @@
 	<put-attribute name="page" value="/WEB-INF/jsp/page/CategoryProduit/updateCategory.jsp" />
 	</definition>
 	<!-- /CategoryProduct Pages -->
+	<!-- Warehouse Pages -->
+	<definition name="warehouseProfile" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/warehouseProfile.jsp" />
+	</definition>
+	<definition name="createWarehouse" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/createWarehouse.jsp" />
+	</definition>
+	<definition name="warehouselist" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/warehouselist.jsp" />
+	</definition>
+	<definition name="updateWarehouse" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/updateWarehouse.jsp" />
+	</definition>
+	<definition name="mouvementlist" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/mouvementlist.jsp" />
+	</definition>
+	<definition name="correctionStock" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/correctionStock.jsp" />
+	</definition>
+	<definition name="correctionStockOther" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/correctionStockOther.jsp" />
+	</definition>
+	<definition name="transfertStock" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/transfertStock.jsp" />
+	</definition>
+	<!-- /Warehouse Pages -->
 	<!-- User Pages -->
 	<definition name="userProfile" extends="Template">
 	<put-attribute name="page" value="/WEB-INF/jsp/page/user/userProfile.jsp" />

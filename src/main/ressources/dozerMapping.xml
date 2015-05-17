@@ -54,14 +54,8 @@
 			<a>id</a>
 			<b>id</b>
 		</field>
-		<field>
-			<a>creator.lastName</a>
-			<b>creator</b>
-		</field>
-		<field>
-			<a>creator.name</a>
-			<b>creator</b>
-		</field>
+		
+		
 		<field>
 			<a>active</a>
 			<b>active</b>
