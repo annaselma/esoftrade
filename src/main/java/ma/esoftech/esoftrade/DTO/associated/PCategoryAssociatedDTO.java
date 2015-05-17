@@ -1,8 +1,9 @@
-package ma.esoftech.esoftrade.DTO;
+package ma.esoftech.esoftrade.DTO.associated;
 
-public class RoleAssociated {
-	private long id;
-	private String name;
+public class PCategoryAssociatedDTO {
+
+	private long  id;
+	private  String name;
 	public long getId() {
 		return id;
 	}
@@ -17,5 +18,4 @@ public class RoleAssociated {
 	}
 	
 	
-
 }

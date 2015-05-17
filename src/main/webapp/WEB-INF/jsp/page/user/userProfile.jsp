@@ -39,63 +39,59 @@
 									</c:otherwise>
 								</c:choose>
 							</div>
-
+							
 						</div>
+						
 					</div>
 				</div>
 				<div class="col-md-9">
 					<div class="user-info-right"
-						style="border-left: 1px solid #ddd; padding-left: 6%; padding-top: 4%;">
+						style=" padding-left: 6%; padding-top: 4%;">
 						<div class="global-info">
 							<h4>
 								<i class="fa fa-user" style="margin-right: 2%"></i>Information personnelle
 							</h4>
-							<form method="POST" name="user" id="userF">
-							<button type="button" class="btn btn-primary pull-right" style="margin-right: 3%;" onclick="location.href='${baseURL}/user/update?id=${user.id}'">Modifier</button>
+							
+							<div class=" col-sm-12 table-responsive">
+					<table class="table">
+						<tbody>
+							<tr>
+								<th style="width: 50%"><label class=" ">Num Compte:</label></th>
+								<td>
+								<span class="data-value text-red"><c:out value="${user.ref}"/> </span></td>
+							</tr>
+							<tr>
+								<th><label class="">Identifiant</label></th>
+								<td><span class="data-value label label-default"><c:out value="${user.login}"/> </span></td>
+							</tr>
+							<tr><th><label>Adresse Email:</label></th><td>
+							<a href="mailto:<c:out value="${user.email}"/>"><c:out value="${user.email}"/></a>
+							</td></tr>
+							<tr>
+								<th><label>Fonction</label></th>
+								<td><span
+									class="data-value"><c:out value="${user.fonction}"/></span></td>
+							</tr>
+							<tr>
+								<th>Date de naissance:</th>
+								<td><span class="data-value">
+									<fmt:formatDate pattern="dd/MM/yyyy" value="${user.birdDay}" /></span></td>
+							</tr>
+							<tr><th>Telephone:</th><td><c:out value="${user.telephone}"/></td></tr>
+							<tr><th>adresse:</th><td><c:out value="${user.adresse1}"/> </td></tr>
+							
+							<tr><th>Code Postal:</th><td><c:out value="${user.zipCode}"/></td></tr>
+							<tr><th>Ville:</th><td><c:out value="${user.city}"/></td></tr>
+							<tr><th>Pays:</th><td><c:out value="${user.country}"/></td></tr>
+						</tbody>
+					</table>
+				</div>
+							
+							<div>
+                           <form method="POST" name="user" id="userF">
+							<button type="button" class="btn btn-primary pull-right " style="margin-top:9%" onclick="location.href='${baseURL}/user/update?id=${user.id}'"><i class="fa fa-pencil-square-o"></i>&nbsp;Modifier</button>
 							</form>
-							<p class="data-row">
-								<label class="col-sm-2 ">Num Compte:</label>
-								<span class="data-value text-red"><c:out value="${user.ref}"/> </span>
-							</p>
-							<p class="data-row">
-								<label class="col-sm-2">Identifiant :</label>
-								<span class="data-value label label-default"><c:out value="${user.login}"/> </span>
-							</p>
-							<hr class="bs-docs-separator ">
-							<p class="data-row">
-								<label class="col-sm-2">Fonction:</label><span
-									class="data-value"><c:out value="${user.fonction}"/></span>
-							</p>
-							<hr class="bs-docs-separator ">
-							<p class="data-row">
-								<label class="col-sm-2">Né le:</label><span class="data-value">
-									<fmt:formatDate pattern="dd/MM/yyyy" value="${user.birdDay}" /></span>
-							</p>
-							<hr class="bs-docs-separator ">
-							<p class="data-row">
-								<label class="col-sm-2 ">Telephone:</label><span
-									class="data-value"><c:out value="${user.telephone}"/></span>
-							</p>
-							<hr class="bs-docs-separator ">
-							<p class="data-row">
-								<label class="col-sm-2">Adresse:</label><span
-									class="data-value"><c:out value="${user.adresse1}"/> </span>
-							</p>
-							<hr class="bs-docs-separator ">
-							<p>
-								<label class="col-sm-2 ">Code Postal:</label><span
-									class="data-value"><c:out value="${user.zipCode}"/></span>
-							</p>
-							<hr class="bs-docs-separator ">
-							<p class="data-row">
-								<label class="col-sm-2">Ville:</label> <span
-									class="data-value"><c:out value="${user.city}"/></span>
-							</p>
-							<hr class="bs-docs-separator ">
-							<p>
-								<label class="col-sm-2">Pays:</label> <span
-									class="data-value"><c:out value="${user.country}"/></span>
-							</p>
+							</div>
 
 						</div>
 

@@ -58,9 +58,11 @@
 		<property name="mappingFiles">
 			<list>
 				<value>dozerMapping.xml</value>
+				<value>dozerMappingProduct.xml</value>
 			</list>
 		</property>
 	</bean>
+	
 <!-- 	<tx:advice id="txAdvice" transaction-manager="transactionManager"> -->
 <!-- 		<tx:attributes> -->
 <!-- 			<tx:method name="find*" read-only="true" /> -->

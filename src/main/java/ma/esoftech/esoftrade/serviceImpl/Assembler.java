@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import ma.esoftech.esoftrade.DTO.RoleAssociated;
 import ma.esoftech.esoftrade.DTO.UserDTO;
+import ma.esoftech.esoftrade.DTO.associated.RoleAssociated;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.GrantedAuthorityImpl;

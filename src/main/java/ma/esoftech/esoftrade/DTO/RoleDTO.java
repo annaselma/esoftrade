@@ -3,6 +3,8 @@ package ma.esoftech.esoftrade.DTO;
 import java.util.Date;
 import java.util.List;
 
+import ma.esoftech.esoftrade.DTO.associated.EditorDTO;
+
 public class RoleDTO {
 
 	private long id;

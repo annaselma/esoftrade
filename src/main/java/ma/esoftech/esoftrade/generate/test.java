@@ -1,13 +1,11 @@
 package ma.esoftech.esoftrade.generate;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
-import ma.esoftech.esoftrade.DTO.RoleDTO;
-import ma.esoftech.esoftrade.model.Role;
 import ma.esoftech.esoftrade.model.User;
 
-import org.dozer.DozerBeanMapper;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -30,8 +28,20 @@ public class test {
 //		Session session=sessionFactory.openSession();
 //		session.get(ma.esoftech.esoftrade.model.User.class, new Long(0));
 //		session.close();
-		lazyExemple();
+		//lazyExemple();
 		//cascadeCreateExemple();
+		String patternStr = "([a-zA-Z0-9\\._-]+@[a-zA-Z0-9\\.-]{2,}[\\.][a-zA-Z]{2,4})[|]*";
+		
+		try {
+			Pattern pattern = Pattern.compile(patternStr);
+			//erraj-i01@gmail.com-ggg@ggg.cc-dd-d@dd.com
+			Matcher matcher = pattern.matcher("erraj-i0;1@gmail.com|ggg@ggg.cc|dd-d@dd.com");
+		
+			while (matcher.find())
+				//set.add(matcher.group(1));
+			System.out.println(matcher.group(1));
+		} catch (PatternSyntaxException pse) {
+		}
 	}
 	public static void cascadeCreateExemple(){
 		SessionFactory sessionFactory=new Configuration().configure("hibernate2.cfg.xml").buildSessionFactory();

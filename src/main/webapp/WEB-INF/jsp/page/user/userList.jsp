@@ -11,7 +11,7 @@
 		<h3 class="box-title">la liste des utilisateurs</h3>
 		<div class="box-tools pull-right">
 			<a class="btn btn-primary btn-sm" href="${baseURL}/user/create"
-				style="color: white;">+ Utilisateur</a> &nbsp;
+				style="color: white;">+ Créer</a> &nbsp;
 		</div>
 	</div>
 	<!-- /.box-header -->
@@ -19,26 +19,26 @@
 		<table id="list1" class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th>Rèfèrence</th>
+					<th>Réfèrence</th>
 					<th>Nom</th>
 					<th>Prènom</th>
 					<th>Login</th>
 					<th>fonction</th>
 					<th>statut</th>
-					<th>profile/consulter/supprimer</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
 			</tbody>
 			<tfoot>
 				<tr>
-					<th>Rèfèrence</th>
+					<th>Réfèrence</th>
 					<th>Nom</th>
 					<th>Prènom</th>
 					<th>Login</th>
 					<th>fonction</th>
 					<th>statut</th>
-					<th>profile/consulter/supprimer</th>
+					<th>Actions</th>
 				</tr>
 			</tfoot>
 		</table>

@@ -39,7 +39,7 @@ public class UserServiceImpl implements IUserService {
 		if(user==null){
 			return null;
 		}
-		UserConverter converter= new UserConverter();//
+		UserConverter converter= new UserConverter();
 		UserDTO userFinal=mapper.map(user, UserDTO.class);
 		userFinal.setPermissions(converter.toPermissionList(user.getRoles()));
 		return userFinal;
@@ -182,6 +182,7 @@ public class UserServiceImpl implements IUserService {
 	     userEntity.setRoles(usertmp.getRoles());
 	     userEntity.setCreator(usertmp.getCreator());
 	     userEntity.setCreateDate(usertmp.getCreateDate());
+	     ServiceUtils.EditEntityModel(modifer, userEntity);
 	     userEntity.setDeleted(false);
 	     userEntity.setPasswd(usertmp.getPasswd());
 	     userEntity.setLastEdit(new Date());

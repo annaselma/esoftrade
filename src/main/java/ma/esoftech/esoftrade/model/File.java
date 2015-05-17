@@ -92,6 +92,9 @@ public class File extends MetaObject{
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	public void generatePath(String path){
+		this.path=path+"/"+this.getId()+"_"+name;
+	}
 	
 	
 

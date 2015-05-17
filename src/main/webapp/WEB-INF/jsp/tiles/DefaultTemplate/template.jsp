@@ -74,6 +74,8 @@
         <script src="${baseURL}/js/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
          <!-- switch-button -->
          <script src="${baseURL}/js/bootstrap-switch.js" type="text/javascript" ></script>
+         <!-- bootstrap-modal -->
+<%--          <script src="${baseURL}/js/bootstrap-modal.js" type="text/javascript"></script> --%>
         
    </head>
     <body class="skin-blue">

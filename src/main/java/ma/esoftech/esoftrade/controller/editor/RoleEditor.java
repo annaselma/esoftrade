@@ -5,7 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import ma.esoftech.esoftrade.DTO.RoleAssociated;
+import ma.esoftech.esoftrade.DTO.associated.RoleAssociated;
 
 public class RoleEditor extends PropertyEditorSupport {
     public void setAsText(String value) {

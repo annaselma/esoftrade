@@ -71,7 +71,6 @@ public class UserDao implements IUserDao {
 	@Override
 	public List<User> getAllUsers(int start, int length, String sorting,
 			String filter) {
-		// TODO Auto-generated method stub
 		session=sessionFactory.getCurrentSession();
 		if(sorting ==null ||sorting.equals("")){
 			sorting ="id ASC";

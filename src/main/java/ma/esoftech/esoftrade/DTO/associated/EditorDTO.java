@@ -1,4 +1,4 @@
-package ma.esoftech.esoftrade.DTO;
+package ma.esoftech.esoftrade.DTO.associated;
 
 public class EditorDTO {
 	private long id;

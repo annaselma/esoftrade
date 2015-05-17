@@ -89,7 +89,6 @@ public class UserController extends AbstractController {
 		PasswordDTO passwoDto=new PasswordDTO();
 		passwoDto.setId(user.getId());
 		 if(result.hasErrors()){
-			 System.out.println("errrurre");
 			 model.addAttribute("password", passwoDto);
 			return "updateUser";
 			}
@@ -155,7 +154,7 @@ public class UserController extends AbstractController {
 			 return "error";
 		 }
 		 model.addAttribute("user", user);
-		 return "profile";
+		 return "userProfile";
 	 }
 	 @RequestMapping(value="/list",method=RequestMethod.GET)
 	 public String loadUSerListProfil(ModelMap model){
