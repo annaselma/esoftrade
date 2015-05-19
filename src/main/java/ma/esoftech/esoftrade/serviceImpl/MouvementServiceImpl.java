@@ -134,7 +134,6 @@ public class MouvementServiceImpl implements IMouvementService {
 		List<ProductWarehouse>listEntity=mouvementdao.ListProductByWarehouse(start, length, sorting, filter, warehouseEntity);
 		List<ProductWarehouseDTO>listDTO= new ArrayList<ProductWarehouseDTO>();
 		for (ProductWarehouse productWehouse : listEntity) {
-			System.out.println("ge"+productWehouse.getQuantity());
 			listDTO.add(mapper.map(productWehouse, ProductWarehouseDTO.class));
 			
 		}

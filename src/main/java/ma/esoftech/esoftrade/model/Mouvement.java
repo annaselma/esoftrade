@@ -66,6 +66,10 @@ public class Mouvement extends MetaObject implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="ELMO_Warehouse_ID")
 	private Warehouse warehouse;
+	@ManyToOne
+	 @JoinColumn(name="ELMO_MANUFACTURING-ORDER_ID" , nullable=false)
+	 private OrderManufacturing OF;
+	
 	public String getMotif() {
 		return motif;
 	}
