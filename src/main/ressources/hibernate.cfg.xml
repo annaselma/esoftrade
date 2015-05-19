@@ -31,7 +31,7 @@
 		<mapping class="ma.esoftech.esoftrade.model.File" />
 		<mapping class="ma.esoftech.esoftrade.model.Mouvement" />
 		<mapping class="ma.esoftech.esoftrade.model.Warehouse" />
-		
+	    <mapping class="ma.esoftech.esoftrade.model.OrderManufacturing" />
 <!-- 			<mapping class="ma.esoftech.esoftrade.model.Order" /> -->
 <!-- 	<mapping class="ma.esoftech.esoftrade.model.DeliveryOrder"/>  -->
 <!--     <mapping class="ma.esoftech.esoftrade.model.DocumentLine"/>  -->

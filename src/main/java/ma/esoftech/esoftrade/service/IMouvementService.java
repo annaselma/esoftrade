@@ -7,10 +7,11 @@ import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.ProductWarehouseDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.DTO.WarehouseDTO;
+import ma.esoftech.esoftrade.exception.ManufacturingNotFoundException;
 import ma.esoftech.esoftrade.model.ProductWarehouse;
 
 public interface IMouvementService {
-	public MouvementDTO FindByID(long id);
+	public MouvementDTO FindByID(long id) throws ManufacturingNotFoundException;
 	public long createMouvement(MouvementDTO mouvement,UserDTO creator);
 	public List<MouvementDTO>getListMouvement(int start, int length, String sorting, String filter);
 	public long MouvementCount(String filter);
