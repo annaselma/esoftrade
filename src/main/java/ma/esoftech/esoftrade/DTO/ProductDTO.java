@@ -1,18 +1,18 @@
 package ma.esoftech.esoftrade.DTO;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-import javax.validation.OverridesAttribute;
-import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.Max;
+import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import ma.esoftech.esoftrade.DTO.associated.EditorDTO;
+import ma.esoftech.esoftrade.DTO.associated.FileAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.PCategoryAssociatedDTO;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 
@@ -29,10 +29,11 @@ public class ProductDTO {
 	 private Boolean purchasingState= true;
 	 private Boolean sellingState= true;
 	 @Min(1)
-	 private Integer desieredTreshold;
+	 @NotNull
+	 private Integer desieredTreshold=0;
 	 @Min(1)
-	 @NotEmpty
-	 private Integer alertTreshold;
+	 @NotNull
+	 private Integer alertTreshold=0;
 	 private String description;
 	 @NotEmpty
 	 private String nature;
@@ -42,11 +43,12 @@ public class ProductDTO {
 	 private float volume;
 	 @NotNull
 	 private float price;
-	 private String picture;
+	 private FileAssociatedDTO picture=new FileAssociatedDTO();
 	 @NotEmpty
-	 @Min(2)
+	 @Size(min=2)
 	 private String barreCode;
-	 private PCategoryAssociatedDTO category;
+	 private PCategoryAssociatedDTO category=new  PCategoryAssociatedDTO();
+	 private  List<FileAssociatedDTO> files=new ArrayList<FileAssociatedDTO>();
 	 public ProductDTO(){
 		 
 	 }
@@ -154,10 +156,10 @@ public class ProductDTO {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	public String getPicture() {
+	public FileAssociatedDTO getPicture() {
 		return picture;
 	}
-	public void setPicture(String picture) {
+	public void setPicture(FileAssociatedDTO picture) {
 		this.picture = picture;
 	}
 	public String getBarreCode() {
@@ -178,6 +180,12 @@ public class ProductDTO {
 		}
 		public void setCategory(PCategoryAssociatedDTO category) {
 			this.category = category;
+		}
+		public List<FileAssociatedDTO> getFiles() {
+			return files;
+		}
+		public void setFiles(List<FileAssociatedDTO> files) {
+			this.files = files;
 		}
 	 
 	 

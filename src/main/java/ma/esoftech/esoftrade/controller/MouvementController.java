@@ -2,6 +2,7 @@ package ma.esoftech.esoftrade.controller;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
 import ma.esoftech.esoftrade.DTO.MouvementDTO;
@@ -45,13 +46,15 @@ public class MouvementController extends AbstractController {
 	@Autowired
 	IProductService productService;
 	@Autowired
-   SessionBean sessionBean;
-	 
+	SessionBean sessionBean;
 	UserDTO currentUser;
-	public MouvementController(){}
-	private void initialize() {
+
+	
+	protected void initialize() {
 		this.currentUser = sessionBean.getUserDTO();
 	}
+	public MouvementController(){}
+
 	
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	 public String loadMouvementListPage(ModelMap model){

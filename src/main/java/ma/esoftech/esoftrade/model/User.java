@@ -12,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
@@ -53,8 +54,9 @@ public class User extends Person {
 		this.fonction = fonction;
 	}
 
-	@Column(name="ELMO_PICTURE" ,length=255 )
-	private String picture;
+	@ManyToOne
+	@JoinColumn(name = "ELMO_USER_ID")
+	 private File picture;
 	 @ManyToMany
 	 @JoinTable(name="ELMO_OWNER_ROLE" , 
 	   joinColumns={
@@ -70,10 +72,10 @@ public class User extends Person {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getPicture() {
+	public File getPicture() {
 		return picture;
 	}
-	public void setPicture(String picture) {
+	public void setPicture(File picture) {
 		this.picture = picture;
 	}
 	public boolean getActive() {

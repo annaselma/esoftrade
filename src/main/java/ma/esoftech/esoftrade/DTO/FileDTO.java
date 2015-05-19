@@ -12,7 +12,7 @@ public class FileDTO {
 	private EditorDTO creator;
 	private EditorDTO modifier;
 	private String path;
-	private float size;
+	private float length;
 	private int mask;
 	private String type;
 	public long getId() {
@@ -57,11 +57,11 @@ public class FileDTO {
 	public void setPath(String path) {
 		this.path = path;
 	}
-	public float getSize() {
-		return size;
+	public float getLength() {
+		return length;
 	}
-	public void setSize(float size) {
-		this.size = size;
+	public void setLength(float length) {
+		this.length = length;
 	}
 	public int getMask() {
 		return mask;

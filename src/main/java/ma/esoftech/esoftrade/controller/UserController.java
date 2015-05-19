@@ -1,20 +1,29 @@
 package ma.esoftech.esoftrade.controller;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.servlet.ServletContext;
 import javax.validation.Valid;
 
+import ma.esoftech.esoftrade.DTO.FileDTO;
 import ma.esoftech.esoftrade.DTO.PasswordDTO;
+import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.RoleDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
+import ma.esoftech.esoftrade.DTO.associated.FileAssociatedDTO;
 import ma.esoftech.esoftrade.controller.session.SessionBean;
 import ma.esoftech.esoftrade.datatablesAPI.Order;
 import ma.esoftech.esoftrade.datatablesAPI.RequestTable;
 import ma.esoftech.esoftrade.datatablesAPI.RequestTable.SearchCriterias;
 import ma.esoftech.esoftrade.datatablesAPI.ResponseTable;
+import ma.esoftech.esoftrade.exception.ProductNotFoundException;
 import ma.esoftech.esoftrade.exception.UserNameException;
 import ma.esoftech.esoftrade.exception.UserNotFoundException;
+import ma.esoftech.esoftrade.service.IFileService;
 import ma.esoftech.esoftrade.service.IUserService;
+import ma.esoftech.esoftrade.utils.FileUploadUTILS;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +35,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/user")
@@ -37,17 +47,25 @@ public class UserController extends AbstractController {
 	@Autowired
 	IUserService userService;
 	@Autowired
-	SessionBean sessionBean;
+	IFileService fileService;
+	@Autowired
+	ServletContext servletContext;
 
+	@Autowired
+	SessionBean sessionBean;
 	UserDTO currentUser;
+
+	
+	protected void initialize() {
+		this.currentUser = sessionBean.getUserDTO();
+	}
+
 
 	public UserController() {
 		
 	}
 
-	private void initialize() {
-		this.currentUser = sessionBean.getUserDTO();
-	}
+
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String addUser(@ModelAttribute("user") @Valid UserDTO user,
@@ -182,6 +200,38 @@ public class UserController extends AbstractController {
 			response.setRecordsTotal(recordsTotal);
 			response.setData(list);
 			return response;
+		}
+		@RequestMapping(value="/getCurrentUser",method=RequestMethod.GET,produces = "application/json")
+		public @ResponseBody UserDTO getCurrentUser(ModelMap model){
+		initialize();
+          return currentUser;
+        }
+		
+		@RequestMapping(value="/image",method=RequestMethod.POST)
+		public String uploadImage(@RequestParam(value = "file") MultipartFile file,@RequestParam long id,ModelMap model){
+		
+			initialize();
+			
+			if(file.isEmpty()){
+				 model.addAttribute("messageError","no file exist ");
+				 return "error";	
+			}
+			try {
+				FileDTO fileDTO=fileService.createFile(file.getBytes(), file.getOriginalFilename(),FileUploadUTILS.getPathFile()
+						, currentUser);
+				UserDTO user=userService.findById(id);
+				FileAssociatedDTO picture=new FileAssociatedDTO();
+				picture.setId(fileDTO.getId());
+				user.setPicture(picture);
+				userService.updatePicture(fileDTO, id, currentUser);
+			} catch (IOException e) {
+				model.addAttribute("messageError",e.getMessage());
+				return "error";
+			} catch (UserNotFoundException e) {
+				model.addAttribute("messageError",e.getMessage());
+				return "error";
+			}
+			 return PATH_PROFIL+"?id="+id+"&file=true";
 		}
 		@ModelAttribute("rolesItems")
 		public List<RoleDTO> getRoles(){

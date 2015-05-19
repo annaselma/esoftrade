@@ -23,7 +23,7 @@ public class File extends MetaObject{
 	@Column(name="ELMO_PATH",nullable=false,length=255)	
 	private String path;
 	@Column(name="ELMO_SIZE",nullable=false)
-	private float size;
+	private float length;
 	@Column(name="ELMO_MASK")
 	private int mask;
 	@Column(name="ELMO_TYPE")	
@@ -58,13 +58,13 @@ public class File extends MetaObject{
 	}
 
 
-	public float getSize() {
-		return size;
+	public float getLength() {
+		return length;
 	}
 
 
-	public void setSize(float size) {
-		this.size = size;
+	public void setLength(float length) {
+		this.length = length;
 	}
 
 

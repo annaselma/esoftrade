@@ -6,8 +6,6 @@ import ma.esoftech.esoftrade.DTO.PCategoryDTO;
 import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.exception.PCatNotFoundException;
-import ma.esoftech.esoftrade.model.Product;
-import ma.esoftech.esoftrade.model.ProductCategory;
 
 public interface ICategoryProduct {
 
@@ -21,4 +19,6 @@ public interface ICategoryProduct {
     public long categoryCount(String filter);
     public List<ProductDTO> getListProductBycategory(int lenght, int start, String sorting,String filter,PCategoryDTO category);
     public long productCountBycategory(String filter, PCategoryDTO category);
+    public List<PCategoryDTO> searchProductCategories(int lenght, int start,
+			String search);
 }

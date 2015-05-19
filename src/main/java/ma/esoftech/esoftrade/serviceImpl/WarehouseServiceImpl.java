@@ -9,10 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ma.esoftech.esoftrade.DTO.FileDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.DTO.WarehouseDTO;
 import ma.esoftech.esoftrade.Dao.IWarehouseDao;
+import ma.esoftech.esoftrade.exception.ProductNotFoundException;
 import ma.esoftech.esoftrade.exception.WarehouseNotFoundException;
+import ma.esoftech.esoftrade.model.File;
+import ma.esoftech.esoftrade.model.Product;
 import ma.esoftech.esoftrade.model.Warehouse;
 import ma.esoftech.esoftrade.service.IWarehouseService;
 import ma.esoftech.esoftrade.service.ServiceUtils;
@@ -81,10 +85,12 @@ IWarehouseDao warehouseDao;
 		   throw new WarehouseNotFoundException();
 	   }
 	    warehouseEntity.setCreator(warehousetmp.getCreator());
-	    warehouseEntity.setCreator(warehousetmp.getCreator());
+	    warehouseEntity.setCreateDate(warehousetmp.getCreateDate());
 	    ServiceUtils.EditEntityModel(modifier, warehouseEntity);
 	    warehouseEntity.setDeleted(false);
 	    warehouseEntity.setLastEdit(new Date());
+	    warehouseEntity.setRef(warehousetmp.getRef());
+	    warehouseEntity.setFiles(warehousetmp.getFiles());
 		warehouseDao.updateWarehouse(warehouseEntity);
 		
 		
@@ -115,6 +121,18 @@ IWarehouseDao warehouseDao;
 			ListWarehouseDTO.add(mapper.map(warehouse, WarehouseDTO.class));
 		}
 		return ListWarehouseDTO;
+	}
+	@Transactional(rollbackFor=Exception.class)
+	public void attachFileToWarehouse(FileDTO fileDTO,long id,UserDTO modifier) throws WarehouseNotFoundException{
+		Warehouse warehouseEntity=warehouseDao.findById(id);
+	    if(warehouseEntity==null){
+	   	 throw new WarehouseNotFoundException(id);
+	    }
+	    ServiceUtils.EditEntityModel(modifier, warehouseEntity);
+	    File file=new File();
+	    file.setId(fileDTO.getId());
+	    warehouseEntity.getFiles().add(file);
+	   warehouseDao.updateWarehouse(warehouseEntity);
 	}
 
 }

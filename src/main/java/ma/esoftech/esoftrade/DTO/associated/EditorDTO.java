@@ -4,6 +4,7 @@ public class EditorDTO {
 	private long id;
 	private String firstName;
 	private String lastName;
+	private FileAssociatedDTO picture;
 	public long getId() {
 		return id;
 	}
@@ -21,6 +22,12 @@ public class EditorDTO {
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	public FileAssociatedDTO getPicture() {
+		return picture;
+	}
+	public void setPicture(FileAssociatedDTO picture) {
+		this.picture = picture;
 	}
 	
 

@@ -22,6 +22,7 @@
 	<listener>
         <listener-class>ma.esoftech.esoftrade.controller.session.SpringSessionScopedBeanDeprefixer</listener-class>
     </listener>
+    
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>

@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -36,9 +37,12 @@
 
 	<div class="box-body">
 
+<%-- <form:errors path="*" cssClass="errorblock" /> --%>
 		<form:form method="POST" commandName="user" id="userF"
 			data-toggle="validator" cssClass="form-horizontal"
 			action="${baseURL}/user/update">
+								
+			
 			<div class="form-group">
 				<label for="nameField" class="col-sm-2 control-label esoft-left">Nom:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
@@ -57,7 +61,7 @@
 			<div class="form-group form-horizontal">
 				<label for="activ" class="col-sm-2 control-label esoft-left">compte
 
-					activÃ©:&nbsp;<span class="error">*</span></label>
+					activÃƒÂ©:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:checkbox path="active" />
 					<form:errors path="active" cssClass="error" />
@@ -147,7 +151,7 @@
 						<option value="Afghanistan (AF)">Afghanistan (AF)</option>
 						<option value="Afrique du Sud (ZA)">Afrique du Sud (ZA)</option>
 						<option value="Albanie (AL">Albanie (AL)</option>
-						<option value="Algérie (DZ)">Algérie (DZ)</option>
+						<option value="AlgÃ©rie (DZ)">AlgÃ©rie (DZ)</option>
 						<option value="Allemagne (DE)">Allemagne (DE)</option>
 						<option value="Andorre (AD)">Andorre (AD)</option>
 						<option value="Angola (AO)">Angola (AO)</option>
@@ -155,32 +159,32 @@
 						<option value="Antarctique (AQ)">Antarctique (AQ)</option>
 						<option value="Antigua-et-Barbuda (AG)">Antigua-et-Barbuda
 							(AG)</option>
-						<option value="Antilles néerlandaises (AN)">Antilles
-							néerlandaises (AN)</option>
+						<option value="Antilles nÃ©erlandaises (AN)">Antilles
+							nÃ©erlandaises (AN)</option>
 						<option value="Arabie Saoudite (SA)">Arabie Saoudite (SA)</option>
 						<option value="Argentine (AR)">Argentine (AR)</option>
-						<option value="Arménie (AM)">Arménie (AM)</option>
+						<option value="ArmÃ©nie (AM)">ArmÃ©nie (AM)</option>
 						<option value="Aruba (AW)">Aruba (AW)</option>
 						<option value="Australie (AU)">Australie (AU)</option>
 						<option value="Autriche (AT)">Autriche (AT)</option>
-						<option value="Azerbaïdjan (AZ)">Azerbaïdjan (AZ)</option>
+						<option value="AzerbaÃ¯djan (AZ)">AzerbaÃ¯djan (AZ)</option>
 						<option value="Bahamas (BS)">Bahamas (BS)</option>
-						<option value="Bahreïn (BH)">Bahreïn (BH)</option>
+						<option value="BahreÃ¯n (BH)">BahreÃ¯n (BH)</option>
 						<option value="Bangladesh (BD)">Bangladesh (BD)</option>
 						<option value="Barbade (BB)">Barbade (BB)</option>
 						<option value="Belgique (BE)">Belgique (BE)</option>
 						<option value="Belize (BZ)">Belize (BZ)</option>
-						<option value="Bénin (BJ)">Bénin (BJ)</option>
+						<option value="BÃ©nin (BJ)">BÃ©nin (BJ)</option>
 						<option value="Bermudes (BM)">Bermudes (BM)</option>
 						<option value="Bhoutan (BT)">Bhoutan (BT)</option>
-						<option value="Biélorussie (BY)">Biélorussie (BY)</option>
+						<option value="BiÃ©lorussie (BY)">BiÃ©lorussie (BY)</option>
 						<option value="Birmanie (Myanmar) (MM)">Birmanie
 							(Myanmar) (MM)</option>
 						<option value="Bolivie (BO)">Bolivie (BO)</option>
-						<option value="Bosnie-Herzégovine (BA">Bosnie-Herzégovine
+						<option value="Bosnie-HerzÃ©govine (BA">Bosnie-HerzÃ©govine
 							(BA)</option>
 						<option value="Botswana (BW)">Botswana (BW)</option>
-						<option value="Brésil (BR)">Brésil (BR)</option>
+						<option value="BrÃ©sil (BR)">BrÃ©sil (BR)</option>
 						<option value="Brunei (BN)">Brunei (BN)</option>
 						<option value="Bulgarie (BG)">Bulgarie (BG)</option>
 						<option value="Burkina Faso (BF)">Burkina Faso (BF)</option>
@@ -195,20 +199,20 @@
 						<option value="Colombie (CO)">Colombie (CO)</option>
 						<option value="Comores (KM)">Comores (KM)</option>
 						<option value="Congo (CG)">Congo (CG)</option>
-						<option value="Corée du Nord (KP)">Corée du Nord (KP)</option>
-						<option value="Corée du Sud (KR)">Corée du Sud (KR)</option>
+						<option value="CorÃ©e du Nord (KP)">CorÃ©e du Nord (KP)</option>
+						<option value="CorÃ©e du Sud (KR)">CorÃ©e du Sud (KR)</option>
 						<option value="Costa Rica (CR)">Costa Rica (CR)</option>
-						<option value="Côte d'Ivoire (CI)">Côte d'Ivoire (CI)</option>
+						<option value="CÃ´te d'Ivoire (CI)">CÃ´te d'Ivoire (CI)</option>
 						<option value="Croatie (HR)">Croatie (HR)</option>
 						<option value="Cuba (CU)">Cuba (CU)</option>
 						<option value="Danemark (DK)">Danemark (DK)</option>
 						<option value="Djibouti (DJ)">Djibouti (DJ)</option>
 						<option value="Dominique (DM)">Dominique (DM)</option>
 						<option value="Egypte (EG)">Egypte (EG)</option>
-						<option value="Émirats arabes unishh">Émirats arabes
+						<option value="Ã‰mirats arabes unishh">Ã‰mirats arabes
 							unishh (xx)</option>
 						<option value="Equateur (EC)">Equateur (EC)</option>
-						<option value="Erythrée (ER)">Erythrée (ER)</option>
+						<option value="ErythrÃ©e (ER)">ErythrÃ©e (ER)</option>
 						<option value="Espagne (ES)">Espagne (ES)</option>
 						<option value="Estonie (EE)">Estonie (EE)</option>
 						<option value="Etats-Unis (US)">Etats-Unis (US)</option>
@@ -218,23 +222,23 @@
 							(FR)</option>
 						<option value="Gabon (GA)">Gabon (GA)</option>
 						<option value="Gambie (GM)">Gambie (GM)</option>
-						<option value="Géorgie (GE)">Géorgie (GE)</option>
+						<option value="GÃ©orgie (GE)">GÃ©orgie (GE)</option>
 						<option value="Ghana (GH)">Ghana (GH)</option>
 						<option value="Gibraltar (GI)">Gibraltar (GI)</option>
 						<option value="Grande-Bretagne (GB)">Grande-Bretagne (GB)</option>
-						<option value="Grèce (GR)">Grèce (GR)</option>
+						<option value="GrÃ¨ce (GR)">GrÃ¨ce (GR)</option>
 						<option value="Grenade (GD)">Grenade (GD)</option>
 						<option value="Groenland (GL)">Groenland (GL)</option>
 						<option value="Guam (GU)">Guam (GU)</option>
 						<option value="Guatemala (GT)">Guatemala (GT)</option>
 						<option value="Guernesey (GG)">Guernesey (GG)</option>
-						<option value="Guinée (GN)">Guinée (GN)</option>
-						<option value="Guinée Equatoriale (GQ)">Guinée
+						<option value="GuinÃ©e (GN)">GuinÃ©e (GN)</option>
+						<option value="GuinÃ©e Equatoriale (GQ)">GuinÃ©e
 							Equatoriale (GQ)</option>
-						<option value="Guinée-Bissao (GW)">Guinée-Bissao (GW)</option>
-						<option value="Guyane française (GF)">Guyane française
+						<option value="GuinÃ©e-Bissao (GW)">GuinÃ©e-Bissao (GW)</option>
+						<option value="Guyane franÃ§aise (GF)">Guyane franÃ§aise
 							(GF)</option>
-						<option value="Haïti (HT)">Haïti (HT)</option>
+						<option value="HaÃ¯ti (HT)">HaÃ¯ti (HT)</option>
 						<option value="Honduras (HN)">Honduras (HN)</option>
 						<option value="Hong Kong (HK)">Hong Kong (HK)</option>
 						<option value="Hongrie (HU)">Hongrie (HU)</option>
@@ -246,20 +250,20 @@
 						<option value="Iles Cayman (KY)">Iles Cayman (KY)</option>
 						<option value="Iles Cook (CK)">Iles Cook (CK)</option>
 						<option value="Iles Falkland (FK)">Iles Falkland (FK)</option>
-						<option value="Iles Féroé (FO)">Iles Féroé (FO)</option>
+						<option value="Iles FÃ©roÃ© (FO)">Iles FÃ©roÃ© (FO)</option>
 						<option value="Iles Fidji (FJ)">Iles Fidji (FJ)</option>
-						<option value="Iles Géorgie du Sud et Sandwich du
+						<option value="Iles GÃ©orgie du Sud et Sandwich du
 							Sud (GS)">Iles
-							Géorgie du Sud et Sandwich du Sud (GS)</option>
+							GÃ©orgie du Sud et Sandwich du Sud (GS)</option>
 						<option value="Inde (IN)">Inde (IN)</option>
-						<option value="Indonésie (ID)">Indonésie (ID)</option>
+						<option value="IndonÃ©sie (ID)">IndonÃ©sie (ID)</option>
 						<option value="Iran (IR)">Iran (IR)</option>
 						<option value="Iraq (IQ)">Iraq (IQ)</option>
 						<option value="Irlande (IE)">Irlande (IE)</option>
 						<option value="Islande (IS)">Islande (IS)</option>
-						<option value="Israël (IL)">Israël (IL)</option>
+						<option value="IsraÃ«l (IL)">IsraÃ«l (IL)</option>
 						<option value="Italie (IT)">Italie (IT)</option>
-						<option value="Jamaïque (JM)">Jamaïque (JM)</option>
+						<option value="JamaÃ¯que (JM)">JamaÃ¯que (JM)</option>
 						<option value="Japon (JP)">Japon (JP)</option>
 						<option value="Jersey (JE)">Jersey (JE)</option>
 						<option value="Jordanie (JO)">Jordanie (JO)</option>
@@ -267,7 +271,7 @@
 						<option value="Kenya (KE)">Kenya (KE)</option>
 						<option value="Kirghizistan (KG)">Kirghizistan (KG)</option>
 						<option value="Kiribati (KI">Kiribati (KI)</option>
-						<option value="Koweït (KW)">Koweït (KW)</option>
+						<option value="KoweÃ¯t (KW)">KoweÃ¯t (KW)</option>
 						<option value="Laos (LA)">Laos (LA)</option>
 						<option value="Lesotho (LS)">Lesotho (LS)</option>
 						<option value="Lettonie (LV)">Lettonie (LV)</option>
@@ -278,9 +282,9 @@
 						<option value="Lituanie (LT">Lituanie (LT)</option>
 						<option value="Luxembourg (LU)">Luxembourg (LU)</option>
 						<option value="Macao (MO)">Macao (MO)</option>
-						<option value="Macédoine (Ex-République yougoslave)
-							(MK)">Macédoine
-							(Ex-République yougoslave) (MK)</option>
+						<option value="MacÃ©doine (Ex-RÃ©publique yougoslave)
+							(MK)">MacÃ©doine
+							(Ex-RÃ©publique yougoslave) (MK)</option>
 						<option value="Madagascar (MG)">Madagascar (MG)</option>
 						<option value="Malaisie (MY)">Malaisie (MY)</option>
 						<option value="Malawi (MW)">Malawi (MW)</option>
@@ -294,121 +298,121 @@
 						<option value="Mauritanie (MR)">Mauritanie (MR)</option>
 						<option value="Mayotte (YT)">Mayotte (YT)</option>
 						<option value="Mexique (MX)">Mexique (MX)</option>
-						<option value="Micronésie (FM)">Micronésie (FM)</option>
+						<option value="MicronÃ©sie (FM)">MicronÃ©sie (FM)</option>
 						<option value="Moldavie (MD)">Moldavie (MD)</option>
 						<option value="Monaco (MC)">Monaco (MC)</option>
 						<option value="Mongolie (MN">Mongolie (MN)</option>
 						<option value="Monserrat (MS)">Monserrat (MS)</option>
-						<option value="Monténégro (ME)">Monténégro (ME)</option>
+						<option value="MontÃ©nÃ©gro (ME)">MontÃ©nÃ©gro (ME)</option>
 						<option value="Mozambique (MZ)">Mozambique (MZ)</option>
 						<option value="Namibie (NA)">Namibie (NA)</option>
 						<option value="auru (NR)">Nauru (NR)</option>
-						<option value="Népal (NP)">Népal (NP)</option>
+						<option value="NÃ©pal (NP)">NÃ©pal (NP)</option>
 						<option value="Nicaragua (NI)">Nicaragua (NI)</option>
 						<option value="Niger (NE)">Niger (NE)</option>
 						<option value="Nigeria (NG)">Nigeria (NG)</option>
-						<option value="Nioué (NU)">Nioué (NU)</option>
-						<option value="Norvège (NO)">Norvège (NO)</option>
-						<option value="Nouvelle-Calédonie (NC)">Nouvelle-Calédonie
+						<option value="NiouÃ© (NU)">NiouÃ© (NU)</option>
+						<option value="NorvÃ¨ge (NO)">NorvÃ¨ge (NO)</option>
+						<option value="Nouvelle-CalÃ©donie (NC)">Nouvelle-CalÃ©donie
 							(NC)</option>
-						<option value="Nouvelle-Zélande (NZ)">Nouvelle-Zélande
+						<option value="Nouvelle-ZÃ©lande (NZ)">Nouvelle-ZÃ©lande
 							(NZ)</option>
 						<option value="Oman (OM)">Oman (OM)</option>
 						<option value="Ouganda (UG)">Ouganda (UG)</option>
-						<option value="Ouzbékistan (UZ)">Ouzbékistan (UZ)</option>
+						<option value="OuzbÃ©kistan (UZ)">OuzbÃ©kistan (UZ)</option>
 						<option value="Pakistan (PK)">Pakistan (PK)</option>
 						<option value="Palaos (PW)">Palaos (PW)</option>
 						<option value="Panama (PA)">Panama (PA)</option>
-						<option value="Papouasie-Nouvelle-Guinée (PG)">Papouasie-Nouvelle-Guinée
+						<option value="Papouasie-Nouvelle-GuinÃ©e (PG)">Papouasie-Nouvelle-GuinÃ©e
 							(PG)</option>
 						<option value="Paraguay (PY)">Paraguay (PY)</option>
 						<option value="Pays-Bas (NL)">Pays-Bas (NL)</option>
-						<option value="Pérou (PE)">Pérou (PE)</option>
+						<option value="PÃ©rou (PE)">PÃ©rou (PE)</option>
 						<option value="Philippines (PH)">Philippines (PH)</option>
 						<option value="Pologne (PL)">Pologne (PL)</option>
-						<option value="Polynésie française (PF)">Polynésie
-							française (PF)</option>
+						<option value="PolynÃ©sie franÃ§aise (PF)">PolynÃ©sie
+							franÃ§aise (PF)</option>
 						<option value="Porto Rico (PR)">Porto Rico (PR)</option>
 						<option value="Portugal (PT)">Portugal (PT)</option>
 						<option value="Qatar (QA)">Qatar (QA)</option>
-						<option value="République Dominicaine (DO)">République
+						<option value="RÃ©publique Dominicaine (DO)">RÃ©publique
 							Dominicaine (DO)</option>
-						<option value="République Tchèque (CZ)">République
-							Tchèque (CZ)</option>
-						<option value="République centrafricaine (CF)">République
+						<option value="RÃ©publique TchÃ¨que (CZ)">RÃ©publique
+							TchÃ¨que (CZ)</option>
+						<option value="RÃ©publique centrafricaine (CF)">RÃ©publique
 							centrafricaine (CF)</option>
-						<option value="République démocratique du Congo (CD)">République
-							démocratique du Congo (CD)</option>
+						<option value="RÃ©publique dÃ©mocratique du Congo (CD)">RÃ©publique
+							dÃ©mocratique du Congo (CD)</option>
 						<option value="Roumanie (RO)">Roumanie (RO)</option>
 						<option value="Russie (RU)">Russie (RU)</option>
 						<option value="Rwanda (RW)">Rwanda (RW)</option>
 						<option value="Sahara Occidental (EH)">Sahara Occidental
 							(EH)</option>
-						<option value="Saint-Barthélemy (BL)">Saint-Barthélemy
+						<option value="Saint-BarthÃ©lemy (BL)">Saint-BarthÃ©lemy
 							(BL)</option>
-						<option value="Saint-Christophe-et-Niévès (KN)">Saint-Christophe-et-Niévès
+						<option value="Saint-Christophe-et-NiÃ©vÃ¨s (KN)">Saint-Christophe-et-NiÃ©vÃ¨s
 							(KN)</option>
 						<option value="Saint-Marin (SM)">Saint-Marin (SM)</option>
 						<option value="Saint-Martin (MF)">Saint-Martin (MF)</option>
 						<option value="Saint-Pierre-et-Miquelon (PM)">Saint-Pierre-et-Miquelon
 							(PM)</option>
-						<option value="Saint-Siège (Vatican) (VA)">Saint-Siège
+						<option value="Saint-SiÃ¨ge (Vatican) (VA)">Saint-SiÃ¨ge
 							(Vatican) (VA)</option>
 						<option value="Saint-Vincent-et-les-Grenadines (VC)">Saint-Vincent-et-les-Grenadines
 							(VC)</option>
-						<option value="Sainte-Hélène (SH)">Sainte-Hélène (SH)</option>
+						<option value="Sainte-HÃ©lÃ¨ne (SH)">Sainte-HÃ©lÃ¨ne (SH)</option>
 						<option value="Sainte-Lucie (LC)">Sainte-Lucie (LC)</option>
 						<option value="Salvador (SV)">Salvador (SV)</option>
 						<option value="Samoa (WS)">Samoa (WS)</option>
-						<option value="Samoa américaines (AS)">Samoa américaines
+						<option value="Samoa amÃ©ricaines (AS)">Samoa amÃ©ricaines
 							(AS)</option>
-						<option value="Sao Tomé-et-Principe (ST)">Sao
-							Tomé-et-Principe (ST)</option>
-						<option value="Sénégal (SN)">Sénégal (SN)</option>
+						<option value="Sao TomÃ©-et-Principe (ST)">Sao
+							TomÃ©-et-Principe (ST)</option>
+						<option value="SÃ©nÃ©gal (SN)">SÃ©nÃ©gal (SN)</option>
 						<option value="Serbie (RS)">Serbie (RS)</option>
 						<option value="Seychelles (SC)">Seychelles (SC)</option>
 						<option value="Sierra Leone (SL)">Sierra Leone (SL)</option>
 						<option value="Singapoure (SG)">Singapoure (SG)</option>
 						<option value="Slovaquie (SK)">Slovaquie (SK)</option>
-						<option value="Slovénie (SI)">Slovénie (SI)</option>
+						<option value="SlovÃ©nie (SI)">SlovÃ©nie (SI)</option>
 						<option value="Somalie (SO)">Somalie (SO)</option>
 						<option value="Soudan (SD)">Soudan (SD)</option>
 						<option value="Sri Lanka (LK)">Sri Lanka (LK)</option>
-						<option value="Suède (SE)">Suède (SE)</option>
+						<option value="SuÃ¨de (SE)">SuÃ¨de (SE)</option>
 						<option value="Suisse (CH)">Suisse (CH)</option>
 						<option value="Suriname (SR)">Suriname (SR)</option>
 						<option value="Swaziland (SZ)">Swaziland (SZ)</option>
 						<option value="Syrie (SY)">Syrie (SY)</option>
 						<option value="Tadjikistan (TJ)">Tadjikistan (TJ)</option>
-						<option value="Taïwan (TW)">Taïwan (TW)</option>
+						<option value="TaÃ¯wan (TW)">TaÃ¯wan (TW)</option>
 						<option value="Tanzanie (TZ)">Tanzanie (TZ)</option>
 						<option value="Tchad (TD)">Tchad (TD)</option>
-						<option value="Terres australes françaises (TF)">Terres
-							australes françaises (TF)</option>
+						<option value="Terres australes franÃ§aises (TF)">Terres
+							australes franÃ§aises (TF)</option>
 						<option value=" Palestinne">Territoire Palestinne</option>
 						<option
-							value="Territoire britannique de l'Océan
+							value="Territoire britannique de l'OcÃ©an
 							Indien (IO)">Territoire
-							britannique de l'Océan Indien (IO)</option>
-						<option value="Thaïlande (TH)">Thaïlande (TH)</option>
+							britannique de l'OcÃ©an Indien (IO)</option>
+						<option value="ThaÃ¯lande (TH)">ThaÃ¯lande (TH)</option>
 						<option value="217">Timor Oriental (TL)</option>
 						<option value="Togo (TG)">Togo (TG)</option>
-						<option value="Tokélaou (TK)">Tokélaou (TK)</option>
+						<option value="TokÃ©laou (TK)">TokÃ©laou (TK)</option>
 						<option value="Tonga (TO)">Tonga (TO)</option>
-						<option value="Trinité-et-Tobago (TT)">Trinité-et-Tobago
+						<option value="TrinitÃ©-et-Tobago (TT)">TrinitÃ©-et-Tobago
 							(TT)</option>
 						<option value="Tunisie (TN)">Tunisie (TN)</option>
-						<option value="Turkménistan (TM)">Turkménistan (TM)</option>
+						<option value="TurkmÃ©nistan (TM)">TurkmÃ©nistan (TM)</option>
 						<option value="Turquie (TR)">Turquie (TR)</option>
 						<option value="Tuvalu (TV)">Tuvalu (TV)</option>
 						<option value="Ukraine (UA)">Ukraine (UA)</option>
 						<option value="Uruguay (UY)">Uruguay (UY)</option>
 						<option value="Vanuatu (VU)">Vanuatu (VU)</option>
-						<option value="Vénézuela (VE)">Vénézuela (VE)</option>
-						<option value="Viêt Nam (VN)">Viêt Nam (VN)</option>
+						<option value="VÃ©nÃ©zuela (VE)">VÃ©nÃ©zuela (VE)</option>
+						<option value="ViÃªt Nam (VN)">ViÃªt Nam (VN)</option>
 						<option value="Wallis-et-Futuna (WF)">Wallis-et-Futuna
 							(WF)</option>
-						<option value="Yémen (YE)">Yémen (YE)</option>
+						<option value="YÃ©men (YE)">YÃ©men (YE)</option>
 						<option value="Zambie (ZM)">Zambie (ZM)</option>
 						<option value="Zimbabwe (ZW)">Zimbabwe (ZW)</option>
 					</form:select>
@@ -487,7 +491,7 @@ $(document).ready(function(){
 <script>
 // $("[name='active']").bootstrapSwitch({
 // 	"on-label":"actif",
-// 	"off-label":"désSactif"
+// 	"off-label":"dÃ©sSactif"
 	
 	
 // });

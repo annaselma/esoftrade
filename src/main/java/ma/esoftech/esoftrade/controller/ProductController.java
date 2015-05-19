@@ -1,13 +1,18 @@
 package ma.esoftech.esoftrade.controller;
 
+import java.io.IOException;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.servlet.ServletContext;
 import javax.validation.Valid;
 
+import ma.esoftech.esoftrade.DTO.FileDTO;
 import ma.esoftech.esoftrade.DTO.PCategoryDTO;
 import ma.esoftech.esoftrade.DTO.PasswordDTO;
 import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
+import ma.esoftech.esoftrade.DTO.associated.FileAssociatedDTO;
 import ma.esoftech.esoftrade.controller.session.SessionBean;
 import ma.esoftech.esoftrade.datatablesAPI.Order;
 import ma.esoftech.esoftrade.datatablesAPI.RequestTable;
@@ -17,7 +22,9 @@ import ma.esoftech.esoftrade.exception.ProductNotFoundException;
 import ma.esoftech.esoftrade.exception.UserNameException;
 import ma.esoftech.esoftrade.exception.UserNotFoundException;
 import ma.esoftech.esoftrade.service.ICategoryProduct;
+import ma.esoftech.esoftrade.service.IFileService;
 import ma.esoftech.esoftrade.service.IProductService;
+import ma.esoftech.esoftrade.utils.FileUploadUTILS;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
@@ -29,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/product")
@@ -40,18 +48,24 @@ public class ProductController extends AbstractController {
 	@Autowired
 	ICategoryProduct categoryService;
 	@Autowired
-   SessionBean sessionBean;
-	 
+	IFileService fileService;
+	@Autowired
+	ServletContext servletContext;
+	@Autowired
+	SessionBean sessionBean;
 	UserDTO currentUser;
+
+	
+	protected void initialize() {
+		this.currentUser = sessionBean.getUserDTO();
+	}
+ 
 	
 	public ProductController() {
 	}
-	private void initialize() {
-		this.currentUser = sessionBean.getUserDTO();
-	}
-	
+
 	@RequestMapping(value="/profile",method = RequestMethod.GET)
-	public String loadProduct(@RequestParam long id, ModelMap model){
+	public String loadProduct(@RequestParam long id, ModelMap model,@RequestParam(required=false,defaultValue="false") boolean file){
 		ProductDTO product=null;
 		try {
 			
@@ -60,7 +74,7 @@ public class ProductController extends AbstractController {
 			model.addAttribute("messageError","product with id="+ id+"doesn't exist");
 			return "error";
 		}
-
+		FileUploadUTILS.prepareTabProfil(model, file);
         model.addAttribute("product", product);
 		
 		return "productProfile";
@@ -84,8 +98,6 @@ public class ProductController extends AbstractController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String loadProductCreateForm(ModelMap model) {
 		initialize();
-		List<PCategoryDTO> listCategory=categoryService.getListCategory(0, 1000);
-		model.addAttribute("categoryItems",listCategory);
 		ProductDTO productdto= new ProductDTO();
 		model.addAttribute("product", productdto);
 		return "createProduct";
@@ -100,7 +112,7 @@ public class ProductController extends AbstractController {
 	@RequestMapping(value="/update", method=RequestMethod.POST)
 	public String updateProduct( @ModelAttribute("product") @Valid ProductDTO product, BindingResult result,ModelMap model){
 		if(result.hasErrors()){
-			return "createProduct";
+			return "updateProduct";
 		}
 		initialize();
 		try {
@@ -113,6 +125,7 @@ public class ProductController extends AbstractController {
 		 return PATH_PROFIL+"?id="+product.getId();
 	}
 	
+
 	@RequestMapping(value="/update",method=RequestMethod.GET)
 	 public String loadUpdateProductPage(@RequestParam long id, ModelMap model){
 		 ProductDTO product=null;
@@ -126,8 +139,7 @@ public class ProductController extends AbstractController {
 			 return "error";
 		 }
 		 model.addAttribute("product",product);
-		 List<PCategoryDTO> listCategory=categoryService.getListCategory(0, 1000);
-			model.addAttribute("categoryItems",listCategory);
+		
 		 return"updateProduct";
 	 }
 	@RequestMapping(value="/list",method=RequestMethod.GET)
@@ -155,6 +167,59 @@ public class ProductController extends AbstractController {
 			response.setRecordsTotal(recordsTotal);
 			response.setData(list);
 			return response;
+		}
+		@RequestMapping(value="/image",method=RequestMethod.POST)
+		public String uploadImage(@RequestParam(value = "file") MultipartFile file,@RequestParam long id,ModelMap model){
+		
+			initialize();
+			
+			if(file.isEmpty()){
+				 model.addAttribute("messageError","no file exist ");
+				 return "error";	
+			}
+			try {
+				FileDTO picture=fileService.createFile(file.getBytes(), file.getOriginalFilename(),
+						FileUploadUTILS.getPathFile(), currentUser);
+
+				productService.updatePicture(picture, id, currentUser);
+			} catch (IOException e) {
+				model.addAttribute("messageError",e.getMessage());
+				return "error";
+			} catch (ProductNotFoundException e) {
+				model.addAttribute("messageError",e.getMessage());
+				return "error";
+			}
+			 return PATH_PROFIL+"?id="+id+"&file=true";
+		}
+		@RequestMapping(value="/upload",method=RequestMethod.POST)
+		public String uploadAttachedFile(@RequestParam(value = "file") MultipartFile file,@RequestParam long id,ModelMap model){
+		
+			initialize();
+			
+			if(file.isEmpty()){
+				 model.addAttribute("messageError","no file exist ");
+				 return "error";			
+			}
+			try {
+				FileDTO fileDTO=fileService.createFile(file.getBytes(), file.getOriginalFilename(),
+						FileUploadUTILS.getPathFile(), currentUser);
+				
+				productService.attachFileToProduct(fileDTO, id, currentUser);
+			} catch (IOException e) {
+				model.addAttribute("messageError",e.getMessage());
+				return "error";
+			} catch (ProductNotFoundException e) {
+				model.addAttribute("messageError",e.getMessage());
+				return "error";
+			}
+			 return PATH_PROFIL+"?id="+id+"&file=true";
+		}
+		
+		
+		@ModelAttribute("categoryItems")
+		public List<PCategoryDTO> getCategoryList(){
+			 List<PCategoryDTO> listCategory=categoryService.getListCategory(0, 1000);
+				return listCategory;
 		}
 
 	}

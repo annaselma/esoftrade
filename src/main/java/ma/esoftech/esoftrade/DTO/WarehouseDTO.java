@@ -1,10 +1,13 @@
 package ma.esoftech.esoftrade.DTO;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.constraints.Size;
 
 import ma.esoftech.esoftrade.DTO.associated.EditorDTO;
+import ma.esoftech.esoftrade.DTO.associated.FileAssociatedDTO;
 
 public class WarehouseDTO {
 	private long id;
@@ -21,6 +24,8 @@ public class WarehouseDTO {
 	 private String zipCode;
 	 private String country;
 	 private String city;
+	 private  List<FileAssociatedDTO> files=new ArrayList<FileAssociatedDTO>();
+	 
 	public long getId() {
 		return id;
 	}
@@ -92,6 +97,12 @@ public class WarehouseDTO {
 	}
 	public void setRef(String ref) {
 		this.ref = ref;
+	}
+	public List<FileAssociatedDTO> getFiles() {
+		return files;
+	}
+	public void setFiles(List<FileAssociatedDTO> files) {
+		this.files = files;
 	}
 	 
 	 

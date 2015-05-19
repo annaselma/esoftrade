@@ -126,7 +126,7 @@ public MouvementDao() {
 	public long WarehouseCountByProduct(String filter, Product product) {
 		session=sessionFactory.getCurrentSession();
 		String hql="Select count(distinct mouvement.warehouse) From Mouvement as mouvement  "
-				+ "where mouvement.product=:product GROUP BY mouvement.warehouse having SUM(mouvement.quantity)>0 ";
+				+ "where mouvement.product=:product  ";
 				Query query =session.createQuery(hql);
 				query.setParameter("product", product);
 				Long count=(Long)query.uniqueResult();

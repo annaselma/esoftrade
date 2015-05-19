@@ -2,6 +2,7 @@ package ma.esoftech.esoftrade.service;
 
 import java.util.List;
 
+import ma.esoftech.esoftrade.DTO.FileDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.DTO.WarehouseDTO;
 import ma.esoftech.esoftrade.exception.WarehouseNotFoundException;
@@ -15,5 +16,6 @@ public interface IWarehouseService {
     public long createWarehouse(WarehouseDTO warehouse, UserDTO creator);
     public void updateWarehouse(WarehouseDTO warehouse, UserDTO modifier) throws WarehouseNotFoundException;
     public void deleteWarehouse(WarehouseDTO warehouse);
+    public void attachFileToWarehouse(FileDTO fileDTO,long id,UserDTO modifier) throws WarehouseNotFoundException;
     public long warehouseCount(String filter);
 }

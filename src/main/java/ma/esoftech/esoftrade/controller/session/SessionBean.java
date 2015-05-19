@@ -2,18 +2,22 @@ package ma.esoftech.esoftrade.controller.session;
 
 import java.util.UUID;
 
+import javax.annotation.PostConstruct;
+
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.service.IUserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+
+@Scope(value="session",proxyMode = ScopedProxyMode.TARGET_CLASS )
 @Component
-@Scope(value="session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class SessionBean {
 
 	@Autowired
@@ -26,7 +30,14 @@ public class SessionBean {
 	public IUserService getUserService() {
 		return userService;
 	}
-
+	
+    @PostConstruct
+	public void initializeUserDTO() {
+		this.userDTO=userService.findByName(getUserName());
+		if(userDTO==null){
+			userDTO=new UserDTO();
+		}
+	}
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
 	}

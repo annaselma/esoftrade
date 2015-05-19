@@ -1,9 +1,14 @@
 package ma.esoftech.esoftrade.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Index;
@@ -29,6 +34,21 @@ public class Warehouse extends MetaObject implements Serializable{
 	private String city;
 	@Column(name="ELMO_STATUSW", nullable=false, length=255)
 	private boolean open =true;
+	@OneToMany 
+	@JoinTable(
+	         name="ELMO_WAREHOUSE_FILE",
+	         joinColumns = @JoinColumn( name="ELMO_WAREHOUSE_ID"),
+	         inverseJoinColumns = @JoinColumn( name="ELMO_FILE_ID")
+	     )
+	private Set<File> files=new HashSet<File>();
+
+		 public Set<File> getFiles() {
+			return files;
+		}
+
+		public void setFiles(Set<File> files) {
+			this.files = files;
+		}
 	
 	public String getRef() {
 		return ref;

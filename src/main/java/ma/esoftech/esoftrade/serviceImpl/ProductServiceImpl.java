@@ -5,15 +5,21 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
+import ma.esoftech.esoftrade.DTO.FileDTO;
 import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
+import ma.esoftech.esoftrade.Dao.IFileDao;
 import ma.esoftech.esoftrade.Dao.IProductDao;
 import ma.esoftech.esoftrade.exception.ProductNotFoundException;
+import ma.esoftech.esoftrade.exception.UserNotFoundException;
+import ma.esoftech.esoftrade.model.File;
 import ma.esoftech.esoftrade.model.Product;
 import ma.esoftech.esoftrade.model.Role;
 import ma.esoftech.esoftrade.model.User;
+import ma.esoftech.esoftrade.service.IFileService;
 import ma.esoftech.esoftrade.service.IProductService;
 import ma.esoftech.esoftrade.service.ServiceUtils;
+import ma.esoftech.esoftrade.utils.FileUploadUTILS;
 
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +32,8 @@ public class ProductServiceImpl implements IProductService{
 Mapper mapper;
 @Autowired
 IProductDao productDao;
+@Autowired
+IFileDao fileDao;
 
 
 
@@ -71,11 +79,28 @@ public long createProduct(ProductDTO product, UserDTO creator) {
 	Product productEntity=(Product) mapper.map(product, Product.class);
 	ServiceUtils.buildEntityModel(creator, productEntity);
 	productEntity.setRef(ServiceUtils.TMP_REF);
+	Long idPicture=fileDao.createFile(createDefaultPicture());
+	File picture=new File();
+	picture.setId(idPicture);
+	productEntity.setPicture(picture);
 	Long idProduc=productDao.createProduct(productEntity);
 	productEntity.setId(idProduc);
      productEntity.generateReference();
 	productDao.updateProduct(productEntity);
 	return idProduc;
+}
+private File createDefaultPicture(){
+	File picture=new File();
+	picture.setCreateDate(new Date());
+	picture.setDeleted(false);
+	picture.setDescription("");
+	picture.setLastEdit(new Date());
+	picture.setLength(0);
+	picture.setMask(000);
+	picture.setName(FileUploadUTILS.DEFAULT_PICTURE_PRODUCT_NAME);
+	picture.setPath(FileUploadUTILS.getPathFile()+"/"+FileUploadUTILS.DEFAULT_PICTURE_PRODUCT_NAME);
+	picture.setType("png");
+	return picture;
 }
 @Override
 @Transactional(rollbackFor=Exception.class)
@@ -92,7 +117,36 @@ public void updateProduct(ProductDTO product, UserDTO modifier) throws ProductNo
     ServiceUtils.EditEntityModel(modifier, productEntity);
     productEntity.setDeleted(false);
     productEntity.setLastEdit(new Date());
+    productEntity.setPicture(producttmp.getPicture());
+    productEntity.setFiles(producttmp.getFiles());
 	productDao.updateProduct(productEntity);
+}
+@Transactional(rollbackFor=Exception.class)
+public void attachFileToProduct(FileDTO fileDTO,long id,UserDTO modifier) throws ProductNotFoundException{
+	Product productEntity=productDao.findById(id);
+    if(productEntity==null){
+   	 throw new ProductNotFoundException();
+    }
+    ServiceUtils.EditEntityModel(modifier, productEntity);
+    File file=new File();
+    file.setId(fileDTO.getId());
+    productEntity.getFiles().add(file);
+    productDao.updateProduct(productEntity);
+}
+@Transactional(rollbackFor=Exception.class)
+public void updatePicture(FileDTO picture,long id,UserDTO modifier) throws ProductNotFoundException{
+	Product productEntity=productDao.findById(id);
+     if(productEntity==null){
+    	 throw new ProductNotFoundException();
+     }
+     ServiceUtils.EditEntityModel(modifier, productEntity);
+     File file=new File();
+     file.setId(picture.getId());
+    File ImageToDelete=productEntity.getPicture();
+     productEntity.setPicture(file);
+     productDao.updateProduct(productEntity);
+     if(ImageToDelete!=null && ImageToDelete.getId()>0)
+            fileDao.deleteFile(ImageToDelete);
 }
 @Override
 @Transactional(rollbackFor=Exception.class)

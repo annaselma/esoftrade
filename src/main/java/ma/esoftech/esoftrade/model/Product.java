@@ -1,11 +1,15 @@
 package ma.esoftech.esoftrade.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Index;
@@ -26,9 +30,9 @@ public class Product  extends MetaObject implements Serializable {
 	 private Boolean sellingState= true;
 	@Column(name="ELMO_DESIERED_TRESHOLD", length= 255)
 	 private Integer desieredTreshold;
-	@Column(name="ELMO_ALERT_TRESHOLD",nullable=false,length= 255)
+	@Column(name="ELMO_ALERT_TRESHOLD",length= 255)
 	 private Integer alertTreshold;
-	@Column(name="ELMO_NATURE",nullable=false, length=255)
+	@Column(name="ELMO_NATURE", length=255)
 	private String nature;
 	
 	@Column(name="ELMO_DESCRIPTION",length= 1000)
@@ -43,12 +47,28 @@ public class Product  extends MetaObject implements Serializable {
 	 private float volume;
 	@Column(name="ELMO_PRICE",nullable=false)
 	 private float price;
-	@Column(name="ELMO_PICTURE",length= 255)
-	 private String picture;
+	@ManyToOne
+	@JoinColumn(name = "ELMO_PICTURE_ID")
+	 private File picture;
 	@Column(name="ELMO_BARRECODE", unique=true,length= 255)
 	 private String barreCode;
+	 @OneToMany
+     @JoinTable(
+         name="ELMO_PRODUCT_FILE",
+         joinColumns = @JoinColumn( name="ELMO_PRODCUT_ID"),
+         inverseJoinColumns = @JoinColumn( name="ELMO_FILE_ID")
+     )
+	private Set<File> files=new HashSet<File>();
 
-	 public Product(){
+	 public Set<File> getFiles() {
+		return files;
+	}
+
+	public void setFiles(Set<File> files) {
+		this.files = files;
+	}
+
+	public Product(){
 		 super();
 	 }
 
@@ -144,11 +164,11 @@ public class Product  extends MetaObject implements Serializable {
 		this.price = price;
 	}
 
-	public String getPicture() {
+	public File getPicture() {
 		return picture;
 	}
 
-	public void setPicture(String picture) {
+	public void setPicture(File picture) {
 		this.picture = picture;
 	}
 

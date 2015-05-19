@@ -13,11 +13,13 @@ import ma.esoftech.esoftrade.DTO.PCategoryDTO;
 import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.Dao.ICategoryProductDao;
+import ma.esoftech.esoftrade.DaoImp.ProductDao;
 import ma.esoftech.esoftrade.exception.PCatNotFoundException;
 import ma.esoftech.esoftrade.model.Product;
 import ma.esoftech.esoftrade.model.ProductCategory;
 import ma.esoftech.esoftrade.service.ICategoryProduct;
 import ma.esoftech.esoftrade.service.ServiceUtils;
+import ma.esoftech.esoftrade.utils.DozerHelper;
 
 @Service
 public class CategoryServiceImpl implements ICategoryProduct {
@@ -130,6 +132,12 @@ public class CategoryServiceImpl implements ICategoryProduct {
 		categoryEntity= new ProductCategory();
 		categoryEntity.setId(category.getId());
 		return categoryDao.productCountBycategory(filter, categoryEntity);
+	}
+	@Override
+	public List<PCategoryDTO> searchProductCategories(int lenght, int start,
+			String search) {
+		List<ProductCategory> listEntity=categoryDao.searchProductCategories(lenght, start, search);
+		return DozerHelper.map(mapper, listEntity,PCategoryDTO.class);
 	}
 
 	

@@ -2,6 +2,7 @@ package ma.esoftech.esoftrade.controller;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
 import ma.esoftech.esoftrade.DTO.PCategoryDTO;
@@ -32,7 +33,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/category")
-public class CategoryProductController {
+public class CategoryProductController extends AbstractController {
 	private static final String REDIRECT="redirect:";
 	private static final String PATH_PROFIL=REDIRECT+"/category/profile";
 	@Autowired
@@ -40,14 +41,15 @@ public class CategoryProductController {
 	@Autowired
 	SessionBean sessionBean;
 	UserDTO currentUser;
+
+	protected void initialize() {
+		this.currentUser = sessionBean.getUserDTO();
+	}
 	
 public CategoryProductController() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	private void initialize() {
-		this.currentUser = sessionBean.getUserDTO();
-	}
 	
 	@RequestMapping(value="/profile",method = RequestMethod.GET)
 	public String loadCategory(@RequestParam long id, ModelMap model){
@@ -183,7 +185,10 @@ public CategoryProductController() {
 			response.setData(list);
 			return response;
 		}
-
+		@RequestMapping(value="/search",method=RequestMethod.GET,produces = "application/json")
+		public @ResponseBody List<PCategoryDTO> searchCategories(@RequestParam String search,ModelMap model){
+			return categoryService.searchProductCategories(1000,0, search);
+		}
 
 		
 

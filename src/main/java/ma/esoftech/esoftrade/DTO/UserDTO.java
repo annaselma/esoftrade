@@ -9,6 +9,7 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 import ma.esoftech.esoftrade.DTO.associated.EditorDTO;
+import ma.esoftech.esoftrade.DTO.associated.FileAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.RoleAssociated;
 
 import org.hibernate.validator.constraints.Email;
@@ -33,8 +34,7 @@ private String name;
 @Past
 @NotNull(message="nuulll")
 private Date birdDay;
-@NotEmpty
-@Size(max=15, min=5)
+
 private String password;
 @Size(max=50,min=5)
 private String lastName;
@@ -54,7 +54,7 @@ private String telephone;
 private String telephonePro;
 @Size(max=20)
 private String fax;
-private String picture;
+private FileAssociatedDTO picture;
 private String civilite;
 @NotEmpty(message="Veillez saisir une adresse électronique valide")
 @Email
@@ -191,10 +191,10 @@ public void setActive(boolean active) {
 	this.active = active;
 }
 
-public String getPicture() {
+public FileAssociatedDTO getPicture() {
 	return picture;
 }
-public void setPicture(String picture) {
+public void setPicture(FileAssociatedDTO picture) {
 	this.picture = picture;
 }
 

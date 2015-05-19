@@ -7,16 +7,20 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import ma.esoftech.esoftrade.DTO.FileDTO;
 import ma.esoftech.esoftrade.DTO.RoleDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
+import ma.esoftech.esoftrade.Dao.IFileDao;
 import ma.esoftech.esoftrade.Dao.IUserDao;
 import ma.esoftech.esoftrade.converter.UserConverter;
 import ma.esoftech.esoftrade.exception.UserNameException;
 import ma.esoftech.esoftrade.exception.UserNotFoundException;
+import ma.esoftech.esoftrade.model.File;
 import ma.esoftech.esoftrade.model.Role;
 import ma.esoftech.esoftrade.model.User;
 import ma.esoftech.esoftrade.service.IUserService;
 import ma.esoftech.esoftrade.service.ServiceUtils;
+import ma.esoftech.esoftrade.utils.FileUploadUTILS;
 
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +34,8 @@ public class UserServiceImpl implements IUserService {
     Mapper mapper;
     @Autowired
     IUserDao userDao;
-    
+    @Autowired 
+    IFileDao fileDao;
     
 	@Override
 	@Transactional(readOnly=true)
@@ -108,6 +113,10 @@ public class UserServiceImpl implements IUserService {
 		userEntity.setRef(ServiceUtils.TMP_REF);
 		userEntity.setRoles(new HashSet<Role>());
 		userEntity.setPasswd(hashedPassword);
+		Long idPicture=fileDao.createFile(createDefaultPicture());
+		File picture=new File();
+		picture.setId(idPicture);
+		userEntity.setPicture(picture);
 		Long idUser=userDao.createUser(userEntity);
 		userEntity.setId(idUser);
 		userEntity.generateReference();
@@ -116,6 +125,19 @@ public class UserServiceImpl implements IUserService {
 //		System.out.println("referenceccc: "+userEntity.getRef());
 		userDao.updateUser(userEntity);
 		return idUser;
+	}
+	private File createDefaultPicture(){
+		File picture=new File();
+		picture.setCreateDate(new Date());
+		picture.setDeleted(false);
+		picture.setDescription("");
+		picture.setLastEdit(new Date());
+		picture.setLength(0);
+		picture.setMask(000);
+		picture.setName(FileUploadUTILS.DEFAULT_PICTURE_USER_NAME);
+		picture.setPath(FileUploadUTILS.getPathFile()+"/"+FileUploadUTILS.DEFAULT_PICTURE_USER_NAME);
+		picture.setType("png");
+		return picture;
 	}
 	@Override
 	@Transactional(rollbackFor=Exception.class)
@@ -182,13 +204,31 @@ public class UserServiceImpl implements IUserService {
 	     ServiceUtils.EditEntityModel(modifer, userEntity);
 	     userEntity.setDeleted(false);
 	     userEntity.setPasswd(usertmp.getPasswd());
+	     userEntity.setPicture(usertmp.getPicture());
 	     userEntity.setLastEdit(new Date());
 		userDao.updateUser(userEntity);
 	}
-	
 	private boolean hasChangeUserName(String newUserName,String oldUserName){
 		return !newUserName.equals(oldUserName);
 	}
+	
+	@Transactional(rollbackFor=Exception.class)
+	public void updatePicture(FileDTO picture,long id,UserDTO modifier) throws UserNotFoundException{
+		User userEntity=userDao.findById(id);
+	     if(userEntity==null){
+	    	 throw new UserNotFoundException();
+	     }
+	     ServiceUtils.EditEntityModel(modifier, userEntity);
+	     File file=new File();
+	     file.setId(picture.getId());
+	     File ImageToDelete=userEntity.getPicture();
+	     userEntity.setPicture(file);
+	     userDao.updateUser(userEntity);
+	     if(ImageToDelete!=null && ImageToDelete.getId()>0)
+	            fileDao.deleteFile(ImageToDelete);
+	}
+	
+	
 	@Override
 	@Transactional(rollbackFor=Exception.class)
 	public void editPassword(String newPassword, long id) throws UserNotFoundException {

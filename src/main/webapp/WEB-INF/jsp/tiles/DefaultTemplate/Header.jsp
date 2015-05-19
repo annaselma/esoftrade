@@ -195,23 +195,23 @@
 				<!-- User Account: style can be found in dropdown.less -->
 				<li class="dropdown user user-menu"><a href="#"
 					class="dropdown-toggle" data-toggle="dropdown"> <i
-						class="glyphicon glyphicon-user"></i> <span>${pageContext.request.userPrincipal.name}
+						class="glyphicon glyphicon-user"></i> <span class="full-name"> 
 							<i class="caret"></i>
 					</span>
 				</a>
 					<ul class="dropdown-menu">
 						<!-- User image -->
 						<li class="user-header bg-light-blue"><img
-							src="${baseURL}/img/avatar3.png" class="img-circle" alt="User Image" />
-							<p>
-								Kelmo-Ingenieur <small>Member since Nov. 2012</small>
+							src="" class="img-circle" alt="User Image" />
+							<p class="full-name">
+								 <small class="date-creation">membre depuis </small>
 							</p></li>
 						<!-- Menu Body -->
 						
 						<!-- Menu Footer-->
 						<li class="user-footer">
 							<div class="pull-left">
-								<a href="#" class="btn btn-default btn-flat">Profile</a>
+								<a href="" class="btn btn-default btn-flat">Profile</a>
 							</div>
 							<div class="pull-right">
 								<c:url value="/j_spring_security_logout" var="logoutUrl" />
@@ -234,6 +234,28 @@
 						</li>
 					</ul></li>
 			</ul>
+			<script type="text/javascript">
+			var $currentUser;
+			$(document).ready(function(){
+				    $.ajax({ // ajax call starts
+				      url: '${baseURL}/user/getCurrentUser', // JQuery loads serverside.php
+				      dataType: 'json', // Choosing a JSON datatype
+				    })
+				    .done(function(data) { // Variable data contains the data we get from serverside
+				    	console.log(data);
+				      if(data!=null){
+				    	  $currentUser=data;
+				    	  $(".user-menu .full-name").append(data.lastName +" "+data.name);
+				    	  $picture="${baseURL}/file?id="+data.picture.id;
+				    	  $profil="${baseURL}/user/profile?id="+data.id;
+				    	  $date=new Date(data.createDate);
+				    	  $(".user-menu .date-creation").append($date.format());
+				    	  $(".user-menu img").prop("src",$picture);
+				    	  $(".user-footer a").prop("href",$profil);
+				      }
+				    });
+				
+				});</script>
 		</div>
 	</nav>
 </header>

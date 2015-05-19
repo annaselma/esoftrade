@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
@@ -22,6 +23,7 @@ import ma.esoftech.esoftrade.exeption.FileNotFoundException;
 import ma.esoftech.esoftrade.model.File;
 import ma.esoftech.esoftrade.service.IFileService;
 import ma.esoftech.esoftrade.service.ServiceUtils;
+import ma.esoftech.esoftrade.utils.DozerHelper;
 @Service
 public class FileServiceImpl implements IFileService {
 
@@ -40,7 +42,7 @@ public class FileServiceImpl implements IFileService {
 		fileEntity.setMask(700);
 		fileEntity.setName(nameFile);
 		fileEntity.setPath(path);
-		fileEntity.setSize(file.length);
+		fileEntity.setLength(file.length);
 		fileEntity.setType("");
 		long id=fileDao.createFile(fileEntity);
 		fileEntity.setId(id);
@@ -81,13 +83,28 @@ public class FileServiceImpl implements IFileService {
 		File fileEntity=fileDao.findFileById(id);
 		if(fileEntity==null)
 			throw new FileNotFoundException("file id:"+id+" not found");
-		response.setContentLength((int) fileEntity.getSize());
+		//response.setContentLength((int) fileEntity.getLength());
+		response.setContentType("image/jpg");
         response.setHeader("Content-Disposition","attachment; filename=\"" + fileEntity.getName() +"\"");
         FileInputStream inputStream;
-			inputStream = new FileInputStream(fileEntity.getPath());
+        java.io.File fichier=new java.io.File(fileEntity.getPath());
+        response.setContentLength((int) fichier.length());
+			inputStream = new FileInputStream(fichier);
 				FileCopyUtils.copy(inputStream, response.getOutputStream());
 	
 		return response;
+	}
+
+	@Transactional(readOnly=true)
+	public List<FileDTO> getFileList(int start, int length, String sorting,
+			String className, long id) {
+		List< File> listEntity=fileDao.getFileList(start, length, sorting, className, id);
+		return DozerHelper.map(mapper, listEntity, FileDTO.class);
+	}
+
+	@Transactional(readOnly=true)
+	public long countFile(String className, long id) {
+		return fileDao.countFile(className, id);
 	}
 
 }

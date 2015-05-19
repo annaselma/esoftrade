@@ -115,6 +115,17 @@ public class CategoryProductDao implements ICategoryProductDao {
 		return count;
 	}
 
+	@Override
+	public List<ProductCategory> searchProductCategories(int lenght, int start,
+			String search) {
+		session=sessionFactory.getCurrentSession();
+		String hql="select category From ProductCategory as category where category.name like :search";
+		Query query=session.createQuery(hql);
+		query.setString("search", "%"+search+"%");
+		query.setFirstResult(start).setMaxResults(lenght);
+		return query.list();
+	}
+
 	
 
 }
