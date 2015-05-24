@@ -110,6 +110,24 @@
 	<put-attribute name="page" value="/WEB-INF/jsp/page/user/updateUser.jsp" />
 	</definition>
 	<!-- /User Pages -->
+	<!-- Manufacturing Pages -->
+	<definition name="manufacturingProfile" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Manufacturing/manufacturingProfile.jsp" />
+	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/Manufacturing/profileTitle.jsp" />
+	</definition>
+	<definition name="createManufacturing" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Manufacturing/createManufacturing.jsp" />
+	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/Manufacturing/createTitle.jsp" />
+	</definition>
+	<definition name="manufacturingList" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Manufacturing/manufacturingList.jsp" />
+	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/Manufacturing/listTitle.jsp" />
+	</definition>
+	<definition name="updateManufacturing" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Manufacturing/updateManufacturing.jsp" />
+	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/Manufacturing/updateTitle.jsp" />
+	</definition>
+	<!-- /Manufacturing Pages -->
 	<definition name="login" template="/WEB-INF/jsp/page/login.jsp"/>
 	<definition name="customer"
 		template="/WEB-INF/jsp/page/custumer.jsp"/>

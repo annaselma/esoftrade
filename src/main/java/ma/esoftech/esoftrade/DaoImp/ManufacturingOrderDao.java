@@ -19,7 +19,7 @@ public class ManufacturingOrderDao implements IManufacturinOrder{
 	@Override
 	public OrderManufacturing findById(long id) {
 		session=sessionFactory.getCurrentSession();
-		String hql="From OrderManufacturing as OF where OF.id=:id ";
+		String hql="From OrderManufacturing as fabrication where fabrication.id=:id ";
 		Query query= session.createQuery(hql);
 		query.setLong("id", id);
 		OrderManufacturing OF=(OrderManufacturing) query.uniqueResult();
@@ -29,7 +29,7 @@ public class ManufacturingOrderDao implements IManufacturinOrder{
 	@Override
 	public OrderManufacturing findByRef(String ref) {
 		session= sessionFactory.getCurrentSession();	
-		String hql=" From OrderManufacturing as OF  where OF.ref=: ref";
+		String hql=" From OrderManufacturing as fabrication  where fabrication.ref=: ref";
 		org.hibernate.Query query= null;
 		query= session.createQuery(hql);
 		query.setString("ref", ref);
@@ -44,7 +44,7 @@ public class ManufacturingOrderDao implements IManufacturinOrder{
 		if(sorting ==null ||sorting.equals("")){
 			sorting ="id ASC";
 		}
-	     String hql="From OrderManufacturing as OF order by OF."+sorting;
+	     String hql="From OrderManufacturing as fabrication order by fabrication."+sorting;
 	     org.hibernate.Query query=session.createQuery(hql);
 	     query.setFirstResult(start).setMaxResults(length);
 	     List<OrderManufacturing>orderManu= query.list();
@@ -52,31 +52,31 @@ public class ManufacturingOrderDao implements IManufacturinOrder{
 	}
 
 	@Override
-	public long createOF(OrderManufacturing OF) {
+	public long createOF(OrderManufacturing OFabrication) {
 		session=sessionFactory.getCurrentSession();
-		Long idReturned=(Long)session.save(OF);
+		Long idReturned=(Long)session.save(OFabrication);
 		return idReturned;
 	}
 
 	@Override
-	public void updateOF(OrderManufacturing OF) {
+	public void updateOF(OrderManufacturing OFabrication) {
 		session= sessionFactory.getCurrentSession();
 		session.flush();
 		session.clear();
-		session.update(OF);
+		session.update(OFabrication);
 	}
 
 	@Override
-	public void deleteOF(OrderManufacturing OF) {
+	public void deleteOF(OrderManufacturing OFabrication) {
 		session=sessionFactory.getCurrentSession();
-		session.delete(OF);
+		session.delete(OFabrication);
 		
 	}
 
 	@Override
 	public long ManufacturingCount(String filter) {
 		session=sessionFactory.getCurrentSession();
-		Long count=(Long)session.createQuery(" Select count(OrderManufacturing) from OrderManufacturing as OF").uniqueResult();
+		Long count=(Long)session.createQuery(" Select count(OFabrication) from OrderManufacturing as OFabrication").uniqueResult();
 		return count;
 	}
 	}

@@ -8,11 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ma.esoftech.esoftrade.DTO.FileDTO;
 import ma.esoftech.esoftrade.DTO.OrderManufacturingDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
+import ma.esoftech.esoftrade.Dao.IFileDao;
 import ma.esoftech.esoftrade.Dao.IManufacturinOrder;
 import ma.esoftech.esoftrade.exception.ManufacturingNotFoundException;
+import ma.esoftech.esoftrade.exception.ProductNotFoundException;
+import ma.esoftech.esoftrade.model.File;
 import ma.esoftech.esoftrade.model.OrderManufacturing;
+import ma.esoftech.esoftrade.model.Product;
+import ma.esoftech.esoftrade.service.IFileService;
 import ma.esoftech.esoftrade.service.IManufacturingOrderService;
 import ma.esoftech.esoftrade.service.ServiceUtils;
 import ma.esoftech.esoftrade.utils.DozerHelper;
@@ -22,6 +28,8 @@ public class ManufacturingOrderServiceImp implements IManufacturingOrderService{
 Mapper mapper;
 @Autowired
 IManufacturinOrder manufacturingDao;
+@Autowired
+IFileDao fileDao;
 
 @Override
 @Transactional(readOnly=true)
@@ -92,6 +100,38 @@ public long OrderFacturingCount(String filter) {
 	
 	return manufacturingDao.ManufacturingCount(filter);
 }
+@Override
+@Transactional(rollbackFor=Exception.class)
+public void updatePicture(FileDTO picture, long id, UserDTO modifier) throws ManufacturingNotFoundException {
+	OrderManufacturing manufaturEntity= manufacturingDao.findById(id);
+    if(manufaturEntity==null){
+   	 throw new ManufacturingNotFoundException();
+    }
+    ServiceUtils.EditEntityModel(modifier, manufaturEntity);
+    File file=new File();
+    file.setId(picture.getId());
+   File ImageToDelete=manufaturEntity.getPicture();
+    manufaturEntity.setPicture(file);
+    manufacturingDao.updateOF(manufaturEntity);;
+    if(ImageToDelete!=null && ImageToDelete.getId()>0)
+           fileDao.deleteFile(ImageToDelete);
+	
+}
+@Override
+@Transactional(rollbackFor=Exception.class)
+public void attachFileToManufacturing(FileDTO fileDTO, long id, UserDTO modifier) throws ManufacturingNotFoundException {
+	OrderManufacturing manufacturingEntity= manufacturingDao.findById(id);
+    if(manufacturingEntity==null){
+   	 throw new ManufacturingNotFoundException();
+    }
+    ServiceUtils.EditEntityModel(modifier,manufacturingEntity);
+    File file=new File();
+    file.setId(fileDTO.getId());
+    manufacturingEntity.getFiles().add(file);
+    manufacturingDao.updateOF(manufacturingEntity);
+    
+}
+
 
 	
 }

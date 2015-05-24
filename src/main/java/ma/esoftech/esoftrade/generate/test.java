@@ -31,17 +31,7 @@ public class test {
 		//lazyExemple();
 		//cascadeCreateExemple();
 		String patternStr = "([a-zA-Z0-9\\._-]+@[a-zA-Z0-9\\.-]{2,}[\\.][a-zA-Z]{2,4})[|]*";
-		
-		try {
-			Pattern pattern = Pattern.compile(patternStr);
-			//erraj-i01@gmail.com-ggg@ggg.cc-dd-d@dd.com
-			Matcher matcher = pattern.matcher("erraj-i0;1@gmail.com|ggg@ggg.cc|dd-d@dd.com");
-		
-			while (matcher.find())
-				//set.add(matcher.group(1));
-			System.out.println(matcher.group(1));
-		} catch (PatternSyntaxException pse) {
-		}
+		System.out.println(Math.floor(-2.666));
 	}
 	public static void cascadeCreateExemple(){
 		SessionFactory sessionFactory=new Configuration().configure("hibernate2.cfg.xml").buildSessionFactory();
