@@ -17,7 +17,7 @@ import ma.esoftech.esoftrade.DTO.associated.FileAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.ProductAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.UserAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.WarehouseAssociatedDTO;
-import ma.esoftech.esoftrade.model.User;
+
 import ma.esoftech.esoftrade.model.OrderManufacturing.OFPRIORITY;
 import ma.esoftech.esoftrade.model.OrderManufacturing.OFStatus;
 
@@ -65,13 +65,6 @@ public class OrderManufacturingDTO {
 	private float totalTheoryCost;
 	private Integer deadline=0;
 	private Integer progress=0;
-	private UserAssociatedDTO user= new UserAssociatedDTO();
-	public UserAssociatedDTO getUser() {
-		return user;
-	}
-	public void setUser(UserAssociatedDTO user) {
-		this.user = user;
-	}
 	private FileAssociatedDTO picture=new FileAssociatedDTO();
 	public FileAssociatedDTO getPicture() {
 		return picture;

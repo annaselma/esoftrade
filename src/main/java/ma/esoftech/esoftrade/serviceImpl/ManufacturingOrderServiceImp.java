@@ -11,13 +11,16 @@ import org.springframework.transaction.annotation.Transactional;
 import ma.esoftech.esoftrade.DTO.FileDTO;
 import ma.esoftech.esoftrade.DTO.OrderManufacturingDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
+import ma.esoftech.esoftrade.DTO.WarehouseDTO;
 import ma.esoftech.esoftrade.Dao.IFileDao;
 import ma.esoftech.esoftrade.Dao.IManufacturinOrder;
 import ma.esoftech.esoftrade.exception.ManufacturingNotFoundException;
 import ma.esoftech.esoftrade.exception.ProductNotFoundException;
+import ma.esoftech.esoftrade.generate.User;
 import ma.esoftech.esoftrade.model.File;
 import ma.esoftech.esoftrade.model.OrderManufacturing;
 import ma.esoftech.esoftrade.model.Product;
+import ma.esoftech.esoftrade.model.Warehouse;
 import ma.esoftech.esoftrade.service.IFileService;
 import ma.esoftech.esoftrade.service.IManufacturingOrderService;
 import ma.esoftech.esoftrade.service.ServiceUtils;
@@ -83,6 +86,8 @@ public void updateOF(OrderManufacturingDTO OrderFacturing, UserDTO modifier) thr
     ServiceUtils.EditEntityModel(modifier,OFEntity);
     OFEntity.setDeleted(false);
     OFEntity.setLastEdit(new Date());
+    OFEntity.setPicture(OFTmp.getPicture());
+    OFEntity.setFiles(OFTmp.getFiles());
 	manufacturingDao.updateOF(OFEntity);
 }
 @Override
@@ -130,6 +135,18 @@ public void attachFileToManufacturing(FileDTO fileDTO, long id, UserDTO modifier
     manufacturingEntity.getFiles().add(file);
     manufacturingDao.updateOF(manufacturingEntity);
     
+}
+@Override
+@Transactional(readOnly=true)
+public List<UserDTO> searchResponsable(int lenght, int start, String search) {
+	List<User>UserEntity= manufacturingDao.searchResponsable(lenght, start, search);
+	return DozerHelper.map(mapper, UserEntity, UserDTO.class);
+}
+@Override
+@Transactional(readOnly=true)
+public List<WarehouseDTO> searchWarehouse(int lenght, int start, String search) {
+	List<Warehouse>WarehouseEntity=manufacturingDao.searchCenter(lenght, start, search);
+	return DozerHelper.map(mapper, WarehouseEntity, WarehouseDTO.class);
 }
 
 

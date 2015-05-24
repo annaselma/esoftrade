@@ -5,10 +5,12 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.swing.text.Utilities;
 import javax.validation.Valid;
 
 import ma.esoftech.esoftrade.DTO.FileDTO;
 import ma.esoftech.esoftrade.DTO.OrderManufacturingDTO;
+import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.DTO.WarehouseDTO;
 import ma.esoftech.esoftrade.controller.session.SessionBean;
@@ -22,6 +24,7 @@ import ma.esoftech.esoftrade.service.IManufacturingOrderService;
 import ma.esoftech.esoftrade.service.IUserService;
 import ma.esoftech.esoftrade.service.IWarehouseService;
 import ma.esoftech.esoftrade.utils.FileUploadUTILS;
+import ma.esoftech.esoftrade.utils.UTILS;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -222,4 +225,14 @@ public class ManufacturingController extends AbstractController {
 		public List<UserDTO> getUserList(){
 			 List<UserDTO>listeUser=userService.getAllUsers(0, 1000, "", "");
 				return listeUser;}
+		
+		@RequestMapping(value="/searchResponsable",method=RequestMethod.GET,produces = "application/json")
+		public @ResponseBody List<UserDTO> searchResponsable(@RequestParam String search,ModelMap model){
+			return  manufacturService.searchResponsable(UTILS.MAX_LENGHT_LIST, UTILS.START_LIST, search);
+		}
+		@RequestMapping(value="/search",method=RequestMethod.GET,produces = "application/json")
+		public @ResponseBody List<WarehouseDTO> searchCenter(@RequestParam String search,ModelMap model){
+			return  manufacturService.searchWarehouse(UTILS.MAX_LENGHT_LIST,UTILS.START_LIST, search);
+		}
+		
 }

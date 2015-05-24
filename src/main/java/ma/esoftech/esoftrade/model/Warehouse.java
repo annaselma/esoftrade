@@ -34,6 +34,8 @@ public class Warehouse extends MetaObject implements Serializable{
 	private String city;
 	@Column(name="ELMO_STATUSW", nullable=false, length=255)
 	private boolean open =true;
+	@Column(name="ELMO_ATELIER")
+	private boolean atelier=false;
 	@OneToMany 
 	@JoinTable(
 	         name="ELMO_WAREHOUSE_FILE",
@@ -99,6 +101,14 @@ public class Warehouse extends MetaObject implements Serializable{
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}
+	public boolean isAtelier() {
+		return atelier;
+	}
+
+	public void setAtelier(boolean atelier) {
+		this.atelier = atelier;
+	}
+
 	public String generateReference(){
 		String ref="";
 		ref=ref.concat(PREFIX_REF_ENT);

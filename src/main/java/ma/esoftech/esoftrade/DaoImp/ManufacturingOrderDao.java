@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ma.esoftech.esoftrade.Dao.IManufacturinOrder;
+import ma.esoftech.esoftrade.generate.User;
 import ma.esoftech.esoftrade.model.OrderManufacturing;
+import ma.esoftech.esoftrade.model.Warehouse;
 @Repository
 public class ManufacturingOrderDao implements IManufacturinOrder{
 
@@ -78,6 +80,26 @@ public class ManufacturingOrderDao implements IManufacturinOrder{
 		session=sessionFactory.getCurrentSession();
 		Long count=(Long)session.createQuery(" Select count(OFabrication) from OrderManufacturing as OFabrication").uniqueResult();
 		return count;
+	}
+
+	@Override
+	public List<User> searchResponsable(int lenght, int start, String search) {
+		session=sessionFactory.getCurrentSession();
+		String hql="select user From User as user where user.name like :search or user.lastName like :search";
+		org.hibernate.Query query=session.createQuery(hql);
+		query.setString("search", "%"+search+"%");
+		query.setFirstResult(start).setMaxResults(lenght);
+		return query.list();
+	}
+
+	@Override
+	public List<Warehouse> searchCenter(int lenght, int start, String search) {
+		session=sessionFactory.getCurrentSession();
+		String hql="select warehouse From Warehouse as warehouse where warehouse like :search";
+		org.hibernate.Query query=session.createQuery(hql);
+		query.setString("search", "%"+search+"%");
+		query.setFirstResult(start).setMaxResults(lenght);
+		return query.list();
 	}
 	}
 

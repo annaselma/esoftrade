@@ -40,7 +40,38 @@
 				</div>
            
 			</div>
-			
+			<div class="form-group">
+				<label for="caegoryField" class="col-sm-2 control-label esoft-left">responsableS:&nbsp;<span class="error">*</span></label>
+				<div class="col-sm-4" id="select-user">
+					<form:select path="responsible" cssClass="tokenize-sample mono-select "
+						id="user" size="1">
+						<c:if test="${responsible.id >0}">
+							<form:option value="${responsible.id}" selected="selected">
+								<c:out value="${responsible.name} ${responsible.lastName}" />
+							</form:option>
+						</c:if>
+					</form:select>
+					<form:errors path="responsible" cssClass="error" />
+				</div>
+				<script type="text/javascript"
+					src="${baseURL}/js/plugins/tokenize/jquery.tokenize.js"></script>
+				<script type="text/javascript">
+				$('#user').tokenize({
+					"newElements":false,
+					maxElements:1,
+					datas: "${baseURL}/manufacturing/searchResponsable",
+					valueField:"id",
+					textField:"name"
+					});
+				$("#select-user").on("focus", ".tokenize-sample ", function() {
+				    console.log($("#select-user .Token span").text());
+				   $text= $("#select-user .Token span").text();
+				   $(" #select-user .Token").remove();
+				   $("#select-user select option[selected='selected']").remove();
+				    $("#select-user .TokenSearch input").val($text);
+				});
+				</script>
+				</div>
 			<div class="form-group form-horizontal">
 				<label for="type" class="col-sm-2 control-label esoft-left">Sous Traitant:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
@@ -59,25 +90,38 @@
 			
 			<div class="form-group">
 				<label for="caegoryField" class="col-sm-2 control-label esoft-left">Warehouse:&nbsp;<span class="error">*</span></label>
-				<div class="col-sm-4">
-					<form:select path="center" cssClass="form-control ">
-						<form:options items="${warehouseItems}" itemLabel="name"
-							itemValue="id" />
+				<div class="col-sm-4" id="select-war">
+					<form:select path="center" cssClass="tokenize-sample mono-select "
+						id="warehouse" size="1">
+						<c:if test="${center.id >0}">
+							<form:option value="${center.id}" selected="selected">
+								<c:out value="${center.name}" />
+							</form:option>
+						</c:if>
 					</form:select>
 					<form:errors path="center" cssClass="error" />
 				</div>
+				<script type="text/javascript"
+					src="${baseURL}/js/plugins/tokenize/jquery.tokenize.js"></script>
+				<script type="text/javascript">
+				$('#warehouse').tokenize({
+					"newElements":false,
+					maxElements:1,
+					datas: "${baseURL}/warehouse/search",
+					valueField:"id",
+					textField:"name"
+					});
+				$("#select-war").on("focus", ".tokenize-sample ", function() {
+				    console.log($("#select-war .Token span").text());
+				   $text= $("#select-war .Token span").text();
+				   $(" #select-war .Token").remove();
+				   $("#select-war select option[selected='selected']").remove();
+				    $("#select-war .TokenSearch input").val($text);
+				});
+				</script>
 				</div>
 				
-				<div class="form-group">
-				<label for="caegoryField" class="col-sm-2 control-label esoft-left">Responsable:&nbsp;<span class="error">*</span></label>
-				<div class="col-sm-4">
-					<form:select path="user" cssClass="form-control ">
-						<form:options items="${userItems}" itemLabel="name"
-							itemValue="id" />
-					</form:select>
-					<form:errors path="user" cssClass="error" />
-				</div>
-				</div>
+				
 				
 			<div class="form-group">
 				<label for="lenghtField" class="col-sm-2 control-label esoft-left">Team:</label>
