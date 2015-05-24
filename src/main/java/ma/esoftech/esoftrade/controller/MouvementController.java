@@ -155,8 +155,16 @@ public class MouvementController extends AbstractController {
 	
 
 		@RequestMapping(value = "/correctStock", method = RequestMethod.POST)
-		public String correction(@ModelAttribute("mouvement") @Valid MouvementDTO mouvementdto,BindingResult result, ModelMap model) {			
+		public String correction(@ModelAttribute("mouvement") @Valid MouvementDTO mouvementdto,BindingResult result,ModelMap model) {			
 			if(result.hasErrors()){
+				 WarehouseDTO warehouse=null;
+				try {
+					 warehouse=warehouseService.findById(mouvementdto.getWarehouse().getId());
+				} catch( WarehouseNotFoundException e) {
+					 model.addAttribute("messageError","warehouse how id="+mouvementdto.getWarehouse().getId()+"doesn't exist ");
+					 return "error";
+				}
+				model.addAttribute("warehouse",warehouse);
 				return "correctionStock";
 			}
 			initialize();
@@ -174,6 +182,17 @@ public class MouvementController extends AbstractController {
 		public String transfertStock(@ModelAttribute("transfert") @Valid Transfertdto transfert,BindingResult result, ModelMap model) {
 			
 			if(result.hasErrors()){
+				ProductDTO product=null;
+				long qte;
+				try {
+					 product= productService.findProductById(transfert.getProduct().getId());
+					 qte=productService.getProductQuantity(product);
+				} catch( ProductNotFoundException e) {
+					 model.addAttribute("messageError","product how id="+transfert.getProduct().getId()+"doesn't exist ");
+					 return "error";
+				}
+				model.addAttribute("product",product);
+				model.addAttribute("qte", qte);
 				return "transfertStock";
 			}
 			initialize();
@@ -189,11 +208,13 @@ public class MouvementController extends AbstractController {
 			return "redirect:/product/profile?id="+productdto.getId();}
 		
 		@RequestMapping(value = "/transfertStock", method = RequestMethod.GET)
-		public String loadtransfertStock(@RequestParam long id, ModelMap model) {	 
+		public String loadtransfertStock(@RequestParam long id,@RequestParam(value="wid",defaultValue="0",required=false) long warehouseId, ModelMap model) {	 
 			ProductDTO product=null;
 			Transfertdto transfert= new Transfertdto();
+			long qte;
 			try {
 				 product= productService.findProductById(id);
+				 qte=productService.getProductQuantity(product);
 			} catch( ProductNotFoundException e) {
 				 model.addAttribute("messageError","product how id="+id+"doesn't exist ");
 				 return "error";
@@ -203,11 +224,24 @@ public class MouvementController extends AbstractController {
 				 return "error";
 			 }
 			ProductAssociatedDTO associatedProduct= new ProductAssociatedDTO();
+			if(warehouseId>0){
+				try {
+					WarehouseDTO wh=warehouseService.findById(warehouseId);
+					WarehouseAssociatedDTO source=new WarehouseAssociatedDTO();
+					source.setId(wh.getId());
+					source.setName(wh.getName());
+					transfert.setSource(source);
+				} catch (WarehouseNotFoundException e) {
+					e.printStackTrace();
+				}
+			}
 			associatedProduct.setId(id);
 			transfert.setProduct(associatedProduct);
 			List<WarehouseDTO>listWarehouse= warehouseService.getListWarehouse(0, 1000);
 			 model.addAttribute("warehouseItems", listWarehouse);
 				model.addAttribute("transfert",transfert);
+				model.addAttribute("product",product);
+				model.addAttribute("qte", qte);
 			return "transfertStock";
 			}
 		
@@ -232,14 +266,18 @@ public class MouvementController extends AbstractController {
 			List<ProductDTO> listProduct=productService.getAllproduct(0,1000,"id asc","");
 				model.addAttribute("productItems",listProduct);
 				model.addAttribute("mouvement",mouvement);
+				model.addAttribute("warehouse", warehouse);
 			 return"correctionStock";
 		 }
 		@RequestMapping(value="/correctionProduit",method=RequestMethod.GET)
-		public String loadCorrectStockProduct(@RequestParam long id, ModelMap model){
+		public String loadCorrectStockProduct(@RequestParam long id
+				,@RequestParam(value="wid",required=false,defaultValue="0") long warehouseId, ModelMap model){
 			ProductDTO product=null;
 			 MouvementDTO mouvement=new MouvementDTO();
+			 long qte;
 			try {
 				 product=productService.findProductById(id);
+				 qte=productService.getProductQuantity(product);
 			} catch( ProductNotFoundException e) {
 				 model.addAttribute("messageError","product how id="+id+"doesn't exist ");
 				 return "error";
@@ -248,17 +286,42 @@ public class MouvementController extends AbstractController {
 				 model.addAttribute("messageError","product how id="+id+"doesn't exist ");
 				 return "error";
 			 }
+			 if(warehouseId>0){
+					try {
+						WarehouseDTO wh=warehouseService.findById(warehouseId);
+						WarehouseAssociatedDTO wha=new WarehouseAssociatedDTO();
+						wha.setId(wh.getId());
+						wha.setName(wh.getName());
+						mouvement.setWarehouse(wha);
+					} catch (WarehouseNotFoundException e) {
+						e.printStackTrace();
+					}
+				}
 			ProductAssociatedDTO associatedproduct= new ProductAssociatedDTO();
 			associatedproduct.setId(id);
 			mouvement.setProduct(associatedproduct); 
 			List<WarehouseDTO>listWarehouse= warehouseService.getListWarehouse(0, 1000);
 				model.addAttribute("warehouseItems",listWarehouse);
 				model.addAttribute("mouvementSecond",mouvement);
+				model.addAttribute("product",product);
+				model.addAttribute("qte",qte);
 			return "correctionStockOther";
 		}
 		@RequestMapping(value = "/correctionProduit", method = RequestMethod.POST)
-		public String correctionStock(@ModelAttribute("mouvementSecond") @Valid MouvementDTO mouvementdto,BindingResult result, ModelMap model) {			
+		public String correctionStock(@ModelAttribute("mouvementSecond") @Valid MouvementDTO mouvementdto,BindingResult result,  ModelMap model) {			
 			if(result.hasErrors()){
+				ProductDTO product=null;
+				 MouvementDTO mouvement=new MouvementDTO();
+				 long qte;
+				try {
+					 product=productService.findProductById(mouvementdto.getProduct().getId());
+					 qte=productService.getProductQuantity(product);
+				} catch( ProductNotFoundException e) {
+					 model.addAttribute("messageError","product how id="+mouvementdto.getProduct().getId()+"doesn't exist ");
+					 return "error";
+				}
+				model.addAttribute("product",product);
+				model.addAttribute("qte",qte);
 				return "correctionStockOther";
 			}
 			initialize();

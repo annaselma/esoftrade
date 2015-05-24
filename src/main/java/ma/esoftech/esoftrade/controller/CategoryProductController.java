@@ -18,6 +18,7 @@ import ma.esoftech.esoftrade.exception.ProductNotFoundException;
 import ma.esoftech.esoftrade.model.Product;
 import ma.esoftech.esoftrade.model.ProductCategory;
 import ma.esoftech.esoftrade.service.ICategoryProduct;
+import ma.esoftech.esoftrade.utils.UTILS;
 
 import org.jboss.logging.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -187,7 +188,8 @@ public CategoryProductController() {
 		}
 		@RequestMapping(value="/search",method=RequestMethod.GET,produces = "application/json")
 		public @ResponseBody List<PCategoryDTO> searchCategories(@RequestParam String search,ModelMap model){
-			return categoryService.searchProductCategories(1000,0, search);
+			
+			return categoryService.searchProductCategories(UTILS.MAX_LENGHT_LIST,UTILS.START_LIST, search);
 		}
 
 		

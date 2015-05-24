@@ -6,6 +6,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import ma.esoftech.esoftrade.DTO.FileDTO;
+import ma.esoftech.esoftrade.DTO.PCategoryDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.DTO.WarehouseDTO;
 import ma.esoftech.esoftrade.controller.session.SessionBean;
@@ -17,6 +18,7 @@ import ma.esoftech.esoftrade.exception.WarehouseNotFoundException;
 import ma.esoftech.esoftrade.service.IFileService;
 import ma.esoftech.esoftrade.service.IWarehouseService;
 import ma.esoftech.esoftrade.utils.FileUploadUTILS;
+import ma.esoftech.esoftrade.utils.UTILS;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -191,5 +193,10 @@ public class WarehouseController extends AbstractController {
 		}
 		 return PATH_PROFIL+"?id="+id+"&file=true";
 	}
+	@RequestMapping(value="/search",method=RequestMethod.GET,produces = "application/json")
+	public @ResponseBody List<WarehouseDTO> searchWarehouses(@RequestParam String search,ModelMap model){
+		return  warehouseService.searchWarehouses(UTILS.MAX_LENGHT_LIST,UTILS.START_LIST, search);
+	}
+
 	
 }

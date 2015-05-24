@@ -4,6 +4,9 @@ import java.util.Date;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import ma.esoftech.esoftrade.DTO.associated.EditorDTO;
 import ma.esoftech.esoftrade.DTO.associated.ProductAssociatedDTO;
@@ -17,10 +20,12 @@ public class MouvementDTO {
 	 private EditorDTO modifier;
 	 private Date lastEdit;
 	 private String motif;
-	 private int quantity;
+	 private int quantity=0;
 	private MouvementType type;
-	private WarehouseAssociatedDTO warehouse=new WarehouseAssociatedDTO();
-	private ProductAssociatedDTO product=new ProductAssociatedDTO () ;
+	@NotNull(message="l'entrepot ne doit pas etre vide")
+	private WarehouseAssociatedDTO warehouse=null;
+	@NotNull(message="le produit ne doit pas etre vide")
+	private ProductAssociatedDTO product=null ;
 	public long getId() {
 		return id;
 	}

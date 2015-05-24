@@ -16,4 +16,5 @@ public interface IWarehouseDao {
     public long warehouseCount(String filter);
   public List<Product> getListProductByWarehouse(int lenght, int start, String sorting,String filter,Warehouse warehouse);
    public long productCountBywrehouse(String filter, Warehouse warehouse);
+List<Warehouse> searchWarehouses(int lenght, int start, String search);
 }

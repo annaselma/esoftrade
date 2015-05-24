@@ -112,6 +112,16 @@ Session session;
 		query.setFirstResult(start).setMaxResults(length);
 		return query.list();
 	}
+	@Override
+	public List<Warehouse> searchWarehouses(int lenght, int start,
+			String search) {
+		session=sessionFactory.getCurrentSession();
+		String hql="select warehouse From Warehouse as warehouse where warehouse.name like :search";
+		org.hibernate.Query query=session.createQuery(hql);
+		query.setString("search", "%"+search+"%");
+		query.setFirstResult(start).setMaxResults(lenght);
+		return query.list();
+	}
 
 	
 

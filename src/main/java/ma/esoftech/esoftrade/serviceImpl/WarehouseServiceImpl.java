@@ -4,22 +4,21 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.dozer.Mapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import ma.esoftech.esoftrade.DTO.FileDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.DTO.WarehouseDTO;
 import ma.esoftech.esoftrade.Dao.IWarehouseDao;
-import ma.esoftech.esoftrade.exception.ProductNotFoundException;
 import ma.esoftech.esoftrade.exception.WarehouseNotFoundException;
 import ma.esoftech.esoftrade.model.File;
-import ma.esoftech.esoftrade.model.Product;
 import ma.esoftech.esoftrade.model.Warehouse;
 import ma.esoftech.esoftrade.service.IWarehouseService;
 import ma.esoftech.esoftrade.service.ServiceUtils;
+import ma.esoftech.esoftrade.utils.DozerHelper;
+
+import org.dozer.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 @Service
 public class WarehouseServiceImpl implements IWarehouseService{
 @Autowired
@@ -133,6 +132,13 @@ IWarehouseDao warehouseDao;
 	    file.setId(fileDTO.getId());
 	    warehouseEntity.getFiles().add(file);
 	   warehouseDao.updateWarehouse(warehouseEntity);
+	}
+	@Override
+	@Transactional(readOnly=true)
+	public List<WarehouseDTO> searchWarehouses(int lenght, int start,
+			String search) {
+		List<Warehouse> listEntity=warehouseDao.searchWarehouses(lenght, start, search);
+		return DozerHelper.map(mapper, listEntity,WarehouseDTO.class);
 	}
 
 }

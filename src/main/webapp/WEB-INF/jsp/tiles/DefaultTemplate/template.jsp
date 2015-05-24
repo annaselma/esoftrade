@@ -38,6 +38,8 @@
         <link href="${baseURL}/css/AdminLTE.css" rel="stylesheet" type="text/css" />
          <!-- bootstrap-switch -->
          <link href="${baseURL}/css/bootstrap-switch.css" rel="stylesheet" type="text/css" />
+         <!--  tokenize style-->
+         <link rel="stylesheet" type="text/css" href="${baseURL}/css/tokenize/jquery.tokenize.css" />
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>

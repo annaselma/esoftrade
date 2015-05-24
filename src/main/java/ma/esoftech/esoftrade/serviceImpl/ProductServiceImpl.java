@@ -2,7 +2,6 @@ package ma.esoftech.esoftrade.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
 
 import ma.esoftech.esoftrade.DTO.FileDTO;
@@ -11,14 +10,11 @@ import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.Dao.IFileDao;
 import ma.esoftech.esoftrade.Dao.IProductDao;
 import ma.esoftech.esoftrade.exception.ProductNotFoundException;
-import ma.esoftech.esoftrade.exception.UserNotFoundException;
 import ma.esoftech.esoftrade.model.File;
 import ma.esoftech.esoftrade.model.Product;
-import ma.esoftech.esoftrade.model.Role;
-import ma.esoftech.esoftrade.model.User;
-import ma.esoftech.esoftrade.service.IFileService;
 import ma.esoftech.esoftrade.service.IProductService;
 import ma.esoftech.esoftrade.service.ServiceUtils;
+import ma.esoftech.esoftrade.utils.DozerHelper;
 import ma.esoftech.esoftrade.utils.FileUploadUTILS;
 
 import org.dozer.Mapper;
@@ -163,6 +159,20 @@ public void deleteProduct(ProductDTO product) {
 public long productCount(String filter) {
 
 	return productDao.ProductCount(filter);
+}
+@Override
+@Transactional(readOnly=true)
+public List<ProductDTO> searchProducts(int lenght, int start,
+		String search) {
+	List<Product> listEntity=productDao.searchProducts(lenght, start, search);
+	return DozerHelper.map(mapper, listEntity,ProductDTO.class);
+}
+@Override
+@Transactional(readOnly=true)
+public long getProductQuantity(ProductDTO product) {
+    Product productEntity=new Product();
+    productEntity.setId(product.getId());
+	return productDao.getProductQuantity(productEntity);
 }
 
 }

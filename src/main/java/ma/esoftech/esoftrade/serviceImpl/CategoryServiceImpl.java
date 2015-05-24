@@ -134,6 +134,7 @@ public class CategoryServiceImpl implements ICategoryProduct {
 		return categoryDao.productCountBycategory(filter, categoryEntity);
 	}
 	@Override
+	@Transactional(readOnly=true)
 	public List<PCategoryDTO> searchProductCategories(int lenght, int start,
 			String search) {
 		List<ProductCategory> listEntity=categoryDao.searchProductCategories(lenght, start, search);

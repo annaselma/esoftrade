@@ -2,6 +2,10 @@ package ma.esoftech.esoftrade.DTO;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 import ma.esoftech.esoftrade.DTO.associated.EditorDTO;
 import ma.esoftech.esoftrade.DTO.associated.ProductAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.WarehouseAssociatedDTO;
@@ -16,9 +20,12 @@ public class Transfertdto {
 	 private String motif;
 	 private int quantity;
 	private MouvementType type;
-	private WarehouseAssociatedDTO source=new WarehouseAssociatedDTO();
-	private WarehouseAssociatedDTO target= new WarehouseAssociatedDTO();
-	private ProductAssociatedDTO product=new ProductAssociatedDTO () ;
+	@NotNull(message="l'entrepot ne doit pas etre vide")
+	private WarehouseAssociatedDTO source=null;
+	@NotNull(message="l'entrepot ne doit pas etre vide")
+	private WarehouseAssociatedDTO target= null;
+	@NotNull(message="le produit ne doit pas etre vide")
+	private ProductAssociatedDTO product=null ;
 	public long getId() {
 		return id;
 	}

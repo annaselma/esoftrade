@@ -7,6 +7,7 @@ import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.DTO.WarehouseDTO;
 import ma.esoftech.esoftrade.exception.WarehouseNotFoundException;
 import ma.esoftech.esoftrade.model.ProductCategory;
+import ma.esoftech.esoftrade.model.Warehouse;
 
 public interface IWarehouseService {
 	public WarehouseDTO findById(long id) throws WarehouseNotFoundException;
@@ -18,4 +19,5 @@ public interface IWarehouseService {
     public void deleteWarehouse(WarehouseDTO warehouse);
     public void attachFileToWarehouse(FileDTO fileDTO,long id,UserDTO modifier) throws WarehouseNotFoundException;
     public long warehouseCount(String filter);
+	List<WarehouseDTO> searchWarehouses(int lenght, int start, String search);
 }

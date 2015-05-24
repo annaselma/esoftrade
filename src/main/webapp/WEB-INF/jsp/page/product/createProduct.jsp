@@ -63,15 +63,31 @@
 			</div>
 			<div class="form-group">
 				<label for="caegoryField" class="col-sm-2 control-label esoft-left">Catégorie:&nbsp;<span class="error">*</span></label>
-				<div class="col-sm-4">
-					<form:select path="category" cssClass="form-control ">
+				<div class="col-sm-4" id="select-cat">
+					<form:select path="category" cssClass="tokenize-sample mono-select " id="category"  size="1">
 						<form:options items="${categoryItems}" itemLabel="name"
 							itemValue="id" />
 					</form:select>
 					<form:errors path="category" cssClass="error" />
 				</div>
+                <script type="text/javascript" src="${baseURL}/js/plugins/tokenize/jquery.tokenize.js"></script>
+				<script type="text/javascript">
+				$('#category').tokenize({
+					"newElements":false,
+					maxElements:1,
+					datas: "${baseURL}/category/search",
+					valueField:"id",
+					textField:"name"
+					});
+				$("#select-cat").on("focus", ".tokenize-sample ", function() {
+				    console.log($(".Token span").text());
+				   $text= $(".Token span").text();
+				   $(".Token").remove();
+				   $("#select-cat select option[selected='selected']").remove();
+				    $(".TokenSearch input").val($text);
+				});
+				</script>
 				</div>
-				
 				<div class="form-group">
 
 				<label for="natureField" class="col-sm-2 control-label esoft-left">Nature:
@@ -128,7 +144,7 @@
 			<div class="form-group">
 				<label for="stockdField" class="col-sm-2 control-label esoft-left">Stock désiré:</label>
 				<div class="col-sm-2">
-					<form:input path="desieredTreshold" cssClass="form-control" />
+					<form:input path="desieredTreshold" cssClass="form-control"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
 					<form:errors path="desieredTreshold" cssClass="error" />
 				</div>
 
@@ -136,7 +152,7 @@
 			<div class="form-group">
 				<label for="stockAField" class="col-sm-2 control-label esoft-left">alert stock:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-2">
-					<form:input path="alertTreshold" cssClass="form-control" />
+					<form:input path="alertTreshold" cssClass="form-control"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
 					<form:errors path="alertTreshold" cssClass="error" />
 				</div>
 

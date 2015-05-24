@@ -148,6 +148,10 @@
 			<div class="box">
 				<div class="box-header">
 					<h3 class="box-title">la liste des mouvements</h3>
+					<div class="box-tools pull-right">
+			   <a class="btn btn-primary btn-sm"
+				href="${baseURL}/mouvement/correctStock?id=${warehouse.id}" style="color: white;">Corriger le stock</a>
+		        </div> 
 				</div>
 				<!-- /.box-header -->
 				<div class="box-body table-responsive">
@@ -378,7 +382,7 @@
 										"render" : function(data, type, full,
 												meta) {
 											$link = '<a href="${baseURL}/mouvement/correctionProduit?id='
-													+ data
+													+ data+'&wid=${warehouse.id}'
 													+ '">corrigerStock</a>';
 
 											return $link;
@@ -393,8 +397,8 @@
 										"render" : function(data, type, full,
 												meta) {
 											$link = '<a href="${baseURL}/mouvement/transfertStock?id='
-													+ data
-													+ '">transférer Stock</a>';
+													+ data+'&wid=${warehouse.id}'
+													+'">transférer Stock</a>';
 
 											return $link;
 										}

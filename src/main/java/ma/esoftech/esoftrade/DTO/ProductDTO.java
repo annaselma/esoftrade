@@ -47,7 +47,8 @@ public class ProductDTO {
 	 @NotEmpty
 	 @Size(min=2)
 	 private String barreCode;
-	 private PCategoryAssociatedDTO category=new  PCategoryAssociatedDTO();
+	 @NotNull(message="la catégorie ne doit pas etre vide")
+	 private PCategoryAssociatedDTO category=null;
 	 private  List<FileAssociatedDTO> files=new ArrayList<FileAssociatedDTO>();
 	 public ProductDTO(){
 		 
