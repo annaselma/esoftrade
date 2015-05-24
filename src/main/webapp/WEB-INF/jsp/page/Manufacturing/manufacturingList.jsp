@@ -8,10 +8,10 @@
 <c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
 <div class="box">
 	<div class="box-header">
-		<h3 class="box-title">la liste des produits</h3>
+		<h3 class="box-title">la liste des OF</h3>
 		<div class="box-tools pull-right">
-			<a class="btn btn-primary btn-sm" href="${baseURL}/product/create"
-				style="color: white;">+ Ajouter produit</a> &nbsp;
+			<a class="btn btn-primary btn-sm" href="${baseURL}/manufacturing/create"
+				style="color: white;">+new Order</a> &nbsp;
 		</div>
 	</div>
 	<!-- /.box-header -->
@@ -19,30 +19,32 @@
 		<table id="list1" class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th>Rèfèrence</th>
-					<th>Libellé</th>
-					<th>Code barre</th>
-					<th>categorie</th>
-					<th>Stock désiré</th>
-					<th>Prix en DH</th>
-					<th>Vente</th>
-					<th>achat</th>
-					<th>Actions</th>
+				    <th>Ref.</th>
+					<th>Titre</th>
+					<th>Date début</th>
+					<th>Date fin</th>
+					<th>Deadline</th>
+					<th>Progress</th>
+					<th>Priorité</th>
+					<th>Leader</th>
+					<th>Statut</th>
+					<th>Opération</th>
 				</tr>
 			</thead>
 			<tbody>
 			</tbody>
 			<tfoot>
 				<tr>
-					<th>Rèfèrence</th>
-					<th>Libellé</th>
-					<th>Code barre</th>
-					<th>categorie</th>
-					<th>Stock désiré</th>
-					<th>Prix en DH</th>
-					<th>Vente</th>
-					<th>achat</th>
-					<th>Actions</th>
+				    <th>Ref.</th>
+					<th>Titre</th>
+					<th>Date début</th>
+					<th>Date fin</th>
+					<th>Deadline</th>
+					<th>Progress</th>
+					<th>Priorité</th>
+					<th>Leader</th>
+					<th>Statut</th>
+					<th>Opération</th>
 				</tr>
 			</tfoot>
 		</table>
@@ -77,7 +79,7 @@
                     "processing": true,
                     "serverSide": true,
                     "ajax": {
-                        "url": "${baseURL}/product/getList",
+                        "url": "${baseURL}/manufacturing/getList",
                         "data": function(data) {
                             planify(data);  
                         } 
@@ -86,95 +88,96 @@
                     	"targets":[0],
                     	"name":"ref",
                     	"data":"ref",
-                    	"render": function ( data, type, full, meta ) {
-                    		$link='<a href="${baseURL}/product/profile?id='+full.id+'">'+data+'</a>';
-                      	
-                      	      return $link;
-                      	    }
+                    
                     },
                     {
                     	"targets":[1],
-                    	"name":"libelle",
-                    	"data":"libelle",
+                    	"name":"title",
+                    	"data":"title",
                     
                     },
                     {
                     	"targets":[2],
-                    	"name":"barreCode",
-                    	"data":"barreCode",
+                    	"name":"startDate",
+                    	"data":"startDate",
+                    	"render": function ( data, type, full, meta ) {
+                   	      date = new Date(data);
+                   	      return date.formatDetail();
+                   	    }
                     
                     },
                     {
                     	"targets":[3],
-                    	"name":"category.name",
-                    	"data":"category.name",
+                    	"name":"endDate",
+                    	"data":"endDate",
+                    	"render": function ( data, type, full, meta ) {
+                   	      date = new Date(data);
+                   	      return date.formatDetail();
+                   	    }
                     
                     },
                     {
                     	"targets":[4],
-                    	"name":"desieredTreshold",
-                    	"data":"desieredTreshold",
+                    	"name":"endDate",
+                    	"data":"endDate",
+                    	"render": function ( data, type, full, meta ) {
+                   	      date = new Date(data);
+                   	      return date.formatDetail();
+                   	    }
                     
                     },
                     {
                     	"targets":[5],
-                    	"name":"price",
-                    	"data":"price",
+                    	"name":"ref",
+                    	"data":"ref",
                     
                     },
                     {
                     	"targets":[6],
-                    	"name":"sellingState",
-                    	"data":"sellingState",
+                    	"name":"title",
+                    	"data":"title",
                     	"render": function ( data, type, full, meta ) {
-                   		 $active='<div id="statut" class="label label-success">en vente</div>';
-                   		 $inactive='<div id="statut" class="label label-danger">hors vente</div>';
-                   		 if(data==true){
-                   			 return $active;
-                   		 }
-                   	      return $inactive;
+                   		 $obj='<div id="title" class="label label-success">Low</div>';
+                   		
+                   	      return $obj;
                    	    }
                     
                     },
                     {
                     	"targets":[7],
-                    	"name":"purchasingState",
-                    	"data":"purchasingState",
-                    	 "render": function ( data, type, full, meta ) {
-                    		 $active='<div id="statut" class="label label-success">en achat</div>';
-                    		 $inactive='<div id="statut" class="label label-danger">hors achat</div>';
-                    		 if(data==true){
-                    			 return $active;
-                    		 }
-                    	      return $inactive;
+                    	"name":"responsible",
+                    	"data":"responsible",
+                    	"render": function ( data, type, full, meta ) {
+                    		$link='<a href="${baseURL}/user/profile?id='+data.id+'">'+data.firstName+' '+data.lastName+'</a>';
+                    	
+                    	      return $link;
                     	    }
-                    
                     },
                     {
                     	"targets":[8],
+                    	"name":"title",
+                    	"data":"title",
+                    	"render": function ( data, type, full, meta ) {
+                   		 $active='<div id="title" class="label label-success">Low</div>';
+                   		
+                   	      return $inactive;
+                   	    }
+                    
+                    },
+                    {
+                    	"targets":[9],
                     	"name":"id",
                     	"data":"id",
                     	"orderable": false,
                     	 "render": function ( data, type, full, meta ) {
-                    		 $html='<a href="${baseURL}/product/profile?id='+data+'"  class="btn btn-info btn-xs"><i class="fa   fa-search"></i></a>&nbsp;';
-                    		 $html+='<a href="${baseURL}/product/update?id='+data+'"  class="btn btn-default btn-xs"><i class="fa   fa-edit"></i></a>&nbsp;';
-                    		 $html+='<a href="${baseURL}/product/delete?id='+data+'"  class="btn btn-danger btn-xs"><i class="fa   fa-trash-o"></i></a>';
+                    		 $html='<a href="${baseURL}/manufacturing/profile?id='+data+'"  class="btn btn-info btn-xs"><i class="fa   fa-search"></i></a>&nbsp;';
+                    		 $html+='<a href="${baseURL}/manufacturing/update?id='+data+'"  class="btn btn-default btn-xs"><i class="fa   fa-edit"></i></a>&nbsp;';
+                    		 $html+='<a href="${baseURL}/manufacturing/delete?id='+data+'"  class="btn btn-danger btn-xs"><i class="fa   fa-trash-o"></i></a>';
                     		 return $html;
                     	    }
                     
                     }]
                 });
-//               table.columns( ).every( function (i) {
-//             	    console.log("index:"+this.index());
-//                });
-                
-//                $('#example1 tfoot th ').on( 'keyup',"#me", function () {
-//             	   console.log("hello");
-//             	    table
-//             	        .columns( 3 )
-//             	        .search( this.value )
-//             	        .draw();
-//             	} );
                 
           });
         </script>

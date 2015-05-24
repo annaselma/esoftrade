@@ -16,7 +16,7 @@ import ma.esoftech.esoftrade.datatablesAPI.Order;
 import ma.esoftech.esoftrade.datatablesAPI.RequestTable;
 import ma.esoftech.esoftrade.datatablesAPI.RequestTable.SearchCriterias;
 import ma.esoftech.esoftrade.datatablesAPI.ResponseTable;
-import ma.esoftech.esoftrade.exeption.FileNotFoundException;
+import ma.esoftech.esoftrade.exception.FileNotFoundException;
 import ma.esoftech.esoftrade.service.IFileService;
 
 import org.springframework.beans.factory.annotation.Autowired;

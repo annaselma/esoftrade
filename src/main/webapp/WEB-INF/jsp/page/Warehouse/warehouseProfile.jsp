@@ -223,7 +223,7 @@
 						<th>Docuement</th>
 						<th>taille</th>
 						<th>créateur</th>
-						<th>date</th>
+						<th>date Création</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -234,7 +234,7 @@
 						<th>Docuement</th>
 						<th>taille</th>
 						<th>créateur</th>
-						<th>date</th>
+						<th>date création</th>
 						<th></th>
 					</tr>
 				</tfoot>

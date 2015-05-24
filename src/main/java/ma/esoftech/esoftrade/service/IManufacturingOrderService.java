@@ -2,9 +2,11 @@ package ma.esoftech.esoftrade.service;
 
 import java.util.List;
 
+import ma.esoftech.esoftrade.DTO.FileDTO;
 import ma.esoftech.esoftrade.DTO.OrderManufacturingDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.exception.ManufacturingNotFoundException;
+import ma.esoftech.esoftrade.exception.ProductNotFoundException;
 
 public interface IManufacturingOrderService {
 	public OrderManufacturingDTO findOFById(Long id) throws ManufacturingNotFoundException;
@@ -13,4 +15,7 @@ public interface IManufacturingOrderService {
 	public long createOF(OrderManufacturingDTO OrderFacturing, UserDTO creator);
 	public void updateOF(OrderManufacturingDTO OrderFacturing, UserDTO modifier) throws ManufacturingNotFoundException;
 	public void deleteOF(OrderManufacturingDTO OrderFacturing);
-	public long OrderFacturingCount(String filter);}
+	public long OrderFacturingCount(String filter);
+	public void updatePicture(FileDTO picture,long id,UserDTO modifier) throws ManufacturingNotFoundException ;	
+	public void attachFileToManufacturing(FileDTO fileDTO,long id,UserDTO modifier) throws ManufacturingNotFoundException;	
+}

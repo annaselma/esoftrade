@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import ma.esoftech.esoftrade.DTO.FileDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
-import ma.esoftech.esoftrade.exeption.FileNotFoundException;
+import ma.esoftech.esoftrade.exception.FileNotFoundException;
 import ma.esoftech.esoftrade.model.File;
 
 public interface IFileService {

@@ -129,7 +129,7 @@
                     	"data":"warehouse",
                     	"orderable":false,
                     	"render": function ( data, type, full, meta ) {
-                     		 $link='<a href="${baseURL}/warehouse/profile?id='+data.id+'" class=" fa fa-truck">&nbsp;'+data.name+'</a>';
+                     		 $link='<a href="${baseURL}/warehouse/profile?id='+data.id+'" class=" fa fa-th-large">&nbsp;'+data.name+'</a>';
                      	
                      	      return $link;
                      	    }

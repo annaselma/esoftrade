@@ -19,7 +19,7 @@ import org.springframework.util.FileCopyUtils;
 import ma.esoftech.esoftrade.DTO.FileDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.Dao.IFileDao;
-import ma.esoftech.esoftrade.exeption.FileNotFoundException;
+import ma.esoftech.esoftrade.exception.FileNotFoundException;
 import ma.esoftech.esoftrade.model.File;
 import ma.esoftech.esoftrade.service.IFileService;
 import ma.esoftech.esoftrade.service.ServiceUtils;

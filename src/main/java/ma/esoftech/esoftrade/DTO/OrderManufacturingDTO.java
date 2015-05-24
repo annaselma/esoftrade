@@ -1,20 +1,28 @@
 package ma.esoftech.esoftrade.DTO;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 import ma.esoftech.esoftrade.DTO.associated.EditorDTO;
+import ma.esoftech.esoftrade.DTO.associated.FileAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.ProductAssociatedDTO;
+import ma.esoftech.esoftrade.DTO.associated.UserAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.WarehouseAssociatedDTO;
 import ma.esoftech.esoftrade.model.User;
 import ma.esoftech.esoftrade.model.OrderManufacturing.OFPRIORITY;
 import ma.esoftech.esoftrade.model.OrderManufacturing.OFStatus;
+
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class OrderManufacturingDTO {
 	private long id;
@@ -30,25 +38,51 @@ public class OrderManufacturingDTO {
 	 @NotEmpty
 	private String barreCode;
 	private OFStatus status;
-	private User responsible;
+	private UserAssociatedDTO responsible;
+	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@NotNull
 	private Date startDate;
+	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@NotNull
 	private Date dueDate;
+	@DateTimeFormat(pattern="dd/MM/yyyy")
+	@NotNull
 	private Date endDate;
 	private Date provisionalStartDate;
-	private Date provisionalDueDate;
+	private Date provisionalEndDate;
 	private Boolean type;
-	 @NotEmpty
-	private Integer executedQT;
-	 @NotEmpty
-	private Integer lanchedQT;
-	 @NotEmpty
-	private Integer requeredQT;
+	private Integer rejectQT=0;
+	private Integer executedQT=0;
+	private Integer lanchedQT=0;
+	private Integer requeredQT=0;
 	 @NotEmpty
 	 @Size(max=20,min=2)
 	private String team;
 	private OFPRIORITY priority;
-	private WarehouseAssociatedDTO warehouse=new WarehouseAssociatedDTO();
-	private ProductAssociatedDTO product=new ProductAssociatedDTO () ;
+	private float unitCost;
+	private float unitCostTheory;
+	private float totalRealCost;
+	private float totalTheoryCost;
+	private Integer deadline=0;
+	private Integer progress=0;
+	private UserAssociatedDTO user= new UserAssociatedDTO();
+	public UserAssociatedDTO getUser() {
+		return user;
+	}
+	public void setUser(UserAssociatedDTO user) {
+		this.user = user;
+	}
+	private FileAssociatedDTO picture=new FileAssociatedDTO();
+	public FileAssociatedDTO getPicture() {
+		return picture;
+	}
+	public void setPicture(FileAssociatedDTO picture) {
+		this.picture = picture;
+	}
+	@NotNull(message="produit ne doit pas être null")
+	private ProductAssociatedDTO product=null;
+	private WarehouseAssociatedDTO center=null;
+	private  List<FileAssociatedDTO> files=new ArrayList<FileAssociatedDTO>();
 	public long getId() {
 		return id;
 	}
@@ -109,12 +143,7 @@ public class OrderManufacturingDTO {
 	public void setStatus(OFStatus status) {
 		this.status = status;
 	}
-	public User getResponsible() {
-		return responsible;
-	}
-	public void setResponsible(User responsible) {
-		this.responsible = responsible;
-	}
+	
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -139,11 +168,12 @@ public class OrderManufacturingDTO {
 	public void setProvisionalStartDate(Date provisionalStartDate) {
 		this.provisionalStartDate = provisionalStartDate;
 	}
-	public Date getProvisionalDueDate() {
-		return provisionalDueDate;
+	
+	public Date getProvisionalEndDate() {
+		return provisionalEndDate;
 	}
-	public void setProvisionalDueDate(Date provisionalDueDate) {
-		this.provisionalDueDate = provisionalDueDate;
+	public void setProvisionalEndDate(Date provisionalEndDate) {
+		this.provisionalEndDate = provisionalEndDate;
 	}
 	public Boolean getType() {
 		return type;
@@ -181,17 +211,79 @@ public class OrderManufacturingDTO {
 	public void setPriority(OFPRIORITY priority) {
 		this.priority = priority;
 	}
-	public WarehouseAssociatedDTO getWarehouse() {
-		return warehouse;
+	
+	
+	public List<FileAssociatedDTO> getFiles() {
+		return files;
 	}
-	public void setWarehouse(WarehouseAssociatedDTO warehouse) {
-		this.warehouse = warehouse;
+	public void setFiles(List<FileAssociatedDTO> files) {
+		this.files = files;
+	}
+	public OrderManufacturingDTO() {
+		setStartDate(new Date() );
+		setDueDate(new Date());
 	}
 	public ProductAssociatedDTO getProduct() {
 		return product;
 	}
 	public void setProduct(ProductAssociatedDTO product) {
 		this.product = product;
+	}
+	public UserAssociatedDTO getResponsible() {
+		return responsible;
+	}
+	public void setResponsible(UserAssociatedDTO responsible) {
+		this.responsible = responsible;
+	}
+	public Integer getRejectQT() {
+		return rejectQT;
+	}
+	public void setRejectQT(Integer rejectQT) {
+		this.rejectQT = rejectQT;
+	}
+	public WarehouseAssociatedDTO getCenter() {
+		return center;
+	}
+	public void setCenter(WarehouseAssociatedDTO center) {
+		this.center = center;
+	}
+	public float getUnitCost() {
+		return unitCost;
+	}
+	public void setUnitCost(float unitCost) {
+		this.unitCost = unitCost;
+	}
+	public float getUnitCostTheory() {
+		return unitCostTheory;
+	}
+	public void setUnitCostTheory(float unitCostTheory) {
+		this.unitCostTheory = unitCostTheory;
+	}
+	public float getTotalRealCost() {
+		return totalRealCost;
+	}
+	public void setTotalRealCost(float totalRealCost) {
+		this.totalRealCost = totalRealCost;
+	}
+	public float getTotalTheoryCost() {
+		return totalTheoryCost;
+	}
+	public void setTotalTheoryCost(float totalTheoryCost) {
+		this.totalTheoryCost = totalTheoryCost;
+	}
+	public Integer getDeadline() {
+		this.deadline= (int) Math.floor(this.endDate.getTime()-new Date().getTime());
+		return deadline;
+	}
+	public void setDeadline(Integer deadline) {
+		this.deadline = deadline;
+	}
+	public Integer getProgress() {
+		this.progress=(int) Math.floor((this.executedQT/this.lanchedQT)*100);
+		return progress;
+	}
+	public void setProgress(Integer progress) {
+		this.progress = progress;
 	}
 	
 }
