@@ -20,7 +20,7 @@
 </style>
 <c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
 
-<div class="box box-solid box-warning">
+<div class="box box-primary">
 	<div class="box-header">
 		<h3 class="box-title"> Nouveau Ordre de Fabrication</h3>
 	</div>
@@ -38,39 +38,17 @@
 					<form:input path="title" cssClass="form-control" />
 					<form:errors path="title" cssClass="error" />
 				</div>
-            <label for="status" class="col-sm-2 control-label esoft-left">Statut:&nbsp;<span class="error">*</span></label>
-				<div class="col-sm-2">
-					<form:select path="status" cssClass="form-control ">
-						<form:options/>
-					</form:select>
-					<form:errors path="status" cssClass="error" />
-				</div>
+           
 			</div>
 			
-			
-            <div class="form-group">
-				<label for="codeField" class="col-sm-2 control-label esoft-left">Code à barre:&nbsp;<span class="error">*</span></label>
-				<div class="col-sm-4">
-					<form:input path="barreCode" cssClass="form-control" />
-					<form:errors path="barreCode" cssClass="error" />
-				</div>
-				<label for="priority" class="col-sm-2 control-label esoft-left">Priorité:&nbsp;<span class="error">*</span></label>
-				<div class="col-sm-2">
-					<form:select path="priority" cssClass="form-control ">
-						<form:options/>
-					</form:select>
-					<form:errors path="priority" cssClass="error" />
-				</div>
-
-			</div>
 			<div class="form-group form-horizontal">
 				<label for="type" class="col-sm-2 control-label esoft-left">Sous Traitant:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
-					<form:select path="warehouse" cssClass="form-control ">
+					<form:select path="center" cssClass="form-control ">
 						<form:options items="${warehouseItems}" itemLabel="name"
 							itemValue="id" />
 					</form:select>
-					<form:errors path="warehouse" cssClass="error" />
+					<form:errors path="center" cssClass="error" />
 				</div>
 				<div class="col-sm-4">
 					<form:checkbox path="type" />
@@ -82,11 +60,11 @@
 			<div class="form-group">
 				<label for="caegoryField" class="col-sm-2 control-label esoft-left">Warehouse:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
-					<form:select path="warehouse" cssClass="form-control ">
+					<form:select path="center" cssClass="form-control ">
 						<form:options items="${warehouseItems}" itemLabel="name"
 							itemValue="id" />
 					</form:select>
-					<form:errors path="warehouse" cssClass="error" />
+					<form:errors path="center" cssClass="error" />
 				</div>
 				</div>
 				
