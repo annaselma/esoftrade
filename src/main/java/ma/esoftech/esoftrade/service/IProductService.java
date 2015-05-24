@@ -18,4 +18,6 @@ public interface IProductService {
 	public long productCount(String filter);
 	public void updatePicture(FileDTO picture,long id,UserDTO modifier) throws ProductNotFoundException;	
 	public void attachFileToProduct(FileDTO fileDTO,long id,UserDTO modifier) throws ProductNotFoundException;
+	public List<ProductDTO> searchProducts(int lenght, int start, String search);
+	public long getProductQuantity(ProductDTO product);
 }

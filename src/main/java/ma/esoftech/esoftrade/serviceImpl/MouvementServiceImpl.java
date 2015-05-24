@@ -121,6 +121,7 @@ public class MouvementServiceImpl implements IMouvementService {
 		Mouvement mouvementTarget= buildMouvement(target, product, nbre, notes, creator);
 		mouvementTarget.setType(MouvementType.transfertStock);
 		mouvementdao.createMouvement(mouvementSource);
+		mouvementdao.createMouvement(mouvementTarget);
 		
 		
 	}

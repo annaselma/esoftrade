@@ -115,6 +115,30 @@ public class ProductDao  implements IProductDao{
 		return product;
 		
 	}
+	@Override
+	public List<Product> searchProducts(int lenght, int start,
+			String search) {
+		session=sessionFactory.getCurrentSession();
+		String hql="select product From Product as product where product.libelle like :search";
+		org.hibernate.Query query=session.createQuery(hql);
+		query.setString("search", "%"+search+"%");
+		query.setFirstResult(start).setMaxResults(lenght);
+		return query.list();
+	}
+
+	@Override
+	public long getProductQuantity(Product product) {
+		session=sessionFactory.getCurrentSession();
+		org.hibernate.Query query=session.createQuery(" Select SUM(mouv.quantity) from Mouvement as mouv"
+				+ "  where mouv.product=:product group by  mouv.product");
+		query.setParameter("product", product);
+		Long count=(Long)query.uniqueResult();
+		if(count==null){
+			return 0;
+		}
+		return count;
+	}
+
 
 
 	

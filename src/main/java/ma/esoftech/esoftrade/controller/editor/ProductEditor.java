@@ -7,8 +7,12 @@ import ma.esoftech.esoftrade.DTO.associated.ProductAssociatedDTO;
 public class ProductEditor extends PropertyEditorSupport {
 	 public void setAsText(String value) {
 		   ProductAssociatedDTO product=new ProductAssociatedDTO();
-		   product.setId(Long.valueOf(value));
-		   setValue(product);
+		   if(Long.valueOf(value)>0){
+			   product.setId(Long.valueOf(value));
+			   setValue(product);
+		   }else{
+			   setValue(null);
+		   }
 	      }
 
 	      public String getAsText() {

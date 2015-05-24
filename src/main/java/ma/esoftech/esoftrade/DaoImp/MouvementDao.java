@@ -114,7 +114,7 @@ public MouvementDao() {
 		}
 		String hql="select "
 				+ "new ma.esoftech.esoftrade.model."
-				+ "ProductWarehouse(mouvement.warehouse,SUM(mouvement.quantity) as QTE) From Mouvement as mouvement "
+				+ "ProductWarehouse(mouvement.product,mouvement.warehouse,SUM(mouvement.quantity) as QTE) From Mouvement as mouvement "
 				+ "where mouvement.product = :product  GROUP BY mouvement.warehouse  having SUM(mouvement.quantity)>0 order by mouvement."+sorting;
 		Query query= session.createQuery(hql);
 		query.setParameter("product", product);

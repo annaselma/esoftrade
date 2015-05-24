@@ -7,9 +7,12 @@ public class WarehouseEditor extends PropertyEditorSupport{
 	  public void setAsText(String value) {
 		  System.out.println("zz"+value);
 		   WarehouseAssociatedDTO warehouse=new WarehouseAssociatedDTO();
+		   if(Long.valueOf(value)>0){
 		   warehouse.setId(Long.valueOf(value));
 		   setValue(warehouse);
-		   
+		   }else{
+			   setValue(null);
+		   }
 	      }
 
 	      public String getAsText() {

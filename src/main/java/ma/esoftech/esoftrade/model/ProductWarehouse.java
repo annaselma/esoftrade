@@ -9,6 +9,7 @@ private long quantity;
 
 public ProductWarehouse(Product product, long quantity){
 	this.product = product;
+	System.out.println("produuuuuuct"+product.getId());
 	System.out.println("qte "+quantity);
 	this.quantity = quantity;
 }
@@ -29,6 +30,12 @@ public Warehouse getWarehouse() {
 }
 public ProductWarehouse( Warehouse warehouse, long quantity) {
 	super();
+	this.warehouse = warehouse;
+	this.quantity = quantity;
+}
+public ProductWarehouse( Product product,Warehouse warehouse, long quantity) {
+	super();
+	this.product = product;
 	this.warehouse = warehouse;
 	this.quantity = quantity;
 }

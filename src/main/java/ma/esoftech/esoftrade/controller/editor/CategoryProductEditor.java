@@ -10,8 +10,12 @@ import ma.esoftech.esoftrade.DTO.associated.PCategoryAssociatedDTO;
 public class CategoryProductEditor  extends PropertyEditorSupport {
     public void setAsText(String value) {
     	PCategoryAssociatedDTO category=new PCategoryAssociatedDTO();
+    	if(Long.valueOf(value)>0){
     	category.setId(Long.valueOf(value));
          setValue(category);
+    	}else{
+    		setValue(null);
+    	}
       }
 
       public String getAsText() {

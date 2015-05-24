@@ -15,4 +15,6 @@ public interface IProductDao {
 	public void updateProduct(Product produit);
 	public void deleteProduct(Product produit);
 	public long ProductCount(String filter);
+	public long getProductQuantity(Product product);
+	List<Product> searchProducts(int lenght, int start, String search);
 }

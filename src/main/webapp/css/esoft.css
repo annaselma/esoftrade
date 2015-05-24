@@ -29,3 +29,9 @@ body .form-horizontal label.esoft-left{
 .user-info-right  .fileUpload{
 
 }
+.tokenize-sample{
+	width: 100%
+}
+.tokenize-sample.mono-select ul.TokensContainer{
+	height: 34px;
+}

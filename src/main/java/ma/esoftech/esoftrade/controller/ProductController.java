@@ -1,6 +1,7 @@
 package ma.esoftech.esoftrade.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,6 +13,7 @@ import ma.esoftech.esoftrade.DTO.PCategoryDTO;
 import ma.esoftech.esoftrade.DTO.PasswordDTO;
 import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
+import ma.esoftech.esoftrade.DTO.WarehouseDTO;
 import ma.esoftech.esoftrade.DTO.associated.FileAssociatedDTO;
 import ma.esoftech.esoftrade.controller.session.SessionBean;
 import ma.esoftech.esoftrade.datatablesAPI.Order;
@@ -25,6 +27,7 @@ import ma.esoftech.esoftrade.service.ICategoryProduct;
 import ma.esoftech.esoftrade.service.IFileService;
 import ma.esoftech.esoftrade.service.IProductService;
 import ma.esoftech.esoftrade.utils.FileUploadUTILS;
+import ma.esoftech.esoftrade.utils.UTILS;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
@@ -67,15 +70,18 @@ public class ProductController extends AbstractController {
 	@RequestMapping(value="/profile",method = RequestMethod.GET)
 	public String loadProduct(@RequestParam long id, ModelMap model,@RequestParam(required=false,defaultValue="false") boolean file){
 		ProductDTO product=null;
+		long qte;
 		try {
 			
 			product= productService.findProductById(id);
+		    qte=productService.getProductQuantity(product);
 		} catch (ProductNotFoundException e) {
 			model.addAttribute("messageError","product with id="+ id+"doesn't exist");
 			return "error";
 		}
 		FileUploadUTILS.prepareTabProfil(model, file);
         model.addAttribute("product", product);
+        model.addAttribute("qte", qte);
 		
 		return "productProfile";
 		}
@@ -214,12 +220,17 @@ public class ProductController extends AbstractController {
 			}
 			 return PATH_PROFIL+"?id="+id+"&file=true";
 		}
+		@RequestMapping(value="/search",method=RequestMethod.GET,produces = "application/json")
+		public @ResponseBody List<ProductDTO> searchProducts(@RequestParam String search,ModelMap model){
+			return  productService.searchProducts(UTILS.MAX_LENGHT_LIST,UTILS.START_LIST, search);
+		}
 		
 		
 		@ModelAttribute("categoryItems")
 		public List<PCategoryDTO> getCategoryList(){
-			 List<PCategoryDTO> listCategory=categoryService.getListCategory(0, 1000);
-				return listCategory;
+			// List<PCategoryDTO> listCategory=categoryService.getListCategory(0, 1000);
+			List<PCategoryDTO> listCategory=new ArrayList<PCategoryDTO>();
+			return listCategory;
 		}
 
 	}
