@@ -12,7 +12,7 @@ import ma.esoftech.esoftrade.DTO.associated.EditorDTO;
 import ma.esoftech.esoftrade.DTO.associated.FileAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.ProductAssociatedDTO;
 
-public class NomenclaureDTO {
+public class NomenclatureDTO {
 private long id;
 private EditorDTO creator;
 private Date createDate;

@@ -3,6 +3,7 @@ package ma.esoftech.esoftrade.service;
 import java.util.List;
 
 import ma.esoftech.esoftrade.DTO.FileDTO;
+import ma.esoftech.esoftrade.DTO.NomenclatureDTO;
 import ma.esoftech.esoftrade.DTO.OrderManufacturingDTO;
 import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
@@ -22,5 +23,9 @@ public interface IManufacturingOrderService {
 	public void attachFileToManufacturing(FileDTO fileDTO,long id,UserDTO modifier) throws ManufacturingNotFoundException;	
 	public List<UserDTO> searchResponsable(int lenght, int start, String search);
 	public List<WarehouseDTO> searchWarehouse(int lenght, int start, String search);
+	public void attachNomenclatureToManufacturing(NomenclatureDTO nomenclatureDTO,
+			long id, UserDTO modifier) throws ManufacturingNotFoundException;
+	void deleteNomenclaturefromManufacturing(NomenclatureDTO nomenclatureDTO,
+			long id, UserDTO modifier) throws ManufacturingNotFoundException;
 
 }

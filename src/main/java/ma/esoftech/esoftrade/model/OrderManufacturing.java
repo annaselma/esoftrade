@@ -1,8 +1,10 @@
 package ma.esoftech.esoftrade.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -30,7 +32,7 @@ public class OrderManufacturing extends MetaObject implements Serializable {
 	private String title;
 	@Column(name="ELMO_DESCRIPTION",length=255)
 	private String description;
-	@Column(name="ELMO_BARRECODE",nullable=false,length=255)
+	@Column(name="ELMO_BARRECODE",length=255)
 	@Index(name="ELMO_CODE_INDEX")
 	private String barreCode;
 	@Column(name="ELMO_STATUS")
@@ -82,6 +84,9 @@ public class OrderManufacturing extends MetaObject implements Serializable {
 	@ManyToOne
 	 @JoinColumn(name="ELMO_PRODUCT_ID")
 	 private Product product;
+	@OneToMany
+	@JoinColumn(name="ELMO_MANUFACTURING_ID")
+	Set<Nomenclature> nomenclatures=new HashSet<Nomenclature>();
 	
 	@OneToMany
     @JoinTable(
@@ -222,6 +227,31 @@ public class OrderManufacturing extends MetaObject implements Serializable {
 
 	public void setProduct(Product product) {
 		this.product = product;
+	}
+
+	public Set<Nomenclature> getNomenclatures() {
+		return nomenclatures;
+	}
+
+	public void setNomenclatures(Set<Nomenclature> nomenclatures) {
+		this.nomenclatures = nomenclatures;
+	}
+	
+
+	public Integer getRejectQT() {
+		return rejectQT;
+	}
+
+	public void setRejectQT(Integer rejectQT) {
+		this.rejectQT = rejectQT;
+	}
+
+	public Warehouse getCenter() {
+		return center;
+	}
+
+	public void setCenter(Warehouse center) {
+		this.center = center;
 	}
 
 	public String generateReference(){

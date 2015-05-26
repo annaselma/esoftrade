@@ -41,7 +41,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/manufacturing")
 public class ManufacturingController extends AbstractController {
 	private static final String REDIRECT="redirect:";
-	private static final String PATH_PROFIL=REDIRECT+"/manufacturing/profile";
+	public static final String PATH_PROFIL=REDIRECT+"/manufacturing/profile";
 	@Autowired
 	IManufacturingOrderService manufacturService;
 	@Autowired
