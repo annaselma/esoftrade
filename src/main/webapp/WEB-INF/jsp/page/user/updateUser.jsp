@@ -430,8 +430,8 @@
 			<form:hidden path="password" />
 			<form:hidden path="id" />
 			<div class="form-group">
-				<button type="submit" class="btn btn-danger btn pull-right"style="margin-right: 3%;">Annuler</button>
-			    <button type="submit" class="btn btn-primary btn pull-right" style="margin-right: 1%;">Modifier</button>
+				<button type="reset" class="btn-sm btn btn-danger btn pull-right " onclick="location.href='${baseURL}/user/list'" style="margin-right: 2%;">Annuler</button>
+			    <button type="submit" class="btn btn-success btn pull-right" style="margin-right: 1%;"><i class="fa fa-pencil-square-o"></i>&nbsp;Modifier</button>
 			</div>
 		</form:form>
 	</div>
@@ -473,8 +473,8 @@
 			</div>
 			<form:hidden path="id" />
 			<div class="form-group">
-				<button type="button" class="btn btn-danger btn pull-right"style="margin-right: 3%;">Annuler</button>
-			    <button type="submit" class="btn btn-primary btn pull-right" style="margin-right: 1%;">Modifier</button>
+				<button type="reset" class="btn-sm btn btn-danger btn pull-right " onclick="location.href='${baseURL}/user/list'" style="margin-right: 2%;">Annuler</button>
+			    <button type="submit" class="btn-sm  btn btn-primary btn pull-right" style="margin-right: 1%;">Modifier</button>
 			</div>
 		</form:form>
 

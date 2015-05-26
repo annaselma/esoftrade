@@ -135,7 +135,7 @@ public CategoryProductController() {
 		 model.addAttribute("category",categorydto);
 		 List<PCategoryDTO> listCategory=categoryService.getListCategory(0, 1000);
 			model.addAttribute("categoryItems",listCategory);
-		 return"updateProduct";
+		 return"updateCategory";
 	 }
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	 public String loadProductListProfil(ModelMap model){

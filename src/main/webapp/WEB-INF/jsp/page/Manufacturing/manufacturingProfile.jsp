@@ -12,7 +12,7 @@
 		<li class="${defaultActive}"><a href="#fiche" data-toggle="tab"
 			aria-expanded="false"><i class="fa fa-file"></i>&nbsp;Fiche OF</a></li>
 		<li class=""><a href="#settings" data-toggle="tab"
-			aria-expanded="false"><i class="fa fa-truck" style=""></i>&nbsp;Settings</a></li>
+			aria-expanded="false"><i class="fa  fa-money" style=""></i>&nbsp;Bénéfices</a></li>
 		<li class="${fileActive}"><a href="#fichierjoint" data-toggle="tab"
 			aria-expanded="true"><i class="fa fa-folder" style=""></i>&nbsp;Fichiers joints</a></li>
 		<li class=""><a href="#suivi" data-toggle="tab"
@@ -31,26 +31,30 @@
 										<div class="" style="margin-bottom: 4%;">
 											<label class=""> Ordre de fabrication N°</label> &nbsp;<span class="text-warning"><u><strong><c:out
 													value="${manufacturing.ref}" /></strong></u></span>
+<button type="button" class="btn-sm btn btn-success pull-right "onclick="location.href='${baseURL}/mouvement/correctionProduit?id=${manufacturing.product.id}'">
+<i class="fa fa-wrench"></i>&nbsp;Stocké</button>								
+										<div style="margin-top:8%">
+				                        <label>Statut:</label>&nbsp;<span id="status" class="label label-primary" ><c:out value="${manufacturing.status}"/></span>
+										<label style="margin-left:63%;">Priorité:</label>&nbsp;<span id="priority" class="label label-primary" ><c:out value="${manufacturing.priority}"/></span>
 										</div>
+							            </div>
 										<table class="table">
 											<tbody>
+												<tr>
+													<th style="width: 50%"><label>Produit:</label></th>
+													<td>
+							<a href="<c:out value="${baseURL}/product/profile?id=${manufacturing.product.id}"/>"><c:out value="${manufacturing.product.libelle}" /></a>
+						 </span></td>
+												</tr>
 												<tr>
 													<th style="width: 50%"><label>Titre:</label></th>
 													<td><span class="text-muted"><c:out value="${manufacturing.title}" /></span></td>
 												</tr>
 												<tr>
-													<th><label>Code barre:</label></th>
-													<td><c:out value="${manufacturing.barreCode}" /></td>
-												</tr>
-												<tr>
 													<th><label>Equipe:</label></th>
 													<td><c:out value="${manufacturing.team}"/></td>
 												</tr>
-												
-												<tr>
-													<th><label>Stockage entrepôt:</label></th>
-													<td><c:out value="${manufacturing.warehouse.name}"/></td>
-												</tr>
+											
 												<tr>
 													<th><label>Responsable:</label></th>
 													<td><c:out value="${manufacturing.responsible.name}"/></td>
@@ -62,6 +66,26 @@
 												<tr>
 													<th><label>Date fin OF:</label></th>
 													<td>Le:&nbsp;<fmt:formatDate pattern="dd/MM/yyyy" value="${manufacturing.endDate}" /></td>
+												</tr>
+												<tr>
+													<th><label>Quantité lancée</label></th>
+													<td><c:out value="${manufacturing.lanchedQT}"/></td>
+												</tr>
+												<tr>
+													<th><label>Quantité rélisée</label></th>
+													<td><c:out value="${manufacturing.executedQT}"/></td>
+												</tr>
+												<tr>
+													<th><label>Quantité rebutée</label></th>
+													<td><c:out value="${manufacturing.rejectQT}"/></td>
+												</tr>
+												<tr>
+													<th><label>Quantité restante</label></th>
+													<td><c:out value="${manufacturing.restToDoQT}"/></td>
+												</tr>
+												<tr>
+													<th><label>Quantité necessaire</label></th>
+													<td><c:out value="${manufacturing.requeredQT}"/></td>
 												</tr>
 												<tr>
 													<th><label>Description:</label></th>
@@ -76,13 +100,14 @@
 						</div>
 					</div>
 					<div class="col-md-3">
-						<div class="">
+						<div class="form-group">
 							<form method="POST" name="manufacturing" id="orderF">
-								<button type="button" class="btn btn-primary pull-right "
-									style="margin-top: 10%; margin-right: 3%;"
-									onclick="location.href='${baseURL}/manufacturing/update?id=${manufacturing.id}'">
-									<i class="fa fa-pencil-square-o"></i>&nbsp;Modifier
-								</button>
+							<button type="button" class="btn-sm btn btn-primary pull-right "
+									style="margin-top: 12%; margin-right: 2%;"
+									onclick="location.href='${baseURL}/manufacturing/update?id=${manufacturing.id}'"><i class="fa fa-pencil-square-o "></i> &nbsp;Modifier</button>
+							<button type="submit" class="btn-sm btn btn-danger btn pull-right "
+					style="margin-top:12%;margin-right:5%;"><i class="fa fa-print"></i> &nbsp;Imprimer PDF</button>	
+						
 							</form>
 						</div>
 						<div class="user-info-right"
@@ -149,26 +174,6 @@
 							});
 
 							</script>
-
-							
-<!-- 								<div class=""> -->
-<!-- 								<div id="vente"> -->
-<!-- 									En vente &nbsp; -->
-<%-- 									<c:choose> --%>
-<%-- 										<c:when test="${manufacturing.type}"> --%>
-<!-- 											<div id="vente" class="label label-success"> -->
-<!-- 												<label>Sous-traitance</label> -->
-<!-- 											</div> -->
-<%-- 										</c:when> --%>
-<%-- 										<c:otherwise> --%>
-<!-- 											<div id="vente" class="label label-danger"> -->
-<!-- 												<label>Interne</label> -->
-<!-- 											</div> -->
-<%-- 										</c:otherwise> --%>
-<%-- 									</c:choose> --%>
-<!-- 								</div> -->
-
-<!-- 							</div> -->
 						</div>
 					</div>
 
@@ -177,10 +182,28 @@
 			</div>
 
 		</div>
-	<div class="tab-pane fade" id="settings">
-	<div class="">
-		
-	</div>
+	<div class="tab-pane fade ${fileActive} ${fileIn}" id="settings">
+	<div class="tab-pane ${defaultActive}" id="fiche-tab">
+*
+		<table class="table">
+											<tbody>
+											
+												<tr>
+													<th><label>Coût total réel calculé:</label></th>
+													<td>23.00 DH</td>
+												</tr>
+												<tr>
+													<th><label>Coût total théorique calculé:</label></th>
+													<td>234.00 DH</td>
+												</tr>
+												<tr>
+													<th><label>Coût unitaire:</label></th>
+													<td>12.540 DH</td>
+												</tr>
+												
+							             </tbody>
+							             </table>
+		</div>
 </div>
 		<div class="tab-pane fade ${fileActive} ${fileIn}" id="fichierjoint">
 			<h4>Joindre un nouveau fichier:</h4>
@@ -245,7 +268,7 @@
 			<div class="">
 			<table class="table ">
 				<tbody>
-				<tr class=" box box-solid bg-red"><th><h5></h5></th><td></td></tr>
+				
 					<tr class=" box box-solid bg-">
 						<th class=""><label class="">Créé par:</label></th>
 						<td><img src="${baseURL}/file?id=${manufacturing.creator.picture.id}" class="img-circle" alt="User Image" style="width: 29px; height: 28px;"><span class="data-value label label-inverse">
@@ -371,3 +394,65 @@
                     ]
                 });});
         </script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+        	switch ($("#priority").text()){
+    	     case  "Urgent":
+    	    	 $("#priority").css("background-color","indigo");
+    	    	 $("#priority").text("urgent");
+    	    	 break;
+    	     case  "Low":
+    	    	 $("#priority").css("background-color","dimgrey");
+    	    	 $("#priority").text("faible");
+   	    	 break;
+    	   case  "Medium":
+    		   $("#priority").css("background-colorr","steelblue");
+  	    	 $("#priority").text("faible");
+ 	    	 break;
+    	  case  "High":
+    		  $("#priority").css("background-color","blue");
+ 	    	 $("#priority").text("élevé");
+	    	 break;
+    	  case  "Critical":
+    		  $("#priority").css("background-color","crimson");
+ 	    	 $("#priority").text("critique");
+	    	 break;
+	      default:
+	    	  }
+	    	  switch ($("#status").text()){
+	    	     case  "end":
+	    	    	 $("#status").css("background-color","indigo");
+	    	    	 $("#status").text("fini");
+	    	    	 break;
+	    	     case  "inpreparation":
+	    	    	 $("#status").css("background-color","teal");
+	    	    	 $("#status").text("en préparation");
+	   	    	 break;
+	    	   case  "blocked":
+	    		   $("#status").css("background-colorr","tomato");
+	  	    	 $("#status").text("bloqué");
+	 	    	 break;
+	    	  case  "notcharged":
+	    		  $("#status").css("background-color","blue");
+	 	    	 $("#status").text("non chargé");
+		    	 break;
+	    	  case  "charged":
+	    		  $("#status").css("background-color","crimson");
+	 	    	 $("#status").text("chargé");
+		    	 break;
+	    	  case  "onProduction":
+	    		  $("#status").css("background-color","dark");
+	 	    	 $("#status").text("en production");
+		    	 break;
+	    	  case  "waiting":
+	    		  $("#status").css("background-color","rebeccapurple");
+	 	    	 $("#status").text("en attente");
+		    	 break;
+	    	  case  "canceled":
+	    		  $("#status").css("background-color","darkblue");
+	 	    	 $("#status").text("annulé");
+		    	 break;
+		      default:
+		    	  }
+    	});
+</script>

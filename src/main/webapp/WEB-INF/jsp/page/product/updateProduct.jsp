@@ -165,10 +165,9 @@
 			</div>
 			
 			<div class="form-group">
-				<button type="submit" class="btn btn-danger btn pull-right"
-					style="margin-right: 1%;">Annuler</button>
-				<button type="submit" class="btn btn-primary btn pull-right"
-					style="margin-right: 3%;">Ajouter</button>
+				<button type="reset" class="btn-sm btn btn-danger btn pull-right " onclick="location.href='${baseURL}/pproduct/list'" style="margin-right: 2%;">Annuler</button>
+				<button type="submit" class="btn-sm btn btn-success btn pull-right"
+					style="margin-right: 2%;"><i class="fa fa-pencil-square-o"></i>&nbsp;Modifier</button>
 			</div>
 		</form:form>
 	</div>

@@ -30,7 +30,7 @@ public class OrderManufacturing extends MetaObject implements Serializable {
 	private String title;
 	@Column(name="ELMO_DESCRIPTION",length=255)
 	private String description;
-	@Column(name="ELMO_BARRECODE",nullable=false,length=255)
+	@Column(name="ELMO_BARRECODE",length=255)
 	@Index(name="ELMO_CODE_INDEX")
 	private String barreCode;
 	@Column(name="ELMO_STATUS")
@@ -62,6 +62,8 @@ public class OrderManufacturing extends MetaObject implements Serializable {
 	private Integer lanchedQT;
 	@Column(name="ELMO_REJECTEDQT")
 	private Integer rejectQT;
+	@Column(name="ELMOTODODQT")
+	private Integer restToDoQT;
 	@Column(name="ELMO_REQUEREDQT")
 	private Integer requeredQT;
 	@Column(name="ELMO_TEAM")
@@ -77,7 +79,7 @@ public class OrderManufacturing extends MetaObject implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private OFPRIORITY priority;
 	public enum OFPRIORITY {
-		Urgent,Low,Emergency,Medium,High,Critical
+		Urgent,Low,Medium,High,Critical
 	}
 	@ManyToOne
 	 @JoinColumn(name="ELMO_PRODUCT_ID")
@@ -188,6 +190,30 @@ public class OrderManufacturing extends MetaObject implements Serializable {
 	public void setRequeredQT(Integer requeredQT) {
 		this.requeredQT = requeredQT;
 	}
+	public Integer getRejectQT() {
+		return rejectQT;
+	}
+
+	public void setRejectQT(Integer rejectQT) {
+		this.rejectQT = rejectQT;
+	}
+
+	public Integer getRestToDoQT() {
+		return restToDoQT;
+	}
+
+	public void setRestToDoQT(Integer restToDoQT) {
+		this.restToDoQT = restToDoQT;
+	}
+
+	public Warehouse getCenter() {
+		return center;
+	}
+
+	public void setCenter(Warehouse center) {
+		this.center = center;
+	}
+
 	public String getTeam() {
 		return team;
 	}

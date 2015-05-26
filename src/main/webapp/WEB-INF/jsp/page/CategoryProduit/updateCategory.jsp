@@ -22,7 +22,7 @@
 
 <div class="box box-solid box-primary">
 	<div class="box-header">
-		<h3 class="box-title">Modifier Catégorie</h3>
+		<h3 class="box-title">Nouvelle Catégorie</h3>
 	</div>
 	<!-- /.box-header -->
 	<!-- form start -->
@@ -32,7 +32,7 @@
 		<form:form method="POST" commandName="category" id="categoryF"
 			data-toggle="validator" cssClass="form-horizontal">
 			<div class="form-group">
-				<label for="nameField" class="col-sm-2 control-label esoft-left">name:</label>
+				<label for="nameField" class="col-sm-2 control-label esoft-left">name:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:input path="name" cssClass="form-control" />
 					<form:errors path="name" cssClass="error" />
@@ -41,16 +41,15 @@
 			</div>
             
 			<div class="form-group">
-				<label for="nameField" class="col-sm-2 control-label esoft-left">Description:</label>
+				<label for="DescriptionField" class="col-sm-2 control-label esoft-left">Description:</label>
 				<div class="col-sm-10">
 					<form:textarea id="editor1" path="description" name="editor1" rows="4" cols="80"/>
 				</div>
 			</div>
 			<div class="form-group">
-				<button type="submit" class="btn btn-danger btn pull-right"
-					style="margin-right: 1%;">Annuler</button>
-				<button type="submit" class="btn btn-primary btn pull-right"
-					style="margin-right: 2%;">Ajouter</button>
+				<button type="reset" class="btn-sm btn btn-danger btn pull-right " onclick="location.href='${baseURL}/category/list'" style="margin-right: 2%;">Annuler</button>
+				<button type="submit" class="btn-sm btn btn-success btn pull-right"
+					style="margin-right: 2%;"><i class="fa fa-pencil-square-o"></i>&nbsp;Modifier</button>
 			</div>
 		</form:form>
 	</div>
