@@ -117,7 +117,7 @@
 						id="center" size="1">
 						<c:if test="${center.id >0}">
 							<form:option value="${center.id}" selected="selected">
-								<c:out value="${center.name} ${center.lastName}" />
+								<c:out value="${center.name} " />
 							</form:option>
 						</c:if>
 					</form:select>
