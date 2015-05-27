@@ -95,6 +95,10 @@
 	<definition name="transfertStock" extends="Template">
 	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/transfertStock.jsp" />
 	</definition>
+	
+	<definition name="transfertStockFromOF" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/transfertStockFromOF.jsp" />
+	</definition>
 	<!-- /Warehouse Pages -->
 	<!-- User Pages -->
 	<definition name="userProfile" extends="Template">
@@ -126,6 +130,20 @@
 	<definition name="updateManufacturing" extends="Template">
 	<put-attribute name="page" value="/WEB-INF/jsp/page/Manufacturing/updateManufacturing.jsp" />
 	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/Manufacturing/updateTitle.jsp" />
+	</definition>
+	<!-- /Manufacturing Pages -->
+	<!-- nomenclatures Pages -->
+	<definition name="nomenclatureProfile" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Nomenclature/profile.jsp" />
+	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/Nomenclature/profileTitle.jsp" />
+	</definition>
+	<definition name="createNomenclature" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Nomenclature/createNomenclature.jsp" />
+	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/Nomenclature/createTitle.jsp" />
+	</definition>
+	<definition name="updateNomenclature" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Nomenclature/updateNomenclature.jsp" />
+	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/Nomenclature/updateTitle.jsp" />
 	</definition>
 	<!-- /Manufacturing Pages -->
 	<definition name="login" template="/WEB-INF/jsp/page/login.jsp"/>

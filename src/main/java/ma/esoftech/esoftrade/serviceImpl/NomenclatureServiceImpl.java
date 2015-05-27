@@ -36,6 +36,7 @@ public class NomenclatureServiceImpl implements INomenclatureService {
 	@Transactional(rollbackFor=Exception.class)
 	public long createNomenclature(NomenclatureDTO nomenclatureDTO, UserDTO creator) {
 		Nomenclature nomenclatureEntity=mapper.map(nomenclatureDTO, Nomenclature.class);
+		System.out.println(creator.getId());
 		ServiceUtils.buildEntityModel(creator, nomenclatureEntity);
 		nomenclatureEntity.setRef(ServiceUtils.TMP_REF);
 		long idNomenclature=nomenclatureDao.createNomenclature(nomenclatureEntity);

@@ -50,9 +50,19 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="warehouse-info"
-							style="padding-left: 1%; padding-top: 4%;">
+							style="">
 							<div class="global-info">
+							<div class="form-group">
+						<form method="POST" name="warehouse" id="warF">
+							<button type="button" class="btn-sm btn btn-success pull-right "
+								style=""
+								onclick="location.href='${baseURL}/warehouse/update?id=${warehouse.id}'">
+								<i class="fa fa-pencil-square-o"></i>&nbsp;Modifier
+							</button>
+						</form>
+					</div>
 								<div class=" col-sm-12 table-responsive">
+								
 									<table class="table">
 										<tbody>
 											<tr>
@@ -91,15 +101,7 @@
 						</div>
 					</div>
 
-					<div>
-						<form method="POST" name="category" id="categoryF">
-							<button type="button" class="btn btn-primary pull-right "
-								style="margin-top: 22%; margin-right: 4%;"
-								onclick="location.href='${baseURL}/category/update?id=${category.id}'">
-								<i class="fa fa-pencil-square-o"></i>&nbsp;Modifier
-							</button>
-						</form>
-					</div>
+					
 				</div>
 
 			</div>
@@ -248,10 +250,6 @@
 		<div class="tab-pane fade" id="suivi">
 				<table class="table ">
 					<tbody>
-						<tr class=" box box-solid bg-red">
-							<th><h5></h5></th>
-							<td></td>
-						</tr>
 						<tr class=" box box-solid bg-">
 							<th class=""><label class="">Créé par:</label></th>
 							<td><img
@@ -463,7 +461,7 @@
 												$link = '<a href="#">commande fournisseur</a>';
 												break;
 											case "manufacturing":
-												$link = '<a href="#">Ordre de fabrication</a>';
+												$link = '<a href="'+full.of.id+'">Ordre de fabrication</a>';
 												break;
 											default:
 

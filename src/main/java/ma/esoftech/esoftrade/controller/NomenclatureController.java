@@ -56,38 +56,42 @@ public class NomenclatureController extends AbstractController {
 			return "error";
 		}
 		
-		return "NomenclatureProfile";
+		return "nomenclatureProfile";
 	}
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public String loadNomenclatureCreateForm(@RequestParam(value="of_id") long of_id,ModelMap model) {
 		initialize();
+		OrderManufacturingDTO manufacturing;
 		try {
-			manufacturingService.findOFById(of_id);
+			manufacturing=manufacturingService.findOFById(of_id);
 		} catch (ManufacturingNotFoundException e) {
 			model.addAttribute("messageError",e.getMessage());
 			return "error";
 		}
 		NomenclatureDTO nomenclature=new NomenclatureDTO();
 		model.addAttribute("nomenclature", nomenclature);
+		model.addAttribute("manufacturingDTO",manufacturing);
 		model.addAttribute("manufacturing", of_id);
 		return "createNomenclature";
 	}
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String addNomenclature(@ModelAttribute("nomenclature") @Valid NomenclatureDTO nomenclatureDTO,
-			BindingResult result,@RequestParam(value="of_id")long of_id,ModelMap model) {
+			BindingResult result,@RequestParam(value="manufacturing")long of_id,ModelMap model) {
 		initialize();
-		
+		OrderManufacturingDTO manufacturing;
+		try {
+			manufacturing=manufacturingService.findOFById(of_id);
+		} catch (ManufacturingNotFoundException e) {
+			model.addAttribute("messageError",e.getMessage());
+			return "error";
+		}
 		if (result.hasErrors()) {
+			model.addAttribute("manufacturingDTO",manufacturing);
 			model.addAttribute("manufacturing",of_id);
 			return "createNomenclature";
 		} else {
-			try {
-				manufacturingService.findOFById(of_id);
-			} catch (ManufacturingNotFoundException e) {
-				model.addAttribute("messageError",e.getMessage());
-				return "error";
-			}
-            
+			
+            System.out.println(nomenclatureDTO.getProduct().getId()+"produiiiiit");
 				long id=nomenclatureService.createNomenclature(nomenclatureDTO, currentUser);
 				nomenclatureDTO.setId(id);
 				try {
@@ -163,7 +167,7 @@ public class NomenclatureController extends AbstractController {
 		response.setData(list);
 		return response;
 	}
-	@RequestMapping(value="/qteIm",method=RequestMethod.GET,produces = "application/json")
+	@RequestMapping(value="/importedQte",method=RequestMethod.GET,produces = "application/json")
 	public @ResponseBody  long getImportedQte(@RequestParam long id){
 		return 0;
 	}

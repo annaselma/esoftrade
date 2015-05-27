@@ -29,3 +29,12 @@ Date.prototype.formatDetail=function(){
 	 sec1=this.getSeconds();
 	return n(day1)+"/"+n(month1)+"/"+year1+" "+n(hour1)+":"+n(min1)+":"+n(sec1);
 };
+$(document).ready(function() {
+	function showpanel() {     
+	    $(".alert-message").hide(1000);
+	 }
+
+	 // use setTimeout() to execute
+	 setTimeout(showpanel, 3000);
+	
+});

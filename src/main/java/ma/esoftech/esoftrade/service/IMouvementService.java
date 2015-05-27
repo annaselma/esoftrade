@@ -3,6 +3,7 @@ package ma.esoftech.esoftrade.service;
 import java.util.List;
 
 import ma.esoftech.esoftrade.DTO.MouvementDTO;
+import ma.esoftech.esoftrade.DTO.OrderManufacturingDTO;
 import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.ProductWarehouseDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
@@ -23,4 +24,7 @@ public interface IMouvementService {
     public long ProductCountByWarehouse(String filter,WarehouseDTO warehouse);
     public List<ProductWarehouseDTO> getListWarehouseByProduct(int start, int length, String sorting, String filter,ProductDTO product);
     public long ProductCountByProduct(String filter,ProductDTO product);
+	public void transfertStockfromOF(WarehouseDTO source, WarehouseDTO target,
+			ProductDTO product, int nbre, String notes, UserDTO creator,
+			OrderManufacturingDTO manufacturing);
 }

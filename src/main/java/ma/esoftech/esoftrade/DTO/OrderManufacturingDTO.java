@@ -35,7 +35,6 @@ public class OrderManufacturingDTO {
 	private EditorDTO modifier;
 	private Date lastEdit;
 	private String description;
-	 @NotEmpty
 	private String barreCode;
 	private OFStatus status;
 	private UserAssociatedDTO responsible;
@@ -44,17 +43,15 @@ public class OrderManufacturingDTO {
 	private Date startDate;
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@NotNull
-	private Date dueDate;
-	@DateTimeFormat(pattern="dd/MM/yyyy")
-	@NotNull
 	private Date endDate;
 	private Date provisionalStartDate;
 	private Date provisionalEndDate;
 	private Boolean type;
 	private Integer rejectQT=0;
 	private Integer executedQT=0;
-	private Integer lanchedQT=0;
+	private Integer lanchedQT=1;
 	private Integer requeredQT=0;
+	private Integer restToDoQT=0;
 	 @NotEmpty
 	 @Size(max=20,min=2)
 	private String team;
@@ -65,7 +62,7 @@ public class OrderManufacturingDTO {
 	private float totalTheoryCost;
 	private Integer deadline=0;
 	private Integer progress=0;
-	private FileAssociatedDTO picture=new FileAssociatedDTO();
+	private FileAssociatedDTO picture=null;
 	public FileAssociatedDTO getPicture() {
 		return picture;
 	}
@@ -143,12 +140,7 @@ public class OrderManufacturingDTO {
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
-	public Date getDueDate() {
-		return dueDate;
-	}
-	public void setDueDate(Date dueDate) {
-		this.dueDate = dueDate;
-	}
+
 	public Date getEndDate() {
 		return endDate;
 	}
@@ -201,6 +193,12 @@ public class OrderManufacturingDTO {
 	public OFPRIORITY getPriority() {
 		return priority;
 	}
+	public Integer getRestToDoQT() {
+		return restToDoQT;
+	}
+	public void setRestToDoQT(Integer restToDoQT) {
+		this.restToDoQT = restToDoQT;
+	}
 	public void setPriority(OFPRIORITY priority) {
 		this.priority = priority;
 	}
@@ -214,7 +212,7 @@ public class OrderManufacturingDTO {
 	}
 	public OrderManufacturingDTO() {
 		setStartDate(new Date() );
-		setDueDate(new Date());
+		setEndDate(new Date());
 	}
 	public ProductAssociatedDTO getProduct() {
 		return product;

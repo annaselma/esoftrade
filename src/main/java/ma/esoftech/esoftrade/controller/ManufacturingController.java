@@ -64,7 +64,7 @@ public class ManufacturingController extends AbstractController {
 
 	}
 	@RequestMapping(value="/profile",method = RequestMethod.GET)
-	public String loadOF(@RequestParam long id, ModelMap model,@RequestParam(required=false,defaultValue="false") boolean file){
+	public String loadOF(@RequestParam long id, ModelMap model,@RequestParam(required=false)String stock,@RequestParam(required=false,defaultValue="false") boolean file){
 		OrderManufacturingDTO OF=null;
 		try {
 			
@@ -75,6 +75,8 @@ public class ManufacturingController extends AbstractController {
 		}
 		FileUploadUTILS.prepareTabProfil(model, file);
         model.addAttribute("manufacturing", OF);
+        if(stock!=null)
+         model.addAttribute("stock", "ddd");
 		
 		return "manufacturingProfile";
 		}
@@ -88,8 +90,7 @@ public class ManufacturingController extends AbstractController {
 			return "createManufacturing";
 		} else {
             
-			//ahh tu as initialsé par null provisoire
-			      manufacturingOrder.setProduct(null);
+			
 				long id=manufacturService.createOF(manufacturingOrder, currentUser);
 				return PATH_PROFIL+"?id="+id;
 			}
@@ -221,10 +222,6 @@ public class ManufacturingController extends AbstractController {
 			 List<WarehouseDTO> listwarehouse=warehouseService.getListWarehouse(0, 1000);
 				return listwarehouse;
 		}
-		@ModelAttribute("userItems")
-		public List<UserDTO> getUserList(){
-			 List<UserDTO>listeUser=userService.getAllUsers(0, 1000, "", "");
-				return listeUser;}
 		
 		@RequestMapping(value="/searchResponsable",method=RequestMethod.GET,produces = "application/json")
 		public @ResponseBody List<UserDTO> searchResponsable(@RequestParam String search,ModelMap model){

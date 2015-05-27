@@ -41,16 +41,10 @@
 			</div>
             
 			<div class="form-group">
-				<label for="nameField" class="col-sm-2 control-label esoft-left">Description:</label>
-				<div class="col-sm-10">
-					<form:textarea id="editor1" path="description" name="editor1" rows="4" cols="80"/>
-				</div>
-			</div>
-			<div class="form-group">
 				<label for="CPField" class="col-sm-2 control-label esoft-left">code
 					Postal:</label>
 				<div class="col-sm-4">
-					<form:input path="zipCode" cssClass="form-control input-lg" />
+					<form:input path="zipCode" cssClass="form-control" />
 					<form:errors path="zipCode" cssClass="error" />
 				</div>
 
@@ -74,12 +68,20 @@
 						<option value="Maroc">Maroc</option>
 						<option value="France(F)">France (F))</option>
 						<option value="Tunisie">Tunisie (T)</option>
+						<option value="Turkish">Turkish (Tur)</option>
+						<option value="USA">USA (USA)</option>
 						</form:select></div></div>
+						
+						<div class="form-group">
+				<label for="nameField" class="col-sm-2 control-label esoft-left">Description:</label>
+				<div class="col-sm-10">
+					<form:textarea id="editor1" path="description" name="editor1" rows="4" cols="80"/>
+				</div>
+			</div>
 			<div class="form-group">
-				<button type="submit" class="btn btn-danger btn pull-right"
-					style="margin-right: 1%;">Annuler</button>
-				<button type="submit" class="btn btn-primary btn pull-right"
-					style="margin-right: 2%;">Ajouter</button>
+				<button type="reset" class="btn-sm btn btn-danger btn pull-right " onclick="location.href='${baseURL}/warehouse/list'" style="margin-right: 2%;">Annuler</button>
+				<button type="submit" class="btn-sm btn btn-success btn pull-right"
+					style="margin-right: 2%;"><i class="fa fa-pencil-square-o"></i>&nbsp;Modifier</button>
 			</div>
 		</form:form>
 	</div>

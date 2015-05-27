@@ -20,7 +20,6 @@
 			<thead>
 				<tr>
 				    <th>Ref.</th>
-					<th>Titre</th>
 					<th>Date début</th>
 					<th>Date fin</th>
 					<th>Deadline</th>
@@ -36,7 +35,6 @@
 			<tfoot>
 				<tr>
 				    <th>Ref.</th>
-					<th>Titre</th>
 					<th>Date début</th>
 					<th>Date fin</th>
 					<th>Deadline</th>
@@ -88,16 +86,15 @@
                     	"targets":[0],
                     	"name":"ref",
                     	"data":"ref",
+                    	"render": function ( data, type, full, meta ) {
+                    		$link='<small><a href="${baseURL}/manufacturing/profile?id='+full.id+'">'+data+'</a></small>';
+                    	
+                    	      return $link;
+                    	    }
                     
                     },
                     {
                     	"targets":[1],
-                    	"name":"title",
-                    	"data":"title",
-                    
-                    },
-                    {
-                    	"targets":[2],
                     	"name":"startDate",
                     	"data":"startDate",
                     	"render": function ( data, type, full, meta ) {
@@ -107,65 +104,120 @@
                     
                     },
                     {
-                    	"targets":[3],
+                    	"targets":[2],
                     	"name":"endDate",
                     	"data":"endDate",
                     	"render": function ( data, type, full, meta ) {
                    	      date = new Date(data);
                    	      return date.formatDetail();
+                   	    }
+                    
+                    },
+                    {
+                    	"targets":[3],
+                    	"name":"deadline",
+                    	"data":"deadline",
+                    	"render": function ( data, type, full, meta ) {
+                   	     if(data<0){
+                   	    	 return '<span class="label label-warning">En retard de '+(data*-1)+' jour(s)</span>';
+                   	     }
+                   	     if(data==0){
+                   	    	 return "dernier jour";
+                   	     }
+                   	      return data+" jour(s)";
                    	    }
                     
                     },
                     {
                     	"targets":[4],
-                    	"name":"endDate",
-                    	"data":"endDate",
+                    	"name":"progress",
+                    	"data":"progress",
                     	"render": function ( data, type, full, meta ) {
-                   	      date = new Date(data);
-                   	      return date.formatDetail();
-                   	    }
-                    
+                   		 $dta='<small class="pull-right">'+data+'%</small>'+'<div class="progress xs">'+
+         					'<div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">'+
+ 						'<span class="sr-only">'+data+'</span>';
+ 					'</div>';
+                   		 return $dta;
+                    	}
                     },
                     {
                     	"targets":[5],
-                    	"name":"ref",
-                    	"data":"ref",
+                    	"name":"priority",
+                    	"data":"priority",
+                    	"render": function ( data, type, full, meta ) {
+                    		$link="";
+                     	     switch (data){
+                     	     case  "Critical":
+                     	    	$link='<span class="label label-danger">critique</span>';
+                     	    	 break;
+                     	    case  "High":
+                     	    	$link='<span class="label label-success">élevé</span>';
+                    	    	 break;
+                     	   case  "Medium":
+                     		  $link='<span class="label label-info">moyen</span>';
+                  	    	 break;
+                     	 case  "Low":
+                     		 $link='<span class="label label-default">faible</span>';
+                 	    	 break;
+                     	case  "Urgent":
+                    		 $link='<span class="label label-warning">urgent</span>';
+                	    	 break;
+                 	      default:
+                 	    	  
+                     	     }
+                     	     return $link;
+                     	    }
                     
                     },
                     {
                     	"targets":[6],
-                    	"name":"title",
-                    	"data":"title",
-                    	"render": function ( data, type, full, meta ) {
-                   		 $obj='<div id="title" class="label label-success">Low</div>';
-                   		
-                   	      return $obj;
-                   	    }
-                    
-                    },
-                    {
-                    	"targets":[7],
                     	"name":"responsible",
                     	"data":"responsible",
                     	"render": function ( data, type, full, meta ) {
-                    		$link='<a href="${baseURL}/user/profile?id='+data.id+'">'+data.firstName+' '+data.lastName+'</a>';
+                    		$link='<a href="${baseURL}/user/profile?id='+data.id+'"><i class="fa fa-user"></i>&nbsp;'+data.name+' '+data.lastName+'</a>';
                     	
                     	      return $link;
                     	    }
                     },
                     {
-                    	"targets":[8],
-                    	"name":"title",
-                    	"data":"title",
+                    	"targets":[7],
+                    	"name":"status",
+                    	"data":"status",
                     	"render": function ( data, type, full, meta ) {
-                   		 $active='<div id="title" class="label label-success">Low</div>';
-                   		
-                   	      return $inactive;
-                   	    }
-                    
+                    		$link="";
+                     	     switch (data){
+                     	     case  "canceled":
+                     	    	$link='<small class="badge bg-yellow">annulé</small>';
+                     	    	 break;
+                     	    case  "waiting":
+                     	    	$link='<small class="badge bg-aqua">attente</small>';
+                    	    	 break;
+                     	   case  "onProduction":
+                     		  $link='<small class="badge bg-purple">En prod</small>';
+                  	    	 break;
+                     	 case  "charged":
+                     		 $link='<small class="badge bg-teal">chargé</small>';
+                 	    	 break;
+                     	case  "notcharged":
+                    		 $link='<small class="badge bg-navy">pas chargé</small>';
+                	    	 break;
+                     	case  "end":
+                   		 $link='<small class="badge bg-red">fini</small>';
+               	    	 break;
+                     	case  "blocked":
+                   		 $link='<small class="badge bg-orange">blocké</small>';
+               	    	 break;
+                     	case  "inpreparation":
+                      		 $link='<small class="badge bg-olive">en prépa</small>';
+                  	    	 break;
+                 	      default:
+                 	    	  
+                     	     }
+                     	     return $link;
+                     	    }
                     },
                     {
-                    	"targets":[9],
+                    	"targets":[8],
                     	"name":"id",
                     	"data":"id",
                     	"orderable": false,
