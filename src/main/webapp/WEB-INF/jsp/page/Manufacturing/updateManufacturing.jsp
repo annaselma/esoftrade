@@ -44,10 +44,10 @@
 				<div class="col-sm-4" id="select-product">
 					<form:select path="product"
 						cssClass="tokenize-sample mono-select " id="product" size="1">
-						<c:if test="${product.id >0}">
-							<form:option value="${product.id}"
+						<c:if test="${manufacturing.product.id >0}">
+							<form:option value="${manufacturing.product.id}"
 								selected="selected">
-								<c:out value="${product.libelle}" />
+								<c:out value="${manufacturing.product.libelle}" />
 							</form:option>
 						</c:if>
 					</form:select>
@@ -68,9 +68,9 @@
 									"focus",
 									".tokenize-sample ",
 									function() {
-										console.log($(".Token span").text());
-										$text = $(".Token span").text();
-										$(".Token").remove();
+										console.log($("#select-product .Token span").text());
+										$text = $("#select-product .Token span").text();
+										$("#select-product .Token").remove();
 										$(
 												"#select-product select option[selected='selected']")
 												.remove();
@@ -84,9 +84,9 @@
 				<div class="col-sm-4" id="select-user">
 					<form:select path="responsible" cssClass="tokenize-sample mono-select "
 						id="user" size="1">
-						<c:if test="${product.id >0}">
-							<form:option value="${responsible.id}" selected="selected">
-								<c:out value="${responsible.name} ${responsible.lastName}" />
+						<c:if test="${manufacturing.product.id >0}">
+							<form:option value="${manufacturing.responsible.id}" selected="selected">
+								<c:out value="${manufacturing.responsible.name} ${manufacturing.responsible.lastName}" />
 							</form:option>
 						</c:if>
 					</form:select>
@@ -108,6 +108,38 @@
 				   $(" #select-user .Token").remove();
 				   $("#select-user select option[selected='selected']").remove();
 				    $("#select-user .TokenSearch input").val($text);
+				});
+				</script>
+				</div>
+				<div class="form-group">
+				<label for="centerField" class="col-sm-2 control-label esoft-left">centre:&nbsp;<span class="error">*</span></label>
+				<div class="col-sm-4" id="select-center">
+					<form:select path="center" cssClass="tokenize-sample mono-select "
+						id="center" size="1">
+						<c:if test="${manufacturing.center.id >0}">
+							<form:option value="${manufacturing.center.id}" selected="selected">
+								<c:out value="${manufacturing.center.name} " />
+							</form:option>
+						</c:if>
+					</form:select>
+					<form:errors path="center" cssClass="error" />
+				</div>
+				<script type="text/javascript"
+					src="${baseURL}/js/plugins/tokenize/jquery.tokenize.js"></script>
+				<script type="text/javascript">
+				$('#center').tokenize({
+					"newElements":false,
+					maxElements:1,
+					datas: "${baseURL}/manufacturing/search",
+					valueField:"id",
+					textField:"name"
+					});
+				$("#select-center").on("focus", ".tokenize-sample ", function() {
+				    console.log($("#select-center .Token span").text());
+				   $text= $("#select-center .Token span").text();
+				   $(" #select-center .Token").remove();
+				   $("#select-center select option[selected='selected']").remove();
+				    $("#select-center .TokenSearch input").val($text);
 				});
 				</script>
 				</div>

@@ -71,6 +71,7 @@ public class OrderManufacturingDTO {
 	}
 	@NotNull(message="produit ne doit pas être null")
 	private ProductAssociatedDTO product=null;
+	@NotNull(message="centre ne doit pas être null")
 	private WarehouseAssociatedDTO center=null;
 	private  List<FileAssociatedDTO> files=new ArrayList<FileAssociatedDTO>();
 	public long getId() {

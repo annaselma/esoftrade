@@ -69,12 +69,9 @@
 									".tokenize-sample ",
 									function() {
 										console.log($(".Token span").text());
-										$text = $(".Token span").text();
-										$(".Token").remove();
-										$(
-												"#select-product select option[selected='selected']")
-												.remove();
-										$(".TokenSearch input").val($text);
+										$text= $("#select-product .Token").remove();
+										   $("##elect-product select option[selected='selected']").remove();
+										    $("#select-product .TokenSearch input").val($text);
 									});
 				</script>
 				
@@ -111,6 +108,42 @@
 				});
 				</script>
 				</div>
+				
+								
+			<div class="form-group">
+				<label for="centerField" class="col-sm-2 control-label esoft-left">centre:&nbsp;<span class="error">*</span></label>
+				<div class="col-sm-4" id="select-center">
+					<form:select path="center" cssClass="tokenize-sample mono-select "
+						id="center" size="1">
+						<c:if test="${center.id >0}">
+							<form:option value="${center.id}" selected="selected">
+								<c:out value="${center.name} " />
+							</form:option>
+						</c:if>
+					</form:select>
+					<form:errors path="center" cssClass="error" />
+				</div>
+				<script type="text/javascript"
+					src="${baseURL}/js/plugins/tokenize/jquery.tokenize.js"></script>
+				<script type="text/javascript">
+				$('#center').tokenize({
+					"newElements":false,
+					maxElements:1,
+					datas: "${baseURL}/manufacturing/search",
+					valueField:"id",
+					textField:"name"
+					});
+				$("#select-center").on("focus", ".tokenize-sample ", function() {
+				    console.log($("#select-center .Token span").text());
+				   $text= $("#select-center .Token span").text();
+				   $(" #select-center .Token").remove();
+				   $("#select-center select option[selected='selected']").remove();
+				    $("#select-center .TokenSearch input").val($text);
+				});
+				</script>
+				</div>
+				
+				
 			<div class="form-group">
 				<label for="lenghtField" class="col-sm-2 control-label esoft-left">Team:</label>
 				<div class="col-sm-4">
