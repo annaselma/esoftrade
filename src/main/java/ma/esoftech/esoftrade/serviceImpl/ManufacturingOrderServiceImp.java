@@ -1,7 +1,9 @@
 package ma.esoftech.esoftrade.serviceImpl;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,15 +11,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ma.esoftech.esoftrade.DTO.FileDTO;
+import ma.esoftech.esoftrade.DTO.NomenclatureDTO;
 import ma.esoftech.esoftrade.DTO.OrderManufacturingDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.DTO.WarehouseDTO;
 import ma.esoftech.esoftrade.Dao.IFileDao;
 import ma.esoftech.esoftrade.Dao.IManufacturinOrder;
+import ma.esoftech.esoftrade.Dao.INomenclatureDao;
 import ma.esoftech.esoftrade.exception.ManufacturingNotFoundException;
 import ma.esoftech.esoftrade.exception.ProductNotFoundException;
 import ma.esoftech.esoftrade.generate.User;
 import ma.esoftech.esoftrade.model.File;
+import ma.esoftech.esoftrade.model.Nomenclature;
 import ma.esoftech.esoftrade.model.OrderManufacturing;
 import ma.esoftech.esoftrade.model.Product;
 import ma.esoftech.esoftrade.model.Warehouse;
@@ -33,6 +38,8 @@ Mapper mapper;
 IManufacturinOrder manufacturingDao;
 @Autowired
 IFileDao fileDao;
+@Autowired
+INomenclatureDao nomenclatureDao;
 
 @Override
 @Transactional(readOnly=true)
@@ -88,6 +95,7 @@ public void updateOF(OrderManufacturingDTO OrderFacturing, UserDTO modifier) thr
     OFEntity.setLastEdit(new Date());
     OFEntity.setPicture(OFTmp.getPicture());
     OFEntity.setFiles(OFTmp.getFiles());
+    OFEntity.setNomenclatures(OFTmp.getNomenclatures());
 	manufacturingDao.updateOF(OFEntity);
 }
 @Override
@@ -135,6 +143,50 @@ public void attachFileToManufacturing(FileDTO fileDTO, long id, UserDTO modifier
     manufacturingEntity.getFiles().add(file);
     manufacturingDao.updateOF(manufacturingEntity);
     
+}
+@Override
+@Transactional(rollbackFor=Exception.class)
+public void attachNomenclatureToManufacturing(NomenclatureDTO nomenclatureDTO,long id,UserDTO modifier) throws ManufacturingNotFoundException{
+	OrderManufacturing manufacturingEntity= manufacturingDao.findById(id);
+    if(manufacturingEntity==null){
+   	 throw new ManufacturingNotFoundException();
+    }
+    ServiceUtils.EditEntityModel(modifier,manufacturingEntity);
+    Nomenclature nomenclature=new Nomenclature();
+    nomenclature.setId(nomenclatureDTO.getId());
+    manufacturingEntity.getNomenclatures().add(nomenclature);
+    manufacturingDao.updateOF(manufacturingEntity);
+    
+}
+@Override
+@Transactional(rollbackFor=Exception.class)
+	public void deleteNomenclaturefromManufacturing(
+			NomenclatureDTO nomenclatureDTO, long id, UserDTO modifier) throws ManufacturingNotFoundException {
+	    Nomenclature nomenclature=new Nomenclature();
+        nomenclature.setId(nomenclatureDTO.getId());
+		OrderManufacturing manufacturingEntity = manufacturingDao.findById(id);
+		if (manufacturingEntity == null) {
+			throw new ManufacturingNotFoundException();
+		}
+		ServiceUtils.EditEntityModel(modifier, manufacturingEntity);
+		Set<Nomenclature> setNomenclatures = manufacturingEntity
+				.getNomenclatures();
+		deleteNomenclatureFromSet(setNomenclatures, nomenclature);
+		manufacturingEntity.setNomenclatures(setNomenclatures);
+		manufacturingDao.updateOF(manufacturingEntity);
+		nomenclatureDao.deleteNomenclature(nomenclature);
+		
+	}
+
+private void deleteNomenclatureFromSet(Set<Nomenclature> setNomenclatures,Nomenclature nomenclature){
+	Iterator<Nomenclature> it = setNomenclatures.iterator();
+	while (it.hasNext()) {
+       if(it.next().getId()==nomenclature.getId()){
+    	   setNomenclatures.remove(it.next());
+    	   return;
+       }
+	}
+	
 }
 @Override
 @Transactional(readOnly=true)

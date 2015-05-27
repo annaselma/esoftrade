@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ma.esoftech.esoftrade.DTO.MouvementDTO;
+import ma.esoftech.esoftrade.DTO.OrderManufacturingDTO;
 import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.ProductWarehouseDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
@@ -11,6 +12,7 @@ import ma.esoftech.esoftrade.DTO.WarehouseDTO;
 import ma.esoftech.esoftrade.Dao.IMouvementDao;
 import ma.esoftech.esoftrade.model.Mouvement;
 import ma.esoftech.esoftrade.model.Mouvement.MouvementType;
+import ma.esoftech.esoftrade.model.OrderManufacturing;
 import ma.esoftech.esoftrade.model.Product;
 import ma.esoftech.esoftrade.model.ProductWarehouse;
 import ma.esoftech.esoftrade.model.Warehouse;
@@ -120,6 +122,24 @@ public class MouvementServiceImpl implements IMouvementService {
 		mouvementSource.setType(MouvementType.transfertStock);
 		Mouvement mouvementTarget= buildMouvement(target, product, nbre, notes, creator);
 		mouvementTarget.setType(MouvementType.transfertStock);
+		mouvementdao.createMouvement(mouvementSource);
+		mouvementdao.createMouvement(mouvementTarget);
+		
+		
+	}
+	@Override
+	@Transactional(rollbackFor=Exception.class)
+	public void transfertStockfromOF(WarehouseDTO source, WarehouseDTO target,
+			ProductDTO product, int nbre,String notes,UserDTO creator,OrderManufacturingDTO manufacturing) {
+		int negatifNumber=nbre*-1;//
+		 OrderManufacturing oF=new OrderManufacturing();
+		 oF.setId(manufacturing.getId());
+		Mouvement mouvementSource=buildMouvement(source,product,negatifNumber,notes,creator);
+		mouvementSource.setOFabrication(oF);
+		mouvementSource.setType(MouvementType.manufacturing);
+		Mouvement mouvementTarget= buildMouvement(target, product, nbre, notes, creator);
+		mouvementTarget.setType(MouvementType.manufacturing);
+		mouvementTarget.setOFabrication(oF);
 		mouvementdao.createMouvement(mouvementSource);
 		mouvementdao.createMouvement(mouvementTarget);
 		

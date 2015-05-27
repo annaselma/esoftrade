@@ -461,7 +461,7 @@
 												$link = '<a href="#">commande fournisseur</a>';
 												break;
 											case "manufacturing":
-												$link = '<a href="#">Ordre de fabrication</a>';
+												$link = '<a href="'+full.of.id+'">Ordre de fabrication</a>';
 												break;
 											default:
 

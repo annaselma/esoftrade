@@ -9,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import ma.esoftech.esoftrade.DTO.associated.EditorDTO;
+import ma.esoftech.esoftrade.DTO.associated.OFAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.ProductAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.WarehouseAssociatedDTO;
 import ma.esoftech.esoftrade.model.Mouvement.MouvementType;
@@ -26,6 +27,8 @@ public class MouvementDTO {
 	private WarehouseAssociatedDTO warehouse=null;
 	@NotNull(message="le produit ne doit pas etre vide")
 	private ProductAssociatedDTO product=null ;
+	
+	private OFAssociatedDTO OF=null;
 	public long getId() {
 		return id;
 	}
@@ -88,4 +91,10 @@ public class MouvementDTO {
 		this.product = product;
 	}
 	public MouvementDTO(){}
+	public OFAssociatedDTO getOF() {
+		return OF;
+	}
+	public void setOF(OFAssociatedDTO oF) {
+		OF = oF;
+	}
 }

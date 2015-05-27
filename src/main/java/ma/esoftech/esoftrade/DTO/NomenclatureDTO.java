@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -12,7 +13,7 @@ import ma.esoftech.esoftrade.DTO.associated.EditorDTO;
 import ma.esoftech.esoftrade.DTO.associated.FileAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.ProductAssociatedDTO;
 
-public class NomenclaureDTO {
+public class NomenclatureDTO {
 private long id;
 private EditorDTO creator;
 private Date createDate;
@@ -20,10 +21,10 @@ private EditorDTO modifier;
 private Date lastEdit;
 private String ref;
 private String description;
-private Integer requeredQt;
-private Integer rejectedQt;
-private Integer usedQt;
-private Integer missingQt;
+private Integer requeredQt=0;
+private Integer rejectedQt=0;
+private Integer usedQt=0;
+private Integer missingQt=0;
 private float cost;
 public String getRef() {
 	return ref;
@@ -109,6 +110,7 @@ public void setFiles(List<FileAssociatedDTO> files) {
 public void setCost(float cost) {
 	this.cost = cost;
 }
-private ProductAssociatedDTO product=new ProductAssociatedDTO();
+@NotNull
+private ProductAssociatedDTO product=null;
 private  List<FileAssociatedDTO> files=new ArrayList<FileAssociatedDTO>();
 }

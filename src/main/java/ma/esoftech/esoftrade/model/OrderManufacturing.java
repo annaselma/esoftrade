@@ -1,8 +1,10 @@
 package ma.esoftech.esoftrade.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -84,6 +86,9 @@ public class OrderManufacturing extends MetaObject implements Serializable {
 	@ManyToOne
 	 @JoinColumn(name="ELMO_PRODUCT_ID")
 	 private Product product;
+	@OneToMany
+	@JoinColumn(name="ELMO_MANUFACTURING_ID")
+	Set<Nomenclature> nomenclatures=new HashSet<Nomenclature>();
 	
 	@OneToMany
     @JoinTable(
@@ -249,6 +254,16 @@ public class OrderManufacturing extends MetaObject implements Serializable {
 	public void setProduct(Product product) {
 		this.product = product;
 	}
+
+	public Set<Nomenclature> getNomenclatures() {
+		return nomenclatures;
+	}
+
+	public void setNomenclatures(Set<Nomenclature> nomenclatures) {
+		this.nomenclatures = nomenclatures;
+	}
+	
+
 
 	public String generateReference(){
 		String ref="";

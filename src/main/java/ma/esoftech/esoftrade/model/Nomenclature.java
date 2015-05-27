@@ -52,6 +52,12 @@ private float cost;
 	 @JoinColumn(name="ELMO_PRODUCT_ID")
 	 private Product product;
 	
+public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 public String getRef() {
 	return ref;
 }

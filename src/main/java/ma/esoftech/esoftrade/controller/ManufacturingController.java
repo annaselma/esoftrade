@@ -41,7 +41,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/manufacturing")
 public class ManufacturingController extends AbstractController {
 	private static final String REDIRECT="redirect:";
-	private static final String PATH_PROFIL=REDIRECT+"/manufacturing/profile";
+	public static final String PATH_PROFIL=REDIRECT+"/manufacturing/profile";
 	@Autowired
 	IManufacturingOrderService manufacturService;
 	@Autowired
@@ -64,7 +64,7 @@ public class ManufacturingController extends AbstractController {
 
 	}
 	@RequestMapping(value="/profile",method = RequestMethod.GET)
-	public String loadOF(@RequestParam long id, ModelMap model,@RequestParam(required=false,defaultValue="false") boolean file){
+	public String loadOF(@RequestParam long id, ModelMap model,@RequestParam(required=false)String stock,@RequestParam(required=false,defaultValue="false") boolean file){
 		OrderManufacturingDTO OF=null;
 		try {
 			
@@ -75,6 +75,8 @@ public class ManufacturingController extends AbstractController {
 		}
 		FileUploadUTILS.prepareTabProfil(model, file);
         model.addAttribute("manufacturing", OF);
+        if(stock!=null)
+         model.addAttribute("stock", "ddd");
 		
 		return "manufacturingProfile";
 		}

@@ -102,7 +102,7 @@
                      		  $link='<a href="#">commande fournisseur</a>';
                   	    	 break;
                      	  case  "manufacturing":
-                     		 $link='<a href="#">Ordre de fabrication</a>';
+                     		 $link='<a href="${baseURL}/manufacturing/profile?id='+full.of.id+'">'+full.of.ref+'</a>';
                  	    	 break;
                  	      default:
                  	    	  

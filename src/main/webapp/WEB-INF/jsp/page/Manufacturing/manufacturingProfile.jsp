@@ -7,6 +7,9 @@
 <style>
 </style>
 <c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
+<c:if test="${not empty stock}">
+<div class="alert alert-success alert-message" role="alert">Le produit fabriqué a été correctement stocké </div>
+</c:if>
 <div class="nav-tabs-custom">
 	<ul id="tabs" class="nav nav-tabs">
 		<li class="${defaultActive}"><a href="#fiche" data-toggle="tab"
@@ -19,6 +22,7 @@
 			aria-expanded="false"><i class="fa fa-eye" style=""></i>&nbsp;Traçabilité</a></li>
 
 	</ul>
+	
 	<div id="myTabContent" class="tab-content">
 		<div class="tab-pane fade ${defaultActive} ${defaultIn} " id="fiche">
 			<div class="tab-pane ${defaultActive}" id="fiche-tab">
@@ -31,7 +35,7 @@
 										<div class="" style="margin-bottom: 4%;">
 											<label class=""> Ordre de fabrication N°</label> &nbsp;<span class="text-warning"><u><strong><c:out
 													value="${manufacturing.ref}" /></strong></u></span>
-<button type="button" class="btn-sm btn btn-success pull-right "onclick="location.href='${baseURL}/mouvement/correctionProduit?id=${manufacturing.product.id}'">
+<button type="button" class="btn-sm btn btn-success pull-right "onclick="location.href='${baseURL}/mouvement/transfertStockFromOF?id=${manufacturing.id}'">
 <i class="fa fa-wrench"></i>&nbsp;Stocké</button>								
 										<div style="margin-top:8%">
 				                        <label>Statut:</label>&nbsp;<span id="status" class="label label-primary" ><c:out value="${manufacturing.status}"/></span>

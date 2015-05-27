@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
 import ma.esoftech.esoftrade.DTO.MouvementDTO;
+import ma.esoftech.esoftrade.DTO.OrderManufacturingDTO;
 import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.ProductWarehouseDTO;
 import ma.esoftech.esoftrade.DTO.Transfertdto;
@@ -18,8 +19,10 @@ import ma.esoftech.esoftrade.datatablesAPI.Order;
 import ma.esoftech.esoftrade.datatablesAPI.RequestTable;
 import ma.esoftech.esoftrade.datatablesAPI.RequestTable.SearchCriterias;
 import ma.esoftech.esoftrade.datatablesAPI.ResponseTable;
+import ma.esoftech.esoftrade.exception.ManufacturingNotFoundException;
 import ma.esoftech.esoftrade.exception.ProductNotFoundException;
 import ma.esoftech.esoftrade.exception.WarehouseNotFoundException;
+import ma.esoftech.esoftrade.service.IManufacturingOrderService;
 import ma.esoftech.esoftrade.service.IMouvementService;
 import ma.esoftech.esoftrade.service.IProductService;
 import ma.esoftech.esoftrade.service.IWarehouseService;
@@ -45,6 +48,8 @@ public class MouvementController extends AbstractController {
 	IMouvementService mouventService;
 	@Autowired
 	IProductService productService;
+	@Autowired
+	IManufacturingOrderService manufacturingService;
 	@Autowired
 	SessionBean sessionBean;
 	UserDTO currentUser;
@@ -333,7 +338,89 @@ public class MouvementController extends AbstractController {
 				String note=mouvementdto.getMotif();
 				mouventService.correctStock(warehousedto, productdto, nombre, note, currentUser);
 			
-			return "redirect:/product/profile?id="+productdto.getId();}
+			return "redirect:/product/profile?id="+productdto.getId();
+			}
+		
+		
+		
+		
+		@RequestMapping(value = "/transfertStockFromOF", method = RequestMethod.POST)
+		public String transfertStockfromOF(@ModelAttribute("transfert") @Valid Transfertdto transfert,BindingResult result,@RequestParam long of, ModelMap model) {
+			OrderManufacturingDTO manufacturing =new OrderManufacturingDTO();
+			manufacturing.setId(of);
+			try {
+				manufacturingService.findOFById(of);
+			} catch (ManufacturingNotFoundException e1) {
+				 model.addAttribute("messageError",e1.getMessage());
+				 return "error";
+			}
+				
+		
+			if(result.hasErrors()){
+				ProductDTO product=null;
+				long qte;
+				try {
+					 product= productService.findProductById(transfert.getProduct().getId());
+					 qte=productService.getProductQuantity(product);
+				} catch( ProductNotFoundException e) {
+					e.printStackTrace();
+					 model.addAttribute("messageError","product how id="+transfert.getProduct().getId()+"doesn't exist ");
+					 return "error";
+				}
+				model.addAttribute("product",product);
+				model.addAttribute("qte", qte);
+				model.addAttribute("of",of);
+				return "transfertStockFromOF";
+			}
+			initialize();
+			ProductDTO productdto= new ProductDTO();
+			productdto.setId(transfert.getProduct().getId());
+			WarehouseDTO source= new WarehouseDTO();
+			source.setId(transfert.getSource().getId());
+			WarehouseDTO target=new WarehouseDTO();
+			target.setId(transfert.getTarget().getId());
+			int nombre=transfert.getQuantity();
+			String note=transfert.getMotif();
+			mouventService.transfertStockfromOF(source, target, productdto, nombre, note, currentUser, manufacturing);
+			return "redirect:/manufacturing/profile?id="+of+"&stock";
+			}
+		@RequestMapping(value = "/transfertStockFromOF", method = RequestMethod.GET)
+		public String loadtransfertStockFromOf(@RequestParam long id,ModelMap model) {	 
+			ProductDTO product=null;
+			OrderManufacturingDTO manufacturing=null;
+			Transfertdto transfert= new Transfertdto();
+			WarehouseDTO wh;
+			long qte;
+			try {
+				manufacturing=manufacturingService.findOFById(id);
+				product=productService.findProductById(manufacturing.getProduct().getId());
+				wh = warehouseService.findById(manufacturing.getCenter().getId());
+			} catch(ManufacturingNotFoundException | ProductNotFoundException | WarehouseNotFoundException e) {
+				e.printStackTrace();
+				 model.addAttribute("messageError",e.getMessage());
+				 return "error";
+			}
+			qte=productService.getProductQuantity(product);
+			ProductAssociatedDTO associatedProduct= new ProductAssociatedDTO();
+					WarehouseAssociatedDTO source=new WarehouseAssociatedDTO();
+					source.setId(wh.getId());
+					source.setName(wh.getName());
+					transfert.setSource(source);
+
+			associatedProduct.setId(product.getId());
+			transfert.setProduct(associatedProduct);
+			List<WarehouseDTO>listWarehouse= warehouseService.getListWarehouse(0, 1000);
+			 model.addAttribute("warehouseItems", listWarehouse);
+				model.addAttribute("transfert",transfert);
+				model.addAttribute("product",product);
+				model.addAttribute("qte", qte);
+				model.addAttribute("of",id);
+			return "transfertStockFromOF";
+			}
+		
+		
+		
+		
 		
 			
 }
