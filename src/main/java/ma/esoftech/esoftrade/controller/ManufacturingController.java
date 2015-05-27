@@ -229,6 +229,7 @@ public class ManufacturingController extends AbstractController {
 		}
 		@RequestMapping(value="/search",method=RequestMethod.GET,produces = "application/json")
 		public @ResponseBody List<WarehouseDTO> searchCenter(@RequestParam String search,ModelMap model){
+			System.out.println("search");
 			return  manufacturService.searchWarehouse(UTILS.MAX_LENGHT_LIST,UTILS.START_LIST, search);
 		}
 		

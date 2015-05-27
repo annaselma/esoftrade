@@ -95,7 +95,7 @@ public class ManufacturingOrderDao implements IManufacturinOrder{
 	@Override
 	public List<Warehouse> searchCenter(int lenght, int start, String search) {
 		session=sessionFactory.getCurrentSession();
-		String hql="select warehouse From Warehouse as warehouse where warehouse like :search";
+		String hql="select warehouse From Warehouse as warehouse where warehouse.name like :search and warehouse.atelier=true";
 		org.hibernate.Query query=session.createQuery(hql);
 		query.setString("search", "%"+search+"%");
 		query.setFirstResult(start).setMaxResults(lenght);
