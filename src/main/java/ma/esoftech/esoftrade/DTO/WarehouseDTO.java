@@ -24,6 +24,7 @@ public class WarehouseDTO {
 	 private String zipCode;
 	 private String country;
 	 private String city;
+	 private boolean atelier=false;
 	 private  List<FileAssociatedDTO> files=new ArrayList<FileAssociatedDTO>();
 	 
 	public long getId() {
@@ -31,6 +32,12 @@ public class WarehouseDTO {
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	public boolean isAtelier() {
+		return atelier;
+	}
+	public void setAtelier(boolean atelier) {
+		this.atelier = atelier;
 	}
 	public EditorDTO getCreator() {
 		return creator;

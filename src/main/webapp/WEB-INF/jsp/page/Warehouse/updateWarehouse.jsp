@@ -39,7 +39,14 @@
 				</div>
 
 			</div>
-            
+            <div class="form-group ">
+				<label for="activ" class="col-sm-2 control-label esoft-left">Atelier:&nbsp;<span class="error">*</span></label>
+				<div class="col-sm-4">
+					<form:checkbox path="atelier" />
+					<form:errors path="atelier" cssClass="error" />
+				</div>
+
+			</div>
 			<div class="form-group">
 				<label for="CPField" class="col-sm-2 control-label esoft-left">code
 					Postal:</label>

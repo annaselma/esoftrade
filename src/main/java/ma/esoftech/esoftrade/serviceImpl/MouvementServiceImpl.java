@@ -135,11 +135,11 @@ public class MouvementServiceImpl implements IMouvementService {
 		 OrderManufacturing oF=new OrderManufacturing();
 		 oF.setId(manufacturing.getId());
 		Mouvement mouvementSource=buildMouvement(source,product,negatifNumber,notes,creator);
-		mouvementSource.setOF(oF);
+		mouvementSource.setOfabrication(oF);
 		mouvementSource.setType(MouvementType.manufacturing);
 		Mouvement mouvementTarget= buildMouvement(target, product, nbre, notes, creator);
 		mouvementTarget.setType(MouvementType.manufacturing);
-		mouvementTarget.setOF(oF);
+		mouvementTarget.setOfabrication(oF);
 		mouvementdao.createMouvement(mouvementSource);
 		mouvementdao.createMouvement(mouvementTarget);
 		

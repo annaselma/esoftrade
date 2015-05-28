@@ -265,6 +265,9 @@ public class OrderManufacturingDTO {
 	}
 	public Integer getDeadline() {
 		this.deadline= (int) Math.floor(this.endDate.getTime()-new Date().getTime());
+		this.deadline=this.deadline/1000;
+		this.deadline=this.deadline/3600;
+		this.deadline=this.deadline/24;
 		return deadline;
 	}
 	public void setDeadline(Integer deadline) {

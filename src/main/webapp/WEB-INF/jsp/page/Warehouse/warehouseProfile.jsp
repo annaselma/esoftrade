@@ -52,19 +52,19 @@
 						<div class="warehouse-info"
 							style="">
 							<div class="global-info">
-							<div class="form-group">
-						<form method="POST" name="warehouse" id="warF">
-							<button type="button" class="btn-sm btn btn-success pull-right "
-								style=""
-								onclick="location.href='${baseURL}/warehouse/update?id=${warehouse.id}'">
-								<i class="fa fa-pencil-square-o"></i>&nbsp;Modifier
-							</button>
-						</form>
-					</div>
+						
 								<div class=" col-sm-12 table-responsive">
 								
 									<table class="table">
 										<tbody>
+										<tr><th></th><td><c:choose>
+										<c:when test="${warehouse.atelier}">
+											<div id="atelier" class="label label-primary">Atelier</div>
+										</c:when>
+										<c:otherwise>
+											<div id="atelier" class="label label-danger">Centre de stockage</div>
+										</c:otherwise>
+									</c:choose></td></tr>
 											<tr>
 												<th style="width: 50%"><label>Nom:</label></th>
 												<td><span class="text-muted"><c:out
@@ -95,6 +95,13 @@
 										</tbody>
 									</table>
 								</div>
+								<form method="POST" name="warehouse" id="warF">
+							<button type="button" class="btn-sm btn btn-success pull-right "
+								style=""
+								onclick="location.href='${baseURL}/warehouse/update?id=${warehouse.id}'">
+								<i class="fa fa-pencil-square-o"></i>&nbsp;Modifier
+							</button>
+						</form>
 							</div>
 
 
@@ -285,6 +292,7 @@
 
 					</tbody>
 				</table>
+		
 		</div>
 
 	</div>
@@ -461,7 +469,7 @@
 												$link = '<a href="#">commande fournisseur</a>';
 												break;
 											case "manufacturing":
-												$link = '<a href="'+full.of.id+'">Ordre de fabrication</a>';
+												$link = '<a href="'+full.ofabrication.id+'">'full.ofabrication.ref'</a>';
 												break;
 											default:
 

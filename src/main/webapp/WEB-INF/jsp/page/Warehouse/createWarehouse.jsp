@@ -32,10 +32,18 @@
 		<form:form method="POST" commandName="warehouse" id="warehouseF"
 			data-toggle="validator" cssClass="form-horizontal">
 			<div class="form-group">
-				<label for="nameField" class="col-sm-2 control-label esoft-left">name:&nbsp;<span class="error">*</span></label>
+				<label for="nameField" class="col-sm-2 control-label esoft-left">Nom:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:input path="name" cssClass="form-control" />
 					<form:errors path="name" cssClass="error" />
+				</div>
+
+			</div>
+			<div class="form-group ">
+				<label for="activ" class="col-sm-2 control-label esoft-left">Atelier:&nbsp;<span class="error">*</span></label>
+				<div class="col-sm-4">
+					<form:checkbox path="atelier" />
+					<form:errors path="atelier" cssClass="error" />
 				</div>
 
 			</div>
