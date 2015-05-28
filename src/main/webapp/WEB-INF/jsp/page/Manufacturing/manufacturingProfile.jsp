@@ -195,7 +195,7 @@
 			<button type="button" class="btn-sm btn btn-success pull-right "
 									style="margin-right: 2%; margin-bottom: 2%"
 									 onclick="location.href='/esoftrade/nomenclature/create?of_id=${manufacturing.id}'">
-									<i class="fa fa-pencil-square-o "></i> &nbsp;ajouter
+									<i class="fa fa-plus-square "></i> &nbsp;ajouter
 								</button>
 								</div> 
 								</div>
