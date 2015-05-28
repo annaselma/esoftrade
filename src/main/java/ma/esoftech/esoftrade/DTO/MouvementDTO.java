@@ -28,7 +28,7 @@ public class MouvementDTO {
 	@NotNull(message="le produit ne doit pas etre vide")
 	private ProductAssociatedDTO product=null ;
 	
-	private OFAssociatedDTO OF=null;
+	private OFAssociatedDTO ofabrication=null;
 	public long getId() {
 		return id;
 	}
@@ -91,10 +91,11 @@ public class MouvementDTO {
 		this.product = product;
 	}
 	public MouvementDTO(){}
-	public OFAssociatedDTO getOF() {
-		return OF;
+	public OFAssociatedDTO getOfabrication() {
+		return ofabrication;
 	}
-	public void setOF(OFAssociatedDTO oF) {
-		OF = oF;
+	public void setOfabrication(OFAssociatedDTO ofabrication) {
+		this.ofabrication = ofabrication;
 	}
+	
 }

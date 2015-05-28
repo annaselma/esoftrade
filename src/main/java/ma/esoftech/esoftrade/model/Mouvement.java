@@ -68,15 +68,15 @@ public class Mouvement extends MetaObject implements Serializable {
 	private Warehouse warehouse;
 	@ManyToOne
 	 @JoinColumn(name="ELMO_ORDERMANUFACTURING_ID")
-	 private OrderManufacturing OFabrication;
+	 private OrderManufacturing ofabrication;
 	
 
-	public OrderManufacturing getOFabrication() {
-		return OFabrication;
+	public OrderManufacturing getOfabrication() {
+		return ofabrication;
 	}
 
-	public void setOFabrication(OrderManufacturing oFabrication) {
-		this.OFabrication = oFabrication;
+	public void setOfabrication(OrderManufacturing ofabrication) {
+		this.ofabrication = ofabrication;
 	}
 
 	public String getMotif() {
