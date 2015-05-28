@@ -16,6 +16,8 @@
 			aria-expanded="false"><i class="fa fa-file"></i>&nbsp;Fiche OF</a></li>
 		<li class=""><a href="#settings" data-toggle="tab"
 			aria-expanded="false"><i class="fa  fa-money" style=""></i>&nbsp;Bénéfices</a></li>
+		<li class=""><a href="#nomenclatures" data-toggle="tab"
+			aria-expanded="false"><i class="fa fa-fw fa-bars" style=""></i>&nbsp;Nomenclatures</a></li>
 		<li class="${fileActive}"><a href="#fichierjoint" data-toggle="tab"
 			aria-expanded="true"><i class="fa fa-folder" style=""></i>&nbsp;Fichiers joints</a></li>
 		<li class=""><a href="#suivi" data-toggle="tab"
@@ -186,29 +188,76 @@
 			</div>
 
 		</div>
-	<div class="tab-pane fade ${fileActive} ${fileIn}" id="settings">
-	<div class="tab-pane ${defaultActive}" id="fiche-tab">
-*
-		<table class="table">
-											<tbody>
-											
-												<tr>
-													<th><label>Coût total réel calculé:</label></th>
-													<td>23.00 DH</td>
-												</tr>
-												<tr>
-													<th><label>Coût total théorique calculé:</label></th>
-													<td>234.00 DH</td>
-												</tr>
-												<tr>
-													<th><label>Coût unitaire:</label></th>
-													<td>12.540 DH</td>
-												</tr>
-												
-							             </tbody>
-							             </table>
+		<div class="tab-pane fade " id="nomenclatures">
+			<div class="tab-pane " id="fiche-tab">
+			<div class="row">
+			<div  class="col-md-12">
+			<button type="button" class="btn-sm btn btn-success pull-right "
+									style="margin-right: 2%; margin-bottom: 2%"
+									 onclick="location.href='/esoftrade/nomenclature/create?of_id=${manufacturing.id}'">
+									<i class="fa fa-pencil-square-o "></i> &nbsp;ajouter
+								</button>
+								</div> 
+								</div>
+			<div class="row">
+					<div class="col-md-12">
+				<table id="list-nom" class="table table-bordered table-striped">
+			<thead>
+				<tr>
+				    <th>Article</th>
+					<th>centre</th>
+					<th>Quantité nécessaire</th>
+					<th>Quantité  Rébutée</th>
+					<th>Quantité utilisée</th>
+					<th>Quantité manquant</th>
+					<th>Cout matière</th>
+					<th>Cout matière rèel</th>
+					<th>Opération</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+			<tfoot>
+				<tr>
+				    <th>Article</th>
+					<th>centre</th>
+					<th>Quantité nécessaire</th>
+					<th>Quantité  Rébutée</th>
+					<th>Quantité utilisée</th>
+					<th>Quantité manquant</th>
+					<th>Cout matière</th>
+					<th>Cout matière rèel</th>
+					<th>Opération</th>
+				</tr>
+			</tfoot>
+		</table>
 		</div>
-</div>
+		</div>
+			</div>
+		</div>
+		<div class="tab-pane fade " id="settings">
+			<div class="tab-pane " id="fiche-tab">
+				<table class="table">
+					<tbody>
+
+						<tr>
+							<th><label>Coût total réel calculé:</label></th>
+							<td>23.00 DH</td>
+						</tr>
+						<tr>
+							<th><label>Coût total théorique calculé:</label></th>
+							<td>234.00 DH</td>
+						</tr>
+						<tr>
+							<th><label>Coût unitaire:</label></th>
+							<td>12.540 DH</td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
 		<div class="tab-pane fade ${fileActive} ${fileIn}" id="fichierjoint">
 			<h4>Joindre un nouveau fichier:</h4>
 			<form method="POST" action="${baseURL}/manufacturing/upload"
@@ -460,3 +509,104 @@
 		    	  }
     	});
 </script>
+ <script type="text/javascript">
+        
+            $(function() {
+//             	   $('#example1 thead th').each( function () {
+//                        var title = $('#example1 thead th').eq( $(this).index() ).text();
+//                        $(this).prepend( '<input  id="me" type="text" placeholder="Search '+title+'" /><br>' );
+//                    } );
+                
+            	$("#example33").DataTable({});
+               var table= $('#list-nom').DataTable({
+                    "paging": true,
+                    "lengthChange": true,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": true,
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": {
+                        "url": "${baseURL}/nomenclature/getList?of_id=${manufacturing.id}",
+                        "data": function(data) {
+                            planify(data);  
+                        } 
+                    },
+                    "columnDefs":[{
+                    	"targets":[0],
+                    	"name":"product",
+                    	"data":"product",
+                    	"render": function ( data, type, full, meta ) {
+                    		$link='<small><a href="${baseURL}/product/profile?id='+data.id+'">'+data.libelle+'</a></small>';
+                    	
+                    	      return $link;
+                    	    }
+                    
+                    },
+                    {
+                    	"targets":[1],
+                    	"name":"product",
+                    	"data":"product",
+                    	"orderable": false,
+                    	"render": function ( data, type, full, meta ) {
+                    		$link='<small><a href="${baseURL}/warehouse/profile?id=${manufacturing.center.id}">${manufacturing.center.name}</a></small>';
+                    	
+                    	      return $link;
+                    	    }
+                    
+                    },
+                    {
+                    	"targets":[2],
+                    	"name":"requeredQt",
+                    	"data":"requeredQt",
+                    
+                    },
+                    {
+                    	"targets":[3],
+                    	"name":"rejectedQt",
+                    	"data":"rejectedQt",
+                    
+                    },
+                    {
+                    	"targets":[4],
+                    	"name":"usedQt",
+                    	"data":"usedQt",
+                    },
+                    {
+                    	"targets":[5],
+                    	"name":"missingQt",
+                    	"data":"missingQt",
+                    
+                    },
+                    {
+                    	"targets":[6],
+                    	"name":"product",
+                    	"data":"product",
+                    	"render": function ( data, type, full, meta ) {
+                    		$res=data.price*full.requeredQt;
+                    	      return $res;
+                    	    }
+                    },
+                    {
+                    	"targets":[7],
+                    	"name":"cost",
+                    	"data":"cost",
+                    },
+                    {
+                    	"targets":[8],
+                    	"name":"id",
+                    	"data":"id",
+                    	"orderable": false,
+                    	 "render": function ( data, type, full, meta ) {
+                    		 $html='<a href="${baseURL}/nomenclature/profile?id='+data+'"  class="btn btn-info btn-xs"><i class="fa   fa-search"></i></a>&nbsp;';
+                    		 $html+='<a href="${baseURL}/nomenclature/update?id='+data+'"  class="btn btn-default btn-xs"><i class="fa   fa-edit"></i></a>&nbsp;';
+                    		 $html+='<a href="${baseURL}/nomenclature/delete?id='+data+'&of_id=${manufacturing.id}"  class="btn btn-danger btn-xs"><i class="fa   fa-trash-o"></i></a>';
+                    		 return $html;
+                    	    }
+                    
+                    }]
+                });
+                
+          });
+        </script>

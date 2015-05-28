@@ -180,9 +180,11 @@ public void attachNomenclatureToManufacturing(NomenclatureDTO nomenclatureDTO,lo
 
 private void deleteNomenclatureFromSet(Set<Nomenclature> setNomenclatures,Nomenclature nomenclature){
 	Iterator<Nomenclature> it = setNomenclatures.iterator();
+	Nomenclature nom=null;
 	while (it.hasNext()) {
-       if(it.next().getId()==nomenclature.getId()){
-    	   setNomenclatures.remove(it.next());
+		nom=it.next();
+       if(nom.getId()==nomenclature.getId()){
+    	   setNomenclatures.remove(nom);
     	   return;
        }
 	}

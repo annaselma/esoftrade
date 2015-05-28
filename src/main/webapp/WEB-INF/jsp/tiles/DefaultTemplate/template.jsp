@@ -54,7 +54,7 @@
         <!-- KelmoSoft -->
         <script src="${baseURL}/js/KelmoSoft/App.js" type="text/javascript"></script>
         <!-- Morris.js charts -->
-        <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+        <script src="${baseURL}/js/plugins/morris/raphael-min.js"></script>
         <script src="${baseURL}/js/plugins/morris/morris.min.js" type="text/javascript"></script>
         <!-- Sparkline -->
         <script src="${baseURL}/js/plugins/sparkline/jquery.sparkline.min.js" type="text/javascript"></script>

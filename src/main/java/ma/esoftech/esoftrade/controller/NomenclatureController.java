@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import ma.esoftech.esoftrade.DTO.NomenclatureDTO;
 import ma.esoftech.esoftrade.DTO.OrderManufacturingDTO;
+import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.controller.session.SessionBean;
 import ma.esoftech.esoftrade.datatablesAPI.Order;
@@ -17,6 +18,7 @@ import ma.esoftech.esoftrade.exception.ManufacturingNotFoundException;
 import ma.esoftech.esoftrade.exception.NomenclatureNotFoundException;
 import ma.esoftech.esoftrade.service.IManufacturingOrderService;
 import ma.esoftech.esoftrade.service.INomenclatureService;
+import ma.esoftech.esoftrade.service.IProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,6 +40,8 @@ public class NomenclatureController extends AbstractController {
 	@Autowired
 	IManufacturingOrderService manufacturingService;
 	@Autowired
+	IProductService productService;
+	@Autowired
 	ServletContext servletContext;
 	@Autowired
 	SessionBean sessionBean;
@@ -49,7 +53,11 @@ public class NomenclatureController extends AbstractController {
 	public String loadNomenclature(@RequestParam long id, ModelMap model){
 		try {
 			NomenclatureDTO nomenclatureDTO=nomenclatureService.findById(id);
+			ProductDTO product=new ProductDTO();
+			product.setId(nomenclatureDTO.getProduct().getId());
+			long qte=productService.getProductQuantity(product);
 			model.addAttribute("nomenclature", nomenclatureDTO);
+			model.addAttribute("qte", qte);
 		} catch (NomenclatureNotFoundException e) {
 			// TODO Auto-generated catch block
 			model.addAttribute("messageError",e.getMessage());
@@ -134,6 +142,7 @@ public class NomenclatureController extends AbstractController {
 	
 	@RequestMapping(value="/delete",method= RequestMethod.GET)
 	public String DeleteNomenclature(@RequestParam long id,@RequestParam(value="of_id")long of_id,ModelMap model){
+		initialize();
 	 NomenclatureDTO nomenclatureDTO=new NomenclatureDTO();
 	 nomenclatureDTO.setId(id);
 	 try {

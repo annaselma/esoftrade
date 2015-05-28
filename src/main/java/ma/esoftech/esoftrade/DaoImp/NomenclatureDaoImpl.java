@@ -62,8 +62,8 @@ public class NomenclatureDaoImpl  implements INomenclatureDao{
 		if(sorting ==null ||sorting.equals("")){
 			sorting ="id ASC";
 		}
-	     String hql="select  nomenclature From OrderManufacturing as manufac  inner join manufac.nomenclatures as nomenclature"
-	     		+ "where manufac=:manufacturing order by nomenclature."+sorting;
+	     String hql="select  nomenclature From OrderManufacturing as manufac  inner join manufac.nomenclatures as nomenclature "
+	     		+ " where manufac=:manufacturing order by nomenclature."+sorting;
 	     org.hibernate.Query query=session.createQuery(hql);
 	     query.setParameter("manufacturing", manufacturing);
 	     query.setFirstResult(start).setMaxResults(length);
@@ -74,8 +74,9 @@ public class NomenclatureDaoImpl  implements INomenclatureDao{
 	@Override
 	public long nomenclatureCountByManufacturing(String filter,
 			OrderManufacturing manufacturing) {
-		String hql="select  count(nomenclature) From OrderManufacturing as manufac  inner join manufac.nomenclatures as nomenclature"
-	     		+ "where manufac=:manufacturing ";
+		session=sessionFactory.getCurrentSession();
+		String hql="select  count(nomenclature) From OrderManufacturing as manufac  inner join manufac.nomenclatures as nomenclature "
+	     		+ " where manufac=:manufacturing ";
 		 org.hibernate.Query query=session.createQuery(hql);
 	     query.setParameter("manufacturing", manufacturing);
 		return (long)query.uniqueResult();

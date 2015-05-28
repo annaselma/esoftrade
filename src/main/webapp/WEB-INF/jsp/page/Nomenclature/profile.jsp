@@ -24,16 +24,22 @@
 						<div class="category-info"
 							style="padding-left: 1%; padding-top: 4%;">
 							<div class="global-info">
-								<button type="button" class="btn-sm btn btn-success pull-right "
-									style="margin-right: 2%;" onclick="#">
-									<i class="fa fa-pencil-square-o "></i> &nbsp;Importer le
-									produit
+								<button type="button" class="btn-sm btn btn-danger pull-right "
+									style="margin-right: 2%;" onclick="location.href='/esoftrade/nomenclature/delete?id=${nomenclature.id}'">
+									<i class="fa fa-pencil-square-o "></i> &nbsp;Supprimer
 								</button>
 								<button type="button" class="btn-sm btn btn-primary pull-right "
 									style="margin-right: 2%;"
 									onclick="location.href='/esoftrade/nomenclature/update?id=${nomenclature.id}'">
 									<i class="fa fa-pencil-square-o "></i> &nbsp;Modifier
 								</button>
+								<button type="button" class="btn-sm btn btn-success pull-right "
+									style="margin-right: 2%;" onclick="#">
+									<i class="fa fa-pencil-square-o "></i> &nbsp;Importer le
+									produit
+								</button>
+								
+								
 								<div class=" col-sm-12 table-responsive">
 
 									<div class="" style="margin-bottom: 4%;">
@@ -72,8 +78,12 @@
 												<td><c:out value="${nomenclature.rejectedQt}" /></td>
 											</tr>
 											<tr>
-												<th><label>Quantité importée:</label></th>
+												<th><label>Quantité importée vers l'atelier:</label></th>
 												<td id="importedQte"></td>
+											</tr>
+											<tr>
+												<th><label>Quantité en stock:</label></th>
+												<td id="stockQte"> ${qte}</td>
 											</tr>
 											<tr>
 												<th><label>Cout matiére:</label></th>
