@@ -1,16 +1,20 @@
 package ma.esoftech.esoftrade.controller;
 
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
-import javax.swing.text.Utilities;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import ma.esoftech.esoftrade.DTO.FileDTO;
+import ma.esoftech.esoftrade.DTO.NomenclatureDTO;
 import ma.esoftech.esoftrade.DTO.OrderManufacturingDTO;
-import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.DTO.WarehouseDTO;
 import ma.esoftech.esoftrade.controller.session.SessionBean;
@@ -21,10 +25,20 @@ import ma.esoftech.esoftrade.datatablesAPI.ResponseTable;
 import ma.esoftech.esoftrade.exception.ManufacturingNotFoundException;
 import ma.esoftech.esoftrade.service.IFileService;
 import ma.esoftech.esoftrade.service.IManufacturingOrderService;
+import ma.esoftech.esoftrade.service.INomenclatureService;
 import ma.esoftech.esoftrade.service.IUserService;
 import ma.esoftech.esoftrade.service.IWarehouseService;
 import ma.esoftech.esoftrade.utils.FileUploadUTILS;
 import ma.esoftech.esoftrade.utils.UTILS;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,6 +58,8 @@ public class ManufacturingController extends AbstractController {
 	public static final String PATH_PROFIL=REDIRECT+"/manufacturing/profile";
 	@Autowired
 	IManufacturingOrderService manufacturService;
+	@Autowired
+	INomenclatureService nomenclatureService;
 	@Autowired
 	IUserService userService;
 	@Autowired
@@ -215,6 +231,53 @@ public class ManufacturingController extends AbstractController {
 			}
 			 return PATH_PROFIL+"?id="+id+"&file=true";
 		}
+		
+		
+		@RequestMapping(value="pdf",method = RequestMethod.GET)
+		public void getPdfById(HttpServletResponse response,@RequestParam(required=false) long id){
+			try {
+							      
+
+				JasperReport jasperReport =    JasperCompileManager.compileReport(getClass().getResource("/of2.jrxml").getPath());
+				Map<String, Object> parameters=new HashMap<String, Object>();
+				OrderManufacturingDTO manufacturingDTO=manufacturService.findOFById(id);
+				List<NomenclatureDTO> dataList =nomenclatureService.getNomenclaturesByManufacturing(UTILS.START_LIST,
+						UTILS.MAX_LENGHT_LIST,"","",manufacturingDTO );
+
+			      JRBeanCollectionDataSource beanColDataSource =
+			      new JRBeanCollectionDataSource(dataList);
+
+				   parameters.put("of", manufacturingDTO);
+				   parameters.put("nomenclatures",dataList);
+				   
+               
+				      JasperPrint jp=null;
+				      try {
+				    	 //new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{nomenclatures})
+				       // jp= JasperFillManager.fillReport(
+				         //jasperReport, parameters,new JREmptyDataSource());
+				    	  jp= JasperFillManager.fillReport(
+							         jasperReport, parameters,beanColDataSource);
+				      } catch (JRException e) {
+				         e.printStackTrace();
+				      }
+				      JRPdfExporter exporter = new JRPdfExporter();
+				      ByteArrayOutputStream output = new ByteArrayOutputStream();
+				      exporter.setParameter(JRExporterParameter.JASPER_PRINT, jp);
+				      exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, output);
+				      exporter.exportReport();
+				      byte[] bytes=output.toByteArray();
+				      System.out.println(bytes.length);
+				      response.getOutputStream().write(bytes,0,bytes.length); 	   
+				      response.setContentType("application/pdf");
+				        response.setHeader("Content-Disposition","attachment; filename=\"OF.pdf\"");
+				        response.setContentLength(bytes.length);
+			} catch (JRException | IOException | ManufacturingNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			}
+			
 		
 		
 		@ModelAttribute("warehouseItems")
