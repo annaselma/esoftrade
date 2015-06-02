@@ -21,7 +21,7 @@
 <c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
 <div class="box box-solid box-primary">
 	<div class="box-header">
-		<h3 class="box-title">Modifier Nomenclature</h3>
+		<h3 class="box-title">Modifier Nomenclature N°:<strong><c:out value="${nomenclature.ref}" /></strong></h3>
 	</div>
 	<!-- /.box-header -->
 	<!-- form start -->
@@ -127,7 +127,7 @@
 					onclick="location.href='${baseURL}/nomenclature/profile?id=${nomenclature.id}'"
 					style="margin-right: 2%;">Annuler</button>
 				<button type="submit" class="btn-sm btn btn-primary btn pull-right"
-					style="margin-right: 2%;">Ajouter</button>
+					style="margin-right: 2%;"><i class="fa fa-pencil-square-o"></i>&nbsp;Modifier</button>
 			</div>
 		</form:form>
 	</div>

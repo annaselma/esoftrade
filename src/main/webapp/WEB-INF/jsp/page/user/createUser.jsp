@@ -22,7 +22,7 @@
 
 <div class="box box-solid box-primary">
 	<div class="box-header">
-		<h3 class="box-title">Informations Personnelle</h3>
+		<h3 class="box-title">Identité Personnelle</h3>
 	</div>
 	<!-- /.box-header -->
 	<!-- form start -->
@@ -31,34 +31,28 @@
 
 		<form:form method="POST" commandName="user" id="userF"
 			data-toggle="validator" cssClass="form-horizontal">
-			<div class="form-group">
-				<label for="nameField" class="col-sm-2 control-label esoft-left">Nom:&nbsp;<span class="error">*</span></label>
-				<div class="col-sm-4">
-					<form:input path="name" cssClass="form-control" />
-					<form:errors path="name" cssClass="error" />
-				</div>
-<div class="form-group" >&nbsp;<span class="error" style="margin-left: 28%;">(*)champs requis</span></div>
-			</div>
-			
 			<div class="form-group form-horizontal">
+			<div class="form-group" >&nbsp;<span class="error" style="margin-left: 74%;">Veuillez saisir les champs obligatoire(*)</span></div>
 				<label for="lastnameField" class="col-sm-2 control-label esoft-left">Prenom:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:input path="lastName" cssClass="form-control" />
 					<form:errors path="lastName" cssClass="error" />
+					
 				</div>
-			</div>
-			<div class="form-group form-horizontal">
 				<label for="activ" class="col-sm-2 control-label esoft-left">compte
 					activé:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:checkbox path="active" />
 					<form:errors path="active" cssClass="error" />
 				</div>
-
 			</div>
 			<div class="form-group">
-				<label for="dateField" class="col-sm-2 control-label esoft-left">Date
-					de Naissance:&nbsp;<span class="error">*</span></label>
+				<label for="nameField" class="col-sm-2 control-label esoft-left">Nom:&nbsp;<span class="error">*</span></label>
+				<div class="col-sm-4">
+					<form:input path="name" cssClass="form-control" />
+					<form:errors path="name" cssClass="error" />
+				</div>
+				<label for="dateField" class="col-sm-2 control-label esoft-left">Date Naissance:&nbsp;<span class="error">*</span></label>
 
 				<div class="input-append date col-sm-4" data-date="12-02-2012"
 					data-date-format="dd-mm-yyyy">
@@ -67,17 +61,13 @@
 					<form:errors path="birdDay" />
 				</div>
 			</div>
+			<hr>
 			<div class="form-group">
 				<label for="emailField" class="col-sm-2 control-label esoft-left">Email:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:input path="email" cssClass="form-control"
 						placeholder="exemple@hotmail.com" />
 					<form:errors path="email" cssClass="error" />
-				</div>
-				<div class="col-sm-6">
-					<p class="help-block" style="padding-left: 27%">
-						<code>Inserez une photo d'utisiateur ci-dessus</code>
-					</p>
 				</div>
 			</div>
 			<div class="form-group">
@@ -86,11 +76,6 @@
 					<form:input path="telephone" cssClass=" form-control" />
 					<form:errors path="telephone" cssClass="error" />
 				</div>
-				<div class="col-sm-6">
-					<input type="file" name="picture" accept="/image*"
-						style="padding-left: 36%" />
-				</div>
-
 			</div>
 			<div class="form-group">
 				<label for="fonctionField" class="col-sm-2 control-label esoft-left">Fonction:</label>
@@ -100,11 +85,11 @@
 				</div>
 
 			</div>
-
+            <hr>
 			<div class="form-group">
 				<label for="adresseField" class="col-sm-2 control-label esoft-left">Adresse:</label>
 				<div class="col-sm-4">
-					<form:textarea path="adresse1" rows="2" cols="50" />
+					<form:textarea path="adresse1" rows="3" cols="50" />
 					<form:errors path="adresse1" cssClass="error" />
 				</div>
 			</div>
@@ -112,7 +97,7 @@
 				<label for="CPField" class="col-sm-2 control-label esoft-left">code
 					Postal:</label>
 				<div class="col-sm-4">
-					<form:input path="zipCode" cssClass="form-control input-lg" />
+					<form:input path="zipCode" cssClass="form-control"/>
 					<form:errors path="zipCode" cssClass="error" />
 				</div>
 

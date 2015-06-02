@@ -22,7 +22,7 @@
 
 <div class="box box-solid box-primary">
 	<div class="box-header">
-		<h3 class="box-title">Modifier warehouse</h3>
+		<h3 class="box-title">Modifier warehouse N°:<strong><c:out value="${warehouse.ref}" /></strong></h3>
 	</div>
 	<!-- /.box-header -->
 	<!-- form start -->

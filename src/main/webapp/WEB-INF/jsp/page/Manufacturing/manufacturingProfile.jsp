@@ -18,6 +18,8 @@
 			aria-expanded="false"><i class="fa  fa-money" style=""></i>&nbsp;Bénéfices</a></li>
 		<li class=""><a href="#nomenclatures" data-toggle="tab"
 			aria-expanded="false"><i class="fa fa-fw fa-bars" style=""></i>&nbsp;Nomenclatures</a></li>
+			<li class=""><a href="#gammes" data-toggle="tab"
+			aria-expanded="false"><i class="fa fa-fw fa-bars" style=""></i>&nbsp;Gamme</a></li>
 		<li class="${fileActive}"><a href="#fichierjoint" data-toggle="tab"
 			aria-expanded="true"><i class="fa fa-folder" style=""></i>&nbsp;Fichiers joints</a></li>
 		<li class=""><a href="#suivi" data-toggle="tab"
@@ -228,6 +230,50 @@
 					<th>Cout matière</th>
 					<th>Cout matière rèel</th>
 					<th>Opération</th>
+				</tr>
+			</tfoot>
+		</table>
+		</div>
+		</div>
+			</div>
+		</div>
+		<div class="tab-pane fade " id="gammes">
+			<div class="tab-pane " id="fiche-tab">
+			<div class="row">
+			<div  class="col-md-12">
+			<button type="button" class="btn-sm btn btn-success pull-right "
+									style="margin-right: 2%; margin-bottom: 2%"
+									 onclick="location.href='/esoftrade/gamme/create?of_id=${manufacturing.id}'">
+									<i class="fa fa-plus-square "></i> &nbsp;ajouter
+								</button>
+								</div> 
+								</div>
+			<div class="row">
+					<div class="col-md-12">
+				<table id="list-gamme" class="table table-bordered table-striped">
+			<thead>
+				<tr>
+				    <th>Ref</th>
+				    <th>Nombre de postes</th>
+				    <th>Type</th>
+					<th>Date début</th>
+					<th>Date Fin</th>
+					<th>createdQT</th>
+					<th>status</th>
+					<th>Opérations</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+			<tfoot>
+				<tr><th>Ref</th>
+				    <th>Nombre de postes</th>
+				    <th>Type</th>
+					<th>Date début</th>
+					<th>Date Fin</th>
+					<th>createdQT</th>
+					<th>status</th>
+					<th>Opérations</th>
 				</tr>
 			</tfoot>
 		</table>
@@ -602,6 +648,116 @@
                     		 $html='<a href="${baseURL}/nomenclature/profile?id='+data+'"  class="btn btn-info btn-xs"><i class="fa   fa-search"></i></a>&nbsp;';
                     		 $html+='<a href="${baseURL}/nomenclature/update?id='+data+'"  class="btn btn-default btn-xs"><i class="fa   fa-edit"></i></a>&nbsp;';
                     		 $html+='<a href="${baseURL}/nomenclature/delete?id='+data+'&of_id=${manufacturing.id}"  class="btn btn-danger btn-xs"><i class="fa   fa-trash-o"></i></a>';
+                    		 return $html;
+                    	    }
+                    
+                    }]
+                });
+                
+          });
+        </script>
+
+         <script type="text/javascript">
+        
+            $(function() {
+            	$("#example33").DataTable({});
+               var table= $('#list-gamme').DataTable({
+                    "paging": true,
+                    "lengthChange": true,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": true,
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": {
+                        "url": "${baseURL}/gamme/getList?of_id=${manufacturing.id}",
+                        "data": function(data) {
+                            planify(data);  
+                        } 
+                    },
+                    "columnDefs":[{
+                    	"targets":[0],
+                    	"name":"ref",
+                    	"data":"ref",
+                    	"render": function ( data, type, full, meta ) {
+                    		$link='<a href="${baseURL}/gamme/profile?id='+full.id+'">'+full.ref+'</a>';
+                    	
+                    	      return $link;
+                    	    }
+                    
+                    },
+                    {
+                    	"targets":[1],
+                    	"name":"nbposte",
+                    	"data":"nbposte",
+                    	
+                    
+                    },
+                    {
+                    	"targets":[2],
+                    	"name":"type",
+                    	"data":"type",
+                    	"render": function ( data, type, full, meta ) {
+                      		 $active='<div id="type" class="label label-success">'+full.type+'</div>';
+                      		 $inactive='<div id="type" class="label label-danger">'+full.type+'</div>';
+                      		 if(data==true){
+                      			 return $active;
+                      		 }
+                      	      return $inactive;
+                      	    }
+                    
+                    },
+                    {
+                    	"targets":[3],
+                    	"name":"startDate",
+                    	"data":"startDate",
+                    	"render": function ( data, type, full, meta ) {
+                   	      date = new Date(data);
+                   	      return date.formatDetail();
+                   	    }
+                    
+                    
+                    },
+                    {
+                    	"targets":[4],
+                    	"name":"endDate",
+                    	"data":"endDate",
+                    	"render": function ( data, type, full, meta ) {
+                   	      date = new Date(data);
+                   	      return date.formatDetail();
+                   	    }
+                    },
+                    {
+                    	"targets":[5],
+                    	"name":"createdQt",
+                    	"data":"createdQt",
+                    
+                    },
+                    {
+                    	"targets":[6],
+                    	"name":"end",
+                    	"data":"end",
+                    	"render": function ( data, type, full, meta ) {
+                   		 $active='<div id="end" class="label label-success">En cours</div>';
+                   		 $inactive='<div id="end" class="label label-danger">Terminé</div>';
+                   		 if(data==true){
+                   			 return $active;
+                   		 }
+                   	      return $inactive;
+                   	    }
+                    	
+                    },
+              
+                    {
+                    	"targets":[7],
+                    	"name":"id",
+                    	"data":"id",
+                    	"orderable": false,
+                    	 "render": function ( data, type, full, meta ) {
+                    		 $html='<a href="${baseURL}/gamme/profile?id='+data+'"  class="btn btn-info btn-xs"><i class="fa   fa-search"></i></a>&nbsp;';
+                    		 $html+='<a href="${baseURL}/gamme/update?id='+data+'"  class="btn btn-default btn-xs"><i class="fa   fa-edit"></i></a>&nbsp;';
+                    		 $html+='<a href="${baseURL}/gamme/delete?id='+data+'&of_id=${manufacturing.id}"  class="btn btn-danger btn-xs"><i class="fa   fa-trash-o"></i></a>';
                     		 return $html;
                     	    }
                     

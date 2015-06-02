@@ -3,11 +3,13 @@ package ma.esoftech.esoftrade.service;
 import java.util.List;
 
 import ma.esoftech.esoftrade.DTO.FileDTO;
+import ma.esoftech.esoftrade.DTO.GammeDTO;
 import ma.esoftech.esoftrade.DTO.NomenclatureDTO;
 import ma.esoftech.esoftrade.DTO.OrderManufacturingDTO;
 import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.DTO.WarehouseDTO;
+import ma.esoftech.esoftrade.exception.GammeNotFoundException;
 import ma.esoftech.esoftrade.exception.ManufacturingNotFoundException;
 import ma.esoftech.esoftrade.exception.ProductNotFoundException;
 
@@ -26,6 +28,10 @@ public interface IManufacturingOrderService {
 	public void attachNomenclatureToManufacturing(NomenclatureDTO nomenclatureDTO,
 			long id, UserDTO modifier) throws ManufacturingNotFoundException;
 	void deleteNomenclaturefromManufacturing(NomenclatureDTO nomenclatureDTO,
+			long id, UserDTO modifier) throws ManufacturingNotFoundException;
+	public void attachGammeToManufacturing(GammeDTO gammeDTO,
+			long id, UserDTO modifier) throws ManufacturingNotFoundException;
+	void deleteGammefromManufacturing(GammeDTO gammeDTO,
 			long id, UserDTO modifier) throws ManufacturingNotFoundException;
 
 }

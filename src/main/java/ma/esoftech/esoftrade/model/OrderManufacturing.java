@@ -91,6 +91,10 @@ public class OrderManufacturing extends MetaObject implements Serializable {
 	Set<Nomenclature> nomenclatures=new HashSet<Nomenclature>();
 	
 	@OneToMany
+	@JoinColumn(name="ELMO_GAMME_ID")
+	Set<Gamme>gammes=new HashSet<Gamme>();
+	
+	@OneToMany
     @JoinTable(
         name="ELMO_MANUFACTURING_FILE",
         joinColumns = @JoinColumn( name="ELMO_MANUFACTURING_ID"),
@@ -264,6 +268,14 @@ public class OrderManufacturing extends MetaObject implements Serializable {
 	}
 	
 
+
+	public Set<Gamme> getGammes() {
+		return gammes;
+	}
+
+	public void setGammes(Set<Gamme> gammes) {
+		this.gammes = gammes;
+	}
 
 	public String generateReference(){
 		String ref="";

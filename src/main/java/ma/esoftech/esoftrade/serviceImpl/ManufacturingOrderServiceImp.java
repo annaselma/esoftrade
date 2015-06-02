@@ -11,17 +11,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ma.esoftech.esoftrade.DTO.FileDTO;
+import ma.esoftech.esoftrade.DTO.GammeDTO;
 import ma.esoftech.esoftrade.DTO.NomenclatureDTO;
 import ma.esoftech.esoftrade.DTO.OrderManufacturingDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.DTO.WarehouseDTO;
 import ma.esoftech.esoftrade.Dao.IFileDao;
+import ma.esoftech.esoftrade.Dao.IGammeDao;
 import ma.esoftech.esoftrade.Dao.IManufacturinOrder;
 import ma.esoftech.esoftrade.Dao.INomenclatureDao;
 import ma.esoftech.esoftrade.exception.ManufacturingNotFoundException;
-import ma.esoftech.esoftrade.exception.ProductNotFoundException;
 import ma.esoftech.esoftrade.generate.User;
 import ma.esoftech.esoftrade.model.File;
+import ma.esoftech.esoftrade.model.Gamme;
 import ma.esoftech.esoftrade.model.Nomenclature;
 import ma.esoftech.esoftrade.model.OrderManufacturing;
 import ma.esoftech.esoftrade.model.Product;
@@ -40,6 +42,8 @@ IManufacturinOrder manufacturingDao;
 IFileDao fileDao;
 @Autowired
 INomenclatureDao nomenclatureDao;
+@Autowired
+IGammeDao gammeDao;
 
 @Override
 @Transactional(readOnly=true)
@@ -96,6 +100,7 @@ public void updateOF(OrderManufacturingDTO OrderFacturing, UserDTO modifier) thr
     OFEntity.setPicture(OFTmp.getPicture());
     OFEntity.setFiles(OFTmp.getFiles());
     OFEntity.setNomenclatures(OFTmp.getNomenclatures());
+    OFEntity.setGammes(OFTmp.getGammes());
 	manufacturingDao.updateOF(OFEntity);
 }
 @Override
@@ -202,7 +207,48 @@ public List<WarehouseDTO> searchWarehouse(int lenght, int start, String search) 
 	List<Warehouse>WarehouseEntity=manufacturingDao.searchCenter(lenght, start, search);
 	return DozerHelper.map(mapper, WarehouseEntity, WarehouseDTO.class);
 }
-
-
+@Override
+@Transactional(rollbackFor=Exception.class)
+public void attachGammeToManufacturing(GammeDTO gammeDTO, long id,
+		UserDTO modifier) throws ManufacturingNotFoundException {
+	OrderManufacturing manufacturingEntity= manufacturingDao.findById(id);
+    if(manufacturingEntity==null){
+   	 throw new ManufacturingNotFoundException();
+    }
+    ServiceUtils.EditEntityModel(modifier,manufacturingEntity);
+    Gamme gamme=new Gamme();
+    gamme.setId(gammeDTO.getId());
+    manufacturingEntity.getGammes().add(gamme);
+    manufacturingDao.updateOF(manufacturingEntity);
 	
+}
+private void deleteGammeFromSet(Set<Gamme> setGammes,Gamme gamme){
+	Iterator<Gamme> it = setGammes.iterator();
+	Gamme nom=null;
+	while (it.hasNext()) {
+		nom=it.next();
+       if(nom.getId()==gamme.getId()){
+    	   setGammes.remove(nom);
+    	   return;
+       }
+       }
+	}
+@Override
+@Transactional(rollbackFor=Exception.class)
+public void deleteGammefromManufacturing(GammeDTO gammeDTO, long id,
+		UserDTO modifier) throws ManufacturingNotFoundException {
+        Gamme gamme= new Gamme();
+        gamme.setId(gammeDTO.getId());
+		OrderManufacturing manufacturingEntity = manufacturingDao.findById(id);
+		if (manufacturingEntity == null) {
+			throw new ManufacturingNotFoundException();
+		}
+		ServiceUtils.EditEntityModel(modifier, manufacturingEntity);
+		Set<Gamme> setGammes = manufacturingEntity.getGammes();
+		deleteGammeFromSet(setGammes, gamme);
+		manufacturingEntity.setGammes(setGammes);
+		manufacturingDao.updateOF(manufacturingEntity);
+		gammeDao.deleteGamme(gamme);
+	
+}	
 }

@@ -33,7 +33,9 @@
 			aria-expanded="true"><i class="fa fa-user"></i>Profile</a></li>
 		<li class=""><a href="#permissions" data-toggle="tab"
 			aria-expanded="false"><i class="fa fa-bars" style=""></i>Permissions</a></li>
-
+       <li class=""><a href="#suivi" data-toggle="tab"
+			aria-expanded="false"><i class="fa fa-eye" style=""></i>Traçabilité</a></li>
+       
 	</ul>
 	<div id="myTabContent" class="tab-content">
 		<div class="tab-pane fade active in" id="profile">
@@ -105,9 +107,9 @@
 
 							</script>
 							
-							<h3>
+							<h4>
 								<c:out value="${user.name} ${user.lastName}" />
-							</h3>
+							</h4>
 							<div class="">
 								<div id="statut">
 									Statut &nbsp;
@@ -130,7 +132,7 @@
 							style="padding-left: 6%; padding-top: 4%;">
 							<div class="global-info">
 								<h4>
-									<i class="fa fa-user" style="margin-right: 2%"></i>Information
+									<i class="fa fa-user" style="margin-right: 2%"></i>Informations
 									personnelle
 								</h4>
 
@@ -209,19 +211,7 @@
 		<div class="tab-pane fade" id="permissions">
 			<h3>bhalal</h3>
 		</div>
-
-	</div>
-</div>
-<div class="box box-solid box-primary">
-	<div class="box-header">
-		<h3 class="box-title fa fa-eye">Traçabilité</h3>
-	</div>
-	<!-- /.box-header -->
-	<!-- form start -->
-
-	<div class="box-body">
-
-		<div class="">
+		<div class="tab-pane fade" id="suivi">
 			<table class="table">
 				<tbody>
 					<tr>
@@ -252,8 +242,10 @@
 				</tbody>
 			</table>
 		</div>
+
 	</div>
 </div>
+
 
 
 <script type="text/javascript">
