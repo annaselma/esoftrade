@@ -39,12 +39,7 @@
 					<form:errors path="lastName" cssClass="error" />
 					
 				</div>
-				<label for="activ" class="col-sm-2 control-label esoft-left">compte
-					activé:&nbsp;<span class="error">*</span></label>
-				<div class="col-sm-4">
-					<form:checkbox path="active" />
-					<form:errors path="active" cssClass="error" />
-				</div>
+				
 			</div>
 			<div class="form-group">
 				<label for="nameField" class="col-sm-2 control-label esoft-left">Nom:&nbsp;<span class="error">*</span></label>
@@ -52,14 +47,7 @@
 					<form:input path="name" cssClass="form-control" />
 					<form:errors path="name" cssClass="error" />
 				</div>
-				<label for="dateField" class="col-sm-2 control-label esoft-left">Date Naissance:&nbsp;<span class="error">*</span></label>
-
-				<div class="input-append date col-sm-4" data-date="12-02-2012"
-					data-date-format="dd-mm-yyyy">
-					<form:input path="birdDay" id="dp3" />
-					<span class="add-on"><span class="fa fa-calendar" id="cal2"></span></span>
-					<form:errors path="birdDay" />
-				</div>
+				
 			</div>
 			<hr>
 			<div class="form-group">
@@ -69,12 +57,26 @@
 						placeholder="exemple@hotmail.com" />
 					<form:errors path="email" cssClass="error" />
 				</div>
+				<label for="activ" class="col-sm-2 control-label esoft-left">compte
+					activé:&nbsp;<span class="error">*</span></label>
+				<div class="col-sm-4">
+					<form:checkbox path="active" />
+					<form:errors path="active" cssClass="error" />
+				</div>
 			</div>
 			<div class="form-group">
 				<label for="phoneField" class="col-sm-2 control-label esoft-left">Telephone:</label>
 				<div class="col-sm-4">
 					<form:input path="telephone" cssClass=" form-control" />
 					<form:errors path="telephone" cssClass="error" />
+				</div>
+				<label for="dateField" class="col-sm-2 control-label esoft-left">Date Naissance:&nbsp;<span class="error">*</span></label>
+
+				<div class="input-append date col-sm-4" data-date="12-02-2012"
+					data-date-format="dd-mm-yyyy">
+					<form:input path="birdDay" id="dp3" />
+					<span class="add-on"><span class="fa fa-calendar" id="cal2"></span></span>
+					<form:errors path="birdDay" />
 				</div>
 			</div>
 			<div class="form-group">

@@ -49,6 +49,7 @@ public class ProductDTO {
 	 private String barreCode;
 	 @NotNull(message="la catégorie ne doit pas etre vide")
 	 private PCategoryAssociatedDTO category=null;
+	 private String department;
 	 private  List<FileAssociatedDTO> files=new ArrayList<FileAssociatedDTO>();
 	 public ProductDTO(){
 		 
@@ -101,6 +102,15 @@ public class ProductDTO {
 	}
 	public Boolean getPurchasingState() {
 		return purchasingState;
+	}
+	public String getDepartment() {
+		return department;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
 	}
 	public void setPurchasingState(Boolean purchasingState) {
 		this.purchasingState = purchasingState;

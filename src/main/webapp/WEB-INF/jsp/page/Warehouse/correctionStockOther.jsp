@@ -118,7 +118,7 @@
 			<div class="form-group">
 				<label for="LibelField" class="col-sm-2 control-label esoft-left">nombre
 					de produits:</label>
-				<div class="col-sm-10">
+				<div class="col-sm-2">
 					<input type="number" name="quantity" class="form-control "
 						value="${mouvementSecond.quantity}"
 						onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
@@ -128,7 +128,7 @@
 
 			<div class="form-group">
 				<label for="LibelField" class="col-sm-2 control-label esoft-left">Libelle:</label>
-				<div class="col-sm-10">
+				<div class="col-sm-4">
 					<form:input path="motif" cssClass="form-control " />
 					<form:errors path="motif" cssClass="error" />
 				</div>

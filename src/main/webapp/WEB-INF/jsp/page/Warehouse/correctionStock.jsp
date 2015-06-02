@@ -99,7 +99,7 @@
 			<div class="form-group">
 				<label for="LibelField" class="col-sm-2 control-label esoft-left">unité
 					a modifié: </label>
-				<div class="col-sm-10">
+				<div class="col-sm-4">
 					<input type="number" name="quantity" class="form-control "
 						value="${mouvement.quantity}"
 						onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
@@ -108,8 +108,8 @@
 			</div>
 
 			<div class="form-group">
-				<label for="LibelField" class="col-sm-2 control-label esoft-left">Libelle:</label>
-				<div class="col-sm-10">
+				<label for="LibelField" class="col-sm-2 control-label esoft-left">Motif:</label>
+				<div class="col-sm-4">
 					<form:input path="motif" cssClass="form-control " />
 					<form:errors path="motif" cssClass="error" />
 				</div>

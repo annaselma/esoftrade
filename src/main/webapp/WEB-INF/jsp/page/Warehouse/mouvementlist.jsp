@@ -17,10 +17,10 @@
 			<thead>
 				<tr>
 					<th>Date</th>
-					<th>Libellé des mouvements</th>
+					<th>Motif des mouvements</th>
 					<th>Origine</th>
 					<th>Produit</th>
-					<th>Entrepot</th>
+					<th>Entrepôt</th>
 					<th>Auteur</th>
 					<th>Unités</th>
 				</tr>
@@ -30,10 +30,10 @@
 			<tfoot>
 				<tr>
 					<th>Date</th>
-					<th>Libellé des mouvements</th>
+					<th>Motif des mouvements</th>
 					<th>Origine</th>
 					<th>Produit</th>
-					<th>Entrepot</th>
+					<th>Entrepôt</th>
 					<th>Auteur</th>
 					<th>Unités</th>
 				</tr>

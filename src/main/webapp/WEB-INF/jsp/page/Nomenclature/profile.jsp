@@ -109,10 +109,7 @@
 			<div class="">
 				<table class="table ">
 					<tbody>
-						<tr class=" box box-solid bg-red">
-							<th><h5></h5></th>
-							<td></td>
-						</tr>
+						
 						<tr class=" box box-solid bg-">
 							<th class=""><label class="">Créé par:</label></th>
 							<td><img

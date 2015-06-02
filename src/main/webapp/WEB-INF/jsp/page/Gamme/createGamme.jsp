@@ -69,6 +69,14 @@
 		<form:form method="POST" commandName="gamme" id="gammeF"
 			data-toggle="validator" cssClass="form-horizontal">
 			<div class="form-group">
+			<label for="designationField" class="col-sm-2 control-label esoft-left">Designation:&nbsp;<span
+					class="error">*</span></label>
+				<div class="col-sm-4">
+				    <form:input path="designation" cssClass="form-control " />
+					<form:errors path="designation" cssClass="error" />
+				</div>
+			</div>
+			<div class="form-group">
 				<label for="posteField" class="col-sm-2 control-label esoft-left">Poste:&nbsp;<span
 					class="error">*</span></label>
 				<div class="col-sm-4">
@@ -218,5 +226,6 @@
 		$('#dp0').datepicker({
 			format: 'dd/mm/yyyy'
 		});
+
 	});
 </script>

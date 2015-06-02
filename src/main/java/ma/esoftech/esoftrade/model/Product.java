@@ -37,6 +37,8 @@ public class Product  extends MetaObject implements Serializable {
 	
 	@Column(name="ELMO_DESCRIPTION",length= 1000)
 	 private String description;
+	@Column(name="ELMO_DEPARTEMENT",length= 1000)
+	 private String department;
 	@Column(name="ELMO_WHEIGHT")
 	 private float wheight;
 	@Column(name="ELMO_LENGHT")
@@ -114,6 +116,14 @@ public class Product  extends MetaObject implements Serializable {
 
 	public void setAlertTreshold(Integer alertTreshold) {
 		this.alertTreshold = alertTreshold;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
 	}
 
 	public String getDescription() {

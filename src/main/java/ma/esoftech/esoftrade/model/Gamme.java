@@ -21,6 +21,8 @@ public class Gamme extends MetaObject{
 	@Column(name="ELMO_REF", nullable= false,unique=true,length= 255)
 	@Index(name="ELMO_REF_INDEX")
 	 private String ref;
+	@Column(name="ELMO_DESIGNATION",length=255)
+	private String designation;
 	@Column(name="ELMO_DESCRIPTION",length=255)
 	private String description;
 	@Column(name="ELMO_BARRECODE",length=255)
@@ -199,6 +201,18 @@ public class Gamme extends MetaObject{
 
 	public void setEnd(boolean end) {
 		this.end = end;
+	}
+
+	public String getDesignation() {
+		return designation;
+	}
+
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+
+	public String getType() {
+		return type;
 	}
 
 	public String generateReference(){

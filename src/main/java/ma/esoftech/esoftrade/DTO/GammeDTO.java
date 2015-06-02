@@ -21,6 +21,7 @@ public class GammeDTO {
 	private EditorDTO modifier;
 	private Date lastEdit;
 	private String ref;
+	private String designation;
 	private String description;
 	private Integer requeredQt=0;
 	private Integer rejectedQt=0;
@@ -211,6 +212,14 @@ public class GammeDTO {
 	public String getPoste() {
 		return poste;
 	}
+	public String getDesignation() {
+		return designation;
+	}
+
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+
 	public void setPoste(String poste) {
 		this.poste = poste;
 	}

@@ -110,7 +110,7 @@
 					class="col-sm-3 control-label esoft-left">Entrepôt
 					destination:&nbsp;<span class="error">*</span>
 				</label>
-				<div class="col-sm-4" id="select-war2">
+				<div class="col-sm-2" id="select-war2">
 					<form:select path="target" cssClass="tokenize-sample mono-select "
 						id="warehouse-destination" size="1">
 					</form:select>
@@ -146,7 +146,7 @@
 						onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
 					<form:errors path="quantity" cssClass="error" />
 				</div>
-				<label for="LibelField" class="col-sm-3 control-label esoft-left">Libelle:</label>
+				<label for="LibelField" class="col-sm-3 control-label esoft-left">Motif:</label>
 				<div class="col-sm-4">
 					<form:input path="motif" cssClass="form-control " />
 					<form:errors path="motif" cssClass="error" />
