@@ -113,8 +113,9 @@
 							<button type="button" class="btn-sm btn btn-primary pull-right "
 									style="margin-top: 12%; margin-right: 2%;"
 									onclick="location.href='${baseURL}/manufacturing/update?id=${manufacturing.id}'"><i class="fa fa-pencil-square-o "></i> &nbsp;Modifier</button>
-							<button type="submit" class="btn-sm btn btn-danger btn pull-right "
-					style="margin-top:12%;margin-right:5%;"><i class="fa fa-print"></i> &nbsp;Imprimer PDF</button>	
+							<button type="button" class="btn-sm btn btn-success btn pull-right "
+					style="margin-top:12%;margin-right:5%;" 
+					onclick="location.href='${baseURL}/manufacturing/pdf?id=${manufacturing.id}'"><i class="fa fa-print"></i> &nbsp;Imprimer PDF</button>	
 						
 							</form>
 						</div>
