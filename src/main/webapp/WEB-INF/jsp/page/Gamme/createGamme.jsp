@@ -69,6 +69,14 @@
 		<form:form method="POST" commandName="gamme" id="gammeF"
 			data-toggle="validator" cssClass="form-horizontal">
 			<div class="form-group">
+			<label for="designationField" class="col-sm-2 control-label esoft-left">Designation:&nbsp;<span
+					class="error">*</span></label>
+				<div class="col-sm-4">
+				    <form:input path="designation" cssClass="form-control " />
+					<form:errors path="designation" cssClass="error" />
+				</div>
+			</div>
+			<div class="form-group">
 				<label for="posteField" class="col-sm-2 control-label esoft-left">Poste:&nbsp;<span
 					class="error">*</span></label>
 				<div class="col-sm-4">
@@ -206,9 +214,17 @@
         <script src="${baseURL}/js/bootstrap-datepicker.js"></script>
 <script>
 	$(document).ready(function() {
-		$('#dp3').datepicker();
-		$('#dp2').datepicker();
-		$('#dp1').datepicker();
-		$('#dp0').datepicker();
+		$('#dp3').datepicker(({
+			  format: 'dd/mm/yyyy'
+		}));
+		$('#dp2').datepicker(({
+			  format: 'dd/mm/yyyy'
+		}));
+		$('#dp1').datepicker(({
+			  format: 'dd/mm/yyyy'
+		}));
+		$('#dp0').datepicker(({
+			  format: 'dd/mm/yyyy'
+		}));
 	});
 </script>

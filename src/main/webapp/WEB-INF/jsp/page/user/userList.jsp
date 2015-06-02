@@ -57,10 +57,6 @@
 <script type="text/javascript">
         
             $(function() {
-//             	   $('#example1 thead th').each( function () {
-//                        var title = $('#example1 thead th').eq( $(this).index() ).text();
-//                        $(this).prepend( '<input  id="me" type="text" placeholder="Search '+title+'" /><br>' );
-//                    } );
                 
             	$("#example33").DataTable({});
                var table= $('#list1').DataTable({
@@ -113,8 +109,8 @@
                     	"name":"active",
                     	"data":"active",
                     	 "render": function ( data, type, full, meta ) {
-                    		 $active='<div id="statut" class="label label-success">Active</div>';
-                    		 $inactive='<div id="statut" class="label label-danger">innactive</div>';
+                    		 $active='<div id="statut" class="label label-success">Actif</div>';
+                    		 $inactive='<div id="statut" class="label label-danger">inactif</div>';
                     		 if(data==true){
                     			 return $active;
                     		 }
