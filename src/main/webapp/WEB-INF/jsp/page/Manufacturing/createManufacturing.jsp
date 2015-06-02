@@ -285,12 +285,21 @@
 <!-- /.box-body -->
 <script src="${baseURL}/js/bootstrap-datepicker.js"></script>
 <script>
-	$(document).ready(function() {
-		$('#dp3').datepicker();
-		$('#dp2').datepicker();
-		$('#dp1').datepicker();
-		$('#dp0').datepicker();
+$(document).ready(function() {
+	$('#dp3').datepicker({
+		  format: 'dd/mm/yyyy'
 	});
+
+	$('#dp2').datepicker({
+		  format: 'dd/mm/yyyy'
+	});
+	$('#dp1').datepicker({
+		  format: 'dd/mm/yyyy'
+	});
+	$('#dp0').datepicker({
+		  format: 'dd/mm/yyyy'
+	});
+});
 </script>
 <script type="text/javascript">
             $(function() {

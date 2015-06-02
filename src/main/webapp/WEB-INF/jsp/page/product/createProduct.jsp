@@ -39,14 +39,6 @@
 				</div>
 
 			</div>
-            <div class="form-group">
-				<label for="codeField" class="col-sm-2 control-label esoft-left">Code à barre:</label>
-				<div class="col-sm-4">
-					<form:input path="barreCode" cssClass="form-control" />
-					<form:errors path="barreCode" cssClass="error" />
-				</div>
-
-			</div>
 			<div class="form-group form-horizontal">
 				<label for="statut" class="col-sm-2 control-label esoft-left">Statut (en vente)&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-1" style="margin-top:1%">

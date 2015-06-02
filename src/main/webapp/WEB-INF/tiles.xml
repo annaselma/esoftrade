@@ -145,7 +145,21 @@
 	<put-attribute name="page" value="/WEB-INF/jsp/page/Nomenclature/updateNomenclature.jsp" />
 	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/Nomenclature/updateTitle.jsp" />
 	</definition>
-	<!-- /Manufacturing Pages -->
+	<!-- /nomenclatures Pages -->
+	<!-- gammes Pages -->
+	<definition name="gammeProfile" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Gamme/profile.jsp" />
+	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/Gamme/profileTitle.jsp" />
+	</definition>
+	<definition name="createGamme" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Gamme/createGamme.jsp" />
+	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/Gamme/createTitle.jsp" />
+	</definition>
+	<definition name="updateGamme" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/Gamme/updateGamme.jsp" />
+	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/Gamme/updateTitle.jsp" />
+	</definition>
+	<!-- /gammes Pages -->
 	<definition name="login" template="/WEB-INF/jsp/page/login.jsp"/>
 	<definition name="customer"
 		template="/WEB-INF/jsp/page/custumer.jsp"/>

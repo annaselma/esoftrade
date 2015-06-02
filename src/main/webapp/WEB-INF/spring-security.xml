@@ -27,6 +27,8 @@
 		  <intercept-url pattern="/manufacturing/**" access="isAuthenticated()"  />
 		   <intercept-url pattern="/nomenclature**" access="isAuthenticated()"  />
 		  <intercept-url pattern="/nomenclature/**" access="isAuthenticated()"  />
+		  <intercept-url pattern="/gamme**" access="isAuthenticated()"  />
+		  <intercept-url pattern="/gamme/**" access="isAuthenticated()"  />
 		<form-login login-page="/login.html" 
 		    default-target-url="/client.html"
 			authentication-failure-url="/login.html?error=failed"

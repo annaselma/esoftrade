@@ -238,7 +238,7 @@
 			var $currentUser;
 			$(document).ready(function(){
 				    $.ajax({ // ajax call starts
-				      url: '${baseURL}/user/getCurrentUser', // JQuery loads serverside.php
+				      url: '${baseURL}/user/getCurrentUser', 
 				      dataType: 'json', // Choosing a JSON datatype
 				    })
 				    .done(function(data) { // Variable data contains the data we get from serverside

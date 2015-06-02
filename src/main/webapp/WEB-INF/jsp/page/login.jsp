@@ -59,7 +59,7 @@
 		</c:if>
                 <div class="body bg-gray">
                     <div class="form-group">
-                        <input type="text" name="username" class="form-control" placeholder="Lgin"/>
+                        <input type="text" name="username" class="form-control" placeholder="Login"/>
                     </div>
                     <div class="form-group">
                         <input type="password" name="password" class="form-control" placeholder="Mot de passe"/>

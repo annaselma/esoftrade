@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import ma.esoftech.esoftrade.DTO.FileDTO;
+import ma.esoftech.esoftrade.DTO.GammeDTO;
 import ma.esoftech.esoftrade.DTO.NomenclatureDTO;
 import ma.esoftech.esoftrade.DTO.OrderManufacturingDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
@@ -24,6 +25,7 @@ import ma.esoftech.esoftrade.datatablesAPI.RequestTable.SearchCriterias;
 import ma.esoftech.esoftrade.datatablesAPI.ResponseTable;
 import ma.esoftech.esoftrade.exception.ManufacturingNotFoundException;
 import ma.esoftech.esoftrade.service.IFileService;
+import ma.esoftech.esoftrade.service.IGammeService;
 import ma.esoftech.esoftrade.service.IManufacturingOrderService;
 import ma.esoftech.esoftrade.service.INomenclatureService;
 import ma.esoftech.esoftrade.service.IUserService;
@@ -62,6 +64,8 @@ public class ManufacturingController extends AbstractController {
 	INomenclatureService nomenclatureService;
 	@Autowired
 	IUserService userService;
+	@Autowired
+	IGammeService gammeService;
 	@Autowired
 	IWarehouseService warehouseService;
 	@Autowired
@@ -243,17 +247,19 @@ public class ManufacturingController extends AbstractController {
 				OrderManufacturingDTO manufacturingDTO=manufacturService.findOFById(id);
 				List<NomenclatureDTO> dataList =nomenclatureService.getNomenclaturesByManufacturing(UTILS.START_LIST,
 						UTILS.MAX_LENGHT_LIST,"","",manufacturingDTO );
-
+				List<GammeDTO> gammeList=gammeService.getGammeByManufacturing(UTILS.START_LIST,
+						UTILS.MAX_LENGHT_LIST,"provisionalStartDate ASC","",manufacturingDTO );
 			      JRBeanCollectionDataSource beanColDataSource =
 			      new JRBeanCollectionDataSource(dataList);
-
+System.out.println(gammeList.size());
 				   parameters.put("of", manufacturingDTO);
 				   parameters.put("nomenclatures",dataList);
+				   parameters.put("gammes", gammeList);
 				   
                
 				      JasperPrint jp=null;
 				      try {
-				    	 //new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{nomenclatures})
+				    	 //new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($P{gammes})
 				       // jp= JasperFillManager.fillReport(
 				         //jasperReport, parameters,new JREmptyDataSource());
 				    	  jp= JasperFillManager.fillReport(
