@@ -41,6 +41,10 @@
 									</div>
 									<table class="table">
 										<tbody>
+										<tr>
+												<th><label>Désignation:</label></th>
+												<td><c:out value="${gamme.designation}" /></td>
+											</tr>
 											<tr>
 												<th><label>Poste associé:</label></th>
 												<td><c:out value="${gamme.poste}" /></td>
