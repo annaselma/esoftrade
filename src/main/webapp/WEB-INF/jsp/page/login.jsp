@@ -4,7 +4,7 @@
 <c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
 	
 	<!DOCTYPE html>
-<html class="bg-black">
+<html class="bg-wite">
     <head>
         <meta charset="UTF-8">
         <title>login</title>
@@ -15,13 +15,6 @@
         <link href="${baseURL}/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
         <link href="${baseURL}/css/AdminLTE.css" rel="stylesheet" type="text/css" />
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-          <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
         <style>
 .error {
 	padding: 15px;
@@ -46,10 +39,11 @@
 
 </style>
     </head>
-    <body class="bg-black">
-
+    <body class="bg-wite">
+      
         <div class="form-box" id="login-box">
-            <div class="header">Sign In</div>
+            <div class="header" style="background: #3BB0DA;">
+            <img src="${baseURL}/img/user.jpg" class="img-circle" alt="User Image" style="width: 100px; height: 100px;"></div>
             <form action="<c:url  value='j_spring_security_check' />" method='POST'>
             <c:if test="${not empty error}">
 			<div class="error">${error}</div>
@@ -66,8 +60,8 @@
                     </div>          
                    
                 </div>
-                <div class="footer">                                                               
-                    <button type="submit" class="btn bg-olive btn-block">Connecter</button>  
+                <div class="footer" style="background: #3BB0DA;">                                                               
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Connecter</button>  
                     
                     <input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />

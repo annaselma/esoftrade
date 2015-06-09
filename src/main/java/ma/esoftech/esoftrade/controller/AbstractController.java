@@ -10,11 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.DTO.associated.PCategoryAssociatedDTO;
+import ma.esoftech.esoftrade.DTO.associated.PosteAssociatedDTO;
+import ma.esoftech.esoftrade.DTO.associated.PosteCatAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.ProductAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.UserAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.WarehouseAssociatedDTO;
 import ma.esoftech.esoftrade.controller.editor.CategoryProductEditor;
 import ma.esoftech.esoftrade.controller.editor.DateEditor;
+import ma.esoftech.esoftrade.controller.editor.PosteCateEditor;
+import ma.esoftech.esoftrade.controller.editor.PosteEditor;
 import ma.esoftech.esoftrade.controller.editor.ProductEditor;
 import ma.esoftech.esoftrade.controller.editor.UserEditor;
 import ma.esoftech.esoftrade.controller.editor.WarehouseEditor;
@@ -41,6 +45,8 @@ public  class AbstractController  {
       binder.registerCustomEditor(WarehouseAssociatedDTO.class,new WarehouseEditor());
       binder.registerCustomEditor(ProductAssociatedDTO.class,new ProductEditor());
       binder.registerCustomEditor(UserAssociatedDTO.class,new UserEditor());
+      binder.registerCustomEditor(PosteAssociatedDTO.class,new PosteEditor());
+      binder.registerCustomEditor(PosteCatAssociatedDTO.class,new PosteCateEditor());
     }
 
 }

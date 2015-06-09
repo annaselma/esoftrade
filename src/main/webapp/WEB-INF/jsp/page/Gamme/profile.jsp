@@ -41,6 +41,7 @@
 									</div>
 									<table class="table">
 										<tbody>
+										
 										<tr>
 												<th><label>Désignation:</label></th>
 												<td><c:out value="${gamme.designation}" /></td>
@@ -59,6 +60,11 @@
 															pattern="dd/MM/yyyy" value="${gamme.startDate}" /></span></td>
 											</tr>
 											<tr>
+												<th>Date Fin </th>
+												<td><span class="data-value"> <fmt:formatDate
+															pattern="dd/MM/yyyy" value="${gamme.endDate}" /></span></td>
+											</tr>
+											<tr>
 												<th><label>Côut Réél:</label></th>
 												<td><c:out value="${gamme.realCost}" /></td>
 											</tr>
@@ -66,17 +72,28 @@
 												<th><label>Côut théorique:</label></th>
 												<td><c:out value="${gamme.theocticalCost}" /></td>
 											</tr>
-											
+											<tr>
+												<th>Date début Prévu </th>
+												<td><span class="data-value"> <fmt:formatDate
+															pattern="dd/MM/yyyy" value="${gamme.provisionalStartDate}" /></span></td>
+											</tr>
+											<tr>
+												<th>Date début Prévu </th>
+												<td><span class="data-value"> <fmt:formatDate
+															pattern="dd/MM/yyyy" value="${gamme.provisionalEndDate}" /></span></td>
+											</tr>
 											
 											<tr>
 												<th><label>Quantité nécessaire:</label></th>
-												<td><span class="label bg-aqua"><c:out
-															value="${gamme.realCost}" /></span></td>
+												<td><span class=""><c:out
+															value="${gamme.createdQT}" /></span></td>
 											</tr>
 											<tr>
-												<th><label>Quantité rébutée:</label></th>
-												<td><c:out value="${nomenclature.rejectedQt}" /></td>
+												<th><label>Type de phase:</label></th>
+												<td><span class="label bg-aqua"><c:out
+															value="${gamme.type}" /></span></td>
 											</tr>
+											
 											<tr>
 												<th><label>Description:</label></th>
 												<td><c:out escapeXml="false"
@@ -85,7 +102,7 @@
 											<tr>
 												<th><label>Observation:</label></th>
 												<td><c:out escapeXml="false"
-														value="${gamme.description}" /></td>
+														value="${gamme.observation}" /></td>
 											</tr>
 											
 										</tbody>
@@ -167,10 +184,7 @@
 			<div class="">
 				<table class="table ">
 					<tbody>
-						<tr class=" box box-solid bg-red">
-							<th><h5></h5></th>
-							<td></td>
-						</tr>
+						
 						<tr class=" box box-solid bg-">
 							<th class=""><label class="">Créé par:</label></th>
 							<td><img

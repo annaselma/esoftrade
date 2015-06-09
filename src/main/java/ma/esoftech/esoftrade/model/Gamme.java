@@ -55,6 +55,7 @@ public class Gamme extends MetaObject{
     @Column(name="ELMO_END")
 	private boolean end;
     
+    
     @OneToMany
     @JoinTable(
         name="ELMO_GAMME_FILE",

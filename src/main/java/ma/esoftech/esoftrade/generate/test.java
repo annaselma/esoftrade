@@ -30,8 +30,7 @@ public class test {
 //		session.close();
 		//lazyExemple();
 		//cascadeCreateExemple();
-		String patternStr = "([a-zA-Z0-9\\._-]+@[a-zA-Z0-9\\.-]{2,}[\\.][a-zA-Z]{2,4})[|]*";
-		System.out.println(Math.floor(-2.666));
+		System.out.println(new test().getClass().getResource("/log4j.properties").getPath());
 	}
 	public static void cascadeCreateExemple(){
 		SessionFactory sessionFactory=new Configuration().configure("hibernate2.cfg.xml").buildSessionFactory();

@@ -113,8 +113,9 @@
 							<button type="button" class="btn-sm btn btn-primary pull-right "
 									style="margin-top: 12%; margin-right: 2%;"
 									onclick="location.href='${baseURL}/manufacturing/update?id=${manufacturing.id}'"><i class="fa fa-pencil-square-o "></i> &nbsp;Modifier</button>
-							<button type="submit" class="btn-sm btn btn-danger btn pull-right "
-					style="margin-top:12%;margin-right:5%;"><i class="fa fa-print"></i> &nbsp;Imprimer PDF</button>	
+							<button type="button" class="btn-sm btn btn-success btn pull-right "
+					style="margin-top:12%;margin-right:5%;" 
+					onclick="location.href='${baseURL}/manufacturing/pdf?id=${manufacturing.id}'"><i class="fa fa-print"></i> &nbsp;Imprimer PDF</button>	
 						
 							</form>
 						</div>
@@ -392,9 +393,31 @@
 						<td><span class="data-value">Le:&nbsp;<fmt:formatDate
 									pattern="dd/MM/yyyy" value="${manufacturing.lastEdit}" /></span></td>
 					</tr>
-
 				</tbody>
 			</table>
+		</div>
+		<hr>
+		<h3><label class="label label-warning">Historique de l'ordre de fabrication</label></h3>
+			<div class="row" style="margin-top: 0%;">
+			<hr>
+					<div class="col-md-12">
+				<table id="list-change" class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Auteurs</th>
+					<th>Change Status</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+			<tfoot>
+				<tr>				  
+					<th>Auteurs</th>
+					<th>Change Status</th>
+				</tr>
+			</tfoot>
+		</table>
+		</div>
 		</div>
 		</div>
 
@@ -761,6 +784,46 @@
                     		 return $html;
                     	    }
                     
+                    }]
+                });
+                
+          });
+        </script>
+        
+        <script type="text/javascript">
+        
+            $(function() {
+            	$("#example33").DataTable({});
+               var table= $('#list-change').DataTable({
+                    "paging": true,
+                    "lengthChange": true,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": true,
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": {
+                        "url": "${baseURL}/manufacturing/getList",
+                        "data": function(data) {
+                            planify(data);  
+                        } 
+                    },
+                    "columnDefs":[{                    	
+                    
+                    	"targets":[0],
+                    	"name":"responsible",
+                    	"data":"responsible",
+                    	"render": function ( data, type, full, meta ) {
+                    		$link='<a href="${baseURL}/user/profile?id='+data.id+'"><i class="fa fa-user"></i>&nbsp;'+data.name+' '+data.lastName+'</a>';
+                    	
+                    	      return $link;
+                    	    }
+                    },
+                    {
+                    	"targets":[1],
+                    	"name":"description",
+                    	"data":"description",
                     }]
                 });
                 

@@ -113,16 +113,16 @@
 				<label for="dateField" class="col-sm-2 control-label esoft-left">Date Début:&nbsp;<span class="error">*</span></label>
 
 				<div class="input-append date col-sm-4" data-date="12-02-2012"
-					data-date-format="dd-mm-yyyy">
+					data-date-format="dd/mm/yyyy">
 					<form:input path="startDate" id="dp3" />
-					<form:errors path="startDate" />
+					<form:errors path="startDate" cssClass="error"  />
 				</div>
 				<label for="dateFField" class="col-sm-2 control-label esoft-left">Date Fin:&nbsp;<span class="error">*</span></label>
 
 				<div class="input-append date col-sm-4 " data-date="12-02-2012"
-					data-date-format="dd-mm-yyyy">
+					data-date-format="dd/mm/yyyy">
 					<form:input path="endDate" id="dp2" />
-					<form:errors path="endDate" />
+					<form:errors path="endDate" cssClass="error" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -130,15 +130,15 @@
 			</div>
 			<div class="form-group">
 			    <label for="dateField" class="col-sm-2 control-label esoft-left">DateDébut prévu:</label>
-				<div class="input-append date col-sm-4" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+				<div class="input-append date col-sm-4" data-date="12-02-2012" data-date-format="dd/mm/yyyy">
 					<form:input path="provisionalStartDate" id="dp0" />
-					<form:errors path="provisionalStartDate"/>
+					<form:errors path="provisionalStartDate" cssClass="error" />
 				</div>
 				<label for="dField" class="col-sm-2 control-label esoft-left">DateFin prévu:</label>
 				<div class="input-append date col-sm-4 " data-date="12-02-2012"
-					data-date-format="dd-mm-yyyy">
+					data-date-format="dd/mm/yyyy">
 					<form:input path="provisionalEndDate" id="dp1" />
-					<form:errors path="provisionalEndDate" />
+					<form:errors path="provisionalEndDate" cssClass="error"  />
 				</div>
 			</div>
 			<div class="form-group">
@@ -162,21 +162,6 @@
 				<div class="col-sm-2">
 					<form:input path="waitingPrieces" cssClass="form-control" />
 					<form:errors path="waitingPrieces" cssClass="error" />
-				</div>
-			</div>
-			<div class="form-group">
-
-				<label for="natureField" class="col-sm-2 control-label esoft-left">Quantité rebuté: </label>
-				<div class="col-md-2">
-					<form:input path="rejectedQt" cssClass="form-control " />
-					<form:errors path="rejectedQt" cssClass="error" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="nameField" class="col-sm-2 control-label esoft-left">Cause rebut:</label>
-				<div class="col-sm-10">
-					<form:textarea id="editor1" path="observation" name="editor1"
-						rows="4" cols="80" />
 				</div>
 			</div>
 			<div class="form-group">
@@ -214,17 +199,18 @@
         <script src="${baseURL}/js/bootstrap-datepicker.js"></script>
 <script>
 	$(document).ready(function() {
-		$('#dp3').datepicker(({
+		$('#dp3').datepicker({
 			  format: 'dd/mm/yyyy'
-		}));
-		$('#dp2').datepicker(({
-			  format: 'dd/mm/yyyy'
-		}));
-		$('#dp1').datepicker(({
-			  format: 'dd/mm/yyyy'
-		}));
-		$('#dp0').datepicker(({
-			  format: 'dd/mm/yyyy'
-		}));
+		});
+		$('#dp2').datepicker({
+			format: 'dd/mm/yyyy'
+		});
+		$('#dp1').datepicker({
+			format: 'dd/mm/yyyy'
+		});
+		$('#dp0').datepicker({
+			format: 'dd/mm/yyyy'
+		});
+
 	});
 </script>

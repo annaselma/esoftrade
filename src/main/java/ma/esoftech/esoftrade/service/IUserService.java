@@ -7,6 +7,7 @@ import ma.esoftech.esoftrade.DTO.RoleDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.exception.UserNameException;
 import ma.esoftech.esoftrade.exception.UserNotFoundException;
+import ma.esoftech.esoftrade.model.User;
 
 public interface IUserService {
 
@@ -23,5 +24,6 @@ public interface IUserService {
     public void updatePicture(FileDTO picture,long id,UserDTO modifier) throws UserNotFoundException;
     public void deleteUser(UserDTO user);
     public long userCount( String filter);
+    List<UserDTO> searchUser(int lenght, int start, String search);
 	
 }

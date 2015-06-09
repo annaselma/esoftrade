@@ -20,6 +20,7 @@ import ma.esoftech.esoftrade.model.Role;
 import ma.esoftech.esoftrade.model.User;
 import ma.esoftech.esoftrade.service.IUserService;
 import ma.esoftech.esoftrade.service.ServiceUtils;
+import ma.esoftech.esoftrade.utils.DozerHelper;
 import ma.esoftech.esoftrade.utils.FileUploadUTILS;
 
 import org.dozer.Mapper;
@@ -263,6 +264,13 @@ public class UserServiceImpl implements IUserService {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<UserDTO> searchUser(int lenght, int start, String search) {
+		List<User>listUser= userDao.searchUser(lenght, start, search);
+		return DozerHelper.map(mapper, listUser, UserDTO.class);
 	}
 
 	

@@ -421,9 +421,9 @@
 <!-- /.box-body -->
 <script src="${baseURL}/js/bootstrap-datepicker.js"></script>
 <script>
-	$(document).ready(function() {
-		$('#dp3').datepicker(({
-			  format: 'dd-/mm-/yyyy'
-		}));
-	});
+$('#dp3').datepicker({
+	  format: 'dd/mm/yyyy'
+});
+
+
 </script>

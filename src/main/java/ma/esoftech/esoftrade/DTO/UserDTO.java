@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 
 import ma.esoftech.esoftrade.DTO.associated.EditorDTO;
 import ma.esoftech.esoftrade.DTO.associated.FileAssociatedDTO;
+import ma.esoftech.esoftrade.DTO.associated.PosteAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.RoleAssociated;
 
 import org.hibernate.validator.constraints.Email;
@@ -59,6 +60,8 @@ private String civilite;
 @NotEmpty(message="Veillez saisir une adresse électronique valide")
 @Email
 private String email;
+@NotEmpty(message="vous devez mentionnez un Poste")
+private PosteAssociatedDTO poste= new PosteAssociatedDTO();
 private List<RoleAssociated>roles= new ArrayList<RoleAssociated>();
 private List<String>permissions= new ArrayList<String>();
 public long getId() {
@@ -225,6 +228,12 @@ public void setLastEdit(Date lastEdit) {
 }
 public UserDTO(){
 	setBirdDay(new Date());
+}
+public PosteAssociatedDTO getPoste() {
+	return poste;
+}
+public void setPoste(PosteAssociatedDTO poste) {
+	this.poste = poste;
 }
 
 }

@@ -228,8 +228,7 @@ public class ProductController extends AbstractController {
 		
 		@ModelAttribute("categoryItems")
 		public List<PCategoryDTO> getCategoryList(){
-			// List<PCategoryDTO> listCategory=categoryService.getListCategory(0, 1000);
-			List<PCategoryDTO> listCategory=new ArrayList<PCategoryDTO>();
+		   List<PCategoryDTO> listCategory=categoryService.getListCategory(0, 1000);
 			return listCategory;
 		}
 

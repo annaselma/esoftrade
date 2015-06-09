@@ -44,8 +44,8 @@ public class GammeDTO {
 	private Date endDate;
 	private float theocticalCost;
 	private float realCost;
-	private Integer waitingPrieces;
-	private Integer createdQT;
+	private Integer waitingPrieces=0;
+	private Integer createdQT=0;
 	@NotEmpty(message="veillez indiquer au moins un poste")
     private String poste;
     private Integer nbposte=0;

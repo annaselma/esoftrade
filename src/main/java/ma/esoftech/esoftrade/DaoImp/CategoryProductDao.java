@@ -75,8 +75,7 @@ public class CategoryProductDao implements ICategoryProductDao {
 		session= sessionFactory.getCurrentSession();
 		session.flush();
 		session.clear();
-		session.update(category);
-		
+		session.update(category);	
 	}
 
 	@Override

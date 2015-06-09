@@ -9,6 +9,8 @@ import javax.validation.Valid;
 
 import ma.esoftech.esoftrade.DTO.FileDTO;
 import ma.esoftech.esoftrade.DTO.PasswordDTO;
+import ma.esoftech.esoftrade.DTO.PosteCategoryDTO;
+import ma.esoftech.esoftrade.DTO.PosteDTO;
 import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.RoleDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
@@ -22,6 +24,7 @@ import ma.esoftech.esoftrade.exception.ProductNotFoundException;
 import ma.esoftech.esoftrade.exception.UserNameException;
 import ma.esoftech.esoftrade.exception.UserNotFoundException;
 import ma.esoftech.esoftrade.service.IFileService;
+import ma.esoftech.esoftrade.service.IPosteService;
 import ma.esoftech.esoftrade.service.IUserService;
 import ma.esoftech.esoftrade.utils.FileUploadUTILS;
 
@@ -46,6 +49,8 @@ public class UserController extends AbstractController {
 	private static Logger logger = Logger.getLogger(UserController.class);
 	@Autowired
 	IUserService userService;
+	@Autowired
+	IPosteService posteService;
 	@Autowired
 	IFileService fileService;
 	@Autowired
@@ -237,6 +242,12 @@ public class UserController extends AbstractController {
 		public List<RoleDTO> getRoles(){
 			List<RoleDTO> roles=null;
 			return roles;
+		}
+		@ModelAttribute("postItems")
+		public List<PosteDTO> getCategoryList(){
+//			List<PosteDTO> listPost=posteService.getAllPoste(0, 1000, null, null);
+			List<PosteDTO> listPost=null;
+			return listPost;
 		}
 
 }

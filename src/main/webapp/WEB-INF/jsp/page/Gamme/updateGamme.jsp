@@ -166,18 +166,19 @@
             });
         </script>
         <script>
-	$(document).ready(function() {
-		$('#dp3').datepicker(({
-			  format: 'dd/mm/yyyy'
-		}));
-		$('#dp2').datepicker(({
-			  format: 'dd/mm/yyyy'
-		}));
-		$('#dp1').datepicker(({
-			  format: 'dd/mm/yyyy'
-		}));
-		$('#dp0').datepicker(({
-			  format: 'dd/mm/yyyy'
-		}));
-	});
+        $(document).ready(function() {
+    		$('#dp3').datepicker({
+    			  format: 'dd/mm/yyyy'
+    		});
+    		$('#dp2').datepicker({
+    			format: 'dd/mm/yyyy'
+    		});
+    		$('#dp1').datepicker({
+    			format: 'dd/mm/yyyy'
+    		});
+    		$('#dp0').datepicker({
+    			format: 'dd/mm/yyyy'
+    		});
+    	});
+
 </script>
