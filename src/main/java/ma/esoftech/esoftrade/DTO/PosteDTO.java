@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import ma.esoftech.esoftrade.DTO.associated.EditorDTO;
 import ma.esoftech.esoftrade.DTO.associated.FileAssociatedDTO;
+import ma.esoftech.esoftrade.DTO.associated.PosteCatAssociatedDTO;
 
 public class PosteDTO {
 	private long id;
@@ -18,10 +17,10 @@ public class PosteDTO {
 	private Date lastEdit;
 	private String comment;
 	private String namePoste;
-	private Integer nbPoste;
+	private Integer nbPoste=0;
 	private boolean productif;
 	private float price;
-	private PosteCategoryDTO category= new PosteCategoryDTO();
+	private PosteCatAssociatedDTO category= new PosteCatAssociatedDTO();
 	private List<FileAssociatedDTO> files = new ArrayList<FileAssociatedDTO>();
 public PosteDTO() {
 }
@@ -98,10 +97,10 @@ public Date getLastEdit() {
 public void setLastEdit(Date lastEdit) {
 	this.lastEdit = lastEdit;
 }
-public PosteCategoryDTO getCategory() {
+public PosteCatAssociatedDTO getCategory() {
 	return category;
 }
-public void setCategory(PosteCategoryDTO category) {
+public void setCategory(PosteCatAssociatedDTO category) {
 	this.category = category;
 }
 

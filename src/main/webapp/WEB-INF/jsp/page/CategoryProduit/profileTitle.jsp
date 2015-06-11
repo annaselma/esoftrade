@@ -8,11 +8,11 @@
 	<c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
 	<section class="content-header">
                     <h1>
-                        Category
-                        <small>Profile</small>
+                        Catégorie
+                        <small>Profil</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i>Acceuil</a></li>
-                        <li class="active">Category</li>
+                        <li class="active">Catégorie</li>
                     </ol>
                 </section>

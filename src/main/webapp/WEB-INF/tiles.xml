@@ -179,20 +179,20 @@
 	</definition>
 	<!-- /Post Pages -->
 	<!-- CategoryPost Pages -->
-	<definition name="categoryProfile" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/CategoryPost/categoryProfile.jsp" />
+	<definition name="categoryPoProfile" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/CategoryPost/categoryPoProfile.jsp" />
 	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/CategoryPost/profileTitle.jsp" />
 	</definition>
-	<definition name="createCategory" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/CategoryPost/createCategory.jsp" />
+	<definition name="createCategoryP" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/CategoryPost/createCategoryP.jsp" />
 	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/CategoryPost/createTitle.jsp" />
 	</definition>
-	<definition name="categoryList" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/CategoryPost/categoryList.jsp" />
+	<definition name="categoryListP" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/CategoryPost/categoryListP.jsp" />
 	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/CategoryPost/listTitle.jsp" />
 	</definition>
-	<definition name="updateCategory" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/CategoryPost/updateCategory.jsp" />
+	<definition name="updateCategoryP" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/CategoryPost/updateCategoryP.jsp" />
 	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/CategoryPost/updateTitle.jsp" />
 	</definition>
 	<!-- /CategoryPost Pages -->

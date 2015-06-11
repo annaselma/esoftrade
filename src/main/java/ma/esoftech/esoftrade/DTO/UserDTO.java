@@ -60,7 +60,6 @@ private String civilite;
 @NotEmpty(message="Veillez saisir une adresse électronique valide")
 @Email
 private String email;
-@NotEmpty(message="vous devez mentionnez un Poste")
 private PosteAssociatedDTO poste= new PosteAssociatedDTO();
 private List<RoleAssociated>roles= new ArrayList<RoleAssociated>();
 private List<String>permissions= new ArrayList<String>();

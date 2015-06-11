@@ -54,22 +54,22 @@ public CategoryPoste() {
 			
 			category= categoryService.findById(id);
 		} catch (PosteNotFoundException e) {
-			model.addAttribute("messageError","cateory with id="+ id+"doesn't exist");
+			model.addAttribute("messageError","category with id="+ id+"doesn't exist");
 			return "error";
 		}
 
-        model.addAttribute("category", category);
+        model.addAttribute("categoryPo", category);
 		
-		return "categoryProfile";
+		return "categoryPoProfile";
 		}
 	
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String addCategory(@ModelAttribute("category") @Valid PosteCategoryDTO category,
+	public String addCategory(@ModelAttribute("categoryPo") @Valid PosteCategoryDTO category,
 			BindingResult result) {
 		initialize();
 		if (result.hasErrors()) {
-			return "createCategory";
+			return "createCategoryP";
 		} else {
             
 			try {
@@ -78,7 +78,7 @@ public CategoryPoste() {
 			} catch (Exception e) {
 				result.rejectValue("name", "name.error.exist",
 						"name exsist!!");
-				return "createCategory";
+				return "createCategoryP";
 			}
 				return PATH_PROFIL+"?id="+category.getId();
 			}
@@ -88,8 +88,8 @@ public CategoryPoste() {
 	public String loadCategoryCreateForm(ModelMap model) {
 		initialize();
 		PosteCategoryDTO categorydto=new PosteCategoryDTO();
-		model.addAttribute("category",categorydto );
-		return "createCategory";
+		model.addAttribute("categoryPo",categorydto );
+		return "createCategoryP";
 	}
 	@RequestMapping(value="/delete",method= RequestMethod.GET)
 	public String DeleteCategory(@RequestParam long id){
@@ -99,9 +99,9 @@ public CategoryPoste() {
 		return "redirect:/categoryPost/list";
 	}
 	@RequestMapping(value="/update", method=RequestMethod.POST)
-	public String updateCategory( @ModelAttribute("category") @Valid PosteCategoryDTO categorydto, BindingResult result,ModelMap model){
+	public String updateCategory( @ModelAttribute("categoryPo") @Valid PosteCategoryDTO categorydto, BindingResult result,ModelMap model){
 		if(result.hasErrors()){
-			return "createCategory";
+			return "createCategoryP";
 		}
 		initialize();
 		try {
@@ -110,7 +110,7 @@ public CategoryPoste() {
 			result.rejectValue("name", "name.error.exist",
 					"name exsist!!");
 			
-			return "updateCategory";
+			return "updateCategoryP";
 		}
 	
 		 return PATH_PROFIL+"?id="+categorydto.getId();
@@ -127,15 +127,15 @@ public CategoryPoste() {
 			 model.addAttribute("messageError","category how id="+id+"doesn't exist ");
 			 return "error";
 		 }
-		 model.addAttribute("category",categorydto);
+		 model.addAttribute("categoryPo",categorydto);
 		 List<PosteCategoryDTO> listCategory=categoryService.getListCategory(0, 1000);
 			model.addAttribute("categoryItems",listCategory);
-		 return"updateCategory";
+		 return"updateCategoryP";
 	 }
 	@RequestMapping(value="/list",method=RequestMethod.GET)
 	 public String loadPostListProfil(ModelMap model){
 		 
-		 return "categoryList";
+		 return "categoryListP";
 	 }
 		@RequestMapping(value="/getList",method=RequestMethod.GET,produces = "application/json")
 		public @ResponseBody ResponseTable<PosteCategoryDTO> loadTables(@Valid RequestTable req,BindingResult bindingResult,ModelMap model){

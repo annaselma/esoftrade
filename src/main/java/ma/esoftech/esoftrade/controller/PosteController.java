@@ -7,8 +7,10 @@ import javax.servlet.ServletContext;
 import javax.validation.Valid;
 
 import ma.esoftech.esoftrade.DTO.FileDTO;
+import ma.esoftech.esoftrade.DTO.PCategoryDTO;
 import ma.esoftech.esoftrade.DTO.PosteCategoryDTO;
 import ma.esoftech.esoftrade.DTO.PosteDTO;
+import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.controller.session.SessionBean;
 import ma.esoftech.esoftrade.datatablesAPI.Order;
@@ -19,6 +21,7 @@ import ma.esoftech.esoftrade.exception.PosteNotFoundException;
 import ma.esoftech.esoftrade.service.ICategoryPostService;
 import ma.esoftech.esoftrade.service.IFileService;
 import ma.esoftech.esoftrade.service.IPosteService;
+import ma.esoftech.esoftrade.service.IUserService;
 import ma.esoftech.esoftrade.utils.FileUploadUTILS;
 import ma.esoftech.esoftrade.utils.UTILS;
 
@@ -155,6 +158,29 @@ public class PosteController extends AbstractController{
 			long recordsFiltered=posteService.PosteCount(search);
 			long recordsTotal=posteService.PosteCount("");
 			ResponseTable<PosteDTO> response=new ResponseTable<PosteDTO>();
+			response.setDraw(draw);
+			response.setRecordsFiltered(recordsFiltered);
+			response.setRecordsTotal(recordsTotal);
+			response.setData(list);
+			return response;
+		}
+		@RequestMapping(value="/getListUserByPost",method=RequestMethod.GET,produces = "application/json")
+		public @ResponseBody ResponseTable<UserDTO> loadTables(@Valid RequestTable req,@RequestParam long id,BindingResult bindingResult,ModelMap model){
+			if(bindingResult.hasErrors()){
+				return null;
+			}
+			Order ordre=Order.createOrderFromRequestTable(req);
+			String search=req.getSearch().get(SearchCriterias.value);
+			ordre.toString();
+			int start=req.getStart();
+			int  length=req.getLength();
+			int draw=req.getDraw();
+            PosteDTO cat=new PosteDTO();
+            cat.setId(id);
+			List<UserDTO> list=posteService.getListUserByPoste(length, start, ordre.toString(), search, cat);
+			long recordsFiltered=posteService.UserCount(search, cat);
+			long recordsTotal=posteService.UserCount("", cat);
+			ResponseTable<UserDTO> response=new ResponseTable<UserDTO>();
 			response.setDraw(draw);
 			response.setRecordsFiltered(recordsFiltered);
 			response.setRecordsTotal(recordsTotal);

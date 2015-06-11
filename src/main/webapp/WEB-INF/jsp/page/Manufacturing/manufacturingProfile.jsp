@@ -396,31 +396,9 @@
 				</tbody>
 			</table>
 		</div>
-		<hr>
-		<h3><label class="label label-warning">Historique de l'ordre de fabrication</label></h3>
-			<div class="row" style="margin-top: 0%;">
-			<hr>
-					<div class="col-md-12">
-				<table id="list-change" class="table table-bordered table-striped">
-			<thead>
-				<tr>
-					<th>Auteurs</th>
-					<th>Change Status</th>
-				</tr>
-			</thead>
-			<tbody>
-			</tbody>
-			<tfoot>
-				<tr>				  
-					<th>Auteurs</th>
-					<th>Change Status</th>
-				</tr>
-			</tfoot>
-		</table>
+		
 		</div>
-		</div>
-		</div>
-
+		
 		</div>
 	
 		
@@ -764,7 +742,7 @@
                     	"render": function ( data, type, full, meta ) {
                    		 $active='<div id="end" class="label label-success">En cours</div>';
                    		 $inactive='<div id="end" class="label label-danger">Terminé</div>';
-                   		 if(data==true){
+                   		 if(data==false){
                    			 return $active;
                    		 }
                    	      return $inactive;
@@ -784,46 +762,6 @@
                     		 return $html;
                     	    }
                     
-                    }]
-                });
-                
-          });
-        </script>
-        
-        <script type="text/javascript">
-        
-            $(function() {
-            	$("#example33").DataTable({});
-               var table= $('#list-change').DataTable({
-                    "paging": true,
-                    "lengthChange": true,
-                    "searching": true,
-                    "ordering": true,
-                    "info": true,
-                    "autoWidth": true,
-                    "processing": true,
-                    "serverSide": true,
-                    "ajax": {
-                        "url": "${baseURL}/manufacturing/getList",
-                        "data": function(data) {
-                            planify(data);  
-                        } 
-                    },
-                    "columnDefs":[{                    	
-                    
-                    	"targets":[0],
-                    	"name":"responsible",
-                    	"data":"responsible",
-                    	"render": function ( data, type, full, meta ) {
-                    		$link='<a href="${baseURL}/user/profile?id='+data.id+'"><i class="fa fa-user"></i>&nbsp;'+data.name+' '+data.lastName+'</a>';
-                    	
-                    	      return $link;
-                    	    }
-                    },
-                    {
-                    	"targets":[1],
-                    	"name":"description",
-                    	"data":"description",
                     }]
                 });
                 

@@ -158,8 +158,9 @@ public class PosteServiceImpl  implements IPosteService{
 	}
 	@Override
 	@Transactional(readOnly=true)
-	public long UserCount(String filter) {
-		
-		return postedao.UserCount(filter);
+	public long UserCount(String filter,PosteDTO poste) {
+		Poste postEntity= new Poste();
+		postEntity.setId(poste.getId());
+		return postedao.UserCount(filter, postEntity);
 	}
 }

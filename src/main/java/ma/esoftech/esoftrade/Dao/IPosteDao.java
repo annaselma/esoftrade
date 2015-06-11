@@ -17,5 +17,5 @@ public interface IPosteDao {
 	public long PosteCount(String filter);
 	List<Poste> searchPoste(int lenght, int start, String search);
 	public List<User> getListUserByPoste(int lenght, int start,String sorting, String filter, Poste poste);
-	public long UserCount(String filter);
+	public long UserCount(String filter,Poste poste);
 }

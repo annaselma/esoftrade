@@ -79,7 +79,7 @@
                     	"name":"ref",
                     	"data":"ref",
                     	"render": function ( data, type, full, meta ) {
-                    		$link='<a href="${baseURL}/postet/profile?id='+full.id+'">'+data+'</a>';
+                    		$link='<a href="${baseURL}/poste/profile?id='+full.id+'">'+data+'</a>';
                       	
                       	      return $link;
                       	    }

@@ -25,5 +25,5 @@ public interface IPosteService {
 	public void attachFileToPoste(FileDTO fileDTO,long id,UserDTO modifier) throws PosteNotFoundException;
 	public List<PosteDTO> searchPoste(int lenght, int start, String search);
 	public List<UserDTO> getListUserByPoste(int lenght, int start,String sorting, String filter, PosteDTO poste);
-	public long UserCount(String filter);
+	public long UserCount(String filter,PosteDTO poste);
 }

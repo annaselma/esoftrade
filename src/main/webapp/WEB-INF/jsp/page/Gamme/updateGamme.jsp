@@ -27,15 +27,16 @@
 	<!-- form start -->
 
 	<div class="box-body">
-		<span class="error">Veillez saisir les champs obligatoire (*)</span>
+		<span class="error" style="margin-left: 69%;">Veillez saisir les champs obligatoire (*)</span>
+		<hr>
 		<form:form method="POST" commandName="gamme" id="gammeF"
 			data-toggle="validator" cssClass="form-horizontal">
 			<div class="form-group">
-				<label for="posteField" class="col-sm-2 control-label esoft-left">Poste:&nbsp;<span
+				<label for="desField" class="col-sm-2 control-label esoft-left">Designation:&nbsp;<span
 					class="error">*</span></label>
 				<div class="col-sm-4">
-				    <form:input path="poste" cssClass="form-control " />
-					<form:errors path="poste" cssClass="error" />
+				    <form:input path="designation" cssClass="form-control " />
+					<form:errors path="designation" cssClass="error" />
 				</div>
 				<label for="postenbField" class="col-sm-2 control-label esoft-left">Nombre de Postes:&nbsp;<span
 					class="error">*</span></label>
@@ -45,6 +46,34 @@
 				</div>
 				
 			</div>
+			<div class="form-group">
+				<label for="categoryField" class="col-sm-2 control-label esoft-left">Poste:&nbsp;<span class="error">*</span></label>
+				<div class="col-sm-4" id="select-cat">
+					<form:select path="poste" cssClass="tokenize-sample mono-select" id="poste"  size="1">
+						<form:options items="${postItems}" itemLabel="namePoste"
+							itemValue="id" />
+					</form:select>
+					<form:errors path="poste" cssClass="error" />
+				</div>
+                <script type="text/javascript" src="${baseURL}/js/plugins/tokenize/jquery.tokenize.js"></script>
+				<script type="text/javascript">
+				$('#category').tokenize({
+					"newElements":false,
+					maxElements:1,
+					datas: "${baseURL}/poste/search",
+					valueField:"id",
+					textField:"namePoste"
+					});
+				$("#select-cat").on("focus", ".tokenize-sample ", function() {
+				    console.log($(".Token span").text());
+				   $text= $(".Token span").text();
+				   $(".Token").remove();
+				   $("#select-cat select option[selected='selected']").remove();
+				    $(".TokenSearch input").val($text);
+				});
+				
+				</script>
+				</div>
 			<div class="form-group">
 				<label for="priority"class="col-sm-2 control-label esoft-left">Type&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
@@ -119,6 +148,15 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label for="descField" class="col-sm-2 control-label esoft-left">Description:</label>
+				<div class="col-sm-10">
+					<form:textarea id="editor2" path="observation" name="editor2"
+						rows="4" cols="80" />
+				</div>
+			</div>
+			<hr>
+			<h2  class="page-header" style="margin-left: 2%;"><i class="fa fa-exclamation-triangle" ></i>&nbsp;Dysfonctionnement <small class="pull-right"><i class="fa fa-cogs" style="margin-left: -42%;"></i></small> </h2>
+			<div class="form-group">
 
 				<label for="natureField" class="col-sm-2 control-label esoft-left">Quantité rebuté: </label>
 				<div class="col-md-2">
@@ -133,15 +171,7 @@
 						rows="4" cols="80" />
 				</div>
 			</div>
-			<div class="form-group">
-				<label for="descField" class="col-sm-2 control-label esoft-left">Description:</label>
-				<div class="col-sm-10">
-					<form:textarea id="editor2" path="observation" name="editor2"
-						rows="4" cols="80" />
-				</div>
-			</div>
-			
-			
+				
 			<input type="hidden" name="manufacturing" value="${manufacturing}">
 			<div class="form-group">
 				<button type="reset" class="btn-sm btn btn-danger btn pull-right "

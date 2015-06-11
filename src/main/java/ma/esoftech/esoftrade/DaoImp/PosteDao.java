@@ -46,7 +46,7 @@ public class PosteDao implements IPosteDao{
 	@Override
 	public Poste findByName(String namePoste) {
 		session= sessionFactory.getCurrentSession();	
-		String hql=" select post From Poste as post left join fetch post.category where post.name= :name";
+		String hql=" select post From Poste as post left join fetch post.category where post.namePoste= :name";
 		org.hibernate.Query query= null;
 		query= session.createQuery(hql);
 		query.setString("name", namePoste);
@@ -118,7 +118,7 @@ public class PosteDao implements IPosteDao{
 	@Override
 	public List<Poste> searchPoste(int lenght, int start, String search) {
 		session=sessionFactory.getCurrentSession();
-		String hql="select post From Poste as post where post.name like :search";
+		String hql="select post From Poste as post where post.namePoste like :search";
 		org.hibernate.Query query=session.createQuery(hql);
 		query.setString("search", "%"+search+"%");
 		query.setFirstResult(start).setMaxResults(lenght);
@@ -140,9 +140,12 @@ public class PosteDao implements IPosteDao{
 	}
 
 	@Override
-	public long UserCount(String filter) {
+	public long UserCount(String filter,Poste poste) {
 		session=sessionFactory.getCurrentSession();
-		Long count=(Long)session.createQuery(" Select count(user) from User as user where  user.poste= :poste").uniqueResult();
+		String hql=" Select count(user) from User as user where  user.poste= :poste";
+		Query query= session.createQuery(hql);
+		query.setParameter("poste",poste);
+		Long count= (Long)query.uniqueResult();
 		return count;
 	}
 

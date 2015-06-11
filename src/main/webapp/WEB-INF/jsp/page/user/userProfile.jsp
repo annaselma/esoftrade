@@ -156,6 +156,11 @@
 															value="${user.email}" /></a></td>
 											</tr>
 											<tr>
+												<th><label>Poste occupé</label></th>
+												<td><span class="data-value"><c:out
+															value="${user.poste.namePoste}" /></span></td>
+											</tr>
+											<tr>
 												<th><label>Fonction</label></th>
 												<td><span class="data-value"><c:out
 															value="${user.fonction}" /></span></td>

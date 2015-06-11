@@ -80,6 +80,33 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label for="posteField" class="col-sm-2 control-label esoft-left">Poste:&nbsp;<span class="error">*</span></label>
+				<div class="col-sm-4" id="select-cat">
+					<form:select path="poste" cssClass="tokenize-sample mono-select " id="poste"  size="1">
+						<form:options items="${postItems}" itemLabel="namePoste"
+							itemValue="id" />
+					</form:select>
+					<form:errors path="poste" cssClass="error" />
+				</div>
+                <script type="text/javascript" src="${baseURL}/js/plugins/tokenize/jquery.tokenize.js"></script>
+				<script type="text/javascript">
+				$('#poste').tokenize({
+					"newElements":false,
+					maxElements:1,
+					datas: "${baseURL}/poste/search",
+					valueField:"id",
+					textField:"namePoste"
+					});
+				$("#select-cat").on("focus", ".tokenize-sample ", function() {
+				    console.log($(".Token span").text());
+				   $text= $(".Token span").text();
+				   $(".Token").remove();
+				   $("#select-cat select option[selected='selected']").remove();
+				    $(".TokenSearch input").val($text);
+				});
+				</script>
+				</div>
+			<div class="form-group">
 				<label for="fonctionField" class="col-sm-2 control-label esoft-left">Fonction:</label>
 				<div class="col-sm-4">
 					<form:input path="fonction" cssClass="form-control" />

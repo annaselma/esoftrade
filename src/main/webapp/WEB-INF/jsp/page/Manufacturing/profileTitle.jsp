@@ -9,10 +9,10 @@
 	<section class="content-header">
                     <h1>
                         Production
-                        <small>Profile</small>
+                        <small>Profil</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i>Acceuil</a></li>
-                        <li class="active">Producton</li>
+                        <li class="active">Production</li>
                     </ol>
                 </section>

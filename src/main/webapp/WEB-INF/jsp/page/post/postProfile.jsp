@@ -11,9 +11,9 @@
 	<ul id="tabs" class="nav nav-tabs">
 		<li class="${defaultActive}"><a href="#fiche" data-toggle="tab"
 			aria-expanded="false"><i class="fa fa-file"></i>&nbsp;Fiche
-				Produit</a></li>
+				Poste</a></li>
 		<li class=""><a href="#perso" data-toggle="tab"
-			aria-expanded="false"><i class="fa fa-truck" style=""></i>&nbsp;Liste du Personnel</a></li>
+			aria-expanded="false"><i class="fa fa-user" style=""></i>&nbsp;Liste du Personnel</a></li>
 		<li class="${fileActive}"><a href="#fichierjoint"
 			data-toggle="tab" aria-expanded="true"><i class="fa fa-folder"
 				style=""></i>&nbsp;Fichiers joints</a></li>
@@ -33,18 +33,33 @@
 									<div class="" style="margin-bottom: 4%;">
 										<label class=""> Poste N°</label> &nbsp;<span
 											class="text-warning"><u><strong><c:out
-														value="${post.ref}" /></strong></u></span>
+														value="${poste.ref}" /></strong></u></span>
 									</div>
 									<table class="table">
 										<tbody>
+										   <tr>
+												<th><label>Jugement:</label></th>
+												<td><c:choose>
+										<c:when test="${poste.productif}">
+											<div id="productif" class="label label-success">Productif</div>
+										</c:when>
+										<c:otherwise>
+											<div id="productif" class="label label-danger">Non productif</div>
+										</c:otherwise>
+									</c:choose></td>
+											</tr>
 											<tr>
 												<th style="width: 50%"><label>NomduPoste:</label></th>
 												<td><span class="text-muted"><c:out
-															value="${post.namePoste}" /></span></td>
+															value="${poste.namePoste}" /></span></td>
 											</tr>
 											<tr>
-												<th><label>personnels:</label></th>
+												<th><label>personnel:</label></th>
 												<td><c:out value="${poste.nbPoste}" /></td>
+											</tr>
+											<tr>
+												<th><label>taux horraire:</label></th>
+												<td><c:out value="${poste.price}" /></td>
 											</tr>
 											<tr>
 												<th><label>Catégorie:</label></th>
@@ -71,7 +86,35 @@
 			</div>
 
 		</div>
-		<div clas="tab-pane fade${defaultActive} ${defaultIn} " id="perso" >teste</div>
+		<div class="tab-pane fade${defaultActive} ${defaultIn} " id="perso" >
+		<div class="tab-pane " id="fiche-tab">
+			<div class="row">
+					<div class="col-md-12">
+				<table id="list-personnel" class="table table-bordered table-striped">
+			<thead>
+				<tr>
+				    <th>Ref</th>
+				    <th>Nom</th>
+				    <th>Prénom</th>
+				    <th>Login</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+			<tfoot>
+				<tr><th>Ref</th>
+				    <th>Nom</th>
+				    <th>Prénom</th>
+				    <th>Login</th>
+					<th>Status</th>
+				</tr>
+			</tfoot>
+		</table>
+		</div>
+		</div>
+			</div>
+		</div>
 		<div class="tab-pane fade ${fileActive} ${fileIn}" id="fichierjoint">
 			<h4>Joindre un nouveau fichier:</h4>
 			<form method="POST" action="${baseURL}/poste/upload"
@@ -81,7 +124,7 @@
 					<span><i class="fa fa-upload"></i> &nbsp;choisissez un
 						fichier</span> <input type="file" name="file" id="file" class="upload" />
 				</div>
-				<input type="hidden" name="id" value="${product.id}"> <input
+				<input type="hidden" name="id" value="${poste.id}"> <input
 					type="submit" value="valider" class="btn-xs btn btn-success">
 			</form>
 			<span id="name-file"></span> <span id="file-errors" class="error"
@@ -154,10 +197,7 @@
 			<div class="">
 				<table class="table ">
 					<tbody>
-						<tr class=" box box-solid bg-red">
-							<th><h5></h5></th>
-							<td></td>
-						</tr>
+						
 						<tr class=" box box-solid bg-">
 							<th class=""><label class="">Créé par:</label></th>
 							<td><img
@@ -213,72 +253,7 @@
 <script
 	src="${baseURL}/js/plugins/datatables/dataTables.ColumnFilter.js"
 	type="text/javascript"></script>
-<script type="text/javascript">
-	$(function() {
-		var table = $('#list1')
-				.DataTable(
-						{
-							"paging" : true,
-							"lengthChange" : true,
-							"searching" : true,
-							"ordering" : true,
-							"info" : true,
-							"autoWidth" : true,
-							"processing" : true,
-							"serverSide" : true,
-							"ajax" : {
-								"url" : "${baseURL}/mouvement/getListWarehouseByP?id=${product.id}",
-								"data" : function(data) {
-									planify(data);
-								}
-							},
-							"columnDefs" : [
-									{
-										"targets" : [ 0 ],
-										"name" : "warehouse",
-										"data" : "warehouse",
-										"render" : function(data, type, full,
-												meta) {
-											$link = '<a href="${baseURL}/warehouse/profile?id='
-													+ data.id
-													+ '">'
-													+ data.name + '</a>';
 
-											return $link;
-										}
-
-									},
-									{
-										"targets" : [ 1 ],
-										"name" : "quantity",
-										"data" : "quantity",
-
-									},
-
-									{
-										"targets" : [ 2 ],
-										"name" : "product.price",
-										"data" : "product.price",
-
-									},
-									{
-										"targets" : [ 3 ],
-										"name" : "product.price",
-										"data" : "product.price",
-										"orderable" : false,
-										"render" : function(data, type, full,
-												meta) {
-											$priceValorisation = data
-													* full.quantity;
-											return $priceValorisation;
-										}
-
-									},
-
-							]
-						});
-	});
-</script>
 <script type="text/javascript">
 	$(function() {
 		var table = $('#file_table')
@@ -293,7 +268,7 @@
 							"processing" : true,
 							"serverSide" : true,
 							"ajax" : {
-								"url" : "${baseURL}/file/getList?id=${product.id}&module=Product",
+								"url" : "${baseURL}/file/getList?id=${poste.id}&module=Poste",
 								"data" : function(data) {
 									planify(data);
 								}
@@ -333,7 +308,7 @@
 										"targets" : [ 2 ],
 										"name" : "creator",
 										"data" : "creator",
-										"orderable" : false,
+										"orderuser/profile?id=158able" : false,
 										"render" : function(data, type, full,
 												meta) {
 											$link = '<a href="${baseURL}/user/profile?id='
@@ -375,3 +350,71 @@
 						});
 	});
 </script>
+<script type="text/javascript">
+        
+            $(function() {
+                
+            	$("#example33").DataTable({});
+               var table= $('#list-personnel').DataTable({
+                    "paging": true,
+                    "lengthChange": true,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": true,
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": {
+                        "url": "${baseURL}/poste/getListUserByPost?id=${poste.id}",
+                        "data": function(data) {
+                            planify(data);  
+                        } 
+                    },
+                    "columnDefs":[{
+                    	"targets":[0],
+                    	"name":"ref",
+                    	"data":"ref",
+                    	"render": function ( data, type, full, meta ) {
+                    		$link='<small><a href="${baseURL}/user/profile?id='+full.id+'">'+data+'</a></small>';
+                    	
+                    	      return $link;
+                    	    }
+                    
+                    },
+                    {
+                    	"targets":[1],
+                    	"name":"name",
+                    	"data":"name",
+                    
+                    },
+                    {
+                    	"targets":[2],
+                    	"name":"lastName",
+                    	"data":"lastName",
+                    
+                    },
+                    {
+                    	"targets":[3],
+                    	"name":"login",
+                    	"data":"login",
+                    
+                    },
+                    
+                    {
+                    	"targets":[4],
+                    	"name":"active",
+                    	"data":"active",
+                    	 "render": function ( data, type, full, meta ) {
+                    		 $active='<div id="statut" class="label label-success">Actif</div>';
+                    		 $inactive='<div id="statut" class="label label-danger">inactif</div>';
+                    		 if(data==true){
+                    			 return $active;
+                    		 }
+                    	      return $inactive;
+                    	    }
+                    
+                    }]
+                });
+
+          });
+        </script>

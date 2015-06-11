@@ -49,11 +49,11 @@ $(document).ready(function(){
 											<tbody>
 												<tr>
 													<th style="width: 50%"><label>Nom:</label></th>
-													<td><a class="label label-info"  style="font-size: small;" href="#"><c:out value="${category.name}" /></a></td>
+													<td><a class="label label-info"  style="font-size: small;" href="#"><c:out value="${categoryPo.name}" /></a></td>
 												</tr>
 												<tr>
 													<th><label>Description:</label></th>
-													<td><c:out value="${category.description}" escapeXml="false" /></td>
+													<td><c:out value="${categoryPo.description}" escapeXml="false" /></td>
 												</tr>
 											</tbody>
 										</table>
@@ -65,10 +65,10 @@ $(document).ready(function(){
 					</div>
 					
 					<div>
-						<form method="POST" name="category" id="categoryF">
+						<form method="POST" name="categoryPost" id="categoryF">
 							<button type="button" class="btn btn-primary pull-right "
 								style="margin-top: 22%; margin-right: 4%;"
-								onclick="location.href='${baseURL}/categoryPost/update?id=${category.id}'">
+								onclick="location.href='${baseURL}/categoryPost/update?id=${categoryPo.id}'">
 								<i class="fa fa-pencil-square-o"></i>&nbsp;Modifier
 							</button>
 						</form>
@@ -150,7 +150,7 @@ $(document).ready(function(){
                     "processing": true,
                     "serverSide": true,
                     "ajax": {
-                        "url": "${baseURL}/categoryPost/getListPost?id=${category.id}",
+                        "url": "${baseURL}/categoryPost/getListPost?id=${categoryPo.id}",
                         "data": function(data) {
                             planify(data);  
                         } 
