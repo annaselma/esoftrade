@@ -7,6 +7,7 @@ import ma.esoftech.esoftrade.DTO.RoleDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.exception.UserNameException;
 import ma.esoftech.esoftrade.exception.UserNotFoundException;
+import ma.esoftech.esoftrade.model.User;
 
 public interface IUserService {
 
@@ -25,5 +26,6 @@ public interface IUserService {
     public long userCount( String filter);
 	public List<UserDTO> getUsersByRole(int start, int length,String sorting,RoleDTO  role, String filter);
     public long userCountByRole( RoleDTO role,String filter);
+    List<UserDTO> searchUser(int lenght, int start, String search);
 	
 }

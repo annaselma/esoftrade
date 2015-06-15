@@ -12,6 +12,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import ma.esoftech.esoftrade.DTO.associated.EditorDTO;
 import ma.esoftech.esoftrade.DTO.associated.FileAssociatedDTO;
+import ma.esoftech.esoftrade.DTO.associated.PosteAssociatedDTO;
 
 public class GammeDTO {
 
@@ -51,8 +52,9 @@ public class GammeDTO {
     private Integer nbposte=0;
     @NotEmpty(message="choisir un type")
 	private String type;
-	private boolean end;
+	private boolean end=false;
 	private  List<FileAssociatedDTO> files=new ArrayList<FileAssociatedDTO>();
+	private  List<PosteAssociatedDTO> postes=new ArrayList<PosteAssociatedDTO>();
 	public GammeDTO() {
 		setStartDate(new Date());
 		setEndDate(new Date());
@@ -141,6 +143,14 @@ public class GammeDTO {
 	public void setCost(float cost) {
 		this.cost = cost;
 	}
+	public List<PosteAssociatedDTO> getPostes() {
+		return postes;
+	}
+
+	public void setPostes(List<PosteAssociatedDTO> postes) {
+		this.postes = postes;
+	}
+
 	public String getBarreCode() {
 		return barreCode;
 	}

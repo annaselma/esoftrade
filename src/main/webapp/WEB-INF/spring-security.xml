@@ -28,14 +28,19 @@
 		  <intercept-url pattern="/warehouse/**" access="isAuthenticated()"  />
 		  <intercept-url pattern="/mouvement**" access="isAuthenticated()"  />
 		  <intercept-url pattern="/mouvement/**" access="isAuthenticated()"  />
-		  <intercept-url pattern="/manufacturingt**" access="isAuthenticated()"  />
+		  <intercept-url pattern="/manufacturing/**" access="isAuthenticated()"  />
 		  <intercept-url pattern="/manufacturing/**" access="isAuthenticated()"  />
 		   <intercept-url pattern="/nomenclature**" access="isAuthenticated()"  />
 		  <intercept-url pattern="/nomenclature/**" access="isAuthenticated()"  />
 		  <intercept-url pattern="/gamme**" access="isAuthenticated()"  />
 		  <intercept-url pattern="/gamme/**" access="isAuthenticated()"  />
+
 		   <intercept-url pattern="/role**" access="isAuthenticated()"  />
 		  <intercept-url pattern="/role/**" access="isAuthenticated()"  />
+		   <intercept-url pattern="/poste**" access="isAuthenticated()"  />
+		  <intercept-url pattern="/poste/**" access="isAuthenticated()"  />
+		  <intercept-url pattern="/categoryPost**" access="isAuthenticated()"  />
+		  <intercept-url pattern="/categoryPost/**" access="isAuthenticated()"  />
 		<form-login login-page="/login.html" 
 		    default-target-url="/client.html"
 			authentication-failure-url="/login.html?error=failed"

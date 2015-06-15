@@ -238,6 +238,7 @@ public class ManufacturingController extends AbstractController {
 			
 			if(file.isEmpty()){
 				 model.addAttribute("messageError","no file exist ");
+			
 				 return "error";			
 			}
 			try {
@@ -247,9 +248,11 @@ public class ManufacturingController extends AbstractController {
 				manufacturService.attachFileToManufacturing(fileDTO, id, currentUser);
 			} catch (IOException e) {
 				model.addAttribute("messageError",e.getMessage());
+				e.printStackTrace();
 				return "error";
 			} catch (ManufacturingNotFoundException e) {
 				model.addAttribute("messageError",e.getMessage());
+				e.printStackTrace();
 				return "error";
 			}
 			

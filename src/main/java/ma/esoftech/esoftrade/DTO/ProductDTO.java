@@ -26,8 +26,8 @@ public class ProductDTO {
 	 private Date createDate;
 	 private EditorDTO modifier;
 	 private Date lastEdit;
-	 private Boolean purchasingState= true;
-	 private Boolean sellingState= true;
+	 private Boolean purchasingState= false;
+	 private Boolean sellingState= false;
 	 @Min(1)
 	 @NotNull
 	 private Integer desieredTreshold=0;
@@ -48,7 +48,7 @@ public class ProductDTO {
 	 @Size(min=2)
 	 private String barreCode;
 	 @NotNull(message="la catégorie ne doit pas etre vide")
-	 private PCategoryAssociatedDTO category=null;
+	 private PCategoryAssociatedDTO category=new PCategoryAssociatedDTO();
 	 private String department;
 	 private  List<FileAssociatedDTO> files=new ArrayList<FileAssociatedDTO>();
 	 public ProductDTO(){

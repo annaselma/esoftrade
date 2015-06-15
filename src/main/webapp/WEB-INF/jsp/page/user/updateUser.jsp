@@ -22,7 +22,7 @@
 
 <div class="box box-solid box-primary">
 	<div class="box-header">
-		<h4 class="box-title">Profil de: <strong><c:out value="${user.name} ${user.lastName}"/></strong></h4>
+		<h3 class="box-title">Identité Personnelle</h3>
 	</div>
 	<!-- /.box-header -->
 	<!-- form start -->
@@ -39,6 +39,24 @@
 					<form:errors path="lastName" cssClass="error" />
 					
 				</div>
+				
+			</div>
+			<div class="form-group">
+				<label for="nameField" class="col-sm-2 control-label esoft-left">Nom:&nbsp;<span class="error">*</span></label>
+				<div class="col-sm-4">
+					<form:input path="name" cssClass="form-control" />
+					<form:errors path="name" cssClass="error" />
+				</div>
+				
+			</div>
+			<hr>
+			<div class="form-group">
+				<label for="emailField" class="col-sm-2 control-label esoft-left">Email:&nbsp;<span class="error">*</span></label>
+				<div class="col-sm-4">
+					<form:input path="email" cssClass="form-control"
+						placeholder="exemple@hotmail.com" />
+					<form:errors path="email" cssClass="error" />
+				</div>
 				<label for="activ" class="col-sm-2 control-label esoft-left">compte
 					activé:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
@@ -47,10 +65,10 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="nameField" class="col-sm-2 control-label esoft-left">Nom:&nbsp;<span class="error">*</span></label>
+				<label for="phoneField" class="col-sm-2 control-label esoft-left">Telephone:</label>
 				<div class="col-sm-4">
-					<form:input path="name" cssClass="form-control" />
-					<form:errors path="name" cssClass="error" />
+					<form:input path="telephone" cssClass=" form-control" />
+					<form:errors path="telephone" cssClass="error" />
 				</div>
 				<label for="dateField" class="col-sm-2 control-label esoft-left">Date Naissance:&nbsp;<span class="error">*</span></label>
 
@@ -61,22 +79,33 @@
 					<form:errors path="birdDay" />
 				</div>
 			</div>
-			<hr>
 			<div class="form-group">
-				<label for="emailField" class="col-sm-2 control-label esoft-left">Email:&nbsp;<span class="error">*</span></label>
-				<div class="col-sm-4">
-					<form:input path="email" cssClass="form-control"
-						placeholder="exemple@hotmail.com" />
-					<form:errors path="email" cssClass="error" />
+				<label for="posteField" class="col-sm-2 control-label esoft-left">Poste:&nbsp;<span class="error">*</span></label>
+				<div class="col-sm-4" id="select-cat">
+					<form:select path="poste" cssClass="tokenize-sample mono-select " id="poste"  size="1">
+						<form:options items="${postItems}" itemLabel="namePoste"
+							itemValue="id" />
+					</form:select>
+					<form:errors path="poste" cssClass="error" />
 				</div>
-			</div>
-			<div class="form-group">
-				<label for="phoneField" class="col-sm-2 control-label esoft-left">Telephone:</label>
-				<div class="col-sm-4">
-					<form:input path="telephone" cssClass=" form-control" />
-					<form:errors path="telephone" cssClass="error" />
+                <script type="text/javascript" src="${baseURL}/js/plugins/tokenize/jquery.tokenize.js"></script>
+				<script type="text/javascript">
+				$('#poste').tokenize({
+					"newElements":false,
+					maxElements:1,
+					datas: "${baseURL}/poste/search",
+					valueField:"id",
+					textField:"namePoste"
+					});
+				$("#select-cat").on("focus", ".tokenize-sample ", function() {
+				    console.log($(".Token span").text());
+				   $text= $(".Token span").text();
+				   $(".Token").remove();
+				   $("#select-cat select option[selected='selected']").remove();
+				    $(".TokenSearch input").val($text);
+				});
+				</script>
 				</div>
-			</div>
 			<div class="form-group">
 				<label for="fonctionField" class="col-sm-2 control-label esoft-left">Fonction:</label>
 				<div class="col-sm-4">
@@ -442,7 +471,11 @@
 
 			<div class="form-group">
 			<button type="reset" class="btn-sm btn btn-danger btn pull-right " onclick="location.href='${baseURL}/user/list'" style="margin-right: 2%;">Annuler</button>
+<<<<<<< HEAD
 			<button type="submit" class="btn-sm btn btn-primary btn pull-right" style="margin-right: 1%;">Enregistrer le nouveau mot de passe</button>
+=======
+			<button type="submit" class="btn-sm btn btn-primary btn pull-right" style="margin-right: 1%;"><i class="fa fa-plus"></i>&nbsp;modifier</button>
+>>>>>>> 4394812ff98ae89f75fd232da3e585231e3da6b4
 			</div>
 		</form:form>
 	</div>
@@ -450,9 +483,9 @@
 <!-- /.box-body -->
 <script src="${baseURL}/js/bootstrap-datepicker.js"></script>
 <script>
-$('#dp3').datepicker({
-	  format: 'dd/mm/yyyy'
+$(document).ready(function() {
+	$('#dp3').datepicker({
+		  format: 'dd/mm/yyyy'
+	});
 });
-
-
 </script>

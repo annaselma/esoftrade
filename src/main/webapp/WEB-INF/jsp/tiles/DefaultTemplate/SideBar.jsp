@@ -35,15 +35,10 @@
 									class="fa fa-angle-double-right"></i> Liste Produits/Services</a></li>
 							
 						</ul></li>
-					<li class="treeview"><a href="#"> <i class="fa fa-edit"></i>
-							<span>Production</span> <i class="fa fa-angle-left pull-right"></i>
+					<li ><a href="${baseURL}/manufacturing/list"> <i class="fa fa-edit"></i>
+							<span>Production</span>
 					</a>
-						<ul class="treeview-menu">
-							<li><a href="#"><i
-									class="fa fa-angle-double-right"></i> Creer Ordre de Fabrication</a></li>
-							<li><a href="pages/forms/advanced.html"><i
-									class="fa fa-angle-double-right"></i> Liste des Ordres de fabrication</a></li>
-						</ul></li>
+						</li>
 					
 						<li class="treeview"><a href="#"> <i class="fa fa-file-text-o"></i>
 							<span>Factures</span> <i class="fa fa-angle-left pull-right"></i>

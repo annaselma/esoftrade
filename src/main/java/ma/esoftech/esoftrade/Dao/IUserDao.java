@@ -4,6 +4,7 @@ import java.util.List;
 
 import ma.esoftech.esoftrade.datatablesAPI.FilterCriterias;
 import ma.esoftech.esoftrade.datatablesAPI.Order;
+import ma.esoftech.esoftrade.model.Poste;
 import ma.esoftech.esoftrade.model.Role;
 import ma.esoftech.esoftrade.model.User;
 
@@ -20,4 +21,5 @@ public interface IUserDao {
 	public List<User> getUsersByRole(int start, int length,String sorting, Role role,String filter);
 	 public long userCountByRole( Role role,String filter);
 
+    List<User> searchUser(int lenght, int start, String search);
 }

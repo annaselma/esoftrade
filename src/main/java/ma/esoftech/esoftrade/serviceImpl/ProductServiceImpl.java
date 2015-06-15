@@ -150,14 +150,12 @@ public void deleteProduct(ProductDTO product) {
 	Product productEntity= (Product) mapper.map(product, Product.class);
 	productEntity=new Product();
 	productEntity.setId(product.getId());
-	System.out.println("id houwa"+productEntity.getId());
 	productDao.deleteProduct(productEntity);
 	
 }
 @Override
 @Transactional(readOnly=true)
 public long productCount(String filter) {
-
 	return productDao.ProductCount(filter);
 }
 @Override

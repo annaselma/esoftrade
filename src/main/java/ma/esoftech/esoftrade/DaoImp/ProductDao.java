@@ -64,7 +64,6 @@ public class ProductDao  implements IProductDao{
 
 	@Override
 	public long createProduct(Product produit) {
-		// TODO Auto-generated method stub
 		session=sessionFactory.getCurrentSession();
 		Long idReturned=(Long)session.save(produit);
 		return idReturned;
@@ -72,7 +71,6 @@ public class ProductDao  implements IProductDao{
 
 	@Override
 	public void updateProduct(Product produit) {
-		// TODO Auto-generated method stub
 		session= sessionFactory.getCurrentSession();
 		session.flush();
 		session.clear();

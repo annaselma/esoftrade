@@ -53,7 +53,9 @@ public class User extends Person {
 	public void setFonction(String fonction) {
 		this.fonction = fonction;
 	}
-
+	@ManyToOne
+	@JoinColumn(name = "ELMO_POSTE_ID")
+	 private Poste poste;
 	@ManyToOne
 	@JoinColumn(name = "ELMO_USER_ID")
 	 private File picture;
@@ -102,6 +104,12 @@ public class User extends Person {
 	}
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+	public Poste getPoste() {
+		return poste;
+	}
+	public void setPoste(Poste poste) {
+		this.poste = poste;
 	}
 	public String generateReference(){
 		String ref="";

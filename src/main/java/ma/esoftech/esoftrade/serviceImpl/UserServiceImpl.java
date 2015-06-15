@@ -21,6 +21,7 @@ import ma.esoftech.esoftrade.model.Role;
 import ma.esoftech.esoftrade.model.User;
 import ma.esoftech.esoftrade.service.IUserService;
 import ma.esoftech.esoftrade.service.ServiceUtils;
+import ma.esoftech.esoftrade.utils.DozerHelper;
 import ma.esoftech.esoftrade.utils.FileUploadUTILS;
 
 import org.dozer.Mapper;
@@ -288,6 +289,10 @@ public class UserServiceImpl implements IUserService {
 		roleE.setId(role.getId());
 		return userDao.userCountByRole(roleE, filter);
 		
+	}
+	public List<UserDTO> searchUser(int lenght, int start, String search) {
+		List<User>listUser= userDao.searchUser(lenght, start, search);
+		return DozerHelper.map(mapper, listUser, UserDTO.class);
 	}
 
 	

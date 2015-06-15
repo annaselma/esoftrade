@@ -59,13 +59,15 @@
 
 <div class="box box-solid box-primary">
 	<div class="box-header">
-		<h3 class="box-title">Creer Gamme</h3>
+		
 	</div>
 	<!-- /.box-header -->
 	<!-- form start -->
 
 	<div class="box-body">
-		<span class="error">Veillez saisir les champs obligatoire (*)</span>
+		<span class="error" style="margin-left: 69%;"> (*) Est un champs obligatoire que vous devez saisir</span>
+		<hr>
+		<div class="">
 		<form:form method="POST" commandName="gamme" id="gammeF"
 			data-toggle="validator" cssClass="form-horizontal">
 			<div class="form-group">
@@ -77,13 +79,36 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="posteField" class="col-sm-2 control-label esoft-left">Poste:&nbsp;<span
-					class="error">*</span></label>
-				<div class="col-sm-4">
-				    <form:input path="poste" cssClass="form-control " />
+				<label for="categoryField" class="col-sm-2 control-label esoft-left">Poste:&nbsp;<span class="error">*</span></label>
+				<div class="col-sm-4" id="select-cat">
+					<form:select path="poste" cssClass="tokenize-sample mono-select" id="poste"  size="1">
+						<form:options items="${postItems}" itemLabel="namePoste"
+							itemValue="id" />
+					</form:select>
 					<form:errors path="poste" cssClass="error" />
 				</div>
-				<label for="postenbField" class="col-sm-2 control-label esoft-left">Nombre de Postes:&nbsp;<span
+                <script type="text/javascript" src="${baseURL}/js/plugins/tokenize/jquery.tokenize.js"></script>
+				<script type="text/javascript">
+				$('#category').tokenize({
+					"newElements":false,
+					maxElements:1,
+					datas: "${baseURL}/poste/search",
+					valueField:"id",
+					textField:"namePoste"
+					});
+				$("#select-cat").on("focus", ".tokenize-sample ", function() {
+				    console.log($(".Token span").text());
+				   $text= $(".Token span").text();
+				   $(".Token").remove();
+				   $("#select-cat select option[selected='selected']").remove();
+				    $(".TokenSearch input").val($text);
+				});
+				
+				</script>
+				</div>
+			<div class="form-group">
+				
+				<label for="postenbField" class="col-sm-2 control-label esoft-left">Nombre de Personnes:&nbsp;<span
 					class="error">*</span></label>
 				<div class="col-sm-2">
 				    <form:input path="nbposte" cssClass="form-control " />
@@ -100,13 +125,6 @@
                    </form:select>
                     <form:errors path="type" cssClass="error" />
                    </div>
-				<label for="end" class="col-sm-2 control-label esoft-left">Terminé:&nbsp;<span class="error">*</span></label>
-				<div class="col-sm-4">
-					<form:checkbox path="end" />
-					<form:errors path="end" cssClass="error" />
-				</div>
-
-			
                    </div>
                    <hr>
 			<div class="form-group">
@@ -142,47 +160,9 @@
 				</div>
 			</div>
 			<div class="form-group">
-
-				<label for="natureField" class="col-sm-2 control-label esoft-left">Quantité créé: </label>
-				<div class="col-md-2">
-					<form:input path="createdQT" cssClass="form-control " />
-					<form:errors path="createdQT" cssClass="error" />
-				</div>
-			</div>
-			<div class="form-group">
-
-				<label for="natureField" class="col-sm-2 control-label esoft-left">Côut Réel: </label>
-				<div class="col-md-2">
-					<form:input path="realCost" cssClass="form-control " />
-					<form:errors path="realCost" cssClass="error" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="theocticalField" class="col-sm-2 control-label esoft-left">Pièce en attente:</label>
-				<div class="col-sm-2">
-					<form:input path="waitingPrieces" cssClass="form-control" />
-					<form:errors path="waitingPrieces" cssClass="error" />
-				</div>
-			</div>
-			<div class="form-group">
-
-				<label for="natureField" class="col-sm-2 control-label esoft-left">Quantité rebuté: </label>
-				<div class="col-md-2">
-					<form:input path="rejectedQt" cssClass="form-control " />
-					<form:errors path="rejectedQt" cssClass="error" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="nameField" class="col-sm-2 control-label esoft-left">Cause rebut:</label>
-				<div class="col-sm-10">
-					<form:textarea id="editor1" path="observation" name="editor1"
-						rows="4" cols="80" />
-				</div>
-			</div>
-			<div class="form-group">
 				<label for="descField" class="col-sm-2 control-label esoft-left">Description:</label>
 				<div class="col-sm-10">
-					<form:textarea id="editor2" path="observation" name="editor2"
+					<form:textarea id="editor2" path="description" name="editor1"
 						rows="4" cols="80" />
 				</div>
 			</div>
@@ -196,7 +176,7 @@
 				<button type="submit" class="btn-sm btn btn-primary btn pull-right"
 					style="margin-right: 2%;">Ajouter</button>
 			</div>
-		</form:form>
+		</form:form></div>
 	</div>
 </div>
 <!-- /.box-body -->
@@ -206,26 +186,24 @@
                 // Replace the <textarea id="editor1"> with a CKEditor
                 // instance, using default configuration.
                 CKEDITOR.replace('editor1');
-                CKEDITOR.replace('editor2');
                 //bootstrap WYSIHTML5 - text editor
                 $(".textarea").wysihtml5();
             });
         </script>
-        <script src="${baseURL}/js/bootstrap-datepicker.js"></script>
-<script>
-	$(document).ready(function() {
-		$('#dp3').datepicker({
-			  format: 'dd/mm/yyyy'
-		});
-		$('#dp2').datepicker({
-			format: 'dd/mm/yyyy'
-		});
-		$('#dp1').datepicker({
-			format: 'dd/mm/yyyy'
-		});
-		$('#dp0').datepicker({
-			format: 'dd/mm/yyyy'
-		});
+        <script>
+        $(document).ready(function() {
+    		$('#dp3').datepicker({
+    			  format: 'dd/mm/yyyy'
+    		});
+    		$('#dp2').datepicker({
+    			format: 'dd/mm/yyyy'
+    		});
+    		$('#dp1').datepicker({
+    			format: 'dd/mm/yyyy'
+    		});
+    		$('#dp0').datepicker({
+    			format: 'dd/mm/yyyy'
+    		});
+    	});
 
-	});
 </script>

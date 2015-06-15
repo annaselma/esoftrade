@@ -6,6 +6,7 @@ import java.util.List;
 import ma.esoftech.esoftrade.Dao.IUserDao;
 import ma.esoftech.esoftrade.datatablesAPI.FilterCriterias;
 import ma.esoftech.esoftrade.datatablesAPI.Order;
+import ma.esoftech.esoftrade.model.Poste;
 import ma.esoftech.esoftrade.model.Role;
 import ma.esoftech.esoftrade.model.User;
 
@@ -155,6 +156,14 @@ public class UserDao implements IUserDao {
 				" select count(user) from User as user inner join user.roles as role where role=:role").setParameter("role", role)
 				.uniqueResult();
 		return count;
+	}
+	public List<User> searchUser(int lenght, int start, String search) {
+		session=sessionFactory.getCurrentSession();
+		String hql="select user From User as user where user.name like :search";
+		org.hibernate.Query query=session.createQuery(hql);
+		query.setString("search", "%"+search+"%");
+		query.setFirstResult(start).setMaxResults(lenght);
+		return query.list();
 	}
 
 }

@@ -10,6 +10,7 @@ import ma.esoftech.esoftrade.DTO.FileDTO;
 import ma.esoftech.esoftrade.DTO.GammeDTO;
 import ma.esoftech.esoftrade.DTO.NomenclatureDTO;
 import ma.esoftech.esoftrade.DTO.OrderManufacturingDTO;
+import ma.esoftech.esoftrade.DTO.PosteDTO;
 import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.controller.session.SessionBean;
@@ -23,6 +24,7 @@ import ma.esoftech.esoftrade.exception.NomenclatureNotFoundException;
 import ma.esoftech.esoftrade.service.IFileService;
 import ma.esoftech.esoftrade.service.IGammeService;
 import ma.esoftech.esoftrade.service.IManufacturingOrderService;
+import ma.esoftech.esoftrade.service.IPosteService;
 import ma.esoftech.esoftrade.serviceImpl.GammeServiceImpl;
 import ma.esoftech.esoftrade.utils.FileUploadUTILS;
 
@@ -49,6 +51,8 @@ public class GammeController extends AbstractController {
 	IFileService fileService;
 	@Autowired
 	ServletContext servletContext;
+	@Autowired
+	IPosteService posteService;
 	@Autowired
 	SessionBean sessionBean;
 	@Autowired
@@ -204,6 +208,11 @@ public class GammeController extends AbstractController {
 			return "error";
 		}
 		 return PATH_PROFIL+"?id="+id+"&file=true";
+	}
+	@ModelAttribute("postItems")
+	public List<PosteDTO> getCategoryList(){
+       List<PosteDTO> listPost=posteService.getAllPoste(0, 1000, null, null);
+		return listPost;
 	}
 	
 }

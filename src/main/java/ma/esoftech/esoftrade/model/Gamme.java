@@ -57,6 +57,13 @@ public class Gamme extends MetaObject{
     
     @OneToMany
     @JoinTable(
+        name="ELMO_GAMME_Poste",
+        joinColumns = @JoinColumn( name="ELMO_GAMME_ID"),
+        inverseJoinColumns = @JoinColumn( name="ELMO_Poste_ID"))
+    private Set<Poste> postes=new HashSet<Poste>();
+    
+    @OneToMany
+    @JoinTable(
         name="ELMO_GAMME_FILE",
         joinColumns = @JoinColumn( name="ELMO_GAMME_ID"),
         inverseJoinColumns = @JoinColumn( name="ELMO_FILE_ID")
@@ -213,6 +220,14 @@ public class Gamme extends MetaObject{
 
 	public String getType() {
 		return type;
+	}
+
+	public Set<Poste> getPostes() {
+		return postes;
+	}
+
+	public void setPostes(Set<Poste> postes) {
+		this.postes = postes;
 	}
 
 	public String generateReference(){

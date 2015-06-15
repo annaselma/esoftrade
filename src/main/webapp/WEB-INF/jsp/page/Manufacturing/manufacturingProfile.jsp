@@ -393,12 +393,12 @@
 						<td><span class="data-value">Le:&nbsp;<fmt:formatDate
 									pattern="dd/MM/yyyy" value="${manufacturing.lastEdit}" /></span></td>
 					</tr>
-
 				</tbody>
 			</table>
 		</div>
+		
 		</div>
-
+		
 		</div>
 	
 		
@@ -742,7 +742,7 @@
                     	"render": function ( data, type, full, meta ) {
                    		 $active='<div id="end" class="label label-success">En cours</div>';
                    		 $inactive='<div id="end" class="label label-danger">Terminé</div>';
-                   		 if(data==true){
+                   		 if(data==false){
                    			 return $active;
                    		 }
                    	      return $inactive;

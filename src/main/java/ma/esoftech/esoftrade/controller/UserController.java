@@ -3,13 +3,12 @@ package ma.esoftech.esoftrade.controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.ServletContext;
 import javax.validation.Valid;
 
 import ma.esoftech.esoftrade.DTO.FileDTO;
 import ma.esoftech.esoftrade.DTO.PasswordDTO;
-import ma.esoftech.esoftrade.DTO.ProductDTO;
+import ma.esoftech.esoftrade.DTO.PosteDTO;
 import ma.esoftech.esoftrade.DTO.RoleDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.DTO.associated.FileAssociatedDTO;
@@ -18,14 +17,13 @@ import ma.esoftech.esoftrade.datatablesAPI.Order;
 import ma.esoftech.esoftrade.datatablesAPI.RequestTable;
 import ma.esoftech.esoftrade.datatablesAPI.RequestTable.SearchCriterias;
 import ma.esoftech.esoftrade.datatablesAPI.ResponseTable;
-import ma.esoftech.esoftrade.exception.ProductNotFoundException;
 import ma.esoftech.esoftrade.exception.RoleNotFoundException;
 import ma.esoftech.esoftrade.exception.UserNameException;
 import ma.esoftech.esoftrade.exception.UserNotFoundException;
 import ma.esoftech.esoftrade.service.IFileService;
+import ma.esoftech.esoftrade.service.IPosteService;
 import ma.esoftech.esoftrade.service.IRoleService;
 import ma.esoftech.esoftrade.service.IUserService;
-import ma.esoftech.esoftrade.serviceImpl.RoleServiceImpl;
 import ma.esoftech.esoftrade.utils.FileUploadUTILS;
 
 import org.apache.log4j.Logger;
@@ -51,6 +49,8 @@ public class UserController extends AbstractController {
 	IRoleService roleService;
 	@Autowired
 	IUserService userService;
+	@Autowired
+	IPosteService posteService;
 	@Autowired
 	IFileService fileService;
 	@Autowired
@@ -300,6 +300,12 @@ public class UserController extends AbstractController {
 		public List<RoleDTO> getRoles(){
 			List<RoleDTO> roles=null;
 			return roles;
+		}
+		@ModelAttribute("postItems")
+		public List<PosteDTO> getCategoryList(){
+//			List<PosteDTO> listPost=posteService.getAllPoste(0, 1000, null, null);
+			List<PosteDTO> listPost=null;
+			return listPost;
 		}
 
 }
