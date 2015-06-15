@@ -99,7 +99,7 @@
                     	"data":"startDate",
                     	"render": function ( data, type, full, meta ) {
                    	      date = new Date(data);
-                   	      return date.formatDetail();
+                   	      return date.format();
                    	    }
                     
                     },
@@ -109,7 +109,7 @@
                     	"data":"endDate",
                     	"render": function ( data, type, full, meta ) {
                    	      date = new Date(data);
-                   	      return date.formatDetail();
+                   	      return date.format();
                    	    }
                     
                     },

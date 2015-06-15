@@ -202,6 +202,9 @@
 	<put-attribute name="titlepage" value="" />
 	</definition>
 	<definition name="login" template="/WEB-INF/jsp/page/login.jsp"/>
+	<definition name="dashboard" extends="Template">
+	<put-attribute name="page" value="/WEB-INF/jsp/page/dashboard.jsp" />
+	</definition>
 	<definition name="customer"
 		template="/WEB-INF/jsp/page/custumer.jsp"/>
 			<definition name="done"
