@@ -399,21 +399,50 @@
 					<form:errors path="login" cssClass="error" />
 				</div>
 			</div>
+			<form:hidden path="id"/>
 			<div class="form-group">
-				<label for="passwordField" class="col-sm-2 control-label esoft-left"><small>Mot
-						de Passe:&nbsp;<span class="error">*</span></small></label>
+			<button type="reset" class="btn-sm btn btn-danger btn pull-right " onclick="location.href='${baseURL}/user/list'" style="margin-right: 2%;">Annuler</button>
+			<button type="submit" class="btn-sm btn btn-primary btn pull-right" style="margin-right: 1%;">Modifier</button>
+			</div>
+		</form:form>
+	</div>
+	</div>
+	<div class="box  box-danger">
+	<div class="box-header">
+		<h4 class="box-title">Modifier le mot de passe</h4>
+	</div>
+	<!-- /.box-header -->
+	<!-- form start -->
+
+	<div class="box-body">
+
+		<form:form method="POST" commandName="password" id="userF"
+			data-toggle="validator" cssClass="form-horizontal" action="${baseURL}/user/editPassword">
+			<div class="form-group">
+				<label for="passwordField" class="col-sm-2 control-label esoft-left"> nouveau Mot
+						de Passe:&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
-					<form:input path="password" type="password"
+					<form:input path="password1" type="password"
 						cssClass="form-control input-lg" />
-					<form:errors path="password" cssClass="error" />
+					<form:errors path="password1" cssClass="error" />
 				</div>
 
+			</div>
+			<div class="form-group">
+				<label for="passwordField" class="col-sm-2 control-label esoft-left">retaper le Mot
+						de Passe:&nbsp;<span class="error">*</span></label>
+				<div class="col-sm-4">
+					<form:input path="password2" type="password"
+						cssClass="form-control input-lg" />
+					<form:errors path="password2" cssClass="error" />
+				</div>
+<form:hidden path="id"/>
 			</div>
 
 
 			<div class="form-group">
 			<button type="reset" class="btn-sm btn btn-danger btn pull-right " onclick="location.href='${baseURL}/user/list'" style="margin-right: 2%;">Annuler</button>
-			<button type="submit" class="btn-sm btn btn-primary btn pull-right" style="margin-right: 1%;"><i class="fa fa-plus"></i>&nbsp;Créer</button>
+			<button type="submit" class="btn-sm btn btn-primary btn pull-right" style="margin-right: 1%;">Enregistrer le nouveau mot de passe</button>
 			</div>
 		</form:form>
 	</div>

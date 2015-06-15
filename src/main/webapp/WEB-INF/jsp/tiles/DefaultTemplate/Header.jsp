@@ -211,7 +211,7 @@
 						<!-- Menu Footer-->
 						<li class="user-footer">
 							<div class="pull-left">
-								<a href="" class="btn btn-default btn-flat">Profile</a>
+								<a href="" class="profile btn btn-default btn-flat">Profile</a>
 							</div>
 							<div class="pull-right">
 								<c:url value="/j_spring_security_logout" var="logoutUrl" />
@@ -251,7 +251,7 @@
 				    	  $date=new Date(data.createDate);
 				    	  $(".user-menu .date-creation").append($date.format());
 				    	  $(".user-menu img").prop("src",$picture);
-				    	  $(".user-footer a").prop("href",$profil);
+				    	  $(".user-footer .profile").prop("href",$profil);
 				      }
 				    });
 				

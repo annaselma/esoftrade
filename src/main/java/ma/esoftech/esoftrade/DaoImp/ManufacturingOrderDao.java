@@ -31,7 +31,7 @@ public class ManufacturingOrderDao implements IManufacturinOrder{
 	@Override
 	public OrderManufacturing findByRef(String ref) {
 		session= sessionFactory.getCurrentSession();	
-		String hql=" From OrderManufacturing as fabrication  where fabrication.ref=: ref";
+		String hql=" From OrderManufacturing as fabrication  where fabrication.ref=:ref";
 		org.hibernate.Query query= null;
 		query= session.createQuery(hql);
 		query.setString("ref", ref);

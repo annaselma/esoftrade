@@ -1,18 +1,14 @@
 package ma.esoftech.esoftrade.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name="ELMO_ROLE")
@@ -27,11 +23,11 @@ public class Role extends MetaObject {
 	@ManyToMany
 	@JoinTable(name="ELMO_PERM_ROLE" ,
 	   joinColumns={
-			@JoinColumn(name="ELMO_PERMISSION_ID" , nullable=false)
+			@JoinColumn(name="ELMO_ROLE_ID" )
 	} ,inverseJoinColumns={
-			@JoinColumn(name="ELMO_ROLE_ID" , nullable=false)}
+			@JoinColumn(name="ELMO_PERMISSION_ID" )}
 	)
-	private List<Permission> permissions=  new ArrayList<Permission>();
+	private Set<Permission> permissions=  new HashSet<Permission>();
 	
 	public Role(){
 		super();
@@ -44,10 +40,10 @@ public class Role extends MetaObject {
 		this.role = role;
 	}
 	
-	public List<Permission> getPermissions() {
+	public Set<Permission> getPermissions() {
 		return permissions;
 	}
-	public void setPermissions(List<Permission> permissions) {
+	public void setPermissions(Set<Permission> permissions) {
 		this.permissions = permissions;
 	}
 }

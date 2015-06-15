@@ -17,5 +17,7 @@ public interface IUserDao {
     public void updateUser(User user);
     public void deleteUser(User user);
     public long userCount( String filter);
+	public List<User> getUsersByRole(int start, int length,String sorting, Role role,String filter);
+	 public long userCountByRole( Role role,String filter);
 
 }

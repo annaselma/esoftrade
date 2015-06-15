@@ -3,18 +3,24 @@ package ma.esoftech.esoftrade.DTO;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 import ma.esoftech.esoftrade.DTO.associated.EditorDTO;
 
 public class RoleDTO {
 
 	private long id;
-	private String name;
+	@NotEmpty
+	@Size(min=1, max=20)
+	private String role;
 	
 	private Date createDate;
-	private Date lastEditDate;
+	private Date lastEdit;
 	private EditorDTO creator;
 	private EditorDTO modifier;
-	private List<String> permissions;
+	private List<PermissionDTO> permissions;
 	public Date getCreateDate() {
 		return createDate;
 	}
@@ -40,23 +46,23 @@ public class RoleDTO {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getRole() {
+		return role;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setRole(String role) {
+		this.role = role;
 	}
-	public List<String> getPermissions() {
+	public List<PermissionDTO> getPermissions() {
 		return permissions;
 	}
-	public void setPermissions(List<String> permissions) {
+	public void setPermissions(List<PermissionDTO> permissions) {
 		this.permissions = permissions;
 	}
-	private RoleDTO(){}
-	public Date getLastEditDate() {
-		return lastEditDate;
+	public RoleDTO(){}
+	public Date getLastEdit() {
+		return lastEdit;
 	}
-	public void setLastEditDate(Date lastEditDate) {
-		this.lastEditDate = lastEditDate;
+	public void setLastEdit(Date lastEdit) {
+		this.lastEdit= lastEdit;
 	}
 }

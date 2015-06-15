@@ -19,10 +19,13 @@ import ma.esoftech.esoftrade.datatablesAPI.RequestTable;
 import ma.esoftech.esoftrade.datatablesAPI.RequestTable.SearchCriterias;
 import ma.esoftech.esoftrade.datatablesAPI.ResponseTable;
 import ma.esoftech.esoftrade.exception.ProductNotFoundException;
+import ma.esoftech.esoftrade.exception.RoleNotFoundException;
 import ma.esoftech.esoftrade.exception.UserNameException;
 import ma.esoftech.esoftrade.exception.UserNotFoundException;
 import ma.esoftech.esoftrade.service.IFileService;
+import ma.esoftech.esoftrade.service.IRoleService;
 import ma.esoftech.esoftrade.service.IUserService;
+import ma.esoftech.esoftrade.serviceImpl.RoleServiceImpl;
 import ma.esoftech.esoftrade.utils.FileUploadUTILS;
 
 import org.apache.log4j.Logger;
@@ -44,6 +47,8 @@ public class UserController extends AbstractController {
 	private static final String PATH_PROFIL=REDIRECT+"/user/profile";
 
 	private static Logger logger = Logger.getLogger(UserController.class);
+	@Autowired
+	IRoleService roleService;
 	@Autowired
 	IUserService userService;
 	@Autowired
@@ -180,6 +185,41 @@ public class UserController extends AbstractController {
 		 
 		 return "userList";
 	 }
+	 
+	 
+	 @RequestMapping(value="/addRole",method=RequestMethod.POST)
+	 public String addRole(@RequestParam long id, @RequestParam long role,ModelMap model){
+		 UserDTO user=userService.findById(id);
+		 RoleDTO roleDTO=null;
+	if(user==null){
+		 
+	}
+	try {
+        roleDTO=roleService.findById(role);
+	} catch (RoleNotFoundException e) {
+		model.addAttribute("messageError","no user found");
+		return "error";
+	}
+	userService.addRoleToUser(roleDTO, user);	 
+		 return PATH_PROFIL+"?id="+id+"&file=true";
+	 }
+	 
+	 @RequestMapping(value="/deleteRole",method=RequestMethod.GET)
+	 public String deleteRole(@RequestParam long id, @RequestParam long role,ModelMap model){
+		 UserDTO user=userService.findById(id);
+		 RoleDTO roleDTO=null;
+	if(user==null){
+		 
+	}
+	try {
+        roleDTO=roleService.findById(role);
+	} catch (RoleNotFoundException e) {
+		model.addAttribute("messageError","no user found");
+		return "error";
+	}
+	userService.deleteRoleFromUser(roleDTO, user);	 
+		 return PATH_PROFIL+"?id="+id+"&file=true";
+	 }
 		@RequestMapping(value="/getList",method=RequestMethod.GET,produces = "application/json")
 		public @ResponseBody ResponseTable<UserDTO> loadTables(@Valid RequestTable req,BindingResult bindingResult,ModelMap model){
 			if(bindingResult.hasErrors()){
@@ -194,6 +234,29 @@ public class UserController extends AbstractController {
 			List<UserDTO> list=userService.getAllUsers(start, length, ordre.toString(),search);
 			long recordsFiltered=userService.userCount(search);
 			long recordsTotal=userService.userCount("");
+			ResponseTable<UserDTO> response=new ResponseTable<UserDTO>();
+			response.setDraw(draw);
+			response.setRecordsFiltered(recordsFiltered);
+			response.setRecordsTotal(recordsTotal);
+			response.setData(list);
+			return response;
+		}
+		@RequestMapping(value="/getListWhereRole",method=RequestMethod.GET,produces = "application/json")
+		public @ResponseBody ResponseTable<UserDTO> loadTables2(@Valid RequestTable req,BindingResult bindingResult,@RequestParam long id,ModelMap model){
+			if(bindingResult.hasErrors()){
+				return null;
+			}
+			Order ordre=Order.createOrderFromRequestTable(req);
+			String search=req.getSearch().get(SearchCriterias.value);
+			ordre.toString();
+			int start=req.getStart();
+			int  length=req.getLength();
+			int draw=req.getDraw();
+			RoleDTO role=new RoleDTO();
+			role.setId(id);
+			List<UserDTO> list=userService.getUsersByRole(start, length, ordre.toString(),role,search);
+			long recordsFiltered=userService.userCountByRole(role,search);
+			long recordsTotal=userService.userCountByRole(role,"");
 			ResponseTable<UserDTO> response=new ResponseTable<UserDTO>();
 			response.setDraw(draw);
 			response.setRecordsFiltered(recordsFiltered);

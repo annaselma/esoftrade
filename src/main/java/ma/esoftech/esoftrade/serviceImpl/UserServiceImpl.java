@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import ma.esoftech.esoftrade.DTO.FileDTO;
+import ma.esoftech.esoftrade.DTO.PermissionDTO;
 import ma.esoftech.esoftrade.DTO.RoleDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.Dao.IFileDao;
@@ -57,11 +58,11 @@ public class UserServiceImpl implements IUserService {
 		if(user==null){
 			return null;
 		}
-		UserConverter converter= new UserConverter();
+		UserConverter  converter= new UserConverter();
 		UserDTO userFinal= mapper.map(user, UserDTO.class);
 		userFinal.setPermissions(converter.toPermissionList(user.getRoles()));
 		return userFinal;
-	}
+	} 
 
 	@Override
 	@Transactional(readOnly=true)
@@ -206,6 +207,7 @@ public class UserServiceImpl implements IUserService {
 	     userEntity.setPasswd(usertmp.getPasswd());
 	     userEntity.setPicture(usertmp.getPicture());
 	     userEntity.setLastEdit(new Date());
+	     userEntity.setRoles(usertmp.getRoles());
 		userDao.updateUser(userEntity);
 	}
 	private boolean hasChangeUserName(String newUserName,String oldUserName){
@@ -263,6 +265,29 @@ public class UserServiceImpl implements IUserService {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<UserDTO> getUsersByRole(int start, int length, String sorting,
+			RoleDTO role, String filter) {
+		Role roleE=new Role();
+		roleE.setId(role.getId());
+		List<User> userEntityList= userDao.getUsersByRole(start, length, sorting, roleE, filter);
+		List<UserDTO> userDTOList=new ArrayList<UserDTO>(); 
+		for ( User user : userEntityList) {
+					userDTOList.add((UserDTO) mapper.map(user,UserDTO.class));			
+		}	
+		return userDTOList;
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public long userCountByRole(RoleDTO role, String filter) {
+		Role roleE=new Role();
+		roleE.setId(role.getId());
+		return userDao.userCountByRole(roleE, filter);
+		
 	}
 
 	

@@ -34,20 +34,7 @@ private Integer missingQt;
 	@Column(name="ELMO_COST")
 private float cost;
 	
-	@OneToMany
-    @JoinTable(
-        name="ELMO_MANUFACTURING_FILE",
-        joinColumns = @JoinColumn( name="ELMO_MANUFACTURING_ID"),
-        inverseJoinColumns = @JoinColumn( name="ELMO_FILE_ID")
-    )
-	private Set<File> files=new HashSet<File>();
-
-	 public Set<File> getFiles() {
-		return files;
-	}
-	 public void setFiles(Set<File> files) {
-			this.files = files;
-		}
+	
 	 @ManyToOne
 	 @JoinColumn(name="ELMO_PRODUCT_ID")
 	 private Product product;

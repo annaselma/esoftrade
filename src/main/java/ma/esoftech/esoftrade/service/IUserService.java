@@ -23,5 +23,7 @@ public interface IUserService {
     public void updatePicture(FileDTO picture,long id,UserDTO modifier) throws UserNotFoundException;
     public void deleteUser(UserDTO user);
     public long userCount( String filter);
+	public List<UserDTO> getUsersByRole(int start, int length,String sorting,RoleDTO  role, String filter);
+    public long userCountByRole( RoleDTO role,String filter);
 	
 }

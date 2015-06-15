@@ -4,165 +4,243 @@
 
 	<definition name="Template"
 		template="/WEB-INF/jsp/tiles/DefaultTemplate/template.jsp">
-		
+
 		<put-attribute name="title" value="Home" />
 
 		<put-attribute name="header"
 			value="/WEB-INF/jsp/tiles/DefaultTemplate/Header.jsp" />
 		<put-attribute name="titlepage"
-			value="/WEB-INF/jsp/tiles/DefaultTemplate/titlePage.jsp" /> 
-		<put-attribute name="sidebar" 
+			value="/WEB-INF/jsp/tiles/DefaultTemplate/titlePage.jsp" />
+		<put-attribute name="sidebar"
 			value="/WEB-INF/jsp/tiles/DefaultTemplate/SideBar.jsp" />
 		<put-attribute name="page" value="" />
 		<put-attribute name="footer"
 			value="/WEB-INF/jsp/tiles/DefaultTemplate/Footer.jsp" />
 	</definition>
 	<definition name="hello" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/hello.jsp" />
+		<put-attribute name="page" value="/WEB-INF/jsp/page/hello.jsp" />
 	</definition>
 	<definition name="client" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/client.jsp" />
+		<put-attribute name="page" value="/WEB-INF/jsp/page/client.jsp" />
 	</definition>
 	<definition name="fournisseur" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/fournisseur.jsp" />
+		<put-attribute name="page" value="/WEB-INF/jsp/page/fournisseur.jsp" />
 	</definition>
 	<!-- Product Pages -->
 	<definition name="produit" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/produit.jsp" />
+		<put-attribute name="page" value="/WEB-INF/jsp/page/produit.jsp" />
 	</definition>
 	<definition name="productProfile" extends="Template">
 
-	<put-attribute name="page" value="/WEB-INF/jsp/page/product/productProfile.jsp" />
-	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/product/profileTitle.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/product/productProfile.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/product/profileTitle.jsp" />
 	</definition>
 	<definition name="createProduct" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/product/createProduct.jsp" />
-	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/product/createTitle.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/product/createProduct.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/product/createTitle.jsp" />
 	</definition>
 	<definition name="productList" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/product/productList.jsp" />
-	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/product/listTitle.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/product/productList.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/product/listTitle.jsp" />
 	</definition>
 	<definition name="updateProduct" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/product/updateProduct.jsp" />
-	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/product/updateTitle.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/product/updateProduct.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/product/updateTitle.jsp" />
 	</definition>
 	<!-- /Product Pages -->
 	<!-- CategoryProduct Pages -->
 	<definition name="categoryProfile" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/CategoryProduit/categoryProfile.jsp" />
-	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/product/profileTitle.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/CategoryProduit/categoryProfile.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/product/profileTitle.jsp" />
 	</definition>
 	<definition name="createCategory" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/CategoryProduit/createCategory.jsp" />
-	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/product/createTitle.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/CategoryProduit/createCategory.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/product/createTitle.jsp" />
 	</definition>
 	<definition name="categoryList" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/CategoryProduit/categoryList.jsp" />
-	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/product/listTitle.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/CategoryProduit/categoryList.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/product/listTitle.jsp" />
 	</definition>
 	<definition name="updateCategory" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/CategoryProduit/updateCategory.jsp" />
-	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/product/updateTitle.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/CategoryProduit/updateCategory.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/product/updateTitle.jsp" />
 	</definition>
 	<!-- /CategoryProduct Pages -->
 	<!-- Warehouse Pages -->
 	<definition name="warehouseProfile" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/warehouseProfile.jsp" />
-	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/product/profileTitle.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Warehouse/warehouseProfile.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/product/profileTitle.jsp" />
 	</definition>
 	<definition name="createWarehouse" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/createWarehouse.jsp" />
-	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/product/createTitle.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Warehouse/createWarehouse.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/product/createTitle.jsp" />
 	</definition>
 	<definition name="warehouselist" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/warehouselist.jsp" />
-	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/product/listTitle.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Warehouse/warehouselist.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/product/listTitle.jsp" />
 	</definition>
 	<definition name="updateWarehouse" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/updateWarehouse.jsp" />
-	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/product/updateTitle.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Warehouse/updateWarehouse.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/product/updateTitle.jsp" />
 	</definition>
 	<definition name="mouvementlist" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/mouvementlist.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Warehouse/mouvementlist.jsp" />
 	</definition>
 	<definition name="correctionStock" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/correctionStock.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Warehouse/correctionStock.jsp" />
 	</definition>
 	<definition name="correctionStockOther" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/correctionStockOther.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Warehouse/correctionStockOther.jsp" />
 	</definition>
 	<definition name="transfertStock" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/transfertStock.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Warehouse/transfertStock.jsp" />
 	</definition>
-	
+
 	<definition name="transfertStockFromOF" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/Warehouse/transfertStockFromOF.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Warehouse/transfertStockFromOF.jsp" />
 	</definition>
 	<!-- /Warehouse Pages -->
 	<!-- User Pages -->
 	<definition name="userProfile" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/user/userProfile.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/user/userProfile.jsp" />
 	</definition>
 	<definition name="createUser" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/user/createUser.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/user/createUser.jsp" />
 	</definition>
 	<definition name="userList" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/user/userList.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/user/userList.jsp" />
 	</definition>
 	<definition name="updateUser" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/user/updateUser.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/user/updateUser.jsp" />
 	</definition>
 	<!-- /User Pages -->
 	<!-- Manufacturing Pages -->
 	<definition name="manufacturingProfile" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/Manufacturing/manufacturingProfile.jsp" />
-	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/Manufacturing/profileTitle.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Manufacturing/manufacturingProfile.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/Manufacturing/profileTitle.jsp" />
 	</definition>
 	<definition name="createManufacturing" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/Manufacturing/createManufacturing.jsp" />
-	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/Manufacturing/createTitle.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Manufacturing/createManufacturing.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/Manufacturing/createTitle.jsp" />
 	</definition>
 	<definition name="manufacturingList" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/Manufacturing/manufacturingList.jsp" />
-	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/Manufacturing/listTitle.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Manufacturing/manufacturingList.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/Manufacturing/listTitle.jsp" />
 	</definition>
 	<definition name="updateManufacturing" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/Manufacturing/updateManufacturing.jsp" />
-	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/Manufacturing/updateTitle.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Manufacturing/updateManufacturing.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/Manufacturing/updateTitle.jsp" />
 	</definition>
 	<!-- /Manufacturing Pages -->
 	<!-- nomenclatures Pages -->
 	<definition name="nomenclatureProfile" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/Nomenclature/profile.jsp" />
-	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/Nomenclature/profileTitle.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Nomenclature/profile.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/Nomenclature/profileTitle.jsp" />
 	</definition>
 	<definition name="createNomenclature" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/Nomenclature/createNomenclature.jsp" />
-	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/Nomenclature/createTitle.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Nomenclature/createNomenclature.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/Nomenclature/createTitle.jsp" />
 	</definition>
 	<definition name="updateNomenclature" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/Nomenclature/updateNomenclature.jsp" />
-	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/Nomenclature/updateTitle.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Nomenclature/updateNomenclature.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/Nomenclature/updateTitle.jsp" />
 	</definition>
 	<!-- /nomenclatures Pages -->
 	<!-- gammes Pages -->
 	<definition name="gammeProfile" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/Gamme/profile.jsp" />
-	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/Gamme/profileTitle.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Gamme/profile.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/Gamme/profileTitle.jsp" />
 	</definition>
 	<definition name="createGamme" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/Gamme/createGamme.jsp" />
-	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/Gamme/createTitle.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Gamme/createGamme.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/Gamme/createTitle.jsp" />
 	</definition>
 	<definition name="updateGamme" extends="Template">
-	<put-attribute name="page" value="/WEB-INF/jsp/page/Gamme/updateGamme.jsp" />
-	<put-attribute name="titlepage" value="/WEB-INF/jsp/page/Gamme/updateTitle.jsp" />
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Gamme/updateGamme.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/Gamme/updateTitle.jsp" />
 	</definition>
 	<!-- /gammes Pages -->
-	<definition name="login" template="/WEB-INF/jsp/page/login.jsp"/>
-	<definition name="customer"
-		template="/WEB-INF/jsp/page/custumer.jsp"/>
-			<definition name="done"
-		template="/WEB-INF/jsp/page/done.jsp"/>
+	<!-- Role Pages -->
+	<definition name="roleProfile" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/role/roleProfile.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/role/profileTitle.jsp" />
+	</definition>
+	<definition name="createRole" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/role/createRole.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/role/titleCreate.jsp" />
+	</definition>
+	<definition name="roleList" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/role/roleList.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/role/listTitle.jsp" />
+	</definition>
+	<definition name="updateRole" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/role/updateRole.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/role/updateTitle.jsp" />
+	</definition>
+	<!-- /Role Pages -->
+
+	<definition name="login" template="/WEB-INF/jsp/page/login.jsp" />
+	<definition name="customer" template="/WEB-INF/jsp/page/custumer.jsp" />
+	<definition name="done" template="/WEB-INF/jsp/page/done.jsp" />
 </tiles-definitions>
