@@ -13,8 +13,13 @@
 <!-- 	<access-denied-handler error-page="/error/403.html" /> -->
 
 		  <intercept-url pattern="/client**" access="isAuthenticated()"  />
-		  <intercept-url pattern="/user**" access="isAuthenticated()"  />
-		  <intercept-url pattern="/user/**" access="isAuthenticated()"  />
+<!-- 		  <intercept-url pattern="/user**" access="isAuthenticated()"  /> -->
+<!-- 		  <intercept-url pattern="/user/**" access="isAuthenticated()"  /> -->
+		  <intercept-url pattern="/user/list**" access="hasRole('READ_USER')"/>
+		   <intercept-url pattern="/user/profile**" access="isAuthenticated()"/>
+		   <intercept-url pattern="/user/delete**" access="hasRole('DELETE_USER')"/>
+		     <intercept-url pattern="/user/create**" access="hasRole('WRITE_USER')"/>
+		  <intercept-url pattern="/user/update**" access="hasRole('WRITE_USER')"/>
 		  	  <intercept-url pattern="/product**" access="isAuthenticated()"  />
 		  <intercept-url pattern="/product/**" access="isAuthenticated()"  />
 		  <intercept-url pattern="/category**" access="isAuthenticated()"  />
@@ -29,6 +34,9 @@
 		  <intercept-url pattern="/nomenclature/**" access="isAuthenticated()"  />
 		  <intercept-url pattern="/gamme**" access="isAuthenticated()"  />
 		  <intercept-url pattern="/gamme/**" access="isAuthenticated()"  />
+
+		   <intercept-url pattern="/role**" access="isAuthenticated()"  />
+		  <intercept-url pattern="/role/**" access="isAuthenticated()"  />
 		   <intercept-url pattern="/poste**" access="isAuthenticated()"  />
 		  <intercept-url pattern="/poste/**" access="isAuthenticated()"  />
 		  <intercept-url pattern="/categoryPost**" access="isAuthenticated()"  />

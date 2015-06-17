@@ -33,6 +33,7 @@ private Integer usedQt;
 private Integer missingQt;
 	@Column(name="ELMO_COST")
 private float cost;
+
 	 @ManyToOne
 	 @JoinColumn(name="ELMO_PRODUCT_ID")
 	 private Product product;

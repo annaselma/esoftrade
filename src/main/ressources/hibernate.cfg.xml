@@ -19,7 +19,7 @@
 			
 		<!-- mapping files  -->	
 
-    <mapping class="ma.esoftech.esoftrade.model.Company" />
+		<mapping class="ma.esoftech.esoftrade.model.Company" />
 		<mapping class="ma.esoftech.esoftrade.model.Contact" />
 	<mapping class="ma.esoftech.esoftrade.model.MetaObject" />
 	<mapping class="ma.esoftech.esoftrade.model.Permission" />

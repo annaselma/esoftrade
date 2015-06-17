@@ -35,7 +35,7 @@ public class Assembler {
 	private static void attachRolesToAuthorities(List<RoleAssociated> roles,
 			Collection<GrantedAuthority> authorities){
 		  for (RoleAssociated role : roles) {
-			  authorities.add(new  GrantedAuthorityImpl(role.getName()));
+			  authorities.add(new  GrantedAuthorityImpl(role.getRole()));
 		}
 	}
 	

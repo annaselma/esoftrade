@@ -1,11 +1,12 @@
 package ma.esoftech.esoftrade.DTO;
 
-import java.util.List;
+import ma.esoftech.esoftrade.model.Permission.Module;
 
 public class PermissionDTO {
 private long id;
 private String label;
 private String description;
+private Module module;
 public long getId() {
 	return id;
 }
@@ -23,6 +24,12 @@ public String getDescription() {
 }
 public void setDescription(String description) {
 	this.description = description;
+}
+public Module getModule() {
+	return module;
+}
+public void setModule(Module module) {
+	this.module = module;
 }
  
 }

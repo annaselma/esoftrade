@@ -134,6 +134,29 @@ public class UserDao implements IUserDao {
 	}
 
 	@Override
+	public List<User> getUsersByRole(int start, int length, String sorting,
+			Role role, String filter) {
+		session=sessionFactory.getCurrentSession();
+		if(sorting ==null ||sorting.equals("")){
+			sorting ="id ASC";
+		}
+	     String hql="select user from User as user inner join user.roles as role where role=:role order by user."+sorting;
+	     Query query=session.createQuery(hql);
+	     query.setFirstResult(start).setMaxResults(length);
+	     query.setParameter("role", role);
+	     List<User> users=query.list();
+		return users;
+	}
+
+	@Override
+	public long userCountByRole(Role role, String filter) {
+		session = sessionFactory.getCurrentSession();
+
+		long count = (long) session.createQuery(
+				" select count(user) from User as user inner join user.roles as role where role=:role").setParameter("role", role)
+				.uniqueResult();
+		return count;
+	}
 	public List<User> searchUser(int lenght, int start, String search) {
 		session=sessionFactory.getCurrentSession();
 		String hql="select user From User as user where user.name like :search";

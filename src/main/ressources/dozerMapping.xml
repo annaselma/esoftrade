@@ -1,35 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
-	<mapping>
-		<class-a>ma.esoftech.esoftrade.model.Role</class-a>
-		<class-b>ma.esoftech.esoftrade.DTO.RoleDTO</class-b>
-		<field>
-			<a>id</a>
-			<b>id</b>
-		</field>
-		<field>
-			<a>role</a>
-			<b>name</b>
-		</field>
-		
-		<field>
-			<a>creator</a>
-			<b>creator</b>
-		</field>
-		<field>
-			<a>modifier</a>
-			<b>modifier</b>
-		</field>
-		<field>
-			<a>createDate</a>
-			<b>createDate</b>
-		</field>
-		<field>
-		    <a>lastEdit</a>
-		    <b>lastEditDate</b>
-		</field>
-	</mapping>
+
 	
 	<mapping>
 	<class-a>ma.esoftech.esoftrade.model.User</class-a>
@@ -85,13 +57,10 @@
 			<b>fonction</b>
 		</field>
 		<field>
-			<a>adresse1</a>
+			<a>adresse</a>
 			<b>adresse1</b>
 		</field>
-		<field>
-			<a>adresse2</a>
-			<b>adresse2</b>
-		</field>
+		
 		<field>
 			<a>zipCode</a>
 			<b>zipCode</b>
@@ -130,7 +99,7 @@
 			<b>email</b>
 		</field>
 		<field>
-			<a>civilite</a>
+			<a>civility</a>
 			<b>civilite</b>
 		</field>
 	</mapping>

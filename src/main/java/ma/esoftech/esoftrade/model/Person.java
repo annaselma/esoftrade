@@ -2,21 +2,13 @@ package ma.esoftech.esoftrade.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.MappedSuperclass;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Index;
-import org.hibernate.validator.constraints.Email;
 
 //import com.mchange.v2.c3p0.impl.NewProxyResultSet;
 
@@ -30,10 +22,8 @@ public  abstract class Person extends MetaObject implements Serializable {
 	private String ref;
 	@Column(name="ELMO_NAME", length= 255)
 	private String name;
-	@Column(name="ELMO_ADRESSE_1",length=255)
-	private String adresse1;
-	@Column(name="ELMO_ADRESSE_2",length=255)
-	private String adresse2;
+	@Column(name="ELMO_ADRESSE",length=255)
+	private String adresse;
 	@Column(name="ELMO_ZIP_CODE",length=255)
 	private String zipCode;
 	@Column(name="ELMO_COUNTRY",length=255)
@@ -48,8 +38,10 @@ public  abstract class Person extends MetaObject implements Serializable {
 	private Date birdDay;
 	@Column(name="ELMO_FAX",length=255)
 	private String fax;
-	@Column(name="ELMO_CIVILITE" ,length=255)
-	private String civilite;
+	@Column(name="ELMO_CIVILITY")
+	@Enumerated(EnumType.STRING)
+	private Civility civility;
+	
 
 	@Column(name="ELMO_EMAIL")
 	private String email;
@@ -87,18 +79,13 @@ public  abstract class Person extends MetaObject implements Serializable {
 	public void setRef(String ref) {
 		this.ref = ref;
 	}
-	public String getAdresse1() {
-		return adresse1;
+	public String getAdresse() {
+		return adresse;
 	}
-	public void setAdresse1(String adresse1) {
-		this.adresse1 = adresse1;
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
 	}
-	public String getAdresse2() {
-		return adresse2;
-	}
-	public void setAdresse2(String adresse2) {
-		this.adresse2 = adresse2;
-	}
+	
 	public String getTelephone() {
 		return telephone;
 	}
@@ -136,11 +123,16 @@ public  abstract class Person extends MetaObject implements Serializable {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	public String getCivilite() {
-		return civilite;
+	public Civility getCivility() {
+		return civility;
 	}
-	public void setCivilite(String civilite) {
-		this.civilite = civilite;
+
+	public void setCivility(Civility civility) {
+		this.civility = civility;
+	}
+
+	public enum Civility{
+		Mr,Ms,Mrs,Docteur,Maitre
 	}
 	
 	

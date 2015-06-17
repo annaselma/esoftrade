@@ -20,7 +20,7 @@ public class UserConverter {
  public List<String> toPermissionList(Set<Role> roles){
 	 List<String>resultperm= new ArrayList<String>();
 	 for (Role role : roles) {
-		List<Permission> permissions= role.getPermissions();
+		Set<Permission> permissions= role.getPermissions();
 		for (Permission permission : permissions) {
 			resultperm.add(permission.getLabel());
 		}

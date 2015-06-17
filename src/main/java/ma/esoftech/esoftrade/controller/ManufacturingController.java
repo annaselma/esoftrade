@@ -102,9 +102,27 @@ public class ManufacturingController extends AbstractController {
         model.addAttribute("manufacturing", OF);
         if(stock!=null)
          model.addAttribute("stock", "ddd");
-		
+        
 		return "manufacturingProfile";
 		}
+	@RequestMapping(value="/findByRef",method = RequestMethod.POST)
+	public String getByRef(@RequestParam String ref, ModelMap model,@RequestParam(required=false)String stock,@RequestParam(required=false,defaultValue="false") boolean file){
+		OrderManufacturingDTO OF=null;
+		try {
+			
+			OF= manufacturService.findOFByRef(ref);
+		} catch (ManufacturingNotFoundException e) {
+			model.addAttribute("messageError","OF with ref "+ ref+" doesn't exist");
+			return "error";
+		}
+		FileUploadUTILS.prepareTabProfil(model, file);
+        model.addAttribute("manufacturing", OF);
+        if(stock!=null)
+         model.addAttribute("stock", "ddd");
+        
+		return "manufacturingProfile";
+		}
+	
 	
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
@@ -242,6 +260,7 @@ public class ManufacturingController extends AbstractController {
 				e.printStackTrace();
 				return "error";
 			}
+			
 			 return PATH_PROFIL+"?id="+id+"&file=true";
 		}
 		

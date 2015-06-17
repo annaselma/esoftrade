@@ -4,27 +4,30 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
 
 <style>
 .error {
 	color: #ff0000;
 }
+
 .fileUpload {
-    position: relative;
-    overflow: hidden;
-    margin: 10px;
+	position: relative;
+	overflow: hidden;
+	margin: 10px;
 }
+
 .fileUpload input.upload {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    font-size: 20px;
-    cursor: pointer;
-    opacity: 0;
-    filter: alpha(opacity=0);
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity = 0);
 }
 </style>
 <div class="nav-tabs-custom">
@@ -32,10 +35,11 @@
 		<li class="active"><a href="#profile" data-toggle="tab"
 			aria-expanded="true"><i class="fa fa-user"></i>Profile</a></li>
 		<li class=""><a href="#permissions" data-toggle="tab"
-			aria-expanded="false"><i class="fa fa-bars" style=""></i>Permissions</a></li>
-       <li class=""><a href="#suivi" data-toggle="tab"
+			aria-expanded="false"><i class="fa fa-bars" style=""></i>Roles &
+				Permissions</a></li>
+		<li class=""><a href="#suivi" data-toggle="tab"
 			aria-expanded="false"><i class="fa fa-eye" style=""></i>Traçabilité</a></li>
-       
+
 	</ul>
 	<div id="myTabContent" class="tab-content">
 		<div class="tab-pane fade active in" id="profile">
@@ -44,31 +48,32 @@
 					<div class="col-md-3">
 						<div class="user-info-left"
 							style="text-align: center; padding: 21% 0">
-														<c:choose>
-							<c:when test="${empty user.picture }">
-							     	<c:set var="imageURL" value="${baseURL}/img/avatar.png" />
-                                </c:when>
+							<c:choose>
+								<c:when test="${empty user.picture }">
+									<c:set var="imageURL" value="${baseURL}/img/avatar.png" />
+								</c:when>
 								<c:when test="${user.picture.id == 0}">
-							     	<c:set var="imageURL" value="${baseURL}/img/avatar.png" />
-                                </c:when>
+									<c:set var="imageURL" value="${baseURL}/img/avatar.png" />
+								</c:when>
 								<c:otherwise>
-								     <c:set var="imageURL" value="${baseURL}/file/?id=${user.picture.id}" />
+									<c:set var="imageURL"
+										value="${baseURL}/file/?id=${user.picture.id}" />
 								</c:otherwise>
 							</c:choose>
-							<img src="${imageURL}" alt="image produit"
-								class="img-thumbnail">
+							<img src="${imageURL}" alt="image produit" class="img-thumbnail">
 							<form id="upload-image" method="POST"
-								action="${baseURL}/user/image"
-								enctype="multipart/form-data" class="form-inline">
+								action="${baseURL}/user/image" enctype="multipart/form-data"
+								class="form-inline">
 
 								<div class="fileUpload btn btn-xs btn-primary">
 									<span><i class="fa fa-download"></i>changer l'image</span> <input
 										type="file" name="file" class="upload" />
 								</div>
-
+                                
 								<input type="hidden" name="id" value="${user.id}"> <input
 									type="submit" value="valider" class="btn btn-xs btn-success"
 									style="display: none;">
+								
 
 							</form>
 							<span id="image-errors" class="error" style="display: none;"></span>
@@ -106,7 +111,7 @@
 							});
 
 							</script>
-							
+
 							<h4>
 								<c:out value="${user.name} ${user.lastName}" />
 							</h4>
@@ -196,6 +201,7 @@
 								</div>
 
 								<div>
+								<sec:authorize access="hasRole('WRITE_USER')">
 									<form method="POST" name="user" id="userF">
 										<button type="button" class="btn btn-primary pull-right "
 											style="margin-top: 9%"
@@ -203,6 +209,7 @@
 											<i class="fa fa-pencil-square-o"></i>&nbsp;Modifier
 										</button>
 									</form>
+									</sec:authorize>
 								</div>
 
 							</div>
@@ -214,29 +221,84 @@
 			</div>
 		</div>
 		<div class="tab-pane fade" id="permissions">
-			<h3>bhalal</h3>
+			<div class="row">
+				<div class="col-sm-12">
+					<h4>Ajouter un Role:</h4>
+					<form method="POST" action="${baseURL}/user/addRole"
+						enctype="multipart/form-data" class="form-inline">
+						<div class="form-group" style="width: 300px">
+							<select name="role" multiple="multiple" class=" tokenize-sample mono-select" id="role2" 
+							id="permissions">
+						   </select>
+						</div>
+						 <input type="hidden" name="id" value="${user.id}"> <input
+							type="submit" value="Ajouter" class="btn-sm btn btn-success">
+					</form>
+					<script type="text/javascript" src="${baseURL}/js/plugins/tokenize/jquery.tokenize.js"></script>
+				<script type="text/javascript">
+				$('#role2').tokenize({
+					 maxElements:1,
+					"newElements":false,
+					datas: "${baseURL}/role/searchRolesNotIn?id=${user.id}",
+					valueField:"id",
+					textField:"role"
+					});
+				</script>
+				</div>
+			</div>
+			<hr>
+			<h4>Role ajoutés</h4>
+			<table id="list1" class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>role</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${user.roles}" var="r">
+						<tr>
+							<td><c:out value="${r.role}" /></td>
+							<td><a href="${baseURL}/role/profile?id=${r.id}"  class="btn btn-info btn-xs"><i class="fa   fa-search"></i></a>&nbsp;
+							    <a href="${baseURL}/user/deleteRole?role=${r.id}&id=${user.id}"  class="btn btn-danger btn-xs"><i class="fa    fa-minus-circle"></i></a>&nbsp;</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+				<tfoot>
+					<tr>
+						<th>Role</th>
+						<th>Action</th>
+					</tr>
+				</tfoot>
+			</table>
 		</div>
 		<div class="tab-pane fade" id="suivi">
 			<table class="table">
 				<tbody>
 					<tr>
 						<th><label class="">Créé par:</label></th>
-						<td><img src="${baseURL}/file?id=${user.creator.picture.id}" class="img-circle" alt="User Image" style="width: 29px; height: 28px;"><span class="data-value label label-inverse">
-							<a href="<c:out value="${baseURL}/user/profile?id=${user.creator.id}"/>"><c:out
-															value="${user.creator.lastName} ${user.creator.firstName}" /></a>
-						 </span></td>
+						<td><img src="${baseURL}/file?id=${user.creator.picture.id}"
+							class="img-circle" alt="User Image"
+							style="width: 29px; height: 28px;"><span
+							class="data-value label label-inverse"> <a
+								href="<c:out value="${baseURL}/user/profile?id=${user.creator.id}"/>"><c:out
+										value="${user.creator.lastName} ${user.creator.firstName}" /></a>
+						</span></td>
 					</tr>
 					<tr>
 						<th><label>Date création:</label></th>
-						<td><fmt:formatDate
-									pattern="dd/MM/yyyy" value="${user.createDate}" /></td>
+						<td><fmt:formatDate pattern="dd/MM/yyyy"
+								value="${user.createDate}" /></td>
 					</tr>
 					<tr>
 						<th><label>Modifié par:</label></th>
-						<td><img src="${baseURL}/file?id=${user.modifier.picture.id}" class="img-circle" alt="User Image" style="width: 29px; height: 28px;"><span class="data-value label label-important">
-							<a href="<c:out value="${baseURL}/user/profile?id=${user.modifier.id}"/>"><c:out
-															value="${user.modifier.lastName} ${user.modifier.firstName}" /></a>
-						 </span></td>
+						<td><img src="${baseURL}/file?id=${user.modifier.picture.id}"
+							class="img-circle" alt="User Image"
+							style="width: 29px; height: 28px;"><span
+							class="data-value label label-important"> <a
+								href="<c:out value="${baseURL}/user/profile?id=${user.modifier.id}"/>"><c:out
+										value="${user.modifier.lastName} ${user.modifier.firstName}" /></a>
+						</span></td>
 					</tr>
 					<tr>
 						<th>Date de modification:</th>
@@ -258,4 +320,17 @@
     	  e.preventDefault()
     	  $(this).tab('show')
     	})
+</script>
+<script src="${baseURL}/js/bootstrap-datepicker.js"></script>
+<script src="${baseURL}/js/plugins/datatables/jquery.dataTables.js"
+	type="text/javascript"></script>
+<script src="${baseURL}/js/plugins/datatables/dataTables.bootstrap.js"
+	type="text/javascript"></script>
+<script
+	src="${baseURL}/js/plugins/datatables/dataTables.ColumnFilter.js"
+	type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+    $('#list1').DataTable();
+     } );
 </script>
