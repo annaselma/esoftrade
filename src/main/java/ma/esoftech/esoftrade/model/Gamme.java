@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -38,30 +39,23 @@ public class Gamme extends MetaObject{
 	private Date startDate;
 	@Column(name="ELMO_ENDATE")
 	private Date endDate;
-	@Column(name="ELMO_THEOTICALCOST")
-	private float theocticalCost;
-	@Column(name="ELMO_REALCOST")
-	private float realCost;
 	@Column(name="ELMO_WAITINGPIECES")
 	private Integer waitingPrieces;
-	@Column(name="ELMO_CREATEDQT")
-	private Integer createdQT;
-	@Column(name="ELMO_POSTE",length=255)
-    private String poste;
+	@Column(name="ELMO_REJECTEDPIECES")
+	private Integer rejectedQt;
+	@Column(name="ELMO_CREATEDPIECES")
+	private Integer createdQt;
 	@Column(name="ELMO_NBPOSTE")
     private Integer nbposte;
     @Column(name="ELMO_TYPE",length=255)
 	private String type;
     @Column(name="ELMO_END")
 	private boolean end;
-    
-    @OneToMany
-    @JoinTable(
-        name="ELMO_GAMME_Poste",
-        joinColumns = @JoinColumn( name="ELMO_GAMME_ID"),
-        inverseJoinColumns = @JoinColumn( name="ELMO_Poste_ID"))
-    private Set<Poste> postes=new HashSet<Poste>();
-    
+    @Column(name="ELMO_TIME")
+	private Integer time;
+	@ManyToOne
+	@JoinColumn(name="ELMO_POST_ID")
+	private Poste poste;
     @OneToMany
     @JoinTable(
         name="ELMO_GAMME_FILE",
@@ -134,10 +128,6 @@ public class Gamme extends MetaObject{
 		this.endDate = endDate;
 	}
 
-	public float getTheocticalCost() {
-		return theocticalCost;
-	}
-
 	public Set<File> getFiles() {
 		return files;
 	}
@@ -146,40 +136,12 @@ public class Gamme extends MetaObject{
 		this.files = files;
 	}
 
-	public void setTheocticalCost(float theocticalCost) {
-		this.theocticalCost = theocticalCost;
-	}
-
-	public float getRealCost() {
-		return realCost;
-	}
-
-	public void setRealCost(float realCost) {
-		this.realCost = realCost;
-	}
-
 	public Integer getWaitingPrieces() {
 		return waitingPrieces;
 	}
 
 	public void setWaitingPrieces(Integer waitingPrieces) {
 		this.waitingPrieces = waitingPrieces;
-	}
-
-	public Integer getCreatedQT() {
-		return createdQT;
-	}
-
-	public void setCreatedQT(Integer createdQT) {
-		this.createdQT = createdQT;
-	}
-
-	public String getPoste() {
-		return poste;
-	}
-
-	public void setPoste(String poste) {
-		this.poste = poste;
 	}
 
 	public String isType() {
@@ -222,12 +184,23 @@ public class Gamme extends MetaObject{
 		return type;
 	}
 
-	public Set<Poste> getPostes() {
-		return postes;
+
+
+
+	public Integer getTime() {
+		return time;
 	}
 
-	public void setPostes(Set<Poste> postes) {
-		this.postes = postes;
+	public void setTime(Integer time) {
+		this.time = time;
+	}
+
+	public Poste getPoste() {
+		return poste;
+	}
+
+	public void setPoste(Poste poste) {
+		this.poste = poste;
 	}
 
 	public String generateReference(){

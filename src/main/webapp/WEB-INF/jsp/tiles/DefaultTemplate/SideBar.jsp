@@ -7,6 +7,7 @@
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
 				<!-- sidebar menu: : style can be found in sidebar.less -->
+				
 				<ul class="sidebar-menu margin-top: 51 px">
 					<li class="active"><a href="#"> <i
 							class="fa fa-dashboard"></i> <span>Tableau de bord</span>

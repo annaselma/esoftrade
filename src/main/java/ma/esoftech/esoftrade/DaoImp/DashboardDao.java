@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import ma.esoftech.esoftrade.Dao.IDashboard;
 import ma.esoftech.esoftrade.model.Mouvement;
 import ma.esoftech.esoftrade.model.OrderManufacturing;
+import ma.esoftech.esoftrade.model.OrderManufacturing.OFStatus;
 @Repository
 public class DashboardDao  implements IDashboard{
 
@@ -19,11 +20,10 @@ public class DashboardDao  implements IDashboard{
 	Session session;
 	
 	@Override
-	public long getCountOFBlocked(OrderManufacturing order) {
+	public long getCountOFBlocked() {
 		session=sessionFactory.getCurrentSession();
-		String hql="Select count(order) From OrderManufacturing as order where order.status=:blocked ";
+		String hql="Select count(order) From OrderManufacturing as order where order.status='blocked' ";
 		Query query= session.createQuery(hql);
-		query.setParameter("blocked", order.getStatus());
 		long count= (long)query.uniqueResult();
 		return count;
 	}

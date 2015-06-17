@@ -275,7 +275,7 @@ public class OrderManufacturingDTO {
 		this.deadline = deadline;
 	}
 	public Integer getProgress() {
-		this.progress=(int) Math.floor((this.executedQT/this.lanchedQT)*100);
+		this.progress=(int) Math.floor(((float)this.executedQT/(float)this.lanchedQT)*100);
 		return progress;
 	}
 	public void setProgress(Integer progress) {

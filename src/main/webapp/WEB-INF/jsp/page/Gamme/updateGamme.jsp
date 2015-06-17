@@ -57,7 +57,7 @@
 				</div>
                 <script type="text/javascript" src="${baseURL}/js/plugins/tokenize/jquery.tokenize.js"></script>
 				<script type="text/javascript">
-				$('#category').tokenize({
+				$('#poste').tokenize({
 					"newElements":false,
 					maxElements:1,
 					datas: "${baseURL}/poste/search",
@@ -87,10 +87,18 @@
 				<div class="col-sm-4">
 					<form:checkbox path="end" />
 					<form:errors path="end" cssClass="error" />
-				</div>
-
-			
+				</div>			
                    </div>
+                   <div class="form-group">
+				
+				<label for="postenbField" class="col-sm-2 control-label esoft-left">Temps passé(H):&nbsp;<span
+					class="error">*</span></label>
+				<div class="col-sm-2">
+				    <form:input path="time" cssClass="form-control " />
+					<form:errors path="time" cssClass="error" />
+				</div>
+				
+			</div>
                    <hr>
 			<div class="form-group">
 				<label for="dateField" class="col-sm-2 control-label esoft-left">Date Début:&nbsp;<span class="error">*</span></label>
@@ -133,14 +141,6 @@
 				</div>
 			</div>
 			<div class="form-group">
-
-				<label for="natureField" class="col-sm-2 control-label esoft-left">Côut Réel: </label>
-				<div class="col-md-2">
-					<form:input path="realCost" cssClass="form-control " />
-					<form:errors path="realCost" cssClass="error" />
-				</div>
-			</div>
-			<div class="form-group">
 				<label for="theocticalField" class="col-sm-2 control-label esoft-left">Pièce en attente:</label>
 				<div class="col-sm-2">
 					<form:input path="waitingPrieces" cssClass="form-control" />
@@ -150,7 +150,7 @@
 			<div class="form-group">
 				<label for="descField" class="col-sm-2 control-label esoft-left">Description:</label>
 				<div class="col-sm-10">
-					<form:textarea id="editor2" path="observation" name="editor2"
+					<form:textarea id="editor1" path="description" 
 						rows="4" cols="80" />
 				</div>
 			</div>
@@ -167,7 +167,7 @@
 			<div class="form-group">
 				<label for="nameField" class="col-sm-2 control-label esoft-left">Cause rebut:</label>
 				<div class="col-sm-10">
-					<form:textarea id="editor1" path="observation" name="editor1"
+					<form:textarea id="editor2" path="observation" 
 						rows="4" cols="80" />
 				</div>
 			</div>

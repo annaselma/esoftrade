@@ -1,8 +1,10 @@
 package ma.esoftech.esoftrade.serviceImpl;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.dozer.Mapper;
@@ -251,4 +253,41 @@ public void deleteGammefromManufacturing(GammeDTO gammeDTO, long id,
 		gammeDao.deleteGamme(gamme);
 	
 }	
+@Transactional(readOnly=true)
+@Override
+public Map<String , Float> calculeCost(long id) throws ManufacturingNotFoundException{
+	OrderManufacturing manufacturingEntity = manufacturingDao.findById(id);
+	if (manufacturingEntity == null) {
+		throw new ManufacturingNotFoundException();
+	}
+	Set<Nomenclature> nomenclatures=manufacturingEntity.getNomenclatures();
+	Set<Gamme> gammes=manufacturingEntity.getGammes();
+	Map<String, Float> map=new HashMap<String,Float>();
+	map.put("thCost",calculeCostProductTh(nomenclatures)+calculeCostGammes(gammes));
+	map.put("realCost",calculeCostProductReal(nomenclatures)+calculeCostGammes(gammes ));
+	map.put("thUnitCost", map.get("thCost")/(float)manufacturingEntity.getRequeredQT());
+	map.put("realUnitCost", map.get("realCost")/(float)manufacturingEntity.getRequeredQT());
+	return map;
+}
+private float calculeCostProductReal(Set<Nomenclature> nomenclatures){
+	float cost=0;
+	for (Nomenclature nomenclature : nomenclatures) {
+		cost+=nomenclature.getProduct().getPrice()*nomenclature.getUsedQt();
+	}
+	return cost;
+}
+private float calculeCostProductTh(Set<Nomenclature> nomenclatures){
+	float cost=0;
+	for (Nomenclature nomenclature : nomenclatures) {
+		cost+=nomenclature.getProduct().getPrice()*nomenclature.getRequeredQt();
+	}
+	return cost;
+}
+private float calculeCostGammes(Set<Gamme> gammes){
+	float cost=0;
+	for (Gamme gamme :gammes) {
+		cost+=gamme.getNbposte()*gamme.getPoste().getPrice()*gamme.getTime();
+	}
+	return cost;
+}
 }

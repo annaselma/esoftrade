@@ -134,7 +134,7 @@
                     	"data":"progress",
                     	"render": function ( data, type, full, meta ) {
                    		 $dta='<small class="pull-right">'+data+'%</small>'+'<div class="progress xs">'+
-         					'<div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">'+
+         					'<div class="progress-bar progress-bar-aqua" style="width:'+data+'%" role="progressbar" aria-valuenow="'+data+'" aria-valuemin="0" aria-valuemax="100">'+
  						'<span class="sr-only">'+data+'</span>';
  					'</div>';
                    		 return $dta;

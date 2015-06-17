@@ -289,15 +289,19 @@
 
 						<tr>
 							<th><label>Coût total réel calculé:</label></th>
-							<td>23.00 DH</td>
+							<td><c:out value="${realCost }"/>&nbsp;DH</td>
 						</tr>
 						<tr>
 							<th><label>Coût total théorique calculé:</label></th>
-							<td>234.00 DH</td>
+							<td><c:out value="${thCost }"/>&nbsp;DH</td>
+						</tr>
+							<tr>
+							<th><label>Coût unitaire théorique :</label></th>
+							<td><c:out value="${thUnitCost}" />&nbsp;DH</td>
 						</tr>
 						<tr>
-							<th><label>Coût unitaire:</label></th>
-							<td>12.540 DH</td>
+							<th><label>Coût unitaire réél:</label></th>
+							<td><c:out value="${realUnitCost}" />&nbsp;DH</td>
 						</tr>
 
 					</tbody>
@@ -740,8 +744,8 @@
                     	"name":"end",
                     	"data":"end",
                     	"render": function ( data, type, full, meta ) {
-                   		 $active='<div id="end" class="label label-success">En cours</div>';
-                   		 $inactive='<div id="end" class="label label-danger">Terminé</div>';
+                   		 $active='<div id="end" class="label label-primary">En cours</div>';
+                   		 $inactive='<div id="end" class="label label-default">Terminé</div>';
                    		 if(data==false){
                    			 return $active;
                    		 }

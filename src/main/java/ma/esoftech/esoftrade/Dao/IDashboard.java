@@ -6,7 +6,7 @@ import ma.esoftech.esoftrade.model.OrderManufacturing;
 
 public interface IDashboard {
 
-	 public long  getCountOFBlocked(OrderManufacturing order);
+	 public long  getCountOFBlocked();
 	 public long  getCountOFWaiting(OrderManufacturing order);
 	 public long  getCountOFProcessing(OrderManufacturing order);
 	 public long  getCountOFLate(OrderManufacturing order);
