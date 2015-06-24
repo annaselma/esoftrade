@@ -20,20 +20,9 @@ public class test {
 
 	public static void main(String[] args) {
 		//createPermis();
-		SimpleDateFormat f=new SimpleDateFormat("dd/MM/yyyy");
-		try {
-			Date date=f.parse("11/11/2017");
-			long days=date.getTime()-new Date().getTime();
-			days=days/1000;
-			days=days/3600;
-			days=days/24;
-			System.out.println("days "+days);
-			
-					
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		int cost=3;
+		cost+=4;
+		System.out.println(cost);
 		
 	}
 

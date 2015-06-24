@@ -89,7 +89,7 @@
 				</div>
                 <script type="text/javascript" src="${baseURL}/js/plugins/tokenize/jquery.tokenize.js"></script>
 				<script type="text/javascript">
-				$('#category').tokenize({
+				$('#poste').tokenize({
 					"newElements":false,
 					maxElements:1,
 					datas: "${baseURL}/poste/search",

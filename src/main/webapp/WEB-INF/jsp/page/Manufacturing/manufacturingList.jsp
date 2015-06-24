@@ -49,7 +49,7 @@
 				activateScan = false;
 			}
 		});
-		$("body").keydown(function(event) {
+		$("body").keypress(function(event) {
 			if (activateScan) {
 				var code = (event.keyCode ? event.keyCode : event.which);
 				if (code == 13)// Enter key hit
@@ -193,8 +193,11 @@
 										"data" : "deadline",
 										"render" : function(data, type, full,
 												meta) {
+											if(full.status=="canceled"||full.status=="end"||full.status=="blocked"){
+												return '<small class="badge bg-aqua">fermé</small>';
+											}
 											if (data < 0) {
-												return '<span class="label label-warning">En retard de '
+												return '<span class="label label-danger">En retard de '
 														+ (data * -1)
 														+ ' jour(s)</span>';
 											}
@@ -215,7 +218,7 @@
 													+ data
 													+ '%</small>'
 													+ '<div class="progress xs">'
-													+ '<div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">'
+													+ '<div class="progress-bar progress-bar-aqua" style="width: '+data+'%" role="progressbar" aria-valuenow="'+data+'" aria-valuemin="0" aria-valuemax="100">'
 													+ '<span class="sr-only">'
 													+ data + '</span>';
 											'</div>';
@@ -234,16 +237,16 @@
 												$link = '<span class="label label-danger">critique</span>';
 												break;
 											case "High":
-												$link = '<span class="label label-success">élevé</span>';
+												$link = '<span class="label label-warning">élevé</span>';
 												break;
 											case "Medium":
 												$link = '<span class="label label-info">moyen</span>';
 												break;
 											case "Low":
-												$link = '<span class="label label-default">faible</span>';
+												$link = '<span class="label label-info">faible</span>';
 												break;
 											case "Urgent":
-												$link = '<span class="label label-warning">urgent</span>';
+												$link = '<span class="label label-danger">urgent</span>';
 												break;
 											default:
 

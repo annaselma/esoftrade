@@ -1,5 +1,6 @@
 package ma.esoftech.esoftrade.DTO;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +18,6 @@ import ma.esoftech.esoftrade.DTO.associated.FileAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.ProductAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.UserAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.WarehouseAssociatedDTO;
-
 import ma.esoftech.esoftrade.model.OrderManufacturing.OFPRIORITY;
 import ma.esoftech.esoftrade.model.OrderManufacturing.OFStatus;
 
@@ -60,7 +60,7 @@ public class OrderManufacturingDTO {
 	private float unitCostTheory;
 	private float totalRealCost;
 	private float totalTheoryCost;
-	private Integer deadline=0;
+	private Long deadline=0l;
 	private Integer progress=0;
 	private FileAssociatedDTO picture=null;
 	public FileAssociatedDTO getPicture() {
@@ -264,18 +264,18 @@ public class OrderManufacturingDTO {
 	public void setTotalTheoryCost(float totalTheoryCost) {
 		this.totalTheoryCost = totalTheoryCost;
 	}
-	public Integer getDeadline() {
-		this.deadline= (int)(this.endDate.getTime()-new Date().getTime());
+	public Long getDeadline() {
+		this.deadline= (this.endDate.getTime()-new Date().getTime());
 		this.deadline=this.deadline/1000;
 		this.deadline=this.deadline/3600;
 		this.deadline=this.deadline/24;
 		return deadline;
 	}
-	public void setDeadline(Integer deadline) {
+	public void setDeadline(Long deadline) {
 		this.deadline = deadline;
 	}
-	public Integer getProgress() {
-		this.progress=(int) Math.floor((this.executedQT/this.lanchedQT)*100);
+	public Integer getProgress() { 
+		this.progress=(int) Math.floor(((float)this.executedQT/(float)this.lanchedQT)*100);
 		return progress;
 	}
 	public void setProgress(Integer progress) {

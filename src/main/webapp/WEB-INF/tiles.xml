@@ -298,6 +298,33 @@
 			value="/WEB-INF/jsp/page/CategoryPost/updateTitle.jsp" />
 	</definition>
 	<!-- /CategoryPost Pages -->
+	
+	<!-- Company Pages -->
+	<definition name="companyProfile" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/company/companyProfile.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/company/profileTitle.jsp" />
+	</definition>
+	<definition name="createCompany" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/company/create.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/company/createTitle.jsp" />
+	</definition>
+	<definition name="companyList" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/company/companyList.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/company/listTitle.jsp" />
+	</definition>
+	<definition name="updateCompany" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/company/updatePost.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/company/updateTitle.jsp" />
+	</definition>
+	<!-- /Company Pages -->
 	<!-- error Pages -->
 	<definition name="error" extends="Template">
 		<put-attribute name="page" value="/WEB-INF/jsp/page/error.jsp" />

@@ -66,7 +66,6 @@ public class Contact extends Person {
 	}
 	
 
-
 	public Company getCompany() {
 		return company;
 	}

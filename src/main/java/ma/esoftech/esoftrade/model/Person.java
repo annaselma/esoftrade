@@ -134,6 +134,9 @@ public  abstract class Person extends MetaObject implements Serializable {
 	public enum Civility{
 		Mr,Ms,Mrs,Docteur,Maitre
 	}
+	public void generateGlobalRef(){
+		setRef( String.valueOf(getId()));
+	}
 	
 	
 }
