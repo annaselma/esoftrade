@@ -4,6 +4,7 @@ import java.util.List;
 
 import ma.esoftech.esoftrade.DTO.FileDTO;
 import ma.esoftech.esoftrade.DTO.ProductDTO;
+import ma.esoftech.esoftrade.DTO.ProductQuantityDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.exception.ProductNotFoundException;
 
@@ -20,4 +21,5 @@ public interface IProductService {
 	public void attachFileToProduct(FileDTO fileDTO,long id,UserDTO modifier) throws ProductNotFoundException;
 	public List<ProductDTO> searchProducts(int lenght, int start, String search);
 	public long getProductQuantity(ProductDTO product);
+	public List<ProductQuantityDTO> getAllproductQauntity(int start, int length,String sorting);
 }

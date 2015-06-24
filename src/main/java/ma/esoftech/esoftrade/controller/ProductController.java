@@ -231,5 +231,9 @@ public class ProductController extends AbstractController {
 		   List<PCategoryDTO> listCategory=categoryService.getListCategory(0, 1000);
 			return listCategory;
 		}
-
+		@RequestMapping(value="/notification",method=RequestMethod.GET,produces = "application/json")
+		public @ResponseBody long getProductQuantity(ModelMap model){
+			return productService.getAllproductQauntity(0,10000,"id").size();	
+			
+		}
 	}

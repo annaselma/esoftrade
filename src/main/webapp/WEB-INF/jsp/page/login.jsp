@@ -4,7 +4,7 @@
 <c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
 	
 	<!DOCTYPE html>
-<html class="bg-wite">
+<html class="bg-black">
     <head>
         <meta charset="UTF-8">
         <title>login</title>
@@ -39,11 +39,11 @@
 
 </style>
     </head>
-    <body class="bg-wite">
+    <body class="bg-black">
       
         <div class="form-box" id="login-box">
             <div class="header" style="background: #3BB0DA;">
-            <img src="${baseURL}/img/user.jpg" class="img-circle" alt="User Image" style="width: 100px; height: 100px;"></div>
+            <img src="${baseURL}/img/testG.png" class="img-circle" alt="Image" style="width: 100px; height: 100px;"></div>
             <form action="<c:url  value='j_spring_security_check' />" method='POST'>
             <c:if test="${not empty error}">
 			<div class="error">${error}</div>

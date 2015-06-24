@@ -1,5 +1,6 @@
 package ma.esoftech.esoftrade.DaoImp;
 
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -20,38 +21,44 @@ public class DashboardDao  implements IDashboard{
 	Session session;
 	
 	@Override
-	public long getCountOFBlocked() {
+	public long getCountOFBlocked( ) {
 		session=sessionFactory.getCurrentSession();
-		String hql="Select count(order) From OrderManufacturing as order where order.status='blocked' ";
+		String hql="Select count(orderFab) From OrderManufacturing as orderFab where orderFab.status='blocked' ";
 		Query query= session.createQuery(hql);
 		long count= (long)query.uniqueResult();
 		return count;
 	}
 
 	@Override
-	public long getCountOFWaiting(OrderManufacturing order) {
+	public long getCountOFWaiting() {
 		session=sessionFactory.getCurrentSession();
-		String hql="Select count(order) From OrderManufacturing as order where order.status=:waiting";
+		String hql="Select count(orderFab) From OrderManufacturing as orderFab where orderFab.status='waiting'";
 		Query query= session.createQuery(hql);
-		query.setParameter("waiting", order.getStatus());
 		long count= (long)query.uniqueResult();
 		return count;
 	}
 
 	@Override
-	public long getCountOFProcessing(OrderManufacturing order) {
-		// TODO Auto-generated method stub
-		return 0;
+	public long getCountOFProcessing() {
+		session=sessionFactory.getCurrentSession();
+		String hql="Select count(orderFab) From OrderManufacturing as orderFab where orderFab.status NOT IN('canceled','blocked','end')";
+		Query query= session.createQuery(hql);
+		long count= (long)query.uniqueResult();
+		return count;
 	}
 
 	@Override
-	public long getCountOFLate(OrderManufacturing order) {
-		// TODO Auto-generated method stub
-		return 0;
+	public long getCountOFLate(Date currentDate) {
+		session=sessionFactory.getCurrentSession();
+		String hql="Select count(orderFab) From OrderManufacturing as orderFab where orderFab.endDate< :currentDate and orderFab.status NOT IN('canceled','blocked','end')";
+		Query query= session.createQuery(hql);
+		query.setParameter("currentDate", currentDate);
+		long count= (long)query.uniqueResult();
+		return count;
 	}
 
 	@Override
-	public List<Object[]> ListCriticalOF(OrderManufacturing order) {
+	public List<Object[]> ListCriticalOF() {
 		// TODO Auto-generated method stub
 		return null;
 	}

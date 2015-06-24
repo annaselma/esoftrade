@@ -167,8 +167,7 @@
                    <form:option value="Low">faible</form:option>
                    <form:option value="Medium">moyen</form:option>
                    <form:option value="Critical">critique</form:option>
-                    <form:option value="Medium">moyen</form:option>
-                   <form:option value="Critical">critique</form:option>
+                     <form:option value="High">élevé</form:option>
                     </form:select>
                     <form:errors path="priority" cssClass="error" />
 				</div>
@@ -176,10 +175,11 @@
 				<div class="col-sm-4">
 					<form:select path="status" cssClass="form-control">
                    <form:option value="onProduction">en production</form:option>
-                   <form:option value="charged">chagé</form:option>
+                   <form:option value="charged">chargé</form:option>
                    <form:option value="blocked">bloqué</form:option>
                    <form:option value="notcharged">pas chargé</form:option>
                    <form:option value="waiting">en attente</form:option>
+                    <form:option value="end">terminé</form:option>
                    <form:option value="canceled">annulé</form:option>
                     <form:option value="inpreparation">en préparation</form:option>
                     </form:select>

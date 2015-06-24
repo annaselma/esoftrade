@@ -19,22 +19,22 @@ import org.hibernate.cfg.Configuration;
 public class test {
 
 	public static void main(String[] args) {
-		//createPermis();
-		SimpleDateFormat f=new SimpleDateFormat("dd/MM/yyyy");
-		try {
-			Date date=f.parse("11/11/2017");
-			long days=date.getTime()-new Date().getTime();
-			days=days/1000;
-			days=days/3600;
-			days=days/24;
-			System.out.println("days "+days);
-			
-					
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		createPermis();
+//		SimpleDateFormat f=new SimpleDateFormat("dd/MM/yyyy");
+//		try {
+//			Date date=f.parse("11/11/2017");
+//			long days=date.getTime()-new Date().getTime();
+//			days=days/1000;
+//			days=days/3600;
+//			days=days/24;
+//			System.out.println("days "+days);
+//			
+//					
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
 	}
 
 	public static void cascadeCreateExemple() {
@@ -107,9 +107,9 @@ public class test {
 		session.save(create("READ_WAREHOUSE", "consulter les entrepots", module));
 		session.save(create("CORRECT_TRANSFERT_STOCK",
 				"corriger et transferer le stock", module));
-		session.save(create("ADD_FILE_TO_USER",
+		session.save(create("ADD_FILE_TO_WAREHOUSE",
 				"ajouter les fichiers aux  entrepots ", module));
-		session.save(create("DELETE_FILE_FROM_USER",
+		session.save(create("DELETE_FILE_FROM_WAREHOUSE",
 				"enlever les fichiers aux entrepots ", module));
 	}
 
@@ -128,6 +128,9 @@ public class test {
 				"ajouter les fichiers aux produits ", module));
 		session.save(create("DELETE_FILE_FROM_PRODUCT",
 				"enlever les fichiers aux produits ", module));
+		session.save(create("ADD_PICTURE_TO_PRODUCT",
+				"ajouter une photo aux produits ", module));
+		
 	}
 
 	public static void generateManufacturingPermissions(Session session) {
@@ -162,6 +165,26 @@ public class test {
 		session.save(create("DELETE_NOMENCLATURES",
 				"supprimer les nomenclatures", module));
 	}
+	public static void generatePostePermissions(Session session) {
+		Module module = Module.Poste;
+		session.save(create("WRITE_POSTE", "creer/modifier les postes",
+				module));
+		session.save(create("DELETE_POSTE", "supprimer les postes", module));
+		session.save(create("READ_POSTE",
+				"consulter les profiles des postes", module));
+		session.save(create("EDIT_SELF_USER",
+				"modifier ses propres informations utilisateur", module));
+		session.save(create("READ_CATEGORY_POSTE", "consulter les catégories", module));
+		session.save(create("WRITE_CATEGORY", "creer/modifier les catégories",
+				module));
+		session.save(create("DELETE_CATEGORY_POSTE", "supprimer les catégories",
+				module));
+		session.save(create("ADD_FILE_TO_POSTE",
+				"ajouter les docs et fiches de pointage aux poste", module));
+		session.save(create("DELETE_FILE_FROM_PRODUCT",
+				"enlever les fichiers aux postes ", module));
+	}
+
 
 	public static Permission create(String label, String desc, Module module) {
 		Permission permission = new Permission();

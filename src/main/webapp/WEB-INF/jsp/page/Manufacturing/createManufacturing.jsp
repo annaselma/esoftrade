@@ -181,6 +181,7 @@
                    <form:option value="blocked">bloqué</form:option>
                    <form:option value="notcharged">pas chargé</form:option>
                    <form:option value="waiting">en attente</form:option>
+                   <form:option value="end">terminé</form:option>
                    <form:option value="canceled">annulé</form:option>
                     <form:option value="inpreparation">en préparation</form:option>
                     </form:select>

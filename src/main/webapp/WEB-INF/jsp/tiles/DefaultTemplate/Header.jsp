@@ -9,7 +9,8 @@
 <c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
 <header class="header">
 	<a href="#" class="logo"> <!-- Add the class icon to your logo image or logo icon to add the margining -->
-		Esoftrade
+<%--   <img src="${baseURL}/img/testG.png" class="img-circle" alt="Image" style="width: 112px; height: 51px;margin-right: 17%;"> --%>
+	KelmoSoft
 	</a>
 	<!-- Header Navbar: style can be found in header.less -->
 	<nav class="navbar navbar-static-top" role="navigation">
