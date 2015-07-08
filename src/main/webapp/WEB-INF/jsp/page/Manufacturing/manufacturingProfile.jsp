@@ -17,7 +17,7 @@
 		<li class="${defaultActive}"><a href="#fiche" data-toggle="tab"
 			aria-expanded="false"><i class="fa fa-file"></i>&nbsp;Fiche OF</a></li>
 		<li class=""><a href="#settings" data-toggle="tab"
-			aria-expanded="false"><i class="fa  fa-money" style=""></i>&nbsp;Bénéfices</a></li>
+			aria-expanded="false"><i class="fa  fa-money" style=""></i>&nbsp;Coûts de fabrication</a></li>
 		<li class=""><a href="#nomenclatures" data-toggle="tab"
 			aria-expanded="false"><i class="fa fa-fw fa-bars" style=""></i>&nbsp;Nomenclatures</a></li>
 			<li class=""><a href="#gammes" data-toggle="tab"
@@ -143,6 +143,7 @@
 							</c:choose>
 							<img src="${imageURL}" alt="imageOF"
 								class="img-thumbnail">
+								<sec:authorize access="hasRole('WRITE_MANUFACTURING')">
 							<form id="upload-image" method="POST"
 								action="${baseURL}/manufacturing/image"
 								enctype="multipart/form-data" class="form-inline">
@@ -157,6 +158,7 @@
 									style="display: none;">
 
 							</form>
+							</sec:authorize>
 							<span id="image-errors" class="error" style="display: none;"></span>
 
 

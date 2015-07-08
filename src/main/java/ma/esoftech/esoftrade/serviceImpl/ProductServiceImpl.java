@@ -185,6 +185,7 @@ public List<ProductQuantityDTO> getAllproductQauntity(int start, int length,
 	Iterator<ProductQuantity> it=list2.iterator();
 	//ProductQuantity entity=null;
 	for(ProductQuantity entity :list){
+		System.out.println(entity.getProduct().getAlertTreshold());
 		if(entity.getQuantity()>entity.getProduct().getAlertTreshold())
 		{
 			list2.remove(entity);

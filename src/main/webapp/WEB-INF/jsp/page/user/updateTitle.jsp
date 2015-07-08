@@ -7,12 +7,12 @@
 <!DOCTYPE html>
 	<c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
 	<section class="content-header">
-                    <h4>
-                        <a href="${baseURL}/warehouse/list">Entrepôts</a>
-                        <small>liste</small>
-                    </h4>
+                    <h1>
+                        Utilisateur
+                        <small>Modifier utilisatur</small>
+                    </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i>Acceuil</a></li>
-                        <li class="active">Catégorie</li>
+                        <li class="active">Utilisateur</li>
                     </ol>
                 </section>

@@ -21,12 +21,11 @@
 </style>
                  
                     <div class="error-page">
-                        <h2 class="headline">500</h2>
+                        <h2 class="headline">404</h2>
                         <div class="error-content">
-                            <h3><i class="fa fa-warning text-yellow"></i> Oops! Something went wrong.</h3>
+                            <h3><i class="fa fa-warning text-yellow"></i> Oops! une erreur s'est produite .</h3>
                             <p>
-                               ${messageError}
-                                Meanwhile, you may <a href="${baseURL}/dashboard">return to dashboard</a> or try using the search form.
+                               <a href="${baseURL}/dashboard">retourner au tableau de bord</a> ou effectuer une recherche.
                             </p>
                             <form class='search-form'>
                                 <div class='input-group'>

@@ -303,7 +303,21 @@
 		<put-attribute name="page" value="/WEB-INF/jsp/page/error.jsp" />
 		<put-attribute name="titlepage" value="" />
 	</definition>
+	<!-- error403 -->
+	<definition name="404" extends="Template">
+		<put-attribute name="page" value="/WEB-INF/jsp/page/404.jsp" />
+		<put-attribute name="titlepage" value="" />
+	</definition>
+	<definition name="403" extends="Template">
+		<put-attribute name="page" value="/WEB-INF/jsp/page/403.jsp" />
+		<put-attribute name="titlepage" value="" />
+	</definition>
+	<!-- login -->
 	<definition name="login" template="/WEB-INF/jsp/page/login.jsp" />
+	<definition name="test" extends="Template">
+		<put-attribute name="page" value="/WEB-INF/jsp/page/test.jsp" />
+	</definition>
+	<!-- Dashboard -->
 	<definition name="dashboard" extends="Template">
 		<put-attribute name="page" value="/WEB-INF/jsp/page/dashboard.jsp" />
 	</definition>

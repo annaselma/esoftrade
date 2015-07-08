@@ -13,6 +13,7 @@ import ma.esoftech.esoftrade.Dao.IDashboard;
 import ma.esoftech.esoftrade.model.Mouvement;
 import ma.esoftech.esoftrade.model.OrderManufacturing;
 import ma.esoftech.esoftrade.model.OrderManufacturing.OFStatus;
+import ma.esoftech.esoftrade.model.PostPerformance;
 @Repository
 public class DashboardDao  implements IDashboard{
 
@@ -61,6 +62,16 @@ public class DashboardDao  implements IDashboard{
 	public List<Object[]> ListCriticalOF() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<PostPerformance> getPostWithPerformance() {
+		session=sessionFactory.getCurrentSession();
+		String hql="select new  ma.esoftech.esoftrade.model.PostPerformance(SUM(gamme.time),gamme.poste)"
+				+ " from Gamme as gamme where gamme.end=:parameter group by gamme.poste";
+		Query query=session.createQuery(hql);
+		query.setParameter("parameter", true);
+		return query.list();
 	}
 
 }

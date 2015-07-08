@@ -4,6 +4,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
 <div class="box box-info">
@@ -73,11 +75,13 @@
 <div class="box">
 	<div class="box-header">
 		<h3 class="box-title">la liste des Ordres de Fabrication</h3>
+		<sec:authorize access="hasRole('WRITE_MANUFACTURING')">
 		<div class="box-tools pull-right">
 			<a class="btn btn-primary btn-sm"
 				href="${baseURL}/manufacturing/create" style="color: white;">+
 				nouvel Ordre</a> &nbsp;
 		</div>
+		</sec:authorize>
 	</div>
 	<!-- /.box-header -->
 	<div class="box-body table-responsive">

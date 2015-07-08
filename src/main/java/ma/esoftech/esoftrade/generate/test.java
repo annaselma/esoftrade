@@ -53,11 +53,11 @@ public class test {
 
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		generateManufacturingPermissions(session);
-		generateProductPermissions(session);
-		generateRolePermissions(session);
-		generateUserPermissions(session);
-		generateWareHousePermissions(session);
+//		generateManufacturingPermissions(session);
+//		generateProductPermissions(session);
+//		generateRolePermissions(session);
+		generatePostePermissions(session);
+//		generateWareHousePermissions(session);
 		session.getTransaction().commit();
 		session.close();
 
@@ -172,16 +172,14 @@ public class test {
 		session.save(create("DELETE_POSTE", "supprimer les postes", module));
 		session.save(create("READ_POSTE",
 				"consulter les profiles des postes", module));
-		session.save(create("EDIT_SELF_USER",
-				"modifier ses propres informations utilisateur", module));
 		session.save(create("READ_CATEGORY_POSTE", "consulter les catégories", module));
 		session.save(create("WRITE_CATEGORY", "creer/modifier les catégories",
 				module));
 		session.save(create("DELETE_CATEGORY_POSTE", "supprimer les catégories",
 				module));
 		session.save(create("ADD_FILE_TO_POSTE",
-				"ajouter les docs et fiches de pointage aux poste", module));
-		session.save(create("DELETE_FILE_FROM_PRODUCT",
+				"ajouter les docs et fiches de pointage aux postes", module));
+		session.save(create("DELETE_FILE_FROM_POSTE",
 				"enlever les fichiers aux postes ", module));
 	}
 

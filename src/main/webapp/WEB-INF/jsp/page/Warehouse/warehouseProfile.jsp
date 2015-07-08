@@ -5,6 +5,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <script src="${baseURL}/js/bootstrap-modal.js" type="text/javascript"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -95,6 +97,7 @@
 										</tbody>
 									</table>
 								</div>
+								<sec:authorize access="hasRole('WRITE_WAREHOUSE')">
 								<form method="POST" name="warehouse" id="warF">
 							<button type="button" class="btn-sm btn btn-success pull-right "
 								style=""
@@ -102,6 +105,7 @@
 								<i class="fa fa-pencil-square-o"></i>&nbsp;Modifier
 							</button>
 						</form>
+						</sec:authorize>
 							</div>
 
 

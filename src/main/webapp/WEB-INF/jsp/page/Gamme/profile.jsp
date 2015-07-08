@@ -67,7 +67,11 @@
 												<td><c:out value="${gamme.nbposte}" /></td>
 											</tr>
 											<tr>
-												<th><label>Coût main d'Oeuvre:</label></th>
+												<th><label>Temps passé(H):</label></th>
+												<td><c:out value="${gamme.time}" /></td>
+											</tr>
+											<tr>
+												<th><label>Coût main d'Oeuvre en Dhs:</label></th>
 												<td><c:out value="${gamme.cost}" /></td>
 											</tr>
 											<tr>
@@ -75,6 +79,7 @@
 												<td><span class="data-value"> <fmt:formatDate
 															pattern="dd/MM/yyyy" value="${gamme.startDate}" /></span></td>
 											</tr>
+											
 											<tr>
 												<th>Date Fin </th>
 												<td><span class="data-value"> <fmt:formatDate
@@ -96,6 +101,16 @@
 												<th><label>Quantité nécessaire:</label></th>
 												<td><span class=""><c:out
 															value="${gamme.createdQT}" /></span></td>
+											</tr>
+											<tr>
+												<th><label>Quantité rejetée:</label></th>
+												<td><span class=""><c:out
+															value="${gamme.rejectedQt}" /></span></td>
+											</tr>
+											<tr>
+												<th><label>Quantité en attente:</label></th>
+												<td><span class=""><c:out
+															value="${gamme.waitingPrieces}" /></span></td>
 											</tr>
 											<tr>
 												<th><label>Type de phase:</label></th>
@@ -267,7 +282,10 @@
                         "data": function(data) {
                             planify(data);  
                         } 
+                    },  "language": {
+                    	"url":"${baseURL}/dataTables.json"
                     },
+                    
                     "columnDefs":[{
                     	"targets":[0],
                     	"name":"name",
@@ -327,4 +345,5 @@
                     ]
                 });});
         </script>
-
+        
+        

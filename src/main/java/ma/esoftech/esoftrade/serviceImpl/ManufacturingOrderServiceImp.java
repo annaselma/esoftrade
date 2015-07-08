@@ -269,7 +269,7 @@ public Map<String , Float> calculeCost(long id) throws ManufacturingNotFoundExce
 	map.put("realUnitCost", map.get("realCost")/(float)manufacturingEntity.getRequeredQT());
 	return map;
 }
-private float calculeCostProductReal(Set<Nomenclature> nomenclatures){
+public static float calculeCostProductReal(Set<Nomenclature> nomenclatures){
 	float cost=0;
 	for (Nomenclature nomenclature : nomenclatures) {
 		cost+=nomenclature.getProduct().getPrice()*nomenclature.getUsedQt();

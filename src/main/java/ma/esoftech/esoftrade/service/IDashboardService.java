@@ -8,4 +8,6 @@ public interface IDashboardService {
 	 public long  getCountOFWaiting();
 	 public long  getCountOFProcessing();
 	 public long  getCountOFLate(Date currentDate);
+	 public float [][] getOfStaticBubble();
+	 public Object [][] getPostesStatic();
 }

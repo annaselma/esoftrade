@@ -136,8 +136,8 @@
 
 				<label for="natureField" class="col-sm-2 control-label esoft-left">Quantité créé: </label>
 				<div class="col-md-2">
-					<form:input path="createdQT" cssClass="form-control " />
-					<form:errors path="createdQT" cssClass="error" />
+					<form:input path="createdQt" cssClass="form-control " />
+					<form:errors path="createdQt" cssClass="error" />
 				</div>
 			</div>
 			<div class="form-group">

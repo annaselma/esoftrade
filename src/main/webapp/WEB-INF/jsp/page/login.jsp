@@ -43,7 +43,7 @@
       
         <div class="form-box" id="login-box">
             <div class="header" style="background: #3BB0DA;">
-            <img src="${baseURL}/img/testG.png" class="img-circle" alt="Image" style="width: 100px; height: 100px;"></div>
+            <img src="${baseURL}/img/softLogo.png" class="img-circle" alt="Image" style="width: 200px; height: 106px;"></div>
             <form action="<c:url  value='j_spring_security_check' />" method='POST'>
             <c:if test="${not empty error}">
 			<div class="error">${error}</div>

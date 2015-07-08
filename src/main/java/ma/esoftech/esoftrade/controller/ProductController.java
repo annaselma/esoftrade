@@ -12,6 +12,7 @@ import ma.esoftech.esoftrade.DTO.FileDTO;
 import ma.esoftech.esoftrade.DTO.PCategoryDTO;
 import ma.esoftech.esoftrade.DTO.PasswordDTO;
 import ma.esoftech.esoftrade.DTO.ProductDTO;
+import ma.esoftech.esoftrade.DTO.ProductQuantityDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.DTO.WarehouseDTO;
 import ma.esoftech.esoftrade.DTO.associated.FileAssociatedDTO;

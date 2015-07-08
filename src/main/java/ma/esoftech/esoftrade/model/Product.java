@@ -29,9 +29,9 @@ public class Product  extends MetaObject implements Serializable {
 	@Column(name="ELMO_SELLINGSTATE", nullable= false)
 	 private Boolean sellingState= true;
 	@Column(name="ELMO_DESIERED_TRESHOLD", length= 255)
-	 private Integer desieredTreshold;
+	 private Integer desieredTreshold=0;
 	@Column(name="ELMO_ALERT_TRESHOLD",length= 255)
-	 private Integer alertTreshold;
+	 private Integer alertTreshold=0;
 	@Column(name="ELMO_NATURE", length=255)
 	private String nature;
 	
