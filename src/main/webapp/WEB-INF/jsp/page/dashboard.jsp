@@ -86,12 +86,12 @@
 <div class="col-lg-12">
 	<div class="box box-info">
 		<div class="box-header">
-			
+			Cout de fabriquation
 		</div>
 		<!-- /.box-header -->
 		<div class="box-body ">
 
-<div id="container2" style="height: 400px; min-width: 310px; max-width: 600px; margin: 0 auto"></div>
+<div id="container2" style="height: 400px; min-width:100%; max-width:100%; margin: 0 auto"></div>
 		</div>
 		<!-- /.box-body -->
 	</div>
@@ -292,6 +292,7 @@ $(function () {
                       var d = date.getDate(),
                               m = date.getMonth(),
                               y = date.getFullYear();
+                      function createCalendar($data){
                       $('#calendar').fullCalendar({
                           header: {
                               left: 'prev,next today',
@@ -307,80 +308,22 @@ $(function () {
                               day: 'jour'
                           },
                       //Random default events
-                      events: [
-                          {
-                              title: 'QTINSTALLATION',
-                              start: new Date(y, m, 1),
-                              backgroundColor: "#f56954", //red 
-                              borderColor: "#f56954" //red
-                          },
-                          {
-                              title: 'RG900',
-                              start: new Date(y, m, d - 5),
-                              end: new Date(y, m, d - 2),
-                              backgroundColor: "#f39c12", //yellow
-                              borderColor: "#f39c12" //yellow
-                          },
-                          {
-                              title: 'TH108Roller',
-                              start: new Date(y, m, d, 10, 30),
-                              allDay: false,
-                              backgroundColor: "#0073b7", //Blue
-                              borderColor: "#0073b7" //Blue
-                          },
-                          {
-                              title: 'Ass322',
-                              start: new Date(y, m, d, 12, 0),
-                              end: new Date(y, m, d, 14, 0),
-                              allDay: false,
-                              backgroundColor: "#00c0ef", //Info (aqua)
-                              borderColor: "#00c0ef" //Info (aqua)
-                          },
-                          {
-                              title: 'DroneR23L',
-                              start: new Date(y, m, d + 1, 19, 0),
-                              end: new Date(y, m, d + 1, 22, 30),
-                              allDay: false,
-                              backgroundColor: "#00a65a", //Success (green)
-                              borderColor: "#00a65a" //Success (green)
-                          },
-                          {
-                              title: 'KelmoAgro',
-                              start: new Date(y, m, 28),
-                              end: new Date(y, m, 29),
-                              url: '${baseURL}/manufacturing/list',
-                              backgroundColor: "#3c8dbc", //Primary (light-blue)
-                              borderColor: "#3c8dbc" //Primary (light-blue)
-                          }
-                      ],
-                      editable: true,
-                      droppable: true, // this allows things to be dropped onto the calendar !!!
-                      drop: function(date, allDay) { // this function is called when something is dropped
-
-                          // retrieve the dropped element's stored Event Object
-                          var originalEventObject = $(this).data('eventObject');
-
-                          // we need to copy it, so that multiple events don't have a reference to the same object
-                          var copiedEventObject = $.extend({}, originalEventObject);
-
-                          // assign it the date that was reported
-                          copiedEventObject.start = date;
-                          copiedEventObject.allDay = allDay;
-                          copiedEventObject.backgroundColor = $(this).css("background-color");
-                          copiedEventObject.borderColor = $(this).css("border-color");
-
-                          // render the event on the calendar
-                          // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-                          $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
-
-                          // is the "remove after drop" checkbox checked?
-                          if ($('#drop-remove').is(':checked')) {
-                              // if so, remove the element from the "Draggable Events" list
-                              $(this).remove();
-                          }
-
-                      }
+                      events: $data,
+                      editable: false,
+                      droppable: false, // this allows things to be dropped onto the calendar !!!
+                      
                   });
+                      }//ici 
+                      $.ajax({
+                  	    url: '${baseURL}/dashboard/calendar_events',
+                  	    type: 'GET',
+                  	    async: true,
+                  	    dataType: "json",
+                  	    success: function (data) {
+                  	    	createCalendar(data);
+                  	    	console.log(data);
+                  	    }
+                  	  });
                       $("#add-new-event").click(function(e) {
                           e.preventDefault();
                           //Get value and make sure it is not null
@@ -408,6 +351,7 @@ $(function () {
 <!-- testEnd -->
 <script type="text/javascript">
 $(function () {
+function  loadPieCharts($data){
     $('#container3').highcharts({
         chart: {
             plotBackgroundColor: null,
@@ -439,17 +383,18 @@ $(function () {
             colorByPoint: true,
             data: [{
                 name: "ordre bloqué",
-                y: 23.10
+                y: $data.terminate[1]
             }, {
-                name: "orde terminé",
-                y: 70.38
-            }]
+                name: "ordres terminé",
+                y: $data.process[0]
+            },
+            {
+                name: "ordres annulés",
+                y: $data.process[2]
+            }
+            ]
         }]
     });
-});
-</script>
-<script type="text/javascript">
-$(function () {
     $('#container4').highcharts({
         chart: {
             plotBackgroundColor: null,
@@ -481,17 +426,28 @@ $(function () {
             colorByPoint: true,
             data:[{
             name: "ordre en retard",
-            y: 4.77
+            y: $data.process[1]
         }, {
             name: "en attente",
-            y: 0.91
+            y: $data.process[2]
        
         },{
             name: "orde en cours",
-            y: 10.38
+            y: $data.process[0]
         }]
         }]
     });
+}
+$.ajax({
+    url: '${baseURL}/dashboard/pie_data',
+    type: 'GET',
+    async: true,
+    dataType: "json",
+    success: function (data) {
+    	loadPieCharts(data);
+    }
+  });
 });
 </script>
+
 

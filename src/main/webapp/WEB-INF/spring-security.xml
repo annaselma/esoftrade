@@ -76,7 +76,7 @@
 		  <intercept-url pattern="/dashboard**" access="isAuthenticated()"  />
 		  <intercept-url pattern="/dashboard/**" access="isAuthenticated()"  />
 		<form-login login-page="/login.html" 
-		    default-target-url="/client.html"
+		    default-target-url="/dashboard"
 			authentication-failure-url="/login.html?error=failed"
 		    username-parameter="username"
 			password-parameter="password" />

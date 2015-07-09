@@ -51,10 +51,11 @@ public class DashboardDao  implements IDashboard{
 	@Override
 	public long getCountOFLate(Date currentDate) {
 		session=sessionFactory.getCurrentSession();
-		String hql="Select count(orderFab) From OrderManufacturing as orderFab where orderFab.endDate< :currentDate and orderFab.status NOT IN('canceled','blocked','end')";
+		String hql="Select count(orderFab) From OrderManufacturing as orderFab where orderFab.endDate< :currentDate and orderFab.status='onProduction'";
 		Query query= session.createQuery(hql);
 		query.setParameter("currentDate", currentDate);
 		long count= (long)query.uniqueResult();
+		System.out.println("late"+count);
 		return count;
 	}
 
@@ -72,6 +73,24 @@ public class DashboardDao  implements IDashboard{
 		Query query=session.createQuery(hql);
 		query.setParameter("parameter", true);
 		return query.list();
+	}
+
+	@Override
+	public long getCountOFEnd() {
+		session=sessionFactory.getCurrentSession();
+		String hql="Select count(orderFab) From OrderManufacturing as orderFab where  orderFab.status ='end'";
+		Query query= session.createQuery(hql);
+		long count= (long)query.uniqueResult();
+		return count;
+	}
+
+	@Override
+	public long getCountOFCanceled() {
+		session=sessionFactory.getCurrentSession();
+		String hql="Select count(orderFab) From OrderManufacturing as orderFab where orderFab.status= 'canceled'";
+		Query query= session.createQuery(hql);
+		long count= (long)query.uniqueResult();
+		return count;
 	}
 
 }

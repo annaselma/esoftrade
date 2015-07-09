@@ -1,7 +1,11 @@
 package ma.esoftech.esoftrade.serviceImpl;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import ma.esoftech.esoftrade.Dao.IDashboard;
@@ -110,6 +114,97 @@ public class DashboardServiceImpl implements IDashboardService{
 		res[0]=names;
 		res[1]=times;
 		res[2]=th;
+		return res;
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Map<String, Float[]> getPieData() {
+		Map<String, Float[]> res=new HashMap<String, Float[]>();
+		long countCanceled=dashboardDao.getCountOFCanceled();
+		long countEnd= dashboardDao.getCountOFEnd();
+		long countBlocked= dashboardDao.getCountOFBlocked();
+		Float[] percentTerminated=new Float[3];
+		long countTotal=countBlocked+countEnd+countCanceled;
+		if(countTotal>0){
+		percentTerminated[0]=(float)((float)countEnd/(countBlocked+countEnd+countCanceled ))*100f;
+		percentTerminated[1]=(float)((float)countBlocked/(countBlocked+countEnd+countCanceled))*100f;
+		percentTerminated[2]=(float)((float)countCanceled/(countBlocked+countEnd+countCanceled))*100f;
+		res.put("terminate", percentTerminated);
+		}
+		long countWaiting= dashboardDao.getCountOFWaiting();
+		long countProcessing=dashboardDao.getCountOFProcessing();
+		long countLate= dashboardDao.getCountOFLate(new Date());
+	    Float[] percentProcess=new Float[3];
+	    if(countProcessing>0){
+	    percentProcess[0]=(float)((float)(countProcessing-(countLate+countWaiting))/countProcessing)*100;
+	    percentProcess[1]=(float)((float)countLate/countProcessing)*100;
+	    percentProcess[2]=(float)((float)countWaiting/countProcessing)*100;
+	    res.put("process", percentProcess);}
+		return res;
+	}
+
+	SimpleDateFormat sf=new SimpleDateFormat("yyyy-MM-dd");
+	@Override
+	
+	@Transactional(readOnly=true)
+	public List<Map<String,Object>> getCalandarOrders() {
+		/*
+		 * 
+		 * title: 'QTINSTALLATION',
+                              start: new Date(y, m, 1),
+                              backgroundColor: "#f56954", //red 
+                              borderColor: "#f56954" //red*/
+		List<OrderManufacturing> orders=manufacturingDao.getAllOF(UTILS.START_LIST, UTILS.MAX_LENGHT_LIST, "","");
+		List<Map<String,Object>>res=new ArrayList<Map<String,Object>>();
+		Map<String,Object> map=null;
+		for (OrderManufacturing order : orders) {
+			map=new HashMap<String,Object>();
+			map.put("title", order.getRef());
+			map.put("start",sf.format(order.getStartDate()));
+			map.put("end", sf.format(order.getEndDate()));
+			map.put("URL", "/manufacturing/profile?id="+order.getId());
+			switch(order.getStatus()){
+			case blocked:
+				map.put("backgroundColor","#0073b7");
+				map.put("borderColor","#0073b7");
+				break;
+			case canceled:
+				map.put("backgroundColor","#00c0ef");
+				map.put("borderColor","#0073b7");
+				
+				break;
+			case charged:
+				map.put("backgroundColor","#0073b7");
+				map.put("borderColor","#0073b7");
+				break;
+			case end:
+				map.put("backgroundColor","#0073b7");
+				map.put("borderColor","#0073b7");
+				break;
+			case inpreparation:
+				map.put("backgroundColor","#0073b7");
+				map.put("borderColor","#0073b7");
+				break;
+			case notcharged:
+				map.put("backgroundColor","#0073b7");
+				map.put("borderColor","#0073b7");
+				break;
+			case onProduction:
+				map.put("backgroundColor","#0073b7");
+				map.put("borderColor","#0073b7");
+				break;
+			case waiting:
+				map.put("backgroundColor","#0073b7");
+				map.put("borderColor","#0073b7");
+				break;
+			default:
+				break;
+			
+			}
+			res.add(map);
+			}
+		
 		return res;
 	}
 

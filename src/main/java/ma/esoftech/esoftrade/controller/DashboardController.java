@@ -2,6 +2,7 @@ package ma.esoftech.esoftrade.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -52,7 +53,15 @@ IManufacturingOrderService manufacturingService;
 	public @ResponseBody Object[][] getLineData(ModelMap model){
 		return  dashboardService.getPostesStatic();
 	}
-	
+	@RequestMapping(value="/pie_data",method=RequestMethod.GET,produces = "application/json")
+	public @ResponseBody Map<String, Float[]> getPieData(ModelMap model){
+		return  dashboardService.getPieData();
+	}
+	@RequestMapping(value="/calendar_events",method=RequestMethod.GET,produces = "application/json")
+	public @ResponseBody List<Map<String,Object>> getevents(ModelMap model){
+		return  dashboardService.getCalandarOrders();
+	}
+		
 	public DashboardController(){
 		
 	}

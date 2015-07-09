@@ -10,6 +10,8 @@ public interface IDashboard {
 	 public long  getCountOFBlocked();
 	 public long  getCountOFWaiting();
 	 public long  getCountOFProcessing();
+	 public long  getCountOFEnd();
+	 public long  getCountOFCanceled();
 	 public long  getCountOFLate(Date currentDate);
 	 public List<Object[]> ListCriticalOF();
 	 public List<PostPerformance> getPostWithPerformance();
