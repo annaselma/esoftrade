@@ -55,13 +55,13 @@ public class CompanyDaoImp  implements ICompanyDao{
 		String hql=null;
 		switch (type) {
 		case supplier:
-			  hql="select  company From Company as company   where company.customer=true order by gamme."+sorting;
+			  hql="select  company From Company as company   where company.customer=true order by company."+sorting;
 			break;
        case customer:
-    	   hql="select  company From Company as company   where company.supplier=true order by gamme."+sorting;
+    	   hql="select  company From Company as company   where company.supplier=true order by company."+sorting;
 			break;
 	   default:
-		   hql="select  company From Company as company   order by gamme."+sorting;
+		   hql="select  company From Company as company   order by company."+sorting;
 		   break;
 
 		}

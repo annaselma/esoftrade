@@ -17,7 +17,9 @@ public class Mouvement extends MetaObject implements Serializable {
 	@Column(name="ELMO_MOTIF", nullable= false,length= 255)
 	private String motif;
 	@Column(name="ELMO_QUANTITY", nullable= false)
-	private int quantity;
+	private int quantity=0;
+	@Column(name="ELMO_PRICE")
+	private float price=0f;
 //	private Invoice invoice;
 	
 	@Enumerated(EnumType.STRING)
@@ -69,8 +71,12 @@ public class Mouvement extends MetaObject implements Serializable {
 	@ManyToOne
 	 @JoinColumn(name="ELMO_ORDERMANUFACTURING_ID")
 	 private OrderManufacturing ofabrication;
+	@ManyToOne
+	 @JoinColumn(name="ELMO_ORDER_ID")
+	 private OrderDocument orderDocument;
 	
 
+	
 	public OrderManufacturing getOfabrication() {
 		return ofabrication;
 	}
@@ -87,9 +93,32 @@ public class Mouvement extends MetaObject implements Serializable {
 		this.motif = motif;
 	}
 
-	public enum MouvementType{
-		invoice,shipping,supplierOrder,stockCorrection,manufacturing,transfertStock
+	public OrderDocument getOrderDocument() {
+		return orderDocument;
 	}
+
+	public void setOrderDocument(OrderDocument orderDocument) {
+		this.orderDocument = orderDocument;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+	public enum MouvementType{
+		invoice,shipping,supplierOrder,stockCorrection,manufacturing,transfertStock,customerOrder
+	}
+
+
+	public float getPrice() {
+		return price;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
+	
 	
 }
 

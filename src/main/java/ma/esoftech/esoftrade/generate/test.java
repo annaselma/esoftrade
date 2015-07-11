@@ -20,9 +20,10 @@ public class test {
 
 	public static void main(String[] args) {
 		//createPermis();
-		int cost=3;
-		cost+=4;
-		System.out.println(cost);
+     long trois=3;
+     long quatre=4;
+     float f=(float)(trois+quatre)/(trois*123+quatre);
+     System.out.println(-f);
 		
 	}
 

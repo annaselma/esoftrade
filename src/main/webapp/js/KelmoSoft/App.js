@@ -1,3 +1,20 @@
+function setPrice(base,value){
+	$.ajax({ // ajax call starts
+	      url: base+'/product/find?id='+value, 
+	      dataType: 'json', // Choosing a JSON datatype
+	    })
+	    .done(function(data) { // Variable data contains the data we get from serverside
+	      if(data!=null){
+	    	  console.log(data);
+	    	  $("#price").val(data.price);
+	      }
+	    });
+	
+}
+
+function CheckNumber(event){
+	return event.charCode >= 48 && event.charCode <= 57;
+}
 function n(n){
 		return n > 9 ? "" + n: "0" + n;
 	}

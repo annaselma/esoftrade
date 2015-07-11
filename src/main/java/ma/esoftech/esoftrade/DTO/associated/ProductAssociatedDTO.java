@@ -6,6 +6,7 @@ public class ProductAssociatedDTO {
     private String ref;
     private String libelle;
     private float price;
+    private float pmp=0;
 	public long getId() {
 		return id;
 	}
@@ -29,6 +30,12 @@ public class ProductAssociatedDTO {
 	}
 	public void setPrice(float price) {
 		this.price = price;
+	}
+	public float getPmp() {
+		return pmp;
+	}
+	public void setPmp(float pmp) {
+		this.pmp = pmp;
 	}
     
 }

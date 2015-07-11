@@ -32,6 +32,7 @@ public class FileUploadUTILS {
 	
 	public  static void prepareTabProfil(ModelMap model,boolean file){
 		if(file){
+			System.out.println(file+"actiiive");
 			model.addAttribute("defaultActive","");
 			model.addAttribute("fileActive","active");
 			model.addAttribute("defaultIn","");

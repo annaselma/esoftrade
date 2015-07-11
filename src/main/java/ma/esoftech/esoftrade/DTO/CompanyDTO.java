@@ -35,7 +35,7 @@ public class CompanyDTO {
 	@Email
 	private String email;
 	private String supplierCode;
-	private String CustomerCode;
+	private String customerCode;
 	private boolean customer;
 	private boolean supplier;
 	private ThirdStatus status;
@@ -115,10 +115,10 @@ public class CompanyDTO {
 		this.supplierCode = supplierCode;
 	}
 	public String getCustomerCode() {
-		return CustomerCode;
+		return customerCode;
 	}
 	public void setCustomerCode(String customerCode) {
-		CustomerCode = customerCode;
+		this.customerCode = customerCode;
 	}
 	public boolean isCustomer() {
 		return customer;

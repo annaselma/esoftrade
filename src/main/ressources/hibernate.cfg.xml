@@ -31,9 +31,12 @@
 		<mapping class="ma.esoftech.esoftrade.model.Warehouse" />
 		<mapping class="ma.esoftech.esoftrade.model.OrderManufacturing" />
 		<mapping class="ma.esoftech.esoftrade.model.Nomenclature" />
-		   <mapping class="ma.esoftech.esoftrade.model.Gamme" />
-		   <mapping class="ma.esoftech.esoftrade.model.Poste" />
-	<mapping class="ma.esoftech.esoftrade.model.CategoryPoste" />
+		<mapping class="ma.esoftech.esoftrade.model.Gamme" />
+	   <mapping class="ma.esoftech.esoftrade.model.Poste" />
+	   <mapping class="ma.esoftech.esoftrade.model.CategoryPoste" />
+	   <mapping class="ma.esoftech.esoftrade.model.OrderDocument" /> 
+       <mapping class="ma.esoftech.esoftrade.model.BusinessDocument"/>
+       <mapping class="ma.esoftech.esoftrade.model.OrderLine"/>
 		<!-- <mapping class="ma.esoftech.esoftrade.model.Order" /> -->
 		<!-- <mapping class="ma.esoftech.esoftrade.model.DeliveryOrder"/> -->
 		<!-- <mapping class="ma.esoftech.esoftrade.model.DocumentLine"/> -->

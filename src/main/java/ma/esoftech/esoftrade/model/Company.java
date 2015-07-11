@@ -33,7 +33,7 @@ public class Company extends Person {
 
 	@Index(name="ELMO_INDEX_CUSTOMER_CODE")
 	@Column(name = "ELMO_CUSTOMER_CODE", length = 255)
-	private String CustomerCode;
+	private String customerCode;
 	
 	@Column(name="ELMO_CUSTOMER")
 	private boolean customer;
@@ -78,11 +78,11 @@ public class Company extends Person {
 	}
 
 	public String getCustomerCode() {
-		return CustomerCode;
+		return customerCode;
 	}
 
 	public void setCustomerCode(String customerCode) {
-		CustomerCode = customerCode;
+		this.customerCode = customerCode;
 	}
 
 	public String getWebSite() {

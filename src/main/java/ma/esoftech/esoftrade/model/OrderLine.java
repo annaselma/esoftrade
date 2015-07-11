@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "ELMO_DOCUMENT_LINE")
-public class DocumentLine extends MetaObject {
+public class OrderLine extends MetaObject {
 
 	/**
 	 * 
@@ -18,26 +18,26 @@ public class DocumentLine extends MetaObject {
 	@Column(name="ELMO_SEQ",nullable=false)
 	private long sequence;
 
-	@Column(name="ELMO_SUMMARY",length=1024)
+	@Column(name="ELMO_SUMMARY",length=511)
 	private String summary;
 	
 	@Column(name="ELMO_TAX_RATE",nullable=false)
-	private double taxRate;
+	private double taxRate=0;
 	
 	@Column(name="ELMO_UNIT_PRICE",nullable=false)
-	private double unitPrice;
+	private double unitPrice=0;
 	
 	@Column(name="ELMO_QTE")
 	private long  quantity;
 	
 	@Column(name="ELMO_REDUCTION_RATE")
-	private double reductionRate;
+	private double reductionRate=0;
 	
 	@ManyToOne
 	@JoinColumn(name = "ELMO_PRODUCT_ID")
 	private Product product;
 	
-	public DocumentLine(){
+	public OrderLine(){
 		super();
 	}
 

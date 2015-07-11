@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import ma.esoftech.esoftrade.Dao.IMouvementDao;
 import ma.esoftech.esoftrade.model.Mouvement;
+import ma.esoftech.esoftrade.model.OrderDocument;
 import ma.esoftech.esoftrade.model.Product;
 import ma.esoftech.esoftrade.model.ProductWarehouse;
 import ma.esoftech.esoftrade.model.Warehouse;
@@ -51,7 +52,27 @@ public MouvementDao() {
 	     List<Mouvement>mouvement=query.list();
 		return mouvement;
 	}
-
+	@Override
+	public List<Mouvement> getListMouvementByOrder(int start, int length,
+			String sorting, String filter,OrderDocument order) {
+		session=sessionFactory.getCurrentSession();
+		if(sorting ==null ||sorting.equals("")){
+			sorting ="id ASC";
+		}
+	     String hql="From Mouvement as mouv  where mouv.orderDocument=:doc order by mouv."+sorting;
+	     org.hibernate.Query query=session.createQuery(hql);
+	     query.setParameter("doc", order);
+	     query.setFirstResult(start).setMaxResults(length);
+	     List<Mouvement>mouvement=query.list();
+		return mouvement;
+	}
+	@Override
+	public long MouvementCountByOrder(String filter,OrderDocument order) {
+		session=sessionFactory.getCurrentSession();
+		long count=(Long)session.createQuery("Select count(mouvement) From Mouvement as mouvement  where mouvement.orderDocument=:doc ").
+				setParameter("doc", order).uniqueResult();
+	return count;
+	}
 	@Override
 	public long MouvementCount(String filter) {
 		session=sessionFactory.getCurrentSession();

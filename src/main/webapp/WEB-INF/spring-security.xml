@@ -42,6 +42,8 @@
 		  <intercept-url pattern="/categoryPost**" access="isAuthenticated()"  />
 		  <intercept-url pattern="/categoryPost/**" access="isAuthenticated()"  />
 		  <intercept-url pattern="/third/**" access="isAuthenticated()"  />
+		  <intercept-url pattern="/contact/**" access="isAuthenticated()"  />
+		  <intercept-url pattern="/order/**" access="isAuthenticated()"  />
 		<form-login login-page="/login.html" 
 		    default-target-url="/client.html"
 			authentication-failure-url="/login.html?error=failed"

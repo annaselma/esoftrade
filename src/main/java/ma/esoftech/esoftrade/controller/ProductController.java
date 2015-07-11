@@ -15,6 +15,7 @@ import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.DTO.WarehouseDTO;
 import ma.esoftech.esoftrade.DTO.associated.FileAssociatedDTO;
+import ma.esoftech.esoftrade.DTO.associated.ProductAssociatedDTO;
 import ma.esoftech.esoftrade.controller.session.SessionBean;
 import ma.esoftech.esoftrade.datatablesAPI.Order;
 import ma.esoftech.esoftrade.datatablesAPI.RequestTable;
@@ -223,6 +224,22 @@ public class ProductController extends AbstractController {
 		@RequestMapping(value="/search",method=RequestMethod.GET,produces = "application/json")
 		public @ResponseBody List<ProductDTO> searchProducts(@RequestParam String search,ModelMap model){
 			return  productService.searchProducts(UTILS.MAX_LENGHT_LIST,UTILS.START_LIST, search);
+		}
+		@RequestMapping(value="/find",method=RequestMethod.GET,produces = "application/json")
+		public @ResponseBody ProductAssociatedDTO getProduct(@RequestParam long id,ModelMap model){
+			try {
+				ProductDTO product=productService.findProductById(id);
+				ProductAssociatedDTO p=new ProductAssociatedDTO();
+				p.setId(product.getId());
+				p.setRef(product.getRef());
+				p.setLibelle(product.getRef());
+				p.setPrice(product.getPrice());
+				return p;
+			} catch (ProductNotFoundException e) {
+				return new ProductAssociatedDTO();
+			}
+			
+			
 		}
 		
 		

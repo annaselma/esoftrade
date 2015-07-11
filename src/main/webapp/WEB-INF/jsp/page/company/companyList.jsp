@@ -8,10 +8,10 @@
 <c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
 <div class="box">
 	<div class="box-header">
-		<h3 class="box-title">la liste des produits</h3>
+		<h3 class="box-title">Liste des Tiers</h3>
 		<div class="box-tools pull-right">
-			<a class="btn btn-primary btn-sm" href="${baseURL}/product/create"
-				style="color: white;">+ Ajouter produit</a> &nbsp;
+			<a class="btn btn-primary btn-sm" href="${baseURL}/third/create?type=${companyType}"
+				style="color: white;">+ Ajouter Tiers</a> &nbsp;
 		</div>
 	</div>
 	<!-- /.box-header -->
@@ -19,14 +19,11 @@
 		<table id="list1" class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th>Rèfèrence</th>
-					<th>Libellé</th>
-					<th>Code barre</th>
-					<th>categorie</th>
-					<th>Stock désiré</th>
-					<th>Prix en DH</th>
-					<th>Vente</th>
-					<th>achat</th>
+					<th>Société</th>
+					<th>Code postal</th>
+					<th>Ville</th>
+					<th>Date création</th>
+					<th>état</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -34,14 +31,11 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<th>Rèfèrence</th>
-					<th>Libellé</th>
-					<th>Code barre</th>
-					<th>categorie</th>
-					<th>Stock désiré</th>
-					<th>Prix en DH</th>
-					<th>Vente</th>
-					<th>achat</th>
+					<th>Société</th>
+					<th>Code postal</th>
+					<th>Ville</th>
+					<th>Date création</th>
+					<th>état</th>
 					<th>Actions</th>
 				</tr>
 			</tfoot>
@@ -77,88 +71,73 @@
                     "processing": true,
                     "serverSide": true,
                     "ajax": {
-                        "url": "${baseURL}/product/getList",
+                        "url": "${baseURL}/third/getList?type=${companyType}",
                         "data": function(data) {
                             planify(data);  
                         } 
                     },
                     "columnDefs":[{
                     	"targets":[0],
-                    	"name":"ref",
-                    	"data":"ref",
+                    	"name":"name",
+                    	"data":"name",
                     	"render": function ( data, type, full, meta ) {
-                    		$link='<a href="${baseURL}/product/profile?id='+full.id+'">'+data+'</a>';
+                    		$link='<a href="${baseURL}/third/profile?id='+full.id+'">'+data+'</a>';
                       	
                       	      return $link;
                       	    }
                     },
                     {
                     	"targets":[1],
-                    	"name":"libelle",
-                    	"data":"libelle",
+                    	"name":"zipCode",
+                    	"data":"zipCode",
                     
                     },
                     {
                     	"targets":[2],
-                    	"name":"barreCode",
-                    	"data":"barreCode",
+                    	"name":"city",
+                    	"data":"city",
                     
                     },
                     {
                     	"targets":[3],
-                    	"name":"category.name",
-                    	"data":"category.name",
+                    	"name":"createDate",
+                    	"data":"createDate",
+                    	"render": function ( data, type, full, meta ) {
+                     	      date = new Date(data);
+                     	      return date.format();
+                     	    }
                     
                     },
                     {
                     	"targets":[4],
-                    	"name":"desieredTreshold",
-                    	"data":"desieredTreshold",
+                    	"name":"status",
+                    	"data":"status",
+                    	"render" : function(data, type, full,
+								meta) {
+							$link = "";
+							switch (data) {
+							case "inActivity":
+								$link = '<span class="label label-success">Active</span>';
+								break;
+							case "closed":
+								$link = '<span class="label label-danger">Clos</span>';
+								break;
+							default:
+
+							}
+							return $link;
+						}
                     
                     },
                     {
                     	"targets":[5],
-                    	"name":"price",
-                    	"data":"price",
-                    
-                    },
-                    {
-                    	"targets":[6],
-                    	"name":"sellingState",
-                    	"data":"sellingState",
-                    	"render": function ( data, type, full, meta ) {
-                   		 $active='<div id="statut" class="label label-success">en vente</div>';
-                   		 $inactive='<div id="statut" class="label label-danger">hors vente</div>';
-                   		 if(data==true){
-                   			 return $active;
-                   		 }
-                   	      return $inactive;
-                   	    }
-                    
-                    },
-                    {
-                    	"targets":[7],
-                    	"name":"purchasingState",
-                    	"data":"purchasingState",
-                    	 "render": function ( data, type, full, meta ) {
-                    		 $active='<div id="statut" class="label label-success">en achat</div>';
-                    		 $inactive='<div id="statut" class="label label-danger">hors achat</div>';
-                    		 if(data==true){
-                    			 return $active;
-                    		 }
-                    	      return $inactive;
-                    	    }
-                    
-                    },
-                    {
-                    	"targets":[8],
                     	"name":"id",
                     	"data":"id",
                     	"orderable": false,
                     	 "render": function ( data, type, full, meta ) {
-                    		 $html='<a href="${baseURL}/product/profile?id='+data+'"  class="btn btn-info btn-xs"><i class="fa   fa-search"></i></a>&nbsp;';
-                    		 $html+='<a href="${baseURL}/product/update?id='+data+'"  class="btn btn-default btn-xs"><i class="fa   fa-edit"></i></a>&nbsp;';
-                    		 $html+='<a href="${baseURL}/product/delete?id='+data+'"  class="btn btn-danger btn-xs"><i class="fa   fa-trash-o"></i></a>';
+                    		 $html='<a href="${baseURL}/third/profile?id='+data+'"  class="btn btn-info btn-xs"><i class="fa   fa-search"></i></a>&nbsp;';
+                    		 $html+='<a href="${baseURL}/third/update?id='+data+'"  class="btn btn-default btn-xs"><i class="fa   fa-edit"></i></a>&nbsp;';
+                    		 $html+='<a href="${baseURL}/third/delete?id='+data+'"  class="btn btn-danger btn-xs"><i class="fa   fa-trash-o"></i></a>';
                     		 return $html;
                     	    }
                     

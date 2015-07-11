@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import ma.esoftech.esoftrade.DTO.associated.EditorDTO;
 import ma.esoftech.esoftrade.DTO.associated.OFAssociatedDTO;
+import ma.esoftech.esoftrade.DTO.associated.OrderAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.ProductAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.WarehouseAssociatedDTO;
 import ma.esoftech.esoftrade.model.Mouvement.MouvementType;
@@ -21,6 +22,7 @@ public class MouvementDTO {
 	 private EditorDTO modifier;
 	 private Date lastEdit;
 	 private String motif;
+	 private float price=0;
 	 private int quantity=0;
 	private MouvementType type;
 	@NotNull(message="l'entrepot ne doit pas etre vide")
@@ -29,6 +31,7 @@ public class MouvementDTO {
 	private ProductAssociatedDTO product=null ;
 	
 	private OFAssociatedDTO ofabrication=null;
+	private OrderAssociatedDTO orderDocument;
 	public long getId() {
 		return id;
 	}
@@ -97,5 +100,19 @@ public class MouvementDTO {
 	public void setOfabrication(OFAssociatedDTO ofabrication) {
 		this.ofabrication = ofabrication;
 	}
+	public OrderAssociatedDTO getOrderDocument() {
+		return orderDocument;
+	}
+	public void setOrderDocument(OrderAssociatedDTO orderDocument) {
+		this.orderDocument = orderDocument;
+	}
+	public float getPrice() {
+		return price;
+	}
+	public void setPrice(float price) {
+		this.price = price;
+	}
+	
+	
 	
 }

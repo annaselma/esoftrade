@@ -50,6 +50,7 @@ public class ProductDTO {
 	 @NotNull(message="la catégorie ne doit pas etre vide")
 	 private PCategoryAssociatedDTO category=new PCategoryAssociatedDTO();
 	 private String department;
+	 private float pmp;
 	 private  List<FileAssociatedDTO> files=new ArrayList<FileAssociatedDTO>();
 	 public ProductDTO(){
 		 
@@ -197,6 +198,12 @@ public class ProductDTO {
 		}
 		public void setFiles(List<FileAssociatedDTO> files) {
 			this.files = files;
+		}
+		public float getPmp() {
+			return pmp;
+		}
+		public void setPmp(float pmp) {
+			this.pmp = pmp;
 		}
 	 
 	 

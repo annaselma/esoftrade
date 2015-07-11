@@ -80,8 +80,8 @@ public class CompanyController extends AbstractController {
 			company.setSupplier(true);
 			break;
 		default:
-			company.setCustomer(false);
-			company.setSupplier(false);
+			company.setCustomer(true);
+			company.setSupplier(true);
 			break;
 		}
 		model.addAttribute("company", company);
@@ -141,6 +141,24 @@ public class CompanyController extends AbstractController {
 		companyService.deleteCompany(company);
 		return "redirect:/product/list";
 	}
+	@RequestMapping(value="/list",method=RequestMethod.GET)
+	 public String loadListProfil(@RequestParam(defaultValue="all") CompanyType type,ModelMap model){
+		 switch(type){
+		case all:
+			model.addAttribute("companyType", "all");
+			break;
+		case customer:
+			model.addAttribute("companyType", "customer");
+			break;
+		case supplier:
+			model.addAttribute("companyType", "supplier");
+			break;
+		default:
+			model.addAttribute("companyType", "all");
+			break;
+		 }
+		 return "companyList";
+	 }
 	
 	@RequestMapping(value="/getList",method=RequestMethod.GET,produces = "application/json")
 	public @ResponseBody ResponseTable<CompanyDTO> loadTables(@Valid RequestTable req,BindingResult bindingResult,@RequestParam(value="type")CompanyType type,ModelMap model){
@@ -209,6 +227,7 @@ public class CompanyController extends AbstractController {
 		return PATH_PROFIL+"?id="+id+"&file=true";
 	}
 	
+	
 	@RequestMapping(value="/upload",method=RequestMethod.POST)
 	public String uploadAttachedFile(@RequestParam(value = "file") MultipartFile file,@RequestParam long id,ModelMap model){
 	
@@ -253,6 +272,6 @@ public class CompanyController extends AbstractController {
 			model.addAttribute("messageError",e.getMessage());
 			return "error";
 		}
-		 return PATH_PROFIL+"?id="+id+"&file=true";
+		 return PATH_PROFIL+"?id="+id;
 	}
 }

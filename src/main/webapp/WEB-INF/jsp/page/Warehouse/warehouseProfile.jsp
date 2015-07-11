@@ -468,9 +468,12 @@
 											case "supplierOrder":
 												$link = '<a href="#">commande fournisseur</a>';
 												break;
-											case "manufacturing":
-												$link = '<a href="'+full.ofabrication.id+'">'full.ofabrication.ref'</a>';
-												break;
+											case  "customerOrder":
+					                     		 $link='<a href="${baseURL}/order/profile?id='+full.orderDocument.id+'">'+full.orderDocument.customerReference+'</a>';
+					                  	    	 break;
+					                        case  "manufacturing":
+												 $link='<a href="${baseURL}/manufacturing/profile?id='+full.ofabrication.id+'">'+full.ofabrication.ref+'</a>';
+												 break;
 											default:
 
 											}

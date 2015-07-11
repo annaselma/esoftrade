@@ -73,9 +73,9 @@
 									".tokenize-sample ",
 									function() {
 										console.log($(".Token span").text());
-										$text= $("#select-product .Token").remove();
-										   $("##elect-product select option[selected='selected']").remove();
-										    $("#select-product .TokenSearch input").val($text);
+										   $("#select-product .Token").remove();
+										   $("#select-product select option[selected='selected']").remove();
+										    $("#select-product .TokenSearch input").val();
 									});
 				</script>
 
@@ -109,7 +109,7 @@
 				   $text= $("#select-user .Token span").text();
 				   $(" #select-user .Token").remove();
 				   $("#select-user select option[selected='selected']").remove();
-				    $("#select-user .TokenSearch input").val($text);
+				    $("#select-user .TokenSearch input").val();
 				});
 				</script>
 			</div>

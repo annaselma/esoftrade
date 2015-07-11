@@ -11,12 +11,11 @@
 	<ul id="tabs" class="nav nav-tabs">
 		<li class="${defaultActive}"><a href="#fiche" data-toggle="tab"
 			aria-expanded="false"><i class="fa fa-file"></i>&nbsp;Fiche
-				Produit</a></li>
+				Tiers</a></li>
 		<li class=""><a href="#contacts" data-toggle="tab"
-			aria-expanded="false"><i class="fa fa-truck" style=""></i>&nbsp;Contacts
-				/to</a></li>
+			aria-expanded="false"><i class="fa  fa-group" style=""></i>&nbsp;Contacts</a></li>
 		<li class=""><a href="#events" data-toggle="tab"
-			aria-expanded="false"><i class="fa fa-truck" style=""></i>&nbsp;Commandes
+			aria-expanded="false"><i class="fa fa-file-text" style=""></i>&nbsp;Commandes
 				/to</a></li>
 		<li class="${fileActive}"><a href="#fichierjoint"
 			data-toggle="tab" aria-expanded="true"><i class="fa fa-folder"
@@ -28,7 +27,7 @@
 	<div id="myTabContent" class="tab-content">
 		<div class="tab-pane fade ${defaultActive} ${defaultIn} " id="fiche">
 			<div class="tab-pane ${defaultActive}" id="fiche-tab">
-				<div class="row">
+			<div class="row">
 					<div class="col-md-9">
 						<div class="product-info-left"
 							style="padding-left: 1%; padding-top: 4%;">
@@ -40,7 +39,7 @@
 											<tr>
 												<th style="width: 50%"><label>Code client:</label></th>
 												<td><span class="text-muted"><c:out
-															value="${company.CustomerCode}" /></span></td>
+															value="${company.customerCode}" /></span></td>
 											</tr>
 											<tr>
 												<th><label>Code fournisseur:</label></th>
@@ -81,7 +80,7 @@
 											</tr>
 											<tr>
 												<th><label>Web:</label></th>
-												<td><c:out value="${company.web}" /></td>
+												<td><c:out value="${company.webSite}" /></td>
 											</tr>
 											<tr>
 												<th><label>Type du tiers:</label></th>
@@ -227,7 +226,7 @@
 
 							<div class="">
 								<div id="status">
-									En vente &nbsp;
+								Statut: &nbsp;
 									<c:choose>
 										<c:when test="${company.status == 'inActivity'}">
 											<div id="vente" class="label label-success">
@@ -244,18 +243,20 @@
 
 							</div>
 							<div class="">
-								<div id="client">
+								<div id="client" class="row">
 									<c:if test="${company.customer}">
 										<div id="Customer" class="label label-info">
 											<label>Client</label>
 										</div>
 									</c:if>
+									</div>
+									<div class="row">
 									<c:if test="${company.supplier}">
 										<div id="Customer" class="label label-info">
 											<label>Fournisseur</label>
 										</div>
 									</c:if>
-								</div>
+								    </div>
 
 							</div>
 
@@ -268,6 +269,43 @@
 
 		</div>
 		<div class="tab-pane fade" id="contacts">
+		<div class="row">
+			<div  class="col-md-12">
+			<button type="button" class="btn-sm btn btn-success pull-right "
+									style="margin-right: 2%; margin-bottom: 2%"
+									 onclick="location.href='${baseURL}/contact/create?company_id=${company.id}'">
+									<i class="fa fa-plus-square "></i> &nbsp;ajouter
+								</button>
+								</div> 
+		</div>						
+		<table id="list3" class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Post</th>
+					<th>Tel perso</th>
+					<th>Tel pro</th>
+					<th>Email</th>
+					<th>état</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th>Nom</th>
+					<th>Post</th>
+					<th>Tel perso</th>
+					<th>Tel pro</th>
+					<th>Email</th>
+					<th>état</th>
+					<th>Actions</th>
+				</tr>
+			</tfoot>
+		</table>
+		
+		</div>
 		<div class="tab-pane fade" id="events">
 		</div>
 		<div class="tab-pane fade ${fileActive} ${fileIn}" id="fichierjoint">
@@ -397,7 +435,6 @@
 	</div>
 
 </div>
-</div>
 <script type="text/javascript">
 	$('#tabs a').click(function(e) {
 		e.preventDefault()
@@ -411,6 +448,113 @@
 <script
 	src="${baseURL}/js/plugins/datatables/dataTables.ColumnFilter.js"
 	type="text/javascript"></script>
+<script type="text/javascript">
+        
+            $(function() {
+//             	   $('#example1 thead th').each( function () {
+//                        var title = $('#example1 thead th').eq( $(this).index() ).text();
+//                        $(this).prepend( '<input  id="me" type="text" placeholder="Search '+title+'" /><br>' );
+//                    } );
+                
+            	$("#example33").DataTable({});
+               var table= $('#list3').DataTable({
+                    "paging": true,
+                    "lengthChange": true,
+                    "searching": true,
+                    "ordering": true,
+                    "info": true,
+                    "autoWidth": true,
+                    "processing": true,
+                    "serverSide": true,
+                    "ajax": {
+                        "url": "${baseURL}/contact/getList?company_id=${company.id}",
+                        "data": function(data) {
+                            planify(data);  
+                        } 
+                    },
+                    "columnDefs":[{
+                    	"targets":[0],
+                    	"name":"name",
+                    	"data":"name",
+                    	"render": function ( data, type, full, meta ) {
+                    		$link='<a href="${baseURL}/contact/profile?id='+full.id+'">'+full.civility+' '+data+' '+full.lastName+'</a>';
+                      	
+                      	      return $link;
+                      	    }
+                    },
+                    {
+                    	"targets":[1],
+                    	"name":"job",
+                    	"data":"job",
+                    
+                    },
+                    {
+                    	"targets":[2],
+                    	"name":"telephone",
+                    	"data":"telephone",
+                    
+                    },
+                    {
+                    	"targets":[3],
+                    	"name":"telephonePro",
+                    	"data":"telephonePro",
+                    
+                    },
+                    {
+                    	"targets":[4],
+                    	"name":"email",
+                    	"data":"email",
+                    
+                    },
+                    {
+                    	"targets":[5],
+                    	"name":"status",
+                    	"data":"status",
+                    	"render" : function(data, type, full,
+								meta) {
+							$link = "";
+							switch (data) {
+							case "inActivity":
+								$link = '<span class="label label-success">Active</span>';
+								break;
+							case "closed":
+								$link = '<span class="label label-danger">Clos</span>';
+								break;
+							default:
+
+							}
+							return $link;
+						}
+                    
+                    },
+                    {
+                    	"targets":[6],
+                    	"name":"id",
+                    	"data":"id",
+                    	"orderable": false,
+                    	 "render": function ( data, type, full, meta ) {
+                    		 $html='<a href="${baseURL}/contact/profile?id='+data+'"  class="btn btn-info btn-xs"><i class="fa   fa-search"></i></a>&nbsp;';
+                    		 $html+='<a href="${baseURL}/contact/update?id='+data+'"  class="btn btn-default btn-xs"><i class="fa   fa-edit"></i></a>&nbsp;';
+                    		 $html+='<a href="${baseURL}/contact/delete?id='+data+'"  class="btn btn-danger btn-xs"><i class="fa   fa-trash-o"></i></a>';
+                    		 return $html;
+                    	    }
+                    
+                    }]
+                });
+//               table.columns( ).every( function (i) {
+//             	    console.log("index:"+this.index());
+//                });
+                
+//                $('#example1 tfoot th ').on( 'keyup',"#me", function () {
+//             	   console.log("hello");
+//             	    table
+//             	        .columns( 3 )
+//             	        .search( this.value )
+//             	        .draw();
+//             	} );
+                
+          });
+        </script>
 <script type="text/javascript">
 	$(function() {
 		var table = $('#file_table')
