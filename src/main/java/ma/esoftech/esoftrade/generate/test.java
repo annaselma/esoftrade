@@ -2,25 +2,32 @@ package ma.esoftech.esoftrade.generate;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 import ma.esoftech.esoftrade.model.Permission;
+import ma.esoftech.esoftrade.model.Role;
 import ma.esoftech.esoftrade.model.User;
 import ma.esoftech.esoftrade.model.Permission.Module;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 public class test {
 
 	public static void main(String[] args) {
 
-		createPermis();
+		//createPermis();
+		setAllPermToRoles();
 //		SimpleDateFormat f=new SimpleDateFormat("dd/MM/yyyy");
 //		try {
 //			Date date=f.parse("11/11/2017");
@@ -39,6 +46,26 @@ public class test {
 
 	}
 
+	public static void setAllPermToRoles(){
+		SessionFactory sessionFactory = new Configuration().configure(
+				"hibernate2.cfg.xml").buildSessionFactory();
+    
+		Session session = sessionFactory.openSession();
+		Transaction tr=session.beginTransaction();
+		Query query= session.createQuery("select role from Role as role where role.id=234");
+		Role role=(Role) query.uniqueResult();
+		List<Permission> list =session.createQuery("from Permission as perm").list();
+		Set<Permission> set=new HashSet<Permission>();
+		for (Permission permission : list) {
+			set.add(permission);
+		}
+		role.setPermissions(set);
+		session.flush();
+		session.clear();
+		session.update(role);
+		tr.commit();
+		session.close();
+	}
 	public static void cascadeCreateExemple() {
 		SessionFactory sessionFactory = new Configuration().configure(
 				"hibernate2.cfg.xml").buildSessionFactory();

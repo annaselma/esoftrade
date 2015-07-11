@@ -67,6 +67,19 @@ if(manufacturingOrder==null){
 }
 @Override
 @Transactional(readOnly=true)
+public List<OrderManufacturingDTO> getNotifiedOF(int start, int length,
+		 String filter) {
+	List<OrderManufacturing>listEntity=manufacturingDao.getNotifiedOF(start, length, filter);
+	return DozerHelper.map(mapper, listEntity, OrderManufacturingDTO.class);
+}
+@Override
+@Transactional(readOnly=true)
+public long OrderFacturingNotifiedCount(String filter) {
+	
+	return manufacturingDao.ManufacturingNotifiedCount(filter);
+}
+@Override
+@Transactional(readOnly=true)
 public List<OrderManufacturingDTO> getAllOF(int start, int length,
 		String sorting, String filter) {
 	List<OrderManufacturing>listEntity=manufacturingDao.getAllOF(start, length, sorting, filter);
@@ -272,14 +285,14 @@ public Map<String , Float> calculeCost(long id) throws ManufacturingNotFoundExce
 public static float calculeCostProductReal(Set<Nomenclature> nomenclatures){
 	float cost=0;
 	for (Nomenclature nomenclature : nomenclatures) {
-		cost+=nomenclature.getProduct().getPrice()*nomenclature.getUsedQt();
+		cost+=nomenclature.getProduct().getPmp()*nomenclature.getUsedQt();
 	}
 	return cost;
 }
 private float calculeCostProductTh(Set<Nomenclature> nomenclatures){
 	float cost=0;
 	for (Nomenclature nomenclature : nomenclatures) {
-		cost+=nomenclature.getProduct().getPrice()*nomenclature.getRequeredQt();
+		cost+=nomenclature.getProduct().getPmp()*nomenclature.getRequeredQt();
 	}
 	return cost;
 }

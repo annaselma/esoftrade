@@ -47,6 +47,18 @@
 											onclick="location.href='${baseURL}/mouvement/transfertStockFromOF?id=${manufacturing.id}'">
 											<i class="fa fa-wrench"></i>&nbsp;Stocké
 										</button>
+										<c:if test="${! manufacturing.valid}">
+                                        <button type="button"
+											class="btn-sm btn btn-success pull-right "
+											onclick="location.href='${baseURL}/manufacturing/valid?id=${manufacturing.id}'">
+											<i class="fa fa-wrench"></i>&nbsp;Valider
+										</button>
+										</c:if>	
+										<button type="button"
+											class="btn-sm btn btn-danger pull-right "
+											onclick="location.href='${baseURL}/manufacturing/delete?id=${manufacturing.id}'">
+											<i class="fa fa-wrench"></i>&nbsp;Supprimer
+										</button>
 										</sec:authorize>
 										<div style="margin-top:8%">
 				                        <label>Statut:</label>&nbsp;<span id="status" class="label label-primary" ><c:out value="${manufacturing.status}"/></span>
@@ -61,6 +73,12 @@
 							<a href="<c:out value="${baseURL}/product/profile?id=${manufacturing.product.id}"/>"><c:out value="${manufacturing.product.libelle}" /></a>
 						 </span></td>
 												</tr>
+											<c:if test="${not empty manufacturing.orderDocument}">
+												<tr>
+													<th style="width: 50%"><label>Commande Client:</label></th>
+													<td><c:out value="${manufacturing.orderDocument.customerReference}" /></td>
+												</tr>
+											</c:if>	
 												<tr>
 													<th style="width: 50%"><label>Titre:</label></th>
 													<td><span class="text-muted"><c:out value="${manufacturing.title}" /></span></td>

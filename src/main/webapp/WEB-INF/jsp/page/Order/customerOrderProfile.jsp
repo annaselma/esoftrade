@@ -274,7 +274,7 @@
 									<button type="button"
 										class="btn btn-sm btn-primary pull-right "
 										style="margin-right: 3%;"
-										onclick="location.href='${baseURL}/manufacturing/Launch?id=${order.id}'">
+										onclick="location.href='${baseURL}/order/launch?id=${order.id}'">
 										<i class="fa fa-building-o"></i>&nbsp; Lancer OF
 									</button>
 

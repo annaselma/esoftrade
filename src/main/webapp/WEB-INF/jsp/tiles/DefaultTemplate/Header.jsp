@@ -32,22 +32,7 @@
 						<li>
 							<!-- inner menu: contains the actual data -->
 							<ul class="menu">
-								<li><a href="#"> <i class="ion ion-ios7-people info"></i>
-										5 ordres de fabrication créés
-								</a></li>
-								<li><a href="#"> <i class="fa fa-warning danger"></i>
-										3 Ordres de fabrication bloqués
-								</a></li>
-								<li><a href="#"> <i class="fa fa-users warning"></i> 5
-										commandes de lancement d'ordre de fabrication
-								</a></li>
-
-								<li><a href="#"> <i class="ion ion-ios7-cart success"></i>
-										25 sales made
-								</a></li>
-								<li><a href="#"> <i class="ion ion-ios7-person danger"></i>
-										You changed your username
-								</a></li>
+								
 							</ul>
 						</li>
 						<li class="footer"><a href="#">voir tout</a></li>
@@ -178,13 +163,30 @@
 				    		  message= data +  "produits ont atteint le sueil d'alert";
 				    	  }
 				    	  $countNot+=1;
-				    	  $not="<li><a href='${baseUrl}/product/listAlert'> <i class='ion ion-ios7-cart info'></i>"+
+				    	  $not="<li><a href='${baseURL}/product/listAlert'> <i class='ion ion-ios7-cart info'></i>"+
 								   message+"</a></li>";
 								   updateNotification($countNot);
 					   
 				    	  $(".notifications-menu .dropdown-menu .menu").prepend($not);
 				      }
 				    });
+				    $.ajax({ // ajax call starts
+					      url: '${baseURL}/manufacturing/notification', 
+					      dataType: 'json', // Choosing a JSON datatype
+					    })
+					    .done(function(data) { // Variable data contains the data we get from serverside
+					    	console.log(data);
+					    	data.forEach(function(entry) {
+					    
+					    		  message=  "Of En attente: depuis commande <br>"+entry.orderDocument.customerReference;
+					    	  $countNot+=1;
+					    	  $not="<li><a href='${baseURL}/manufacturing/profile?id="+entry.id+"'> <i class='ion ion-ios7-cart info'></i>"+
+									   message+"</a></li>";
+							  updateNotification($countNot);
+					    	  $(".notifications-menu .dropdown-menu .menu").append($not);
+					  	    console.log(entry);
+					    	});
+					    });
 				
 				});</script>
 				<script type="text/javascript">

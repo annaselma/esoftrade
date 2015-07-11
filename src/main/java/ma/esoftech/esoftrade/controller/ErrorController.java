@@ -12,5 +12,9 @@ public class ErrorController extends AbstractController {
 	public String get403page(ModelMap model){
 		return"403";
 	}
+	@RequestMapping(value = "/404", method = RequestMethod.GET)
+	public String get404page(ModelMap model){
+		return"404";
+	}
 
 }

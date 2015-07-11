@@ -15,6 +15,7 @@ import javax.validation.constraints.Size;
 
 import ma.esoftech.esoftrade.DTO.associated.EditorDTO;
 import ma.esoftech.esoftrade.DTO.associated.FileAssociatedDTO;
+import ma.esoftech.esoftrade.DTO.associated.OrderAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.ProductAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.UserAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.WarehouseAssociatedDTO;
@@ -52,8 +53,6 @@ public class OrderManufacturingDTO {
 	private Integer lanchedQT=1;
 	private Integer requeredQT=0;
 	private Integer restToDoQT=0;
-	 @NotEmpty
-	 @Size(max=20,min=2)
 	private String team;
 	private OFPRIORITY priority;
 	private float unitCost;
@@ -62,6 +61,8 @@ public class OrderManufacturingDTO {
 	private float totalTheoryCost;
 	private Long deadline=0l;
 	private Integer progress=0;
+	private boolean valid=true;
+	private OrderAssociatedDTO orderDocument=null;
 	private FileAssociatedDTO picture=null;
 	public FileAssociatedDTO getPicture() {
 		return picture;
@@ -281,6 +282,18 @@ public class OrderManufacturingDTO {
 	}
 	public void setProgress(Integer progress) {
 		this.progress = progress;
+	}
+	public boolean isValid() {
+		return valid;
+	}
+	public void setValid(boolean valid) {
+		this.valid = valid;
+	}
+	public OrderAssociatedDTO getOrderDocument() {
+		return orderDocument;
+	}
+	public void setOrderDocument(OrderAssociatedDTO orderDocument) {
+		this.orderDocument = orderDocument;
 	}
 	
 }

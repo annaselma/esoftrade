@@ -329,6 +329,27 @@ System.out.println(gammeList.size());
 			System.out.println("search");
 			return  manufacturService.searchWarehouse(UTILS.MAX_LENGHT_LIST,UTILS.START_LIST, search);
 		}
+		@RequestMapping(value="/notification",method=RequestMethod.GET,produces = "application/json")
+		public @ResponseBody List<OrderManufacturingDTO> getNotified(ModelMap model){
+			return  manufacturService.getNotifiedOF(UTILS.START_LIST, UTILS.MAX_LENGHT_LIST,"");
+		}
+		@RequestMapping(value="/valid",method = RequestMethod.GET)
+		public String valid(@RequestParam long id, ModelMap model){
+			OrderManufacturingDTO of=null;
+			initialize();
+			try {
+				
+				of= manufacturService.findOFById(id);
+				of.setValid(true);
+				manufacturService.updateOF(of, currentUser);
+			} catch (ManufacturingNotFoundException e) {
+				model.addAttribute("messageError","OF with id="+ id+"doesn't exist");
+				return "error";
+			}
+			
+	        
+			return PATH_PROFIL+"?id="+id;
+			}
 		@RequestMapping(value="/task",method=RequestMethod.GET,produces = "application/json")
 		public @ResponseBody List<OrderManufacturingDTO> getProductQuantity(ModelMap model){
 			return manufacturService.getAllOF(UTILS.START_LIST,10, "createDate DESC", "");	

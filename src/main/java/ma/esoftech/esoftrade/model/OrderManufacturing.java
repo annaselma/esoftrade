@@ -19,6 +19,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Index;
 
+
 @Entity
 @Table(name="ELMO_ORDERMANUFACTURING")
 public class OrderManufacturing extends MetaObject implements Serializable {
@@ -38,6 +39,8 @@ public class OrderManufacturing extends MetaObject implements Serializable {
 	@Column(name="ELMO_STATUS")
 	@Enumerated(EnumType.STRING)
 	private OFStatus status;
+	@Column(name="ELMO_VALID")
+	private boolean valid=true;
 	public enum OFStatus{
 		canceled,waiting,onProduction,charged,notcharged,end,blocked,inpreparation
 	}
@@ -56,6 +59,9 @@ public class OrderManufacturing extends MetaObject implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "ELMO_SUBCONSTRUCTOR_ID")
 	private Company subconstructor;
+	@ManyToOne
+	@JoinColumn(name = "ELMO_ORDER_ID")
+	private OrderDocument orderDocument;
 	@Column(name="ELMO_TYPE",length=255)
 	private Boolean type;
 	@Column(name="ELMO_EXECUTEDQT")
@@ -275,6 +281,24 @@ public class OrderManufacturing extends MetaObject implements Serializable {
 
 	public void setGammes(Set<Gamme> gammes) {
 		this.gammes = gammes;
+	}
+
+
+
+	public OrderDocument getOrderDocument() {
+		return orderDocument;
+	}
+
+	public void setOrderDocument(OrderDocument orderDocument) {
+		this.orderDocument = orderDocument;
+	}
+
+	public boolean isValid() {
+		return valid;
+	}
+
+	public void setValid(boolean valid) {
+		this.valid = valid;
 	}
 
 	public String generateReference(){

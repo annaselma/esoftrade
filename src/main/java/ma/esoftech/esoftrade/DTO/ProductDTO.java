@@ -29,10 +29,8 @@ public class ProductDTO {
 	 private Boolean purchasingState= false;
 	 private Boolean sellingState= false;
 	 @Min(1)
-	 @NotNull
 	 private Integer desieredTreshold=0;
 	 @Min(1)
-	 @NotNull
 	 private Integer alertTreshold=0;
 	 private String description;
 	 @NotEmpty
@@ -44,13 +42,11 @@ public class ProductDTO {
 	 @NotNull
 	 private float price;
 	 private FileAssociatedDTO picture=new FileAssociatedDTO();
-	 @NotEmpty
-	 @Size(min=2)
 	 private String barreCode;
 	 @NotNull(message="la catégorie ne doit pas etre vide")
 	 private PCategoryAssociatedDTO category=new PCategoryAssociatedDTO();
 	 private String department;
-	 private float pmp;
+	 private float pmp=0;
 	 private  List<FileAssociatedDTO> files=new ArrayList<FileAssociatedDTO>();
 	 public ProductDTO(){
 		 

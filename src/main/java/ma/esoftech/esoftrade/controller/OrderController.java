@@ -1,6 +1,7 @@
 package ma.esoftech.esoftrade.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -11,6 +12,7 @@ import ma.esoftech.esoftrade.DTO.OrderDTO;
 import ma.esoftech.esoftrade.DTO.OrderExpedition;
 import ma.esoftech.esoftrade.DTO.OrderExpeditionList;
 import ma.esoftech.esoftrade.DTO.OrderLineDTO;
+import ma.esoftech.esoftrade.DTO.OrderManufacturingDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.DTO.associated.OrderAssociatedDTO;
 import ma.esoftech.esoftrade.controller.session.SessionBean;
@@ -22,7 +24,9 @@ import ma.esoftech.esoftrade.exception.OrderNotFoundException;
 import ma.esoftech.esoftrade.exception.OrderUpdateException;
 import ma.esoftech.esoftrade.model.OrderDocument.OrderStatus;
 import ma.esoftech.esoftrade.model.OrderDocument.OrderType;
+import ma.esoftech.esoftrade.model.OrderManufacturing.OFPRIORITY;
 import ma.esoftech.esoftrade.service.IFileService;
+import ma.esoftech.esoftrade.service.IManufacturingOrderService;
 import ma.esoftech.esoftrade.service.IMouvementService;
 import ma.esoftech.esoftrade.service.IOrderService;
 import ma.esoftech.esoftrade.utils.FileUploadUTILS;
@@ -50,6 +54,8 @@ public class OrderController extends AbstractController {
 	IFileService fileService;
 	@Autowired
 	IMouvementService mouvementService;
+	@Autowired
+	IManufacturingOrderService manufacturingService;
 	@Autowired
 	ServletContext servletContext;
 	@Autowired
@@ -287,7 +293,39 @@ public class OrderController extends AbstractController {
 		return PATH_PROFIL+"?id="+idOrder;
 	}
 	
-	
+	@RequestMapping(value="/launch",method=RequestMethod.GET)
+	public String launch(@RequestParam long id,ModelMap model){
+		OrderDTO order=null;
+		initialize();
+		try {
+			order=orderService.findById(id);
+			OrderManufacturingDTO manufacturingDTO=null;
+			OrderAssociatedDTO orderA=new OrderAssociatedDTO();
+			orderA.setId(id);
+			for(OrderLineDTO line:order.getLines()){
+				if(line.getProduct()!=null){
+					manufacturingDTO=new OrderManufacturingDTO();
+					manufacturingDTO.setProduct(line.getProduct());
+					manufacturingDTO.setRequeredQT((int)line.getQuantity());
+					manufacturingDTO.setOrderDocument(orderA);
+					manufacturingDTO.setPriority(OFPRIORITY.Low);
+					manufacturingDTO.setStartDate(new Date());
+					manufacturingDTO.setEndDate(new Date());
+					manufacturingDTO.setProvisionalEndDate(new Date());
+				    manufacturingDTO.setProvisionalStartDate(new Date());
+					manufacturingDTO.setValid(false);
+					manufacturingDTO.setTitle("Of depuis commande "+id);
+					manufacturingService.createOF(manufacturingDTO, currentUser);
+				}
+					
+				}
+		} catch (OrderNotFoundException e) {
+			model.addAttribute("messageError",e.getMessage());
+			return "error";
+		}
+		
+		return PATH_PROFIL+"?id="+id;
+	}
 	@RequestMapping(value="/draft",method=RequestMethod.GET)
 	public String draft(@RequestParam long id,ModelMap model){
 		OrderDTO order=null;

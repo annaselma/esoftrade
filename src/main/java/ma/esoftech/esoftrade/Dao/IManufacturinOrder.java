@@ -18,4 +18,6 @@ public interface IManufacturinOrder {
 	public long ManufacturingCount(String filter);
 	public List<User> searchResponsable(int lenght, int start, String search);
 	public List<Warehouse> searchCenter(int lenght, int start, String search);
+	long ManufacturingNotifiedCount(String filter);
+	List<OrderManufacturing> getNotifiedOF(int start, int length, String filter);
 }

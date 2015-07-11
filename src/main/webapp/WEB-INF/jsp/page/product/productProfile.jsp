@@ -83,6 +83,10 @@
 												<td><c:out value="${product.price}" /><i>&nbsp;<strong>DH</strong></i></td>
 											</tr>
 											<tr>
+												<th><label>PMP:</label></th>
+												<td><c:out value="${product.pmp}" /><i>&nbsp;<strong>DH</strong></i></td>
+											</tr>
+											<tr>
 												<th><label>Quantité:</label></th>
 												<td><c:out value="${qte}" /></td>
 											</tr>
@@ -289,8 +293,10 @@
 							<tr>
 								<th>Entrepot</th>
 								<th>Unités</th>
-								<th>prix de vente</th>
-								<th>valorisation</th>
+								<th>prix de vente unitaire</th>
+								<th>valorisation vente</th>
+							    <th>Prix moyen pondéré (PMP)</th>
+								<th>valorisation achat (PMP)</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -299,8 +305,10 @@
 							<tr>
 								<th>Entrepot</th>
 								<th>Unités</th>
-								<th>corriger Stock</th>
-								<th>Transfert</th>
+								<th>prix de vente unitaire</th>
+								<th>valorisation vente</th>
+							    <th>Prix moyen pondéré (PMP)</th>
+								<th>valorisation achat (PMP)</th>
 							</tr>
 						</tfoot>
 					</table>
@@ -499,6 +507,25 @@
 										"targets" : [ 3 ],
 										"name" : "product.price",
 										"data" : "product.price",
+										"orderable" : false,
+										"render" : function(data, type, full,
+												meta) {
+											$priceValorisation = data
+													* full.quantity;
+											return $priceValorisation;
+										}
+
+									},
+									{
+										"targets" : [ 4],
+										"name" : "product.pmp",
+										"data" : "product.pmp",
+
+									},
+									{
+										"targets" : [ 5 ],
+										"name" : "product.pmp",
+										"data" : "product.pmp",
 										"orderable" : false,
 										"render" : function(data, type, full,
 												meta) {
