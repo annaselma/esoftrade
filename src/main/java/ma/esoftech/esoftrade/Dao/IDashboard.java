@@ -1,14 +1,18 @@
 package ma.esoftech.esoftrade.Dao;
 
+import java.util.Date;
 import java.util.List;
 
 import ma.esoftech.esoftrade.model.OrderManufacturing;
+import ma.esoftech.esoftrade.model.PostPerformance;
 
 public interface IDashboard {
-
-	 public long  getCountOFBlocked(OrderManufacturing order);
-	 public long  getCountOFWaiting(OrderManufacturing order);
-	 public long  getCountOFProcessing(OrderManufacturing order);
-	 public long  getCountOFLate(OrderManufacturing order);
-	 public List<Object[]> ListCriticalOF(OrderManufacturing order);
+	 public long  getCountOFBlocked();
+	 public long  getCountOFWaiting();
+	 public long  getCountOFProcessing();
+	 public long  getCountOFEnd();
+	 public long  getCountOFCanceled();
+	 public long  getCountOFLate(Date currentDate);
+	 public List<Object[]> ListCriticalOF();
+	 public List<PostPerformance> getPostWithPerformance();
 }

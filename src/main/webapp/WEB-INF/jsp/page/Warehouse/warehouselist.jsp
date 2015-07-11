@@ -4,15 +4,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
 <div class="box">
 	<div class="box-header">
-		<h3 class="box-title">la liste des produits</h3>
+		<h3 class="box-title">la liste des entrepôts</h3>
+		<sec:authorize access="hasRole('WRITE_WAREHOUSE')">
 		<div class="box-tools pull-right">
 			<a class="btn btn-primary btn-sm" href="${baseURL}/warehouse/create"
 				style="color: white;">+ créer entrepot</a> &nbsp;
 		</div>
+		</sec:authorize>
 	</div>
 	<!-- /.box-header -->
 	<div class="box-body table-responsive">

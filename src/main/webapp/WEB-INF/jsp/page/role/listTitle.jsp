@@ -8,11 +8,11 @@
 	<c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
 	<section class="content-header">
                     <h1>
-                        Catégoorie
-                        <small>Liste des Catégorie</small>
+                       Rôles & Permissions
+                        <small>Liste des rôles</small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i>Acceuil</a></li>
-                        <li class="active">Catégorie</li>
+                        <li class="active">rôles & parmissions</li>
                     </ol>
                 </section>

@@ -101,6 +101,15 @@ public class ManufacturingOrderDao implements IManufacturinOrder{
 		query.setFirstResult(start).setMaxResults(lenght);
 		return query.list();
 	}
+
+	@Override
+	public List<OrderManufacturing> getTerminateOF() {
+		session=sessionFactory.getCurrentSession();
+	     String hql="From OrderManufacturing as fabrication where fabrication.status='end'";
+	     org.hibernate.Query query=session.createQuery(hql);
+	     List<OrderManufacturing>orderManu= query.list();
+		return orderManu;
+	}
 	}
 
 

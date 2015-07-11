@@ -274,7 +274,8 @@ public class OrderManufacturingDTO {
 	public void setDeadline(Long deadline) {
 		this.deadline = deadline;
 	}
-	public Integer getProgress() { 
+
+	public Integer getProgress() {
 		this.progress=(int) Math.floor(((float)this.executedQT/(float)this.lanchedQT)*100);
 		return progress;
 	}

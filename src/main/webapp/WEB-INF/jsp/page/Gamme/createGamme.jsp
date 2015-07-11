@@ -117,6 +117,16 @@
 				
 			</div>
 			<div class="form-group">
+				
+				<label for="postenbField" class="col-sm-2 control-label esoft-left">Temps passé(H):&nbsp;<span
+					class="error">*</span></label>
+				<div class="col-sm-2">
+				    <form:input path="time" cssClass="form-control " />
+					<form:errors path="time" cssClass="error" />
+				</div>
+				
+			</div>
+			<div class="form-group">
 				<label for="priority"class="col-sm-2 control-label esoft-left">Type&nbsp;<span class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:select path="type" cssClass="form-control">
@@ -145,6 +155,23 @@
 			</div>
 			<div class="form-group">
 				
+				<label for="postenbField" class="col-sm-2 control-label esoft-left">Qt créée:&nbsp;<span
+					class="error">*</span></label>
+				<div class="col-sm-2">
+				    <form:input path="createdQt" cssClass="form-control " />
+					<form:errors path="createdQt" cssClass="error" />
+				</div>
+				
+			</div>
+			<div class="form-group">
+				
+				<label for="postenbField" class="col-sm-2 control-label esoft-left">Qt en Attente:&nbsp;<span
+					class="error">*</span></label>
+				<div class="col-sm-2">
+				    <form:input path="waitingPrieces" cssClass="form-control " />
+					<form:errors path="waitingPrieces" cssClass="error" />
+				</div>
+				
 			</div>
 			<div class="form-group">
 			    <label for="dateField" class="col-sm-2 control-label esoft-left">DateDébut prévu:</label>
@@ -162,7 +189,7 @@
 			<div class="form-group">
 				<label for="descField" class="col-sm-2 control-label esoft-left">Description:</label>
 				<div class="col-sm-10">
-					<form:textarea id="editor2" path="description" name="editor1"
+					<form:textarea id="editor1" path="description"
 						rows="4" cols="80" />
 				</div>
 			</div>
@@ -186,8 +213,7 @@
                 // Replace the <textarea id="editor1"> with a CKEditor
                 // instance, using default configuration.
                 CKEDITOR.replace('editor1');
-                //bootstrap WYSIHTML5 - text editor
-                $(".textarea").wysihtml5();
+
             });
         </script>
         <script>

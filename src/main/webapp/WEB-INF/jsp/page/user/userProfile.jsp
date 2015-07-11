@@ -61,6 +61,7 @@
 								</c:otherwise>
 							</c:choose>
 							<img src="${imageURL}" alt="image produit" class="img-thumbnail">
+							<sec:authorize access="hasRole('EDIT_SELF_USER')">
 							<form id="upload-image" method="POST"
 								action="${baseURL}/user/image" enctype="multipart/form-data"
 								class="form-inline">
@@ -76,6 +77,7 @@
 								
 
 							</form>
+							</sec:authorize>
 							<span id="image-errors" class="error" style="display: none;"></span>
 
 
@@ -221,7 +223,8 @@
 			</div>
 		</div>
 		<div class="tab-pane fade" id="permissions">
-			<div class="row">
+			<sec:authorize access="hasRole('ADD_ROLE_TO_USER')">
+			<div class="row">			
 				<div class="col-sm-12">
 					<h4>Ajouter un Role:</h4>
 					<form method="POST" action="${baseURL}/user/addRole"
@@ -247,7 +250,8 @@
 				</div>
 			</div>
 			<hr>
-			<h4>Role ajoutés</h4>
+			</sec:authorize>
+			<h4>Roles ajoutés</h4>
 			<table id="list1" class="table table-bordered table-striped">
 				<thead>
 					<tr>

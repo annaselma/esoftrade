@@ -3,6 +3,8 @@
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <style>
 </style>
@@ -102,6 +104,7 @@
 					</div>
 					<div class="col-md-3">
 						<div class="">
+						<sec:authorize access="hasRole('WRITE_PRODUCT')">	
 							<form method="POST" name="product" id="productF">
 								<button type="button" class="btn btn-primary pull-right "
 									style="margin-top: 10%; margin-right: 3%;"
@@ -109,6 +112,7 @@
 									<i class="fa fa-pencil-square-o"></i>&nbsp;Modifier
 								</button>
 							</form>
+							</sec:authorize>
 						</div>
 						<div class="user-info-right"
 							style="text-align: center; padding: 21% 0; margin-top: 22%; margin-right: 7%;">
@@ -191,11 +195,10 @@
 																					.show(
 																							100);
 																		} else {
-																			var reader = new FileReader();
-																			reader.onload = function(
-																					e) {
-																				$(
-																						$img)
+																			
+								                                             var reader = new FileReader();
+																			reader.onload = function(e) {
+																				$($img)
 																						.attr(
 																								'src',
 																								e.target.result);
@@ -272,9 +275,11 @@
 				<div class="box-header">
 					<h3 class="box-title">Stock</h3>
 					<div class="box-tools pull-right">
+					<sec:authorize access="hasRole('CORRECT_TRANSFERT_STOCK')">
 						<a class="btn btn-primary btn-sm"
 							href="${baseURL}/mouvement/correctionProduit?id=${product.id}"
 							style="color: white;">Corriger le stock</a>
+							</sec:authorize>
 					</div>
 				</div>
 				<div class="box-body table-responsive">
@@ -304,6 +309,7 @@
 		</div>
 		<div class="tab-pane fade ${fileActive} ${fileIn}" id="fichierjoint">
 			<h4>Joindre un nouveau fichier:</h4>
+			<sec:authorize access="hasRole('ADD_FILE_TO_PRODUCT')">	
 			<form method="POST" action="${baseURL}/product/upload"
 				enctype="multipart/form-data" class="form-inline">
 
@@ -314,6 +320,7 @@
 				<input type="hidden" name="id" value="${product.id}"> <input
 					type="submit" value="valider" class="btn-xs btn btn-success">
 			</form>
+			</sec:authorize>
 			<span id="name-file"></span> <span id="file-errors" class="error"
 				style="display: none;">la taille du fichier ne doit pas
 				dépasser 10 Mo</span>
@@ -384,10 +391,7 @@
 			<div class="">
 				<table class="table ">
 					<tbody>
-						<tr class=" box box-solid bg-red">
-							<th><h5></h5></th>
-							<td></td>
-						</tr>
+						
 						<tr class=" box box-solid bg-">
 							<th class=""><label class="">Créé par:</label></th>
 							<td><img

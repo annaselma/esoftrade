@@ -25,10 +25,15 @@
 		<div class="tab-pane fade ${defaultActive} ${defaultIn} " id="fiche">
 			<div class="tab-pane ${defaultActive}" id="fiche-tab">
 				<div class="row">
-					<div class="col-md-9">
+					<div class="col-md-12">
 						<div class="product-info-left"
 							style="padding-left: 1%; padding-top: 4%;">
 							<div class="global-info">
+							<button type="button" class="btn-sm btn btn-success pull-right "
+									style="margin-right: 2%;"
+									onclick="location.href='/esoftrade/poste/update?id=${poste.id}'">
+									<i class="fa fa-pencil-square-o "></i> &nbsp;Modifier
+								</button>
 								<div class=" col-sm-12 table-responsive">
 									<div class="" style="margin-bottom: 4%;">
 										<label class=""> Poste N°</label> &nbsp;<span

@@ -85,15 +85,20 @@ public class ManufacturingController extends AbstractController {
 	}
 	@RequestMapping(value="/profile",method = RequestMethod.GET)
 	public String loadOF(@RequestParam long id, ModelMap model,@RequestParam(required=false)String stock,@RequestParam(required=false,defaultValue="false") boolean file){
-		OrderManufacturingDTO OF=null;
+		OrderManufacturingDTO OF=null;Map<String, Float>map=null;
 		try {
 			
 			OF= manufacturService.findOFById(id);
+			 map=manufacturService.calculeCost(id);
 		} catch (ManufacturingNotFoundException e) {
 			model.addAttribute("messageError","OF with id="+ id+"doesn't exist");
 			return "error";
 		}
 		FileUploadUTILS.prepareTabProfil(model, file);
+		model.addAttribute("thCost", map.get("thCost"));
+		model.addAttribute("realCost", map.get("realCost"));
+		model.addAttribute("thUnitCost", map.get("thUnitCost"));
+		model.addAttribute("realUnitCost", map.get("realUnitCost"));
         model.addAttribute("manufacturing", OF);
         if(stock!=null)
          model.addAttribute("stock", "ddd");
@@ -324,5 +329,9 @@ System.out.println(gammeList.size());
 			System.out.println("search");
 			return  manufacturService.searchWarehouse(UTILS.MAX_LENGHT_LIST,UTILS.START_LIST, search);
 		}
-		
+		@RequestMapping(value="/task",method=RequestMethod.GET,produces = "application/json")
+		public @ResponseBody List<OrderManufacturingDTO> getProductQuantity(ModelMap model){
+			return manufacturService.getAllOF(UTILS.START_LIST,10, "createDate DESC", "");	
+			
+		}
 }

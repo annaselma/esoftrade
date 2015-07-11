@@ -4,6 +4,7 @@ import java.util.List;
 
 import ma.esoftech.esoftrade.model.Product;
 import ma.esoftech.esoftrade.model.ProductCategory;
+import ma.esoftech.esoftrade.model.ProductQuantity;
 
 public interface IProductDao {
 
@@ -17,4 +18,6 @@ public interface IProductDao {
 	public long ProductCount(String filter);
 	public long getProductQuantity(Product product);
 	List<Product> searchProducts(int lenght, int start, String search);
+	List<ProductQuantity> getProductQuantityList(int lenght, int start,
+			String sorting);
 }

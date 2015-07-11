@@ -2,16 +2,19 @@ package ma.esoftech.esoftrade.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import ma.esoftech.esoftrade.DTO.FileDTO;
 import ma.esoftech.esoftrade.DTO.ProductDTO;
+import ma.esoftech.esoftrade.DTO.ProductQuantityDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.Dao.IFileDao;
 import ma.esoftech.esoftrade.Dao.IProductDao;
 import ma.esoftech.esoftrade.exception.ProductNotFoundException;
 import ma.esoftech.esoftrade.model.File;
 import ma.esoftech.esoftrade.model.Product;
+import ma.esoftech.esoftrade.model.ProductQuantity;
 import ma.esoftech.esoftrade.service.IProductService;
 import ma.esoftech.esoftrade.service.ServiceUtils;
 import ma.esoftech.esoftrade.utils.DozerHelper;
@@ -171,6 +174,25 @@ public long getProductQuantity(ProductDTO product) {
     Product productEntity=new Product();
     productEntity.setId(product.getId());
 	return productDao.getProductQuantity(productEntity);
+}
+@Override
+@Transactional(readOnly=true)
+public List<ProductQuantityDTO> getAllproductQauntity(int start, int length,
+		String sorting) {
+	List<ProductQuantity>list= productDao.getProductQuantityList(length, start, sorting);
+	List<ProductQuantity> list2=new ArrayList<ProductQuantity>(list);
+			
+	Iterator<ProductQuantity> it=list2.iterator();
+	//ProductQuantity entity=null;
+	for(ProductQuantity entity :list){
+		System.out.println(entity.getProduct().getAlertTreshold());
+		if(entity.getQuantity()>entity.getProduct().getAlertTreshold())
+		{
+			list2.remove(entity);
+			}
+		}
+	
+	return DozerHelper.map(mapper,list2, ProductQuantityDTO.class);
 }
 
 }

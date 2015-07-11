@@ -2,17 +2,15 @@ package ma.esoftech.esoftrade.DaoImp;
 
 import java.util.List;
 
-import javax.persistence.Query;
+import ma.esoftech.esoftrade.Dao.IProductDao;
+import ma.esoftech.esoftrade.model.Product;
+import ma.esoftech.esoftrade.model.ProductCategory;
+import ma.esoftech.esoftrade.model.ProductQuantity;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import ma.esoftech.esoftrade.Dao.IProductDao;
-import ma.esoftech.esoftrade.model.Product;
-import ma.esoftech.esoftrade.model.ProductCategory;
-import ma.esoftech.esoftrade.model.User;
 
 @Repository
 public class ProductDao  implements IProductDao{
@@ -137,6 +135,23 @@ public class ProductDao  implements IProductDao{
 		return count;
 	}
 
+	@Override
+	public List<ProductQuantity>getProductQuantityList(int length, int start,String sorting	) {
+		session=sessionFactory.getCurrentSession();
+		if(sorting ==null ||sorting.equals("")){
+			sorting ="id ASC";
+		}
+	     String hql="Select new ma.esoftech.esoftrade.model.ProductQuantity(SUM(mouv.quantity),mouv.product)"
+	     		+ " from Mouvement as mouv"
+				+ " group by  mouv.product"
+	     		+ " order by mouv."+sorting;
+	     org.hibernate.Query query=session.createQuery(hql);
+	     query.setFirstResult(start).setMaxResults(length);
+	     List<ProductQuantity>product=query.list();
+		return product;
+	}
+	
+	
 
 
 	

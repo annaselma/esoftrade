@@ -3,6 +3,8 @@
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <style>
 </style>
@@ -15,7 +17,7 @@
 		<li class="${defaultActive}"><a href="#fiche" data-toggle="tab"
 			aria-expanded="false"><i class="fa fa-file"></i>&nbsp;Fiche OF</a></li>
 		<li class=""><a href="#settings" data-toggle="tab"
-			aria-expanded="false"><i class="fa  fa-money" style=""></i>&nbsp;Bénéfices</a></li>
+			aria-expanded="false"><i class="fa  fa-money" style=""></i>&nbsp;Coûts de fabrication</a></li>
 		<li class=""><a href="#nomenclatures" data-toggle="tab"
 			aria-expanded="false"><i class="fa fa-fw fa-bars" style=""></i>&nbsp;Nomenclatures</a></li>
 			<li class=""><a href="#gammes" data-toggle="tab"
@@ -39,8 +41,13 @@
 										<div class="" style="margin-bottom: 4%;">
 											<label class=""> Ordre de fabrication N°</label> &nbsp;<span class="text-warning"><u><strong><c:out
 													value="${manufacturing.ref}" /></strong></u></span>
-<button type="button" class="btn-sm btn btn-success pull-right "onclick="location.href='${baseURL}/mouvement/transfertStockFromOF?id=${manufacturing.id}'">
-<i class="fa fa-wrench"></i>&nbsp;Stocké</button>								
+										<sec:authorize access="hasRole('WRITE_MANUFACTURING')">
+										<button type="button"
+											class="btn-sm btn btn-success pull-right "
+											onclick="location.href='${baseURL}/mouvement/transfertStockFromOF?id=${manufacturing.id}'">
+											<i class="fa fa-wrench"></i>&nbsp;Stocké
+										</button>
+										</sec:authorize>
 										<div style="margin-top:8%">
 				                        <label>Statut:</label>&nbsp;<span id="status" class="label label-primary" ><c:out value="${manufacturing.status}"/></span>
 										<label style="margin-left:63%;">Priorité:</label>&nbsp;<span id="priority" class="label label-primary" ><c:out value="${manufacturing.priority}"/></span>
@@ -109,6 +116,7 @@
 					</div>
 					<div class="col-md-3">
 						<div class="form-group">
+						<sec:authorize access="hasRole('WRITE_MANUFACTURING')">
 							<form method="POST" name="manufacturing" id="orderF">
 							<button type="button" class="btn-sm btn btn-primary pull-right "
 									style="margin-top: 12%; margin-right: 2%;"
@@ -118,6 +126,7 @@
 					onclick="location.href='${baseURL}/manufacturing/pdf?id=${manufacturing.id}'"><i class="fa fa-print"></i> &nbsp;Imprimer PDF</button>	
 						
 							</form>
+							</sec:authorize>
 						</div>
 						<div class="user-info-right"
 							style="text-align: center; padding: 21% 0; margin-top: 22%; margin-right: 7%;">
@@ -134,6 +143,7 @@
 							</c:choose>
 							<img src="${imageURL}" alt="imageOF"
 								class="img-thumbnail">
+								<sec:authorize access="hasRole('WRITE_MANUFACTURING')">
 							<form id="upload-image" method="POST"
 								action="${baseURL}/manufacturing/image"
 								enctype="multipart/form-data" class="form-inline">
@@ -148,6 +158,7 @@
 									style="display: none;">
 
 							</form>
+							</sec:authorize>
 							<span id="image-errors" class="error" style="display: none;"></span>
 
 
@@ -195,11 +206,13 @@
 			<div class="tab-pane " id="fiche-tab">
 			<div class="row">
 			<div  class="col-md-12">
+			<sec:authorize access="hasRole('WRITE_NOMENCLATURES')">
 			<button type="button" class="btn-sm btn btn-success pull-right "
 									style="margin-right: 2%; margin-bottom: 2%"
 									 onclick="location.href='${baseURL}/nomenclature/create?of_id=${manufacturing.id}'">
 									<i class="fa fa-plus-square "></i> &nbsp;ajouter
 								</button>
+								</sec:authorize>
 								</div> 
 								</div>
 			<div class="row">
@@ -242,11 +255,13 @@
 			<div class="tab-pane " id="fiche-tab">
 			<div class="row">
 			<div  class="col-md-12">
+			<sec:authorize access="hasRole('WRITE_GAMME')">
 			<button type="button" class="btn-sm btn btn-success pull-right "
 									style="margin-right: 2%; margin-bottom: 2%"
 									 onclick="location.href='/esoftrade/gamme/create?of_id=${manufacturing.id}'">
 									<i class="fa fa-plus-square "></i> &nbsp;ajouter
 								</button>
+								</sec:authorize>
 								</div> 
 								</div>
 			<div class="row">
@@ -289,15 +304,19 @@
 
 						<tr>
 							<th><label>Coût total réel calculé:</label></th>
-							<td>23.00 DH</td>
+							<td><c:out value="${realCost }"/>&nbsp;DH</td>
 						</tr>
 						<tr>
 							<th><label>Coût total théorique calculé:</label></th>
-							<td>234.00 DH</td>
+							<td><c:out value="${thCost }"/>&nbsp;DH</td>
+						</tr>
+							<tr>
+							<th><label>Coût unitaire théorique :</label></th>
+							<td><c:out value="${thUnitCost}" />&nbsp;DH</td>
 						</tr>
 						<tr>
-							<th><label>Coût unitaire:</label></th>
-							<td>12.540 DH</td>
+							<th><label>Coût unitaire réél:</label></th>
+							<td><c:out value="${realUnitCost}" />&nbsp;DH</td>
 						</tr>
 
 					</tbody>
@@ -740,8 +759,8 @@
                     	"name":"end",
                     	"data":"end",
                     	"render": function ( data, type, full, meta ) {
-                   		 $active='<div id="end" class="label label-success">En cours</div>';
-                   		 $inactive='<div id="end" class="label label-danger">Terminé</div>';
+                   		 $active='<div id="end" class="label label-primary">En cours</div>';
+                   		 $inactive='<div id="end" class="label label-default">Terminé</div>';
                    		 if(data==false){
                    			 return $active;
                    		 }

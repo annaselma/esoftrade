@@ -3,6 +3,8 @@
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <style>
 </style>
@@ -23,16 +25,19 @@
 			<div class="tab-pane active" id="fiche-tab">
 				<div class="row">
 					<div class="col-md-12">
+					<sec:authorize access="hasRole('WRITE_ROLE')">					
 					<button type="button" class="btn-sm btn btn-danger pull-right "
 									style="margin-right: 2%;"
 									onclick="location.href='/esoftrade/role/delete?id=${role.id}'">
 									<i class="fa fa-pencil-square-o "></i> &nbsp;Supprimer
 								</button>
+				 																		
 								<button type="button" class="btn-sm btn btn-success pull-right "
 									style="margin-right: 2%;"
 									onclick="location.href='/esoftrade/role/update?id=${role.id}'">
 									<i class="fa fa-pencil-square-o "></i> &nbsp;Modifier
 								</button>
+								</sec:authorize>					
 						<div class="category-info"
 							style="padding-left: 1%; padding-top: 4%;">
 							<div class="global-info">

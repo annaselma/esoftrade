@@ -37,41 +37,55 @@
 								</button>
 								<div class=" col-sm-12 table-responsive">
 
-									<div class="" style="margin-bottom: 4%;"> Gamme N° &nbsp;<strong class="text-warning"><c:out value="${gamme.ref}"/></strong>
+									<div class="text-muted" style="margin-bottom: 4%;"> Gamme N° &nbsp;<strong class="text-warning"><c:out value="${gamme.ref}"/></strong>
+									<span class="text-muted"  style="margin-left: 20%;"  id="statut">
+									Statut de la gamme:&nbsp;
+									<c:choose>
+										<c:when test="${gamme.end}">
+											<div id="statut" class="label label-default">Terminé</div>
+										</c:when>
+										<c:otherwise>
+											<div id="statut" class="label label-primary">En cours</div>
+										</c:otherwise>
+									</c:choose>
+							</span>
 									</div>
+									
 									<table class="table">
-										<tbody>
-										
+										<tbody>																				
 										<tr>
 												<th><label>Désignation:</label></th>
-												<td><c:out value="${gamme.designation}" /></td>
+												<td><h4><c:out value="${gamme.designation}" /></h4></td>
 											</tr>
 											<tr>
 												<th><label>Poste associé:</label></th>
-												<td><c:out value="${gamme.poste}" /></td>
+												<td><a href="<c:out value="${baseUrl}/esoftrade/poste/profile?id=${gamme.poste.id}"/>"><c:out
+															value="${gamme.poste.namePoste}" /></a></td>
 											</tr>
 											<tr>
 												<th><label>Nombre de poste:</label></th>
 												<td><c:out value="${gamme.nbposte}" /></td>
 											</tr>
 											<tr>
+												<th><label>Temps passé(H):</label></th>
+												<td><c:out value="${gamme.time}" /></td>
+											</tr>
+											<tr>
+												<th><label>Coût main d'Oeuvre en Dhs:</label></th>
+												<td><c:out value="${gamme.cost}" /></td>
+											</tr>
+											<tr>
 												<th>Date début </th>
 												<td><span class="data-value"> <fmt:formatDate
 															pattern="dd/MM/yyyy" value="${gamme.startDate}" /></span></td>
 											</tr>
+											
 											<tr>
 												<th>Date Fin </th>
 												<td><span class="data-value"> <fmt:formatDate
 															pattern="dd/MM/yyyy" value="${gamme.endDate}" /></span></td>
 											</tr>
-											<tr>
-												<th><label>Côut Réél:</label></th>
-												<td><c:out value="${gamme.realCost}" /></td>
-											</tr>
-											<tr>
-												<th><label>Côut théorique:</label></th>
-												<td><c:out value="${gamme.theocticalCost}" /></td>
-											</tr>
+										
 											<tr>
 												<th>Date début Prévu </th>
 												<td><span class="data-value"> <fmt:formatDate
@@ -87,6 +101,16 @@
 												<th><label>Quantité nécessaire:</label></th>
 												<td><span class=""><c:out
 															value="${gamme.createdQT}" /></span></td>
+											</tr>
+											<tr>
+												<th><label>Quantité rejetée:</label></th>
+												<td><span class=""><c:out
+															value="${gamme.rejectedQt}" /></span></td>
+											</tr>
+											<tr>
+												<th><label>Quantité en attente:</label></th>
+												<td><span class=""><c:out
+															value="${gamme.waitingPrieces}" /></span></td>
 											</tr>
 											<tr>
 												<th><label>Type de phase:</label></th>
@@ -258,7 +282,10 @@
                         "data": function(data) {
                             planify(data);  
                         } 
+                    },  "language": {
+                    	"url":"${baseURL}/dataTables.json"
                     },
+                    
                     "columnDefs":[{
                     	"targets":[0],
                     	"name":"name",
@@ -318,4 +345,5 @@
                     ]
                 });});
         </script>
-
+        
+        

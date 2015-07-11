@@ -78,6 +78,8 @@
          <script src="${baseURL}/js/bootstrap-switch.js" type="text/javascript" ></script>
          <!-- bootstrap-modal -->
 <%--          <script src="${baseURL}/js/bootstrap-modal.js" type="text/javascript"></script> --%>
+        <!-- bootstrap-modal -->
+         <script src="${baseURL}/js/bootstrapmodal.min.js" type="text/javascript"></script> 
         
    </head>
     <body class="skin-blue">

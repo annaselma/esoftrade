@@ -167,6 +167,7 @@
                    <form:option value="Medium">moyen</form:option>
                     <form:option value="Urgent">urgent</form:option>
                    <form:option value="Critical">critique</form:option>
+
                     </form:select>
                     <form:errors path="priority" cssClass="error" />
 				</div>

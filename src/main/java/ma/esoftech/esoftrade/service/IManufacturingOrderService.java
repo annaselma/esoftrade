@@ -1,6 +1,7 @@
 package ma.esoftech.esoftrade.service;
 
 import java.util.List;
+import java.util.Map;
 
 import ma.esoftech.esoftrade.DTO.FileDTO;
 import ma.esoftech.esoftrade.DTO.GammeDTO;
@@ -33,5 +34,7 @@ public interface IManufacturingOrderService {
 			long id, UserDTO modifier) throws ManufacturingNotFoundException;
 	void deleteGammefromManufacturing(GammeDTO gammeDTO,
 			long id, UserDTO modifier) throws ManufacturingNotFoundException;
+	Map<String, Float> calculeCost(long id)
+			throws ManufacturingNotFoundException;
 
 }

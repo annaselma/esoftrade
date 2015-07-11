@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -22,12 +23,13 @@ public class GammeDTO {
 	private EditorDTO modifier;
 	private Date lastEdit;
 	private String ref;
+	@NotEmpty(message="choisir un nom de designation")
 	private String designation;
 	private String description;
-	private Integer requeredQt=0;
 	private Integer rejectedQt=0;
 	private Integer createdQt=0;
 	private Integer missingQt=0;
+	private Integer time=0;
 	private float cost;
 	private String barreCode;
 	@DateTimeFormat(pattern="dd/MM/yyyy")
@@ -43,18 +45,14 @@ public class GammeDTO {
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	@NotNull
 	private Date endDate;
-	private float theocticalCost;
-	private float realCost;
 	private Integer waitingPrieces=0;
 	private Integer createdQT=0;
-	@NotEmpty(message="veillez indiquer au moins un poste")
-    private String poste;
     private Integer nbposte=0;
     @NotEmpty(message="choisir un type")
 	private String type;
 	private boolean end=false;
+	private PosteAssociatedDTO poste= new PosteAssociatedDTO();
 	private  List<FileAssociatedDTO> files=new ArrayList<FileAssociatedDTO>();
-	private  List<PosteAssociatedDTO> postes=new ArrayList<PosteAssociatedDTO>();
 	public GammeDTO() {
 		setStartDate(new Date());
 		setEndDate(new Date());
@@ -110,12 +108,6 @@ public class GammeDTO {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Integer getRequeredQt() {
-		return requeredQt;
-	}
-	public void setRequeredQt(Integer requeredQt) {
-		this.requeredQt = requeredQt;
-	}
 	public Integer getRejectedQt() {
 		return rejectedQt;
 	}
@@ -136,19 +128,6 @@ public class GammeDTO {
 	}
 	public void setMissingQt(Integer missingQt) {
 		this.missingQt = missingQt;
-	}
-	public float getCost() {
-		return cost;
-	}
-	public void setCost(float cost) {
-		this.cost = cost;
-	}
-	public List<PosteAssociatedDTO> getPostes() {
-		return postes;
-	}
-
-	public void setPostes(List<PosteAssociatedDTO> postes) {
-		this.postes = postes;
 	}
 
 	public String getBarreCode() {
@@ -187,18 +166,6 @@ public class GammeDTO {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	public float getTheocticalCost() {
-		return theocticalCost;
-	}
-	public void setTheocticalCost(float theocticalCost) {
-		this.theocticalCost = theocticalCost;
-	}
-	public float getRealCost() {
-		return realCost;
-	}
-	public void setRealCost(float realCost) {
-		this.realCost = realCost;
-	}
 	public boolean isEnd() {
 		return end;
 	}
@@ -219,9 +186,7 @@ public class GammeDTO {
 	public void setCreatedQT(Integer createdQT) {
 		this.createdQT = createdQT;
 	}
-	public String getPoste() {
-		return poste;
-	}
+
 	public String getDesignation() {
 		return designation;
 	}
@@ -230,9 +195,6 @@ public class GammeDTO {
 		this.designation = designation;
 	}
 
-	public void setPoste(String poste) {
-		this.poste = poste;
-	}
 	public String getType() {
 		return type;
 	}
@@ -247,6 +209,31 @@ public class GammeDTO {
 
 	public void setNbposte(Integer nbposte) {
 		this.nbposte = nbposte;
+	}
+
+	public PosteAssociatedDTO getPoste() {
+		return poste;
+	}
+
+	public void setPoste(PosteAssociatedDTO poste) {
+		this.poste = poste;
+	}
+
+	public Integer getTime() {
+		return time;
+	}
+
+	public void setTime(Integer time) {
+		this.time = time;
+	}
+
+	public float getCost() {
+		this.cost=(float) Math.floor(nbposte*poste.getPrice()*time) ;
+		return cost;
+	}
+
+	public void setCost(float cost) {
+		this.cost = cost;
 	}
 
 	}

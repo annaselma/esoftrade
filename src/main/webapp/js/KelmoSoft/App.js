@@ -18,6 +18,17 @@ function CheckNumber(event){
 function n(n){
 		return n > 9 ? "" + n: "0" + n;
 	}
+function updateNotification(number){
+    if(number>0){
+      message="vous avez "+number+" notification(s)";
+      $(".notifications-menu .label-warning").text(number);
+      $(".notifications-menu .dropdown-menu .header").text(message);	
+    }else{
+    	message="vous n'avez aucune notification";
+    	 $(".notifications-menu .dropdown-menu .header").text(message);
+    }
+	  
+}
 function planify(data) {
     for (var i = 0; i < data.columns.length; i++) {
         column = data.columns[i];

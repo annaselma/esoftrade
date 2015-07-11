@@ -7,10 +7,10 @@
 <!DOCTYPE html>
 	<c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
 	<section class="content-header">
-                    <h1>
-                        Catégoorie
-                        <small>Liste des Catégorie</small>
-                    </h1>
+                    <h4>
+                        <a href="${baseURL}/warehouse/list">Entrepôts</a>
+                        <small>liste</small>
+                    </h4>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i>Acceuil</a></li>
                         <li class="active">Catégorie</li>

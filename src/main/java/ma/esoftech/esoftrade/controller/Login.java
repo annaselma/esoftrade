@@ -26,7 +26,7 @@ public class Login {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (!(auth instanceof AnonymousAuthenticationToken)) {
 		    /* The user is logged in :) */
-		    return new ModelAndView("forward:/client.html");
+		    return new ModelAndView("forward:/dashboard");
 		}
 		
 		if (error != null) {

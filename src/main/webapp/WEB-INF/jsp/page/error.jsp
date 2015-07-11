@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
 <style>
 .error {
 	color: #ff0000;
@@ -26,7 +26,7 @@
                             <h3><i class="fa fa-warning text-yellow"></i> Oops! Something went wrong.</h3>
                             <p>
                                ${messageError}
-                                Meanwhile, you may <a href='../../index.html'>return to dashboard</a> or try using the search form.
+                                Meanwhile, you may <a href="${baseURL}/dashboard">return to dashboard</a> or try using the search form.
                             </p>
                             <form class='search-form'>
                                 <div class='input-group'>
