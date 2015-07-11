@@ -25,6 +25,7 @@ import ma.esoftech.esoftrade.exception.OrderUpdateException;
 import ma.esoftech.esoftrade.model.OrderDocument.OrderStatus;
 import ma.esoftech.esoftrade.model.OrderDocument.OrderType;
 import ma.esoftech.esoftrade.model.OrderManufacturing.OFPRIORITY;
+import ma.esoftech.esoftrade.model.OrderManufacturing.OFStatus;
 import ma.esoftech.esoftrade.service.IFileService;
 import ma.esoftech.esoftrade.service.IManufacturingOrderService;
 import ma.esoftech.esoftrade.service.IMouvementService;
@@ -308,6 +309,7 @@ public class OrderController extends AbstractController {
 					manufacturingDTO.setProduct(line.getProduct());
 					manufacturingDTO.setRequeredQT((int)line.getQuantity());
 					manufacturingDTO.setOrderDocument(orderA);
+					manufacturingDTO.setStatus(OFStatus.inpreparation);
 					manufacturingDTO.setPriority(OFPRIORITY.Low);
 					manufacturingDTO.setStartDate(new Date());
 					manufacturingDTO.setEndDate(new Date());
