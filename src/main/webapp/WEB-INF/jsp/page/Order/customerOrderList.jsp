@@ -119,9 +119,9 @@
                     	
                     },
                     {
-                    	"targets":[3],
-                    	"name":"date",
-                    	"data":"date",
+                    	"targets":[4],
+                    	"name":"validityDueDate",
+                    	"data":"validityDueDate",
                     	"render": function ( data, type, full, meta ) {
                      	      date = new Date(data);
                      	      return date.format();
@@ -129,7 +129,7 @@
                     
                     },
                     {
-                    	"targets":[4],
+                    	"targets":[5],
                     	"name":"status",
                     	"data":"status",
                     	"render" : function(data, type, full,
@@ -166,7 +166,7 @@
                     
                     },
                     {
-                    	"targets":[5],
+                    	"targets":[6],
                     	"name":"id",
                     	"data":"id",
                     	"orderable": false,
