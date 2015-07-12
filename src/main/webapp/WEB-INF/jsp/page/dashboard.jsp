@@ -86,7 +86,8 @@
 <div class="col-lg-12">
 	<div class="box box-info">
 		<div class="box-header">
-			Cout de fabriquation
+			<i class="fa fa-gears"></i>
+			<div class="box-title">Coûts de fabrication</div>
 		</div>
 		<!-- /.box-header -->
 		<div class="box-body ">
@@ -177,7 +178,7 @@ $(function () {
         },
 
         title: {
-            text: 'Coût de fabrication'
+            text: ''
         },
 
         series: [{

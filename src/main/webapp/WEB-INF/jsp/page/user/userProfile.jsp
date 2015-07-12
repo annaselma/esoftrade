@@ -335,6 +335,8 @@
 	type="text/javascript"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-    $('#list1').DataTable();
+    $('#list1').DataTable({language: {
+        url: '${baseURL}/ajax/fr_FR.json'
+    },});
      } );
 </script>

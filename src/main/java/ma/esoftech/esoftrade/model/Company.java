@@ -3,8 +3,11 @@ package ma.esoftech.esoftrade.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
@@ -22,13 +25,32 @@ public class Company extends Person {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	private static final String PREFIX_REF_CUSTOMER = "CU";
+	private static final String PREFIX_REF_SUPPLIER = "SU";
 	@Index(name="ELMO_INDEX_FURNISHER_CODE")
 	@Column(name = "ELMO_FURNISHER_CODE", length = 255)
 	private String supplierCode;
 
 	@Index(name="ELMO_INDEX_CUSTOMER_CODE")
 	@Column(name = "ELMO_CUSTOMER_CODE", length = 255)
-	private String CustomerCode;
+	private String customerCode;
+	
+	@Column(name="ELMO_CUSTOMER")
+	private boolean customer;
+	@Column(name="ELMO_SUPPLIER")
+	private boolean supplier;
+	@Column(name="ELMO_STATUS")
+	@Enumerated(EnumType.STRING)
+	private ThirdStatus status;
+	@Column(name="ELMO_CAPITAL")
+	private int capital;
+	@Column(name="ELMO_EFFECTIVE")
+	@Enumerated(EnumType.STRING)
+	private Effective effective;
+	@Column(name="ELMO_TYPE")
+	@Enumerated(EnumType.STRING)
+	private ThirdType type;
+	
 	
 	@Column(name = "ELMO_WEBSITE", length = 255)
 	private String webSite;
@@ -37,7 +59,7 @@ public class Company extends Person {
 	@JoinColumn(name = "ELMO_PICTURE_ID")
 	 private File picture;
 
-	 @OneToMany
+	 @OneToMany(cascade={CascadeType.REMOVE})
 	    @JoinTable(
 	        name="ELMO_COMPANY_FILE",
 	        joinColumns = @JoinColumn( name="ELMO_COMPANY_ID"),
@@ -56,11 +78,11 @@ public class Company extends Person {
 	}
 
 	public String getCustomerCode() {
-		return CustomerCode;
+		return customerCode;
 	}
 
 	public void setCustomerCode(String customerCode) {
-		CustomerCode = customerCode;
+		this.customerCode = customerCode;
 	}
 
 	public String getWebSite() {
@@ -89,8 +111,89 @@ public class Company extends Person {
 		this.files = files;
 	}
 
+	
+	public boolean isCustomer() {
+		return customer;
+	}
 
+	public void setCustomer(boolean customer) {
+		this.customer = customer;
+	}
+
+	public boolean isSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(boolean supplier) {
+		this.supplier = supplier;
+	}
+
+	public ThirdStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(ThirdStatus status) {
+		this.status = status;
+	}
+
+	public int getCapital() {
+		return capital;
+	}
+
+	public void setCapital(int capital) {
+		this.capital = capital;
+	}
+
+	public Effective getEffective() {
+		return effective;
+	}
+
+	public void setEffective(Effective effective) {
+		this.effective = effective;
+	}
+
+	public ThirdType getType() {
+		return type;
+	}
+
+	public void setType(ThirdType type) {
+		this.type = type;
+	}
+
+
+	public enum ThirdType{
+		SMEs_SMIs,wholesaler,administration,auther,GE,particular
+	}
+	public enum ThirdStatus{
+		inActivity,closed
+	}
+    public enum Effective{
+    	oneToFive,sixToTen,elevenToFifty,fifty_oneToHandred,GreatherThanHandred
+    }
+    public enum CompanyType{
+    	customer,supplier,all
+    }
 	
 	
+    public String generateReference(){
+		String ref="";
+		ref=ref.concat(PREFIX_REF_CUSTOMER);
+		ref=ref.concat(String.valueOf(this.getId()));
+		ref=ref.concat("-");
+		ref=ref.concat(String.valueOf(this.getCreateDate().getTime()));
+		this.setCustomerCode(ref);
+		ref="";
+		ref=ref.concat(PREFIX_REF_SUPPLIER);
+		ref=ref.concat(String.valueOf(this.getId()));
+		ref=ref.concat("-");
+		ref=ref.concat(String.valueOf(this.getCreateDate().getTime()));
+		this.setSupplierCode(ref);
+		generateRef();
+	return ref;	
+	}
+    private  void generateRef(){
+		this.setRef(String.valueOf(this.getId()));
+    	
+    }
 
 }

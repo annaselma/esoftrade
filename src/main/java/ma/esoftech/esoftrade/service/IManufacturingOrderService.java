@@ -36,5 +36,8 @@ public interface IManufacturingOrderService {
 			long id, UserDTO modifier) throws ManufacturingNotFoundException;
 	Map<String, Float> calculeCost(long id)
 			throws ManufacturingNotFoundException;
+	long OrderFacturingNotifiedCount(String filter);
+	List<OrderManufacturingDTO> getNotifiedOF(int start, int length,
+			String filter);
 
 }

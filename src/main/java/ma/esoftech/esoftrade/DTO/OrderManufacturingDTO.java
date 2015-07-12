@@ -1,5 +1,6 @@
 package ma.esoftech.esoftrade.DTO;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -14,10 +15,10 @@ import javax.validation.constraints.Size;
 
 import ma.esoftech.esoftrade.DTO.associated.EditorDTO;
 import ma.esoftech.esoftrade.DTO.associated.FileAssociatedDTO;
+import ma.esoftech.esoftrade.DTO.associated.OrderAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.ProductAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.UserAssociatedDTO;
 import ma.esoftech.esoftrade.DTO.associated.WarehouseAssociatedDTO;
-
 import ma.esoftech.esoftrade.model.OrderManufacturing.OFPRIORITY;
 import ma.esoftech.esoftrade.model.OrderManufacturing.OFStatus;
 
@@ -52,16 +53,16 @@ public class OrderManufacturingDTO {
 	private Integer lanchedQT=1;
 	private Integer requeredQT=0;
 	private Integer restToDoQT=0;
-	 @NotEmpty
-	 @Size(max=20,min=2)
 	private String team;
 	private OFPRIORITY priority;
 	private float unitCost;
 	private float unitCostTheory;
 	private float totalRealCost;
 	private float totalTheoryCost;
-	private Integer deadline=0;
+	private Long deadline=0l;
 	private Integer progress=0;
+	private boolean valid=true;
+	private OrderAssociatedDTO orderDocument=null;
 	private FileAssociatedDTO picture=null;
 	public FileAssociatedDTO getPicture() {
 		return picture;
@@ -264,22 +265,35 @@ public class OrderManufacturingDTO {
 	public void setTotalTheoryCost(float totalTheoryCost) {
 		this.totalTheoryCost = totalTheoryCost;
 	}
-	public Integer getDeadline() {
-		this.deadline= (int)(this.endDate.getTime()-new Date().getTime());
+	public Long getDeadline() {
+		this.deadline= (this.endDate.getTime()-new Date().getTime());
 		this.deadline=this.deadline/1000;
 		this.deadline=this.deadline/3600;
 		this.deadline=this.deadline/24;
 		return deadline;
 	}
-	public void setDeadline(Integer deadline) {
+	public void setDeadline(Long deadline) {
 		this.deadline = deadline;
 	}
+
 	public Integer getProgress() {
 		this.progress=(int) Math.floor(((float)this.executedQT/(float)this.lanchedQT)*100);
 		return progress;
 	}
 	public void setProgress(Integer progress) {
 		this.progress = progress;
+	}
+	public boolean isValid() {
+		return valid;
+	}
+	public void setValid(boolean valid) {
+		this.valid = valid;
+	}
+	public OrderAssociatedDTO getOrderDocument() {
+		return orderDocument;
+	}
+	public void setOrderDocument(OrderAssociatedDTO orderDocument) {
+		this.orderDocument = orderDocument;
 	}
 	
 }

@@ -1,30 +1,31 @@
 package ma.esoftech.esoftrade.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Index;
 
-import ma.esoftech.esoftrade.model.CommercialProposal.ProposalStatus;
-
 @Entity
 @Table(name = "ELMO_ORDER")
-public class Order extends MetaObject {
+public class OrderDocument extends BusinessDocument{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	private final static String PREFIX_REF_CU="CU_";
+	private final static String PREFIX_REF_SUP="SU_";
 	@Column(name = "ELMO_SUPPLIER_REF", unique = true)
 	@Index(name = "ELMO_INDEX_SUPPLIER_REF")
 	private String supplierReference;
@@ -39,20 +40,57 @@ public class Order extends MetaObject {
 	@Column(name = "ELMO_VALIDITE_DUE_DATE")
 	private Date validityDueDate;
 
-	@Column(name = "ELMO_PROPOSAL_STATUS",nullable=false)
+	@Column(name = "ELMO_STATUS",nullable=false)
 	@Enumerated(EnumType.STRING)
 	private OrderStatus status;
-	
-	@ManyToOne
-	@JoinColumn(name="COMMERCIAL_PROPOSAL_ID")
-	private CommercialProposal commercialProposal;
 
-	public Order() {
+	@Column(name = "ELMO_TYPE",nullable=false)
+	@Enumerated(EnumType.STRING)
+	private OrderType type;
+	@OneToMany(cascade={CascadeType.REMOVE})
+	@JoinColumn(name="ELMO_ORDER_ID")
+	private Set<OrderLine> lines=new HashSet<OrderLine>();
+   
+	
+	
+	@OneToMany
+    @JoinTable(
+        name="ELMO_ORDER_FILE",
+        joinColumns = @JoinColumn( name="ELMO_ORDER_ID"),
+        inverseJoinColumns = @JoinColumn( name="ELMO_FILE_ID")
+    )
+	private Set<File> files=new HashSet<File>();
+	
+	public OrderDocument() {
 		super();
 	}
 
 	public String getSupplierReference() {
 		return supplierReference;
+	}
+
+	public OrderType getType() {
+		return type;
+	}
+
+	public void setType(OrderType type) {
+		this.type = type;
+	}
+
+	public Set<OrderLine> getLines() {
+		return lines;
+	}
+
+	public void setLines(Set<OrderLine> lines) {
+		this.lines = lines;
+	}
+
+	public Set<File> getFiles() {
+		return files;
+	}
+
+	public void setFiles(Set<File> files) {
+		this.files = files;
 	}
 
 	public void setSupplierReference(String supplierReference) {
@@ -98,5 +136,12 @@ public class Order extends MetaObject {
 	public enum OrderStatus {
 		draft, billed, sentOrSaved, notified, denied, delivred, notBilled
 	}
+	public String generateReference(){
+    	String ref="";
+    	this.setReference(String.valueOf(this.getId()));
+    	 this.setCustomerReference(PREFIX_REF_CU+String.valueOf(this.getId()+"_"+this.getCreateDate().getTime()));
+    	 this.setSupplierReference(PREFIX_REF_SUP+String.valueOf(this.getId()+"_"+this.getCreateDate().getTime()));
+    return ref;
+    }
 
 }

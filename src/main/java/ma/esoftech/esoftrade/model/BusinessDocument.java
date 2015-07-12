@@ -1,12 +1,11 @@
 package ma.esoftech.esoftrade.model;
 
-import java.util.List;
-
 import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Index;
 
@@ -28,36 +27,33 @@ public abstract class BusinessDocument extends MetaObject{
     private String customerReference;
 	
 	@Column(name="ELMO_PAYMENT_TYPE",nullable=false,length=255)
-    private String paymentType;
+	@Enumerated(EnumType.STRING)
+    private PaymentType paymentType;
 	
-	@Column(name="ELMO_PAYMENT_TERM",nullable=false,length=255)
-    private String paymentTerm;
+
 	
 	@Column(name="ELMO_NET_AMOUNT",nullable=false)
-    private double netAmount;
+    private double netAmount=0;
 	
 	@Column(name="ELMO_TAX_AMOUNT",nullable=false)
-    private double taxAmount;
+    private double taxAmount=0;
 	
 	@Column(name="ELMO_TOTAL_AMOUNT",nullable=false)
-    private double totalAmount;
+    private double totalAmount=0;
 	
 	@Column(name="ELMO_DISCOUNT",nullable=false)
-    private double discount;
+    private double discount=0;
 	
 	@Column(name="ELMO_SUMMARY")
     private String summary;
-	/*TODO corriger cette annotation suivante*/
+	
+	@Column(name="ELMO_PRIVATE_NOTE",length=511)
+	private String privateNote;
+	@Column(name="ELMO_PUBLIC_NOTE",length=511)
+	private String publicNote;
 	@ManyToOne
-	@JoinColumn(name="ELMO_ATTACHED_FILE_ID")
-    private List<File> attachedFiles;
-	
-	@OneToMany
-	@JoinColumn(name="ELMO_DOCUMENT_LINE_ID")
-    private List<DocumentLine> documentLines;
-	
-	
-	
+	@JoinColumn(name="ELMO_COMPANY_ID")
+	private Company company;
 	public BusinessDocument(){
 		super();
 		initialize();
@@ -87,21 +83,17 @@ public abstract class BusinessDocument extends MetaObject{
 		this.customerReference = customerReference;
 	}
 
-	public String getPaymentType() {
+
+	
+	public PaymentType getPaymentType() {
 		return paymentType;
 	}
 
-	public void setPaymentType(String paymentType) {
+	public void setPaymentType(PaymentType paymentType) {
 		this.paymentType = paymentType;
 	}
 
-	public String getPaymentTerm() {
-		return paymentTerm;
-	}
 
-	public void setPaymentTerm(String paymentTerm) {
-		this.paymentTerm = paymentTerm;
-	}
 
 	public double getNetAmount() {
 		return netAmount;
@@ -142,25 +134,34 @@ public abstract class BusinessDocument extends MetaObject{
 	public void setSummary(String summary) {
 		this.summary = summary;
 	}
-
-	public List<File> getAttachedFiles() {
-		return attachedFiles;
+	
+	public String getPrivateNote() {
+		return privateNote;
 	}
 
-	public void setAttachedFiles(List<File> attachedFiles) {
-		this.attachedFiles = attachedFiles;
+	public void setPrivateNote(String privateNote) {
+		this.privateNote = privateNote;
 	}
 
-	public List<DocumentLine> getDocumentLines() {
-		return documentLines;
+	public String getPublicNote() {
+		return publicNote;
 	}
 
-	public void setDocumentLines(List<DocumentLine> documentLines) {
-		this.documentLines = documentLines;
+	public void setPublicNote(String publicNote) {
+		this.publicNote = publicNote;
 	}
 	
-	
-	
-	
-	
+
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
+
+	public enum PaymentType{
+		cheque,transfert,creditCard,TIP,cash,levy
+	}
 }

@@ -8,7 +8,7 @@
 <c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
 <div class="box">
 	<div class="box-header">
-		<h3 class="box-title">la liste des produits</h3>
+		<h3 class="box-title">la liste des catégories</h3>
 		<div class="box-tools pull-right">
 			<a class="btn btn-primary btn-sm" href="${baseURL}/category/create"
 				style="color: white;">+ Ajouter categorie</a> &nbsp;
@@ -73,6 +73,8 @@
                         "data": function(data) {
                             planify(data);  
                         } 
+                    }, language: {
+                        url: '${baseURL}/ajax/fr_FR.json'
                     },
                     "columnDefs":[{
                     	"targets":[0],

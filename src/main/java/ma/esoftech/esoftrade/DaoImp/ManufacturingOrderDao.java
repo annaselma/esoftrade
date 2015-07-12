@@ -46,13 +46,29 @@ public class ManufacturingOrderDao implements IManufacturinOrder{
 		if(sorting ==null ||sorting.equals("")){
 			sorting ="id ASC";
 		}
-	     String hql="From OrderManufacturing as fabrication order by fabrication."+sorting;
+	     String hql="From OrderManufacturing as fabrication  where fabrication.valid=true order by fabrication."+sorting;
 	     org.hibernate.Query query=session.createQuery(hql);
 	     query.setFirstResult(start).setMaxResults(length);
 	     List<OrderManufacturing>orderManu= query.list();
 		return orderManu;
 	}
-
+	@Override
+	public List<OrderManufacturing> getNotifiedOF(int start, int length,
+			 String filter) {
+		session=sessionFactory.getCurrentSession();
+		
+	     String hql="From OrderManufacturing as fabrication where fabrication.valid=false";
+	     org.hibernate.Query query=session.createQuery(hql);
+	     query.setFirstResult(start).setMaxResults(length);
+	     List<OrderManufacturing>orderManu= query.list();
+		return orderManu;
+	}
+	@Override
+	public long ManufacturingNotifiedCount(String filter) {
+		session=sessionFactory.getCurrentSession();
+		Long count=(Long)session.createQuery(" Select count(OFabrication) from OrderManufacturing as OFabrication where OFabrication.valid=false").uniqueResult();
+		return count;
+	}
 	@Override
 	public long createOF(OrderManufacturing OFabrication) {
 		session=sessionFactory.getCurrentSession();
@@ -78,7 +94,7 @@ public class ManufacturingOrderDao implements IManufacturinOrder{
 	@Override
 	public long ManufacturingCount(String filter) {
 		session=sessionFactory.getCurrentSession();
-		Long count=(Long)session.createQuery(" Select count(OFabrication) from OrderManufacturing as OFabrication").uniqueResult();
+		Long count=(Long)session.createQuery(" Select count(OFabrication) from OrderManufacturing as OFabrication where OFabrication.valid=true").uniqueResult();
 		return count;
 	}
 

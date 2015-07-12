@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import ma.esoftech.esoftrade.model.Company.ThirdStatus;
+
 @Entity
 @Table(name = "ELMO_CONTACT")
 public class Contact extends Person {
@@ -17,8 +19,7 @@ public class Contact extends Person {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "ELMO_STATUT")
-	private boolean statut;
+
 
 	@Column(name = "ELMO_LAST_NAME", length = 255, nullable = false)
 	private String lastName;
@@ -27,20 +28,14 @@ public class Contact extends Person {
 	@Column(name = "ELMO_JOB", length = 255)
 	private String job;
 	
-	@Column(name = "ELMO_TYPE", length = 255)
-	private String type;
+	@Column(name = "ELMO_STATUS", length = 255)
+	@Enumerated(EnumType.STRING)
+	private ThirdStatus status;
 
 	@ManyToOne
 	 @JoinColumn(name="ELMO_COMPANY_ID")
 	private Company company;
-	public boolean isStatut() {
-		return statut;
-	}
-
-	public void setStatut(boolean statut) {
-		this.statut = statut;
-	}
-
+	
 	public String getLastName() {
 		return lastName;
 	}
@@ -57,14 +52,6 @@ public class Contact extends Person {
 		this.job = job;
 	}
 
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-	
 
 
 	public Company getCompany() {
@@ -73,6 +60,15 @@ public class Contact extends Person {
 
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+	
+
+	public ThirdStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(ThirdStatus status) {
+		this.status = status;
 	}
 
 	public Contact() {

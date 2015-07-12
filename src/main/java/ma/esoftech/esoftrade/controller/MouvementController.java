@@ -6,6 +6,7 @@ import javax.annotation.PostConstruct;
 import javax.validation.Valid;
 
 import ma.esoftech.esoftrade.DTO.MouvementDTO;
+import ma.esoftech.esoftrade.DTO.OrderDTO;
 import ma.esoftech.esoftrade.DTO.OrderManufacturingDTO;
 import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.ProductWarehouseDTO;
@@ -80,6 +81,29 @@ public class MouvementController extends AbstractController {
 			List<MouvementDTO> list=mouventService.getListMouvement(start, length, ordre.toString(), search);
 			long recordsFiltered=mouventService.MouvementCount(search);
 			long recordsTotal=mouventService.MouvementCount("");
+			ResponseTable<MouvementDTO> response=new ResponseTable<MouvementDTO>();
+			response.setDraw(draw);
+			response.setRecordsFiltered(recordsFiltered);
+			response.setRecordsTotal(recordsTotal);
+			response.setData(list);
+			return response;
+		}
+		@RequestMapping(value="/getListByOrder",method=RequestMethod.GET,produces = "application/json")
+		public @ResponseBody ResponseTable<MouvementDTO> loadTablesByOrder(@Valid RequestTable req,BindingResult bindingResult,@RequestParam(value="order_id") long orderID,ModelMap model){
+			if(bindingResult.hasErrors()){
+				return null;
+			}
+			Order ordre=Order.createOrderFromRequestTable(req);
+			OrderDTO o=new OrderDTO();
+			o.setId(orderID);
+			String search=req.getSearch().get(SearchCriterias.value);
+			ordre.toString();
+			int start=req.getStart();
+			int  length=req.getLength();
+			int draw=req.getDraw();
+			List<MouvementDTO> list=mouventService.getListMouvementByOrder(start, length, ordre.toString(), search,o);
+			long recordsFiltered=mouventService.MouvementCountByOrder(search,o);
+			long recordsTotal=mouventService.MouvementCountByOrder("",o);
 			ResponseTable<MouvementDTO> response=new ResponseTable<MouvementDTO>();
 			response.setDraw(draw);
 			response.setRecordsFiltered(recordsFiltered);

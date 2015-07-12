@@ -73,6 +73,8 @@
                         "data": function(data) {
                             planify(data);  
                         } 
+                    }, language: {
+                        url: '${baseURL}/ajax/fr_FR.json'
                     },
                     "columnDefs":[{
                     	"targets":[0],

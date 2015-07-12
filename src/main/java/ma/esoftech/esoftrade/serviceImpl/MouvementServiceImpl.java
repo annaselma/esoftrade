@@ -4,14 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ma.esoftech.esoftrade.DTO.MouvementDTO;
+import ma.esoftech.esoftrade.DTO.OrderDTO;
+import ma.esoftech.esoftrade.DTO.OrderExpedition;
+import ma.esoftech.esoftrade.DTO.OrderExpeditionList;
 import ma.esoftech.esoftrade.DTO.OrderManufacturingDTO;
 import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.DTO.ProductWarehouseDTO;
 import ma.esoftech.esoftrade.DTO.UserDTO;
 import ma.esoftech.esoftrade.DTO.WarehouseDTO;
 import ma.esoftech.esoftrade.Dao.IMouvementDao;
+import ma.esoftech.esoftrade.Dao.IProductDao;
 import ma.esoftech.esoftrade.model.Mouvement;
 import ma.esoftech.esoftrade.model.Mouvement.MouvementType;
+import ma.esoftech.esoftrade.model.OrderDocument;
 import ma.esoftech.esoftrade.model.OrderManufacturing;
 import ma.esoftech.esoftrade.model.Product;
 import ma.esoftech.esoftrade.model.ProductWarehouse;
@@ -25,12 +30,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 @Service
-
 public class MouvementServiceImpl implements IMouvementService {
 	@Autowired
 	Mapper mapper;
 	@Autowired
 	IMouvementDao mouvementdao;
+	@Autowired
+	IProductDao productDao;
 	
 	@Override
 	@Transactional(readOnly=true)
@@ -68,6 +74,27 @@ public class MouvementServiceImpl implements IMouvementService {
 	@Transactional(readOnly=true)
 	public long MouvementCount(String filter) {
 		return mouvementdao.MouvementCount(filter);
+	}
+	@Override
+	@Transactional(readOnly=true)
+	public List<MouvementDTO> getListMouvementByOrder(int start, int length,
+			String sorting, String filter,OrderDTO order) {
+		OrderDocument o=new OrderDocument();
+		o.setId(order.getId());
+		List<Mouvement> mouvementEntity= mouvementdao.getListMouvementByOrder(start, length, sorting, filter, o);
+		List<MouvementDTO>mouvementDTOs= new ArrayList<MouvementDTO>();
+		for (Mouvement mouv : mouvementEntity) {
+			mouvementDTOs.add(mapper.map(mouv, MouvementDTO.class));
+		}
+		return mouvementDTOs;
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public long MouvementCountByOrder(String filter,OrderDTO order) {
+		OrderDocument o=new OrderDocument();
+		o.setId(order.getId());
+		return mouvementdao.MouvementCountByOrder(filter, o);
 	}
 
 	@Override
@@ -144,6 +171,55 @@ public class MouvementServiceImpl implements IMouvementService {
 		mouvementdao.createMouvement(mouvementTarget);
 		
 		
+	}
+	@Override
+	@Transactional(rollbackFor=Exception.class)
+	public void delivryStockfromOrder(OrderExpeditionList expedition,UserDTO creator) {
+		Product pr=new Product();
+		WarehouseDTO warehouse=new WarehouseDTO();
+		ProductDTO product=new ProductDTO();
+		OrderDocument order=new OrderDocument();
+		order.setId(expedition.getOrder().getId());
+		Mouvement mouvement=null;
+		for(OrderExpedition exp : expedition.getExpeditions()){
+            pr.setId(exp.getProduct().getId());
+			warehouse.setId(exp.getWarehouse().getId());
+			product.setId(pr.getId());
+			mouvement=buildMouvement(warehouse, product, (int)-exp.getQte(),"CAUSE Customer ORDER", creator);
+			mouvement.setOrderDocument(order);
+			mouvement.setType(MouvementType.customerOrder);
+			mouvementdao.createMouvement(mouvement);	
+		}
+		
+		
+	}
+	@Override
+	@Transactional(rollbackFor=Exception.class)
+	public void importStockfromOrder(OrderExpeditionList expedition,UserDTO creator) {
+		Product pr=new Product();
+		WarehouseDTO warehouse=new WarehouseDTO();
+		ProductDTO product=new ProductDTO();
+		OrderDocument order=new OrderDocument();
+		order.setId(expedition.getOrder().getId());
+		Mouvement mouvement=null;
+		for(OrderExpedition exp : expedition.getExpeditions()){
+			pr=productDao.findById(exp.getProduct().getId());
+			long qteStock=productDao.getProductQuantity(pr);
+			calculPMP(qteStock,pr,exp.getQte(),exp.getPrice());
+			productDao.updateProduct(pr);
+			warehouse.setId(exp.getWarehouse().getId());
+			product.setId(pr.getId());
+			mouvement=buildMouvement(warehouse, product, (int)exp.getQte(),"CAUSE SUPPLIER ORDER", creator);
+			mouvement.setOrderDocument(order);
+			mouvement.setType(MouvementType.supplierOrder);
+			mouvementdao.createMouvement(mouvement);	
+		}
+		
+		
+	}
+	private void calculPMP(long stock,Product pr,long qte,float price){
+		pr.setPmp((float)(stock*pr.getPmp()+qte*price)/(stock+qte));
+
 	}
 
 	@Override

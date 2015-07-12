@@ -98,9 +98,9 @@
 											</tr>
 											
 											<tr>
-												<th><label>Quantité nécessaire:</label></th>
+												<th><label>Quantité créé:</label></th>
 												<td><span class=""><c:out
-															value="${gamme.createdQT}" /></span></td>
+															value="${gamme.createdQt}" /></span></td>
 											</tr>
 											<tr>
 												<th><label>Quantité rejetée:</label></th>

@@ -132,7 +132,9 @@
 								<th>Produit</th>
 								<th>Unité</th>
 								<th>prix de vente unitaire</th>
-								<th>valorisation</th>
+								<th>valorisation vente</th>
+							    <th>Prix moyen pondéré (PMP)</th>
+								<th>valorisation achat (PMP)</th>
 								<th>Transférer</th>
 								<th>Coriger</th>
 							</tr>
@@ -144,7 +146,9 @@
 								<th>Produit</th>
 								<th>Unité</th>
 								<th>prix de vente unitaire</th>
-								<th>valorisation</th>
+								<th>valorisation vente</th>
+							    <th>Prix moyen pondéré (PMP)</th>
+								<th>valorisation achat (PMP)</th>
 								<th>Transférer</th>
 								<th>Coriger</th>
 							</tr>
@@ -341,7 +345,9 @@
 								"data" : function(data) {
 									planify(data);
 								}
-							},
+							}, language: {
+		                        url: '${baseURL}/ajax/fr_FR.json'
+		                    },
 							"columnDefs" : [
 									{
 										"targets" : [ 0 ],
@@ -383,9 +389,28 @@
 										}
 
 									},
-
 									{
 										"targets" : [ 4 ],
+										"name" : "product.pmp",
+										"data" : "product.pmp",
+
+									},
+									{
+										"targets" : [ 5 ],
+										"name" : "product.pmp",
+										"data" : "product.pmp",
+										"orderable" : false,
+										"render" : function(data, type, full,
+												meta) {
+											$priceValorisation = data
+													* full.quantity;
+											return $priceValorisation;
+										}
+
+									},
+
+									{
+										"targets" : [ 6 ],
 										"name" : "product.id",
 										"data" : "product.id",
 										"orderable" : false,
@@ -400,7 +425,7 @@
 
 									},
 									{
-										"targets" : [ 5 ],
+										"targets" : [ 7 ],
 										"name" : "product.id",
 										"data" : "product.id",
 										"orderable" : false,
@@ -436,7 +461,9 @@
 								"data" : function(data) {
 									planify(data);
 								}
-							},
+							}, language: {
+		                        url: '${baseURL}/ajax/fr_FR.json'
+		                    },
 							"columnDefs" : [
 									{
 										"targets" : [ 0 ],
@@ -472,9 +499,12 @@
 											case "supplierOrder":
 												$link = '<a href="#">commande fournisseur</a>';
 												break;
-											case "manufacturing":
-												$link = '<a href="'+full.ofabrication.id+'">'full.ofabrication.ref'</a>';
-												break;
+											case  "customerOrder":
+					                     		 $link='<a href="${baseURL}/order/profile?id='+full.orderDocument.id+'">'+full.orderDocument.customerReference+'</a>';
+					                  	    	 break;
+					                        case  "manufacturing":
+												 $link='<a href="${baseURL}/manufacturing/profile?id='+full.ofabrication.id+'">'+full.ofabrication.ref+'</a>';
+												 break;
 											default:
 
 											}
@@ -555,6 +585,8 @@
                         "data": function(data) {
                             planify(data);  
                         } 
+                    }, language: {
+                        url: '${baseURL}/ajax/fr_FR.json'
                     },
                     "columnDefs":[{
                     	"targets":[0],

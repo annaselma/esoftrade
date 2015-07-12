@@ -22,7 +22,7 @@
 
 <div class="box box-solid box-primary">
 	<div class="box-header">
-		<h3 class="box-title">Gestion des Postes</h3>
+		<h3 class="box-title">Informations </h3>
 	</div>
 	<!-- /.box-header -->
 	<!-- form start -->

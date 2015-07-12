@@ -4,6 +4,7 @@ import java.util.List;
 
 import ma.esoftech.esoftrade.DTO.ProductDTO;
 import ma.esoftech.esoftrade.model.Mouvement;
+import ma.esoftech.esoftrade.model.OrderDocument;
 import ma.esoftech.esoftrade.model.Product;
 import ma.esoftech.esoftrade.model.ProductWarehouse;
 import ma.esoftech.esoftrade.model.Warehouse;
@@ -19,4 +20,7 @@ public List<ProductWarehouse>ListProductByWarehouse(int start, int length, Strin
 public long ProductCountByWarehouse(String filter, Warehouse warehouse);
 public List<ProductWarehouse>getListWarehouseByProduct(int start, int length, String sorting, String filter,Product product);
 public long WarehouseCountByProduct(String filter,Product product);
+List<Mouvement> getListMouvementByOrder(int start, int length, String sorting,
+		String filter, OrderDocument order);
+long MouvementCountByOrder(String filter, OrderDocument order);
 }

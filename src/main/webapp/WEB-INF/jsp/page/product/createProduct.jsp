@@ -86,9 +86,8 @@
 				</label>
 				<div class="col-md-4">
 					<form:select path="nature" cssClass="form-control ">
-                        <option value="" selected></option>
-						<option value="manufacturé">manufacture</option>
-						<option value="matière première">raw material</option>
+						<form:option value="manufacturé">manufacture</form:option>
+						<form:option value="matière première">raw material</form:option>
 						</form:select>
 						<form:errors path="nature" cssClass="error" />
 						</div></div>
@@ -97,13 +96,12 @@
 				<label for="deptField" class="col-sm-2 control-label esoft-left">Département:
 				</label>
 				<div class="col-md-4">
-					<form:select path="nature" cssClass="form-control ">
-                        <option value="" selected></option>
+					<form:select path="department" cssClass="form-control ">
 						<option value="achat">Achat</option>
 						<option value="importation">Importation</option>
 						<option value="fabrication">Fabrication</option>
 						</form:select>
-						<form:errors path="nature" cssClass="error" />
+						<form:errors path="department" cssClass="error" />
 						</div></div>
 			<div class="form-group">
 				<label for="wheightField" class="col-sm-2 control-label esoft-left">Poids:</label>

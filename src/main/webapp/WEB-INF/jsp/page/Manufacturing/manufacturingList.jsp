@@ -128,174 +128,214 @@
 	src="${baseURL}/js/plugins/datatables/dataTables.ColumnFilter.js"
 	type="text/javascript"></script>
 <script type="text/javascript">
-            $(function() {
-                
-            	$("#example33").DataTable({});
-               var table= $('#list1').DataTable({
-                    "paging": true,
-                    "lengthChange": true,
-                    "searching": true,
-                    "ordering": true,
-                    "info": true,
-                    "autoWidth": true,
-                    "processing": true,
-                    "serverSide": true,
-                    "ajax": {
-                        "url": "${baseURL}/manufacturing/getList",
-                        "data": function(data) {
-                            planify(data);  
-                        } 
-                    },
-                    "columnDefs":[{
-                    	"targets":[0],
-                    	"name":"ref",
-                    	"data":"ref",
-                    	"render": function ( data, type, full, meta ) {
-                    		$link='<small><a href="${baseURL}/manufacturing/profile?id='+full.id+'">'+data+'</a></small>';
-                    	
-                    	      return $link;
-                    	    }
-                    
-                    },
-                    {
-                    	"targets":[1],
-                    	"name":"startDate",
-                    	"data":"startDate",
-                    	"render": function ( data, type, full, meta ) {
-                   	      date = new Date(data);
-                   	      return date.format();
-                   	    }
-                    
-                    },
-                    {
-                    	"targets":[2],
-                    	"name":"endDate",
-                    	"data":"endDate",
-                    	"render": function ( data, type, full, meta ) {
-                   	      date = new Date(data);
-                   	      return date.format();
-                   	    }
-                    
-                    },
-                    {
-                    	"targets":[3],
-                    	"name":"deadline",
-                    	"data":"deadline",
-                    	"render": function ( data, type, full, meta ) {
-                   	     if(data<0){
-                   	    	 return '<span class="label label-warning">En retard de '+(data*-1)+' jour(s)</span>';
-                   	     }
-                   	     if(data==0){
-                   	    	 return "dernier jour";
-                   	     }
-                   	      return data+" jour(s)";
-                   	   
-                   	    }
-                    
-                    
-                    },
-                    {
-                    	"targets":[4],
-                    	"name":"progress",
-                    	"data":"progress",
-                    	"render": function ( data, type, full, meta ) {
-                   		 $dta='<small class="pull-right">'+data+'%</small>'+'<div class="progress xs">'+
-         					'<div class="progress-bar progress-bar-aqua" style="width:'+data+'%" role="progressbar" aria-valuenow="'+data+'" aria-valuemin="0" aria-valuemax="100">'+
- 						'<span class="sr-only">'+data+'</span>';
- 					'</div>';
-                   		 return $dta;
-                    	}
-                    },
-                    {
-                    	"targets":[5],
-                    	"name":"priority",
-                    	"data":"priority",
-                    	"render": function ( data, type, full, meta ) {
-                    		$link="";
-                     	     switch (data){
-                     	     case  "Critical":
-                     	    	$link='<span class="label label-danger">critique</span>';
-                     	    	 break;
-                     	    case  "High":
-                     	    	$link='<span class="label label-success">élevé</span>';
-                    	    	 break;
-                     	   case  "Medium":
-                     		  $link='<span class="label label-info">moyen</span>';
-                  	    	 break;
-                     	 case  "Low":
-                     		 $link='<span class="label label-default">faible</span>';
-                 	    	 break;
-                     	case  "Urgent":
-                    		 $link='<span class="label label-warning">urgent</span>';
-                	    	 break;
-                 	      default:
-                 	    	  
-                     	     }
-                     	     return $link;
-                     	    }
-                    
-                    },
-                    {
-                    	"targets":[6],
-                    	"name":"responsible",
-                    	"data":"responsible",
-                    	"render": function ( data, type, full, meta ) {
-                    		$link='<a href="${baseURL}/user/profile?id='+data.id+'"><i class="fa fa-user"></i>&nbsp;'+data.name+' '+data.lastName+'</a>';
-                    	
-                    	      return $link;
-                    	    }
-                    },
-                    {
-                    	"targets":[7],
-                    	"name":"status",
-                    	"data":"status",
-                    	"render": function ( data, type, full, meta ) {
-                    		$link="";
-                     	     switch (data){
-                     	     case  "canceled":
-                     	    	$link='<small class="badge bg-yellow">annulé</small>';
-                     	    	 break;
-                     	    case  "waiting":
-                     	    	$link='<small class="badge bg-aqua">attente</small>';
-                    	    	 break;
-                     	   case  "onProduction":
-                     		  $link='<small class="badge bg-purple">En prod</small>';
-                  	    	 break;
-                     	 case  "charged":
-                     		 $link='<small class="badge bg-teal">chargé</small>';
-                 	    	 break;
-                     	case  "notcharged":
-                    		 $link='<small class="badge bg-navy">pas chargé</small>';
-                	    	 break;
-                     	case  "end":
-                   		 $link='<small class="badge bg-red">fini</small>';
-               	    	 break;
-                     	case  "blocked":
-                   		 $link='<small class="badge bg-orange">blocké</small>';
-               	    	 break;
-                     	case  "inpreparation":
-                      		 $link='<small class="badge bg-olive">en prépa</small>';
-                  	    	 break;
-                 	      default:
-                 	    	  
-                     	     }
-                     	     return $link;
-                     	    }
-                    },
-                    {
-                    	"targets":[8],
-                    	"name":"id",
-                    	"data":"id",
-                    	"orderable": false,
-                    	 "render": function ( data, type, full, meta ) {
-                    		 $html='<a href="${baseURL}/manufacturing/profile?id='+data+'"  class="btn btn-info btn-xs"><i class="fa   fa-search"></i></a>&nbsp;';
-                    		 $html+='<a href="${baseURL}/manufacturing/update?id='+data+'"  class="btn btn-default btn-xs"><i class="fa   fa-edit"></i></a>&nbsp;';
-                    		 $html+='<a href="${baseURL}/manufacturing/delete?id='+data+'"  class="btn btn-danger btn-xs"><i class="fa   fa-trash-o"></i></a>';
-                    		 return $html;
-                    	    }
-                    
-                    }]
-                });
-                
-          });
-        </script>
+	$(function() {
+		//             	   $('#example1 thead th').each( function () {
+		//                        var title = $('#example1 thead th').eq( $(this).index() ).text();
+		//                        $(this).prepend( '<input  id="me" type="text" placeholder="Search '+title+'" /><br>' );
+		//                    } );
+
+		$("#example33").DataTable({});
+		var table = $('#list1')
+				.DataTable(
+						{
+							"paging" : true,
+							"lengthChange" : true,
+							"searching" : true,
+							"ordering" : true,
+							"info" : true,
+							"autoWidth" : true,
+							"processing" : true,
+							"serverSide" : true,
+							"ajax" : {
+								"url" : "${baseURL}/manufacturing/getList",
+								"data" : function(data) {
+									planify(data);
+								}
+							}, language: {
+		                        url: '${baseURL}/ajax/fr_FR.json'
+		                    },
+							"columnDefs" : [
+									{
+										"targets" : [ 0 ],
+										"name" : "ref",
+										"data" : "ref",
+										"render" : function(data, type, full,
+												meta) {
+											$link = '<small><a href="${baseURL}/manufacturing/profile?id='
+													+ full.id
+													+ '">'
+													+ data
+													+ '</a></small>';
+
+											return $link;
+										}
+
+									},
+									{
+										"targets" : [ 1 ],
+										"name" : "startDate",
+										"data" : "startDate",
+										"render" : function(data, type, full,
+												meta) {
+											date = new Date(data);
+											return date.formatDetail();
+										}
+
+									},
+									{
+										"targets" : [ 2 ],
+										"name" : "endDate",
+										"data" : "endDate",
+										"render" : function(data, type, full,
+												meta) {
+											date = new Date(data);
+											return date.formatDetail();
+										}
+
+									},
+									{
+										"targets" : [ 3 ],
+										"name" : "deadline",
+										"data" : "deadline",
+										"render" : function(data, type, full,
+												meta) {
+											if(full.status=="canceled"||full.status=="end"||full.status=="blocked"){
+												return '<small class="badge bg-aqua">fermé</small>';
+											}
+											if (data < 0) {
+												return '<span class="label label-danger">En retard de '
+														+ (data * -1)
+														+ ' jour(s)</span>';
+											}
+											if (data == 0) {
+												return "dernier jour";
+											}
+											return data + " jour(s)";
+										}
+
+									},
+									{
+										"targets" : [ 4 ],
+										"name" : "progress",
+										"data" : "progress",
+										"render" : function(data, type, full,
+												meta) {
+											$dta = '<small class="pull-right">'
+													+ data
+													+ '%</small>'
+													+ '<div class="progress xs">'
+													+ '<div class="progress-bar progress-bar-aqua" style="width: '+data+'%" role="progressbar" aria-valuenow="'+data+'" aria-valuemin="0" aria-valuemax="100">'
+													+ '<span class="sr-only">'
+													+ data + '</span>';
+											'</div>';
+											return $dta;
+										}
+									},
+									{
+										"targets" : [ 5 ],
+										"name" : "priority",
+										"data" : "priority",
+										"render" : function(data, type, full,
+												meta) {
+											$link = "";
+											switch (data) {
+											case "Critical":
+												$link = '<span class="label label-danger">critique</span>';
+												break;
+											case "High":
+												$link = '<span class="label label-warning">élevé</span>';
+												break;
+											case "Medium":
+												$link = '<span class="label label-info">moyen</span>';
+												break;
+											case "Low":
+												$link = '<span class="label label-info">faible</span>';
+												break;
+											case "Urgent":
+												$link = '<span class="label label-danger">urgent</span>';
+												break;
+											default:
+
+											}
+											return $link;
+										}
+
+									},
+									{
+										"targets" : [ 6 ],
+										"name" : "responsible",
+										"data" : "responsible",
+										"render" : function(data, type, full,
+												meta) {
+											$link = '<a href="${baseURL}/user/profile?id='
+													+ data.id
+													+ '"><i class="fa fa-user"></i>&nbsp;'
+													+ data.name
+													+ ' '
+													+ data.lastName + '</a>';
+
+											return $link;
+										}
+									},
+									{
+										"targets" : [ 7 ],
+										"name" : "status",
+										"data" : "status",
+										"render" : function(data, type, full,
+												meta) {
+											$link = "";
+											switch (data) {
+											case "canceled":
+												$link = '<small class="badge bg-yellow">annulé</small>';
+												break;
+											case "waiting":
+												$link = '<small class="badge bg-aqua">attente</small>';
+												break;
+											case "onProduction":
+												$link = '<small class="badge bg-purple">En prod</small>';
+												break;
+											case "charged":
+												$link = '<small class="badge bg-teal">chargé</small>';
+												break;
+											case "notcharged":
+												$link = '<small class="badge bg-navy">pas chargé</small>';
+												break;
+											case "end":
+												$link = '<small class="badge bg-red">fini</small>';
+												break;
+											case "blocked":
+												$link = '<small class="badge bg-orange">blocké</small>';
+												break;
+											case "inpreparation":
+												$link = '<small class="badge bg-olive">en prépa</small>';
+												break;
+											default:
+
+											}
+											return $link;
+										}
+									},
+									{
+										"targets" : [ 8 ],
+										"name" : "id",
+										"data" : "id",
+										"orderable" : false,
+										"render" : function(data, type, full,
+												meta) {
+											$html = '<a href="${baseURL}/manufacturing/profile?id='
+													+ data
+													+ '"  class="btn btn-info btn-xs"><i class="fa   fa-search"></i></a>&nbsp;';
+											$html += '<a href="${baseURL}/manufacturing/update?id='
+													+ data
+													+ '"  class="btn btn-default btn-xs"><i class="fa   fa-edit"></i></a>&nbsp;';
+											$html += '<a href="${baseURL}/manufacturing/delete?id='
+													+ data
+													+ '"  class="btn btn-danger btn-xs"><i class="fa   fa-trash-o"></i></a>';
+											return $html;
+										}
+
+									} ]
+						});
+
+	});
+</script>

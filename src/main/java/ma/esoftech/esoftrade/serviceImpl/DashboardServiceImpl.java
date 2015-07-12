@@ -106,9 +106,11 @@ public class DashboardServiceImpl implements IDashboardService{
 		Float[] th=new Float[posts.size()];
 		int i=0;
 		for (PostPerformance post : posts) {
+			System.out.println("test"+post.getPost().getNamePoste());
 			names[i]=post.getPost().getNamePoste();
 			times[i]= post.getTime();
 			th[i]=post.getPost().getPrice();
+			i++;
 		}
 		Object[][] res=new Object[3][posts.size()];
 		res[0]=names;

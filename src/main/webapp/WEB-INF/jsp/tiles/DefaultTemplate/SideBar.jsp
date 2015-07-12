@@ -39,8 +39,12 @@
 						<ul class="treeview-menu">
 							<li><a href="${baseURL}/product/list"><i
 									class="fa fa-angle-double-right"></i> Liste Produits</a></li>
+									<li><a href="${baseURL}/product/create"><i
+									class="fa fa-angle-double-right"></i> créer produit</a></li>
 							<li><a href="${baseURL}/category/list"><i
 									class="fa fa-angle-double-right"></i> Liste des Catégories</a></li>
+									<li><a href="${baseURL}/category/create"><i
+									class="fa fa-angle-double-right"></i> créer une catégorie</a></li>
 						</ul></li>
 						</sec:authorize>
 						<!-- Postes -->
@@ -51,8 +55,12 @@
 						<ul class="treeview-menu">
 							<li><a href="${baseURL}/poste/list"><i
 									class="fa fa-angle-double-right"></i> Liste Postes</a></li>
+									<li><a href="${baseURL}/poste/create"><i
+									class="fa fa-angle-double-right"></i> créer Poste</a></li>
 						<li><a href="${baseURL}/categoryPost/list"><i
 									class="fa fa-angle-double-right"></i> Liste des Catégories</a></li>	
+									<li><a href="${baseURL}/categoryPost/create"><i
+									class="fa fa-angle-double-right"></i> créer catégorie</a></li>
 						</ul></li>
 						</sec:authorize>
 						<!-- EndingPoste -->
@@ -63,7 +71,9 @@
 							<li><a href="${baseURL}/mouvement/list"><i
 									class="fa fa-angle-double-right"></i> Mouvement Stock</a></li>
 						<li><a href="${baseURL}/warehouse/list"><i
-									class="fa fa-angle-double-right"></i> Liste des Entrepôts</a></li>	
+									class="fa fa-angle-double-right"></i> Liste des Entrepôts</a></li>
+							<li><a href="${baseURL}/warehouse/create"><i
+									class="fa fa-angle-double-right"></i> créer un entrepôt</a></li>			
 						</ul></li></sec:authorize>
 						<!-- User -->
 						<sec:authorize access="hasAnyRole('READ_ROLE','WRITE_ROLE')">
@@ -71,8 +81,12 @@
 					</a><ul class="treeview-menu">
 							<li><a href="${baseURL}/role/list"><i
 									class="fa fa-angle-double-right"></i>Rôles et permissions</a></li>
+									<li><a href="${baseURL}/role/create"><i
+									class="fa fa-angle-double-right"></i> créer un rôle</a></li>
 						<li><a href="${baseURL}/user/list"><i
-									class="fa fa-angle-double-right"></i> Liste des utilisateurs</a></li>	
+									class="fa fa-angle-double-right"></i> Liste des utilisateurs</a></li>
+									<li><a href="${baseURL}/user/create"><i
+									class="fa fa-angle-double-right"></i> créer utilisateur</a></li>	
 						</ul></li>
 						</sec:authorize>
 						<sec:authorize access="hasRole('READ_USER')">
@@ -85,17 +99,30 @@
 							class="fa fa-angle-left pull-right"></i>
 					</a>
 						<ul class="treeview-menu">
-							<li><a href="#"><i
+							<li><a href="${baseURL}/third/create?type=customer"><i
 									class="fa fa-angle-double-right"></i> Nouveau Client</a></li>
-							<li><a href="pages/charts/flot.html"><i
+							<li><a href="${baseURL}/third/list?type=customer"><i
 									class="fa fa-angle-double-right"></i> Liste des Clients</a></li>
-							<li><a href="pages/charts/inline.html"><i
+							<li><a href="${baseURL}/third/create?type=supplier"><i
 									class="fa fa-angle-double-right"></i> Creer Fournisseur</a></li>
-									<li><a href="pages/charts/inline.html"><i
+									<li><a href="${baseURL}/third/list?type=supplier"><i
 									class="fa fa-angle-double-right"></i> Liste des Fournisseurs</a></li>
 						</ul></li>
 						<!-- tiersend -->
-					
+					<li class="treeview"><a href="#"> <i
+							class=" fa fa-shopping-cart"></i> <span>Commandes</span> <i
+							class="fa fa-angle-left pull-right"></i>
+					</a>
+						<ul class="treeview-menu">
+							<li><a href="${baseURL}/order/create?type=supplierOrder"><i
+									class="fa fa-angle-double-right"></i> créer une Cmd_Fournisseur</a></li>
+							<li><a href="${baseURL}/order/list?type=supplierOrder"><i
+									class="fa fa-angle-double-right"></i> Liste des Cmd_fournisseur</a></li>
+							<li><a href="${baseURL}/order/create?type=customerOrder"><i
+									class="fa fa-angle-double-right"></i> créer une Cmd_Client</a></li>
+									<li><a href="${baseURL}/order/list?type=customerOrder"><i
+									class="fa fa-angle-double-right"></i> Liste des Cmd_client</a></li>
+						</ul></li>
 						
 					
 			

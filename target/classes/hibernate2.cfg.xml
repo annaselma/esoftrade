@@ -18,7 +18,7 @@
 		<property name="hibernate.c3p0.idle_test_period">3000</property>
 
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/Kelmosoft</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/KelmoBases</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password"></property>
 		<property name="hibernate.show_sql">true</property>
@@ -42,8 +42,9 @@
 		   <mapping class="ma.esoftech.esoftrade.model.Gamme" />
 		   <mapping class="ma.esoftech.esoftrade.model.Poste" />
 	<mapping class="ma.esoftech.esoftrade.model.CategoryPoste" />
-<!-- 		<mapping class="ma.esoftech.esoftrade.model.Order" /> -->
-		<!-- <mapping class="ma.esoftech.esoftrade.model.BusinessDocument"/> -->
+		<mapping class="ma.esoftech.esoftrade.model.OrderDocument" /> 
+    <mapping class="ma.esoftech.esoftrade.model.BusinessDocument"/>
+    <mapping class="ma.esoftech.esoftrade.model.OrderLine"/>
 		<!-- <mapping class="ma.esoftech.esoftrade.model.DeliveryOrder"/> -->
 		<!-- <mapping class="ma.esoftech.esoftrade.model.DocumentLine"/> -->
 		<!-- <mapping class="ma.esoftech.esoftrade.model.DeliveryLine"/> -->

@@ -48,7 +48,9 @@ public class Product  extends MetaObject implements Serializable {
 	@Column(name="ELMO_VOLUME")
 	 private float volume;
 	@Column(name="ELMO_PRICE",nullable=false)
-	 private float price;
+	 private float price=0;
+	@Column(name="ELMO_PMP",nullable=false)
+	 private float pmp=0;
 	@ManyToOne
 	@JoinColumn(name = "ELMO_PICTURE_ID")
 	 private File picture;
@@ -214,6 +216,15 @@ public class Product  extends MetaObject implements Serializable {
 		this.barreCode = barreCode;
 	}
 	
+	
+	public float getPmp() {
+		return pmp;
+	}
+
+	public void setPmp(float pmp) {
+		this.pmp = pmp;
+	}
+
 	public String generateReference(){
 		String ref="";
 		ref=ref.concat(PREFIX_REF_PRODUCT);

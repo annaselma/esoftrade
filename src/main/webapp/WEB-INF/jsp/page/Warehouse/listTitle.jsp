@@ -8,7 +8,7 @@
 	<c:set var="baseURL" value="${pageContext.servletContext.contextPath}" />
 	<section class="content-header">
                     <h4>
-                        <a href="${baseURL}/warehouse/list">Entrepôts</a>
+                   Entrepôt
                         <small>liste</small>
                     </h4>
                     <ol class="breadcrumb">

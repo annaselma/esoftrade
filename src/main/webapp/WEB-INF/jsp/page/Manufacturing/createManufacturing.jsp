@@ -22,7 +22,8 @@
 
 <div class="box box-primary">
 	<div class="box-header">
-		<span class="error" style="margin-left:3%;">Veillez saisir les champs obligatoire (*)</span>
+		<span class="error" style="margin-left: 3%;">Veillez saisir les
+			champs obligatoire (*)</span>
 	</div>
 	<!-- /.box-header -->
 	<!-- form start -->
@@ -31,31 +32,34 @@
 
 		<form:form method="POST" commandName="manufacturing" id="OF"
 			data-toggle="validator" cssClass="form-horizontal">
-			
+
 			<div class="form-group">
-				<label for="nameField" class="col-sm-2 control-label esoft-left">Titre:&nbsp;<span class="error">*</span></label>
+				<label for="nameField" class="col-sm-2 control-label esoft-left">Titre:&nbsp;<span
+					class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:input path="title" cssClass="form-control" />
 					<form:errors path="title" cssClass="error" />
 				</div>
-           
+
 			</div>
-			<div class="form-group"><label for="productField" class="col-sm-2 control-label esoft-left">product:&nbsp;<span class="error">*</span></label>
+			<div class="form-group">
+				<label for="productField" class="col-sm-2 control-label esoft-left">product:&nbsp;<span
+					class="error">*</span></label>
 				<div class="col-sm-4" id="select-product">
-					<form:select path="product"
-						cssClass="tokenize-sample mono-select " id="product" size="1">
+					<form:select path="product" cssClass="tokenize-sample mono-select "
+						id="product" size="1">
 						<c:if test="${product.id >0}">
-							<form:option value="${product.id}"
-								selected="selected">
+							<form:option value="${product.id}" selected="selected">
 								<c:out value="${product.libelle}" />
 							</form:option>
 						</c:if>
 					</form:select>
 					<form:errors path="product" cssClass="error" />
-				</div></div>
-				<script type="text/javascript"
-					src="${baseURL}/js/plugins/tokenize/jquery.tokenize.js"></script>
-				<script type="text/javascript">
+				</div>
+			</div>
+			<script type="text/javascript"
+				src="${baseURL}/js/plugins/tokenize/jquery.tokenize.js"></script>
+			<script type="text/javascript">
 					$('#product').tokenize({
 						"newElements" : false,
 						maxElements : 1,
@@ -69,18 +73,19 @@
 									".tokenize-sample ",
 									function() {
 										console.log($(".Token span").text());
-										$text= $("#select-product .Token").remove();
-										   $("##elect-product select option[selected='selected']").remove();
-										    $("#select-product .TokenSearch input").val($text);
+										   $("#select-product .Token").remove();
+										   $("#select-product select option[selected='selected']").remove();
+										    $("#select-product .TokenSearch input").val();
 									});
 				</script>
-				
-				
+
+
 			<div class="form-group">
-				<label for="caegoryField" class="col-sm-2 control-label esoft-left">responsables:&nbsp;<span class="error">*</span></label>
+				<label for="caegoryField" class="col-sm-2 control-label esoft-left">responsables:&nbsp;<span
+					class="error">*</span></label>
 				<div class="col-sm-4" id="select-user">
-					<form:select path="responsible" cssClass="tokenize-sample mono-select "
-						id="user" size="1">
+					<form:select path="responsible"
+						cssClass="tokenize-sample mono-select " id="user" size="1">
 						<c:if test="${product.id >0}">
 							<form:option value="${responsible.id}" selected="selected">
 								<c:out value="${responsible.name} ${responsible.lastName}" />
@@ -104,14 +109,15 @@
 				   $text= $("#select-user .Token span").text();
 				   $(" #select-user .Token").remove();
 				   $("#select-user select option[selected='selected']").remove();
-				    $("#select-user .TokenSearch input").val($text);
+				    $("#select-user .TokenSearch input").val();
 				});
 				</script>
-				</div>
-				
-								
+			</div>
+
+
 			<div class="form-group">
-				<label for="centerField" class="col-sm-2 control-label esoft-left">centre:&nbsp;<span class="error">*</span></label>
+				<label for="centerField" class="col-sm-2 control-label esoft-left">centre:&nbsp;<span
+					class="error">*</span></label>
 				<div class="col-sm-4" id="select-center">
 					<form:select path="center" cssClass="tokenize-sample mono-select "
 						id="center" size="1">
@@ -141,9 +147,9 @@
 				    $("#select-center .TokenSearch input").val($text);
 				});
 				</script>
-				</div>
-				
-				
+			</div>
+
+
 			<div class="form-group">
 				<label for="lenghtField" class="col-sm-2 control-label esoft-left">Team:</label>
 				<div class="col-sm-4">
@@ -154,54 +160,58 @@
 			</div>
 			<hr>
 			<div class="form-group">
-				<label for="traitant"class="col-sm-2 control-label esoft-left">Sous-Traitant&nbsp;<span class="error">*</span></label>
+				<label for="traitant" class="col-sm-2 control-label esoft-left">Sous-Traitant&nbsp;<span
+					class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:checkbox path="type" />
 					<form:errors path="type" cssClass="error" />
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="priority"class="col-sm-2 control-label esoft-left">Priority&nbsp;<span class="error">*</span></label>
+				<label for="priority" class="col-sm-2 control-label esoft-left">Priority&nbsp;<span
+					class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:select path="priority" cssClass="form-control">
-                   <form:option value="Urgent">urgent</form:option>
-                   <form:option value="Low">faible</form:option>
-                   <form:option value="Medium">moyen</form:option>
-                   <form:option value="Critical">critique</form:option>
-                    <form:option value="Medium">moyen</form:option>
-                   <form:option value="Critical">critique</form:option>
-                    </form:select>
-                    <form:errors path="priority" cssClass="error" />
+						<form:option value="Low">faible</form:option>
+						<form:option value="Medium">moyen</form:option>
+						<form:option value="Urgent">urgent</form:option>
+						<form:option value="Critical">critique</form:option>
+					</form:select>
+					<form:errors path="priority" cssClass="error" />
 				</div>
-				<label for="staus"class="col-sm-2 control-label esoft-left">Status&nbsp;<span class="error">*</span></label>
+				<label for="staus" class="col-sm-2 control-label esoft-left">Status&nbsp;<span
+					class="error">*</span></label>
 				<div class="col-sm-4">
 					<form:select path="status" cssClass="form-control">
-                   <form:option value="onProduction">en production</form:option>
-                   <form:option value="charged">chagé</form:option>
-                   <form:option value="blocked">bloqué</form:option>
-                   <form:option value="notcharged">pas chargé</form:option>
-                   <form:option value="waiting">en attente</form:option>
-                   <form:option value="end">terminé</form:option>
-                   <form:option value="canceled">annulé</form:option>
-                    <form:option value="inpreparation">en préparation</form:option>
-                    </form:select>
-                    <form:errors path="status" cssClass="error" />
+						<form:option value="inpreparation">en préparation</form:option>
+						<form:option value="waiting">en attente</form:option>
+						<form:option value="onProduction">en production</form:option>
+						<form:option value="charged">chagé</form:option>
+						<form:option value="blocked">bloqué</form:option>
+						<form:option value="canceled">annulé</form:option>
+						<form:option value="end">Terminé</form:option>
+					</form:select>
+					<form:errors path="status" cssClass="error" />
 				</div>
 			</div>
-<!-- 			<div class="callout callout-info"> -->
-<!--                                         <table class="table"><tbody> -->
-<!--                                         </tbody></table> -->
-<!--                                     </div> -->
+			<!-- 			<div class="callout callout-info"> -->
+			<!--                                         <table class="table"><tbody> -->
+			<!--                                         </tbody></table> -->
+			<!--                                     </div> -->
 			<hr>
 			<div class="form-group">
-				<label for="dateField" class="col-sm-2 control-label esoft-left">Date Début:&nbsp;<span class="error">*</span></label>
+				<label for="dateField" class="col-sm-2 control-label esoft-left">Date
+					Début:&nbsp;<span class="error">*</span>
+				</label>
 
 				<div class="input-append date col-sm-4" data-date="12-02-2012"
 					data-date-format="dd-mm-yyyy">
 					<form:input path="startDate" id="dp3" />
 					<form:errors path="startDate" />
 				</div>
-				<label for="dateFField" class="col-sm-2 control-label esoft-left">Date Fin:&nbsp;<span class="error">*</span></label>
+				<label for="dateFField" class="col-sm-2 control-label esoft-left">Date
+					Fin:&nbsp;<span class="error">*</span>
+				</label>
 
 				<div class="input-append date col-sm-4 " data-date="12-02-2012"
 					data-date-format="dd-mm-yyyy">
@@ -209,16 +219,17 @@
 					<form:errors path="endDate" />
 				</div>
 			</div>
+			<div class="form-group"></div>
 			<div class="form-group">
-				
-			</div>
-			<div class="form-group">
-			    <label for="dateField" class="col-sm-2 control-label esoft-left">DateDébut prévu:</label>
-				<div class="input-append date col-sm-4" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+				<label for="dateField" class="col-sm-2 control-label esoft-left">DateDébut
+					prévu:</label>
+				<div class="input-append date col-sm-4" data-date="12-02-2012"
+					data-date-format="dd-mm-yyyy">
 					<form:input path="provisionalStartDate" id="dp0" />
-					<form:errors path="provisionalStartDate"/>
+					<form:errors path="provisionalStartDate" />
 				</div>
-				<label for="dField" class="col-sm-2 control-label esoft-left">DateFin prévu:</label>
+				<label for="dField" class="col-sm-2 control-label esoft-left">DateFin
+					prévu:</label>
 				<div class="input-append date col-sm-4 " data-date="12-02-2012"
 					data-date-format="dd-mm-yyyy">
 					<form:input path="provisionalEndDate" id="dp1" />
@@ -226,61 +237,67 @@
 				</div>
 			</div>
 			<hr>
-			
+
 			<div class="form-group">
 				<label for="qtlaField" class="col-sm-2 control-label esoft-left">QTlancée:</label>
 				<div class="col-sm-2">
 					<form:input path="lanchedQT" cssClass="form-control" />
 					<form:errors path="lanchedQT" cssClass="error" />
 				</div>
-				
+
 			</div>
 			<div class="form-group">
-			<label for="qtlaField" class="col-sm-2 control-label esoft-left">QTréalisée:</label>
+				<label for="qtlaField" class="col-sm-2 control-label esoft-left">QTréalisée:</label>
 				<div class="col-sm-2">
 					<form:input path="executedQT" cssClass="form-control" />
 					<form:errors path="executedQT" cssClass="error" />
-					
+
 				</div>
 			</div>
 			<div class="form-group">
-			<label for="nameField" class="col-sm-2 control-label esoft-left">QTrestante:</label>
+				<label for="nameField" class="col-sm-2 control-label esoft-left">QTrestante:</label>
 				<div class="col-sm-2">
 					<form:input path="restToDoQT" cssClass="form-control" />
 					<form:errors path="restToDoQT" cssClass="error" />
-				</div></div>
-				<div class="form-group">
+				</div>
+			</div>
+			<div class="form-group">
 				<label for="nameField" class="col-sm-2 control-label esoft-left">QTnecessaire:</label>
 				<div class="col-sm-2">
 					<form:input path="requeredQT" cssClass="form-control" />
 					<form:errors path="requeredQT" cssClass="error" />
 				</div>
-				</div>
-				
+			</div>
+
 			<div class="form-group">
 				<label for="testsField" class="col-sm-2 control-label esoft-left">QTrebutée:</label>
 				<div class="col-sm-2">
 					<form:input path="rejectQT" cssClass="form-control" />
 					<form:errors path="rejectQT" cssClass="error" />
 				</div>
-				
+
 			</div>
-			
-			
+
+
 			<div class="form-group">
 				<label for="nameField" class="col-sm-2 control-label esoft-left">Description:</label>
 				<div class="col-sm-10">
-					<form:textarea id="editor1" path="description" name="editor1" rows="4" cols="80"/>
+					<form:textarea id="editor1" path="description" name="editor1"
+						rows="4" cols="80" />
 				</div>
 			</div>
-			
+
 			<div class="form-group">
-				<button type="reset" class="btn-sm btn btn-danger btn pull-right " onclick="location.href='${baseURL}/manufacturing/list'" style="margin-right: 2%;">Annuler</button>
+				<button type="reset" class="btn-sm btn btn-danger btn pull-right "
+					onclick="location.href='${baseURL}/manufacturing/list'"
+					style="margin-right: 2%;">Annuler</button>
 				<button type="submit" class="btn-sm btn btn-success btn pull-right "
-					style="margin-right: 2%;"><i class="fa  fa-plus "></i> &nbsp;Créer</button>
+					style="margin-right: 2%;">
+					<i class="fa  fa-plus "></i> &nbsp;Créer
+				</button>
 			</div>
 		</form:form>
-		
+
 	</div>
 </div>
 <!-- /.box-body -->

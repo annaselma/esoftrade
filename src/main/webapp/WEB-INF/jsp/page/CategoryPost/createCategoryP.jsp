@@ -29,7 +29,7 @@
 
 	<div class="box-body">
 
-		<form:form method="POST" commandName="category" id="categoryF"
+		<form:form method="POST" commandName="categoryPo" id="categoryF"
 			data-toggle="validator" cssClass="form-horizontal">
 			<div class="form-group">
 				<label for="nameField" class="col-sm-2 control-label esoft-left">name:&nbsp;<span class="error">*</span></label>

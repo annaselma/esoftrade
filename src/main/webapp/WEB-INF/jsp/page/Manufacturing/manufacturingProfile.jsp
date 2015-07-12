@@ -43,9 +43,21 @@
 													value="${manufacturing.ref}" /></strong></u></span>
 										<sec:authorize access="hasRole('WRITE_MANUFACTURING')">
 										<button type="button"
-											class="btn-sm btn btn-success pull-right "
+											class="btn-sm btn btn-danger pull-right "
 											onclick="location.href='${baseURL}/mouvement/transfertStockFromOF?id=${manufacturing.id}'">
 											<i class="fa fa-wrench"></i>&nbsp;Stocké
+										</button>
+										<c:if test="${! manufacturing.valid}">
+                                        <button type="button"
+											class="btn-sm btn btn-info pull-right "
+											onclick="location.href='${baseURL}/manufacturing/valid?id=${manufacturing.id}'" style="margin-right: 2%;">
+											<i class="fa fa-thumbs-up"></i>&nbsp;Valider
+										</button>
+										</c:if>	
+										<button type="button"
+											class="btn-sm btn btn-warning pull-right "
+											onclick="location.href='${baseURL}/manufacturing/delete?id=${manufacturing.id}'" style="margin-right: 2%;">
+											<i class="fa fa-times"></i>&nbsp;Supprimer
 										</button>
 										</sec:authorize>
 										<div style="margin-top:8%">
@@ -61,6 +73,12 @@
 							<a href="<c:out value="${baseURL}/product/profile?id=${manufacturing.product.id}"/>"><c:out value="${manufacturing.product.libelle}" /></a>
 						 </span></td>
 												</tr>
+											<c:if test="${not empty manufacturing.orderDocument}">
+												<tr>
+													<th style="width: 50%"><label>Commande Client:</label></th>
+													<td><c:out value="${manufacturing.orderDocument.customerReference}" /></td>
+												</tr>
+											</c:if>	
 												<tr>
 													<th style="width: 50%"><label>Titre:</label></th>
 													<td><span class="text-muted"><c:out value="${manufacturing.title}" /></span></td>
@@ -209,7 +227,7 @@
 			<sec:authorize access="hasRole('WRITE_NOMENCLATURES')">
 			<button type="button" class="btn-sm btn btn-success pull-right "
 									style="margin-right: 2%; margin-bottom: 2%"
-									 onclick="location.href='/esoftrade/nomenclature/create?of_id=${manufacturing.id}'">
+									 onclick="location.href='${baseURL}/nomenclature/create?of_id=${manufacturing.id}'">
 									<i class="fa fa-plus-square "></i> &nbsp;ajouter
 								</button>
 								</sec:authorize>
@@ -453,6 +471,8 @@
                         "data": function(data) {
                             planify(data);  
                         } 
+                    }, language: {
+                        url: '${baseURL}/ajax/fr_FR.json'
                     },
                     "columnDefs":[{
                     	"targets":[0],
@@ -598,6 +618,8 @@
                         "data": function(data) {
                             planify(data);  
                         } 
+                    }, language: {
+                        url: '${baseURL}/ajax/fr_FR.json'
                     },
                     "columnDefs":[{
                     	"targets":[0],

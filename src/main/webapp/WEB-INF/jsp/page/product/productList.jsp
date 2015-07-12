@@ -20,11 +20,12 @@
 			<thead>
 				<tr>
 					<th>Rèfèrence</th>
-					<th>Libellé</th>
-					<th>Code barre</th>
-					<th>categorie</th>
-					<th>Stock désiré</th>
-					<th>Prix en DH</th>
+					<th>Libellé</th>					
+					<th>catégorie</th>
+					<th>prix de vente unitaire</th>
+					<th>valorisation vente</th>
+					<th>Prix moyen pondéré (PMP)</th>
+					<th>valorisation achat (PMP)</th>
 					<th>Vente</th>
 					<th>achat</th>
 					<th>Actions</th>
@@ -36,10 +37,11 @@
 				<tr>
 					<th>Rèfèrence</th>
 					<th>Libellé</th>
-					<th>Code barre</th>
-					<th>categorie</th>
-					<th>Stock désiré</th>
-					<th>Prix en DH</th>
+					<th>catégorie</th>
+					<th>prix de vente unitaire</th>
+					<th>valorisation vente</th>
+					<th>Prix moyen pondéré (PMP)</th>
+					<th>valorisation achat (PMP)</th>
 					<th>Vente</th>
 					<th>achat</th>
 					<th>Actions</th>
@@ -81,6 +83,8 @@
                         "data": function(data) {
                             planify(data);  
                         } 
+                    }, language: {
+                        url: '${baseURL}/ajax/fr_FR.json'
                     },
                     "columnDefs":[{
                     	"targets":[0],
@@ -100,14 +104,14 @@
                     },
                     {
                     	"targets":[2],
-                    	"name":"barreCode",
-                    	"data":"barreCode",
+                    	"name":"category.name",
+                    	"data":"category.name",
                     
                     },
                     {
                     	"targets":[3],
-                    	"name":"category.name",
-                    	"data":"category.name",
+                    	"name":"price",
+                    	"data":"price",
                     
                     },
                     {

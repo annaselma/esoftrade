@@ -46,7 +46,6 @@ public class GammeDTO {
 	@NotNull
 	private Date endDate;
 	private Integer waitingPrieces=0;
-	private Integer createdQT=0;
     private Integer nbposte=0;
     @NotEmpty(message="choisir un type")
 	private String type;
@@ -180,12 +179,7 @@ public class GammeDTO {
 	public void setWaitingPrieces(Integer waitingPrieces) {
 		this.waitingPrieces = waitingPrieces;
 	}
-	public Integer getCreatedQT() {
-		return createdQT;
-	}
-	public void setCreatedQT(Integer createdQT) {
-		this.createdQT = createdQT;
-	}
+	
 
 	public String getDesignation() {
 		return designation;

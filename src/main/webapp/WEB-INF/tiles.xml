@@ -61,25 +61,25 @@
 		<put-attribute name="page"
 			value="/WEB-INF/jsp/page/CategoryProduit/categoryProfile.jsp" />
 		<put-attribute name="titlepage"
-			value="/WEB-INF/jsp/page/product/profileTitle.jsp" />
+			value="/WEB-INF/jsp/page/CategoryProduit/profileTitle.jsp" />
 	</definition>
 	<definition name="createCategory" extends="Template">
 		<put-attribute name="page"
 			value="/WEB-INF/jsp/page/CategoryProduit/createCategory.jsp" />
 		<put-attribute name="titlepage"
-			value="/WEB-INF/jsp/page/product/createTitle.jsp" />
+			value="/WEB-INF/jsp/page/CategoryProduit/createTitle.jsp" />
 	</definition>
 	<definition name="categoryList" extends="Template">
 		<put-attribute name="page"
 			value="/WEB-INF/jsp/page/CategoryProduit/categoryList.jsp" />
 		<put-attribute name="titlepage"
-			value="/WEB-INF/jsp/page/product/listTitle.jsp" />
+			value="/WEB-INF/jsp/page/CategoryProduit/listTitle.jsp" />
 	</definition>
 	<definition name="updateCategory" extends="Template">
 		<put-attribute name="page"
 			value="/WEB-INF/jsp/page/CategoryProduit/updateCategory.jsp" />
 		<put-attribute name="titlepage"
-			value="/WEB-INF/jsp/page/product/updateTitle.jsp" />
+			value="/WEB-INF/jsp/page/CategoryProduit/updateTitle.jsp" />
 
 	</definition>
 	<!-- /CategoryProduct Pages -->
@@ -111,10 +111,14 @@
 	<definition name="mouvementlist" extends="Template">
 		<put-attribute name="page"
 			value="/WEB-INF/jsp/page/Warehouse/mouvementlist.jsp" />
+			<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/Warehouse/mouvementTitles.jsp" />
 	</definition>
 	<definition name="correctionStock" extends="Template">
 		<put-attribute name="page"
 			value="/WEB-INF/jsp/page/Warehouse/correctionStock.jsp" />
+			<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/Warehouse/correctionTitle.jsp" />
 	</definition>
 	<definition name="correctionStockOther" extends="Template">
 		<put-attribute name="page"
@@ -134,18 +138,26 @@
 	<definition name="userProfile" extends="Template">
 		<put-attribute name="page"
 			value="/WEB-INF/jsp/page/user/userProfile.jsp" />
+			<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/user/profileTitle.jsp" />
 	</definition>
 	<definition name="createUser" extends="Template">
 		<put-attribute name="page"
 			value="/WEB-INF/jsp/page/user/createUser.jsp" />
+			<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/user/createTitle.jsp" />
 	</definition>
 	<definition name="userList" extends="Template">
 		<put-attribute name="page"
 			value="/WEB-INF/jsp/page/user/userList.jsp" />
+			<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/user/listTitle.jsp" />
 	</definition>
 	<definition name="updateUser" extends="Template">
 		<put-attribute name="page"
 			value="/WEB-INF/jsp/page/user/updateUser.jsp" />
+			<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/Manufacturing/updateTitle.jsp" />
 	</definition>
 	<!-- /User Pages -->
 	<!-- Manufacturing Pages -->
@@ -298,6 +310,112 @@
 			value="/WEB-INF/jsp/page/CategoryPost/updateTitle.jsp" />
 	</definition>
 	<!-- /CategoryPost Pages -->
+	
+	<!-- Company Pages -->
+	<definition name="companyProfile" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/company/companyProfile.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/company/profileTitle.jsp" />
+	</definition>
+	<definition name="createCompany" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/company/create.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/company/createTitle.jsp" />
+	</definition>
+	<definition name="companyList" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/company/companyList.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/company/listTitle.jsp" />
+	</definition>
+	<definition name="updateCompany" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/company/updateCompany.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/company/updateTitle.jsp" />
+	</definition>
+	<!-- /Company Pages -->
+	<!-- Contact Pages -->
+	<definition name="contactProfile" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/contact/contactProfile.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/contact/profileTitle.jsp" />
+	</definition>
+	<definition name="createContact" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/contact/create.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/contact/createTitle.jsp" />
+	</definition>
+	<definition name="contactList" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/contact/contactList.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/contact/listTitle.jsp" />
+	</definition>
+	<definition name="updateContact" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/contact/updateContact.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/contact/updateTitle.jsp" />
+	</definition>
+	<!-- /Contact Pages -->
+	
+	<!-- Order Pages -->
+	<definition name="customerOrderProfile" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Order/customerOrderProfile.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/Order/profileTitle.jsp" />
+	</definition>
+	<definition name="supplierOrderProfile" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Order/supplierOrderProfile.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/Order/profileTitle.jsp" />
+	</definition>
+	
+	<definition name="createCustomerOrder" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Order/createCustomerOrder.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/Order/createTitle.jsp" />
+	</definition>
+		<definition name="createSupplierOrder" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Order/createSupplierOrder.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/Order/createTitle.jsp" />
+	</definition>
+	<definition name="customerOrderList" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Order/customerOrderList.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/Order/listTitle.jsp" />
+	</definition>
+	<definition name="supplierOrderList" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Order/supplierOrderList.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/Order/listTitle.jsp" />
+	</definition>
+	<definition name="updateCustomerOrder" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Order/updateCustomerOrder.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/Order/updateTitle.jsp" />
+	</definition>
+		<definition name="updateSupplierOrder" extends="Template">
+		<put-attribute name="page"
+			value="/WEB-INF/jsp/page/Order/updateSupplierOrder.jsp" />
+		<put-attribute name="titlepage"
+			value="/WEB-INF/jsp/page/Order/updateTitle.jsp" />
+	</definition>
+	<!-- /Order Pages -->
+	
 	<!-- error Pages -->
 	<definition name="error" extends="Template">
 		<put-attribute name="page" value="/WEB-INF/jsp/page/error.jsp" />

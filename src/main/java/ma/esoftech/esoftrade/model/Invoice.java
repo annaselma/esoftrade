@@ -28,7 +28,7 @@ public class Invoice {
 	private String invoiceId;
 	@OneToOne
 	@JoinColumn(name="Order_ID")
-	private Order order;
+	private OrderDocument order;
 	@Column(name="START_DATE")
 	private Date   startDate;
 	@Column(name="DUE_DATE")
@@ -102,10 +102,10 @@ public class Invoice {
 		this.status = status;
 	}
 	
-public Order geOrder(){
+public OrderDocument geOrder(){
 	return order;
 }
-public void  setOrder(Order ord){
+public void  setOrder(OrderDocument ord){
  this.order= ord;	
 }
 
