@@ -1,20 +1,16 @@
 package ma.esoftech.esoftrade.generate;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.regex.PatternSyntaxException;
 
 import ma.esoftech.esoftrade.model.Permission;
+import ma.esoftech.esoftrade.model.Permission.Module;
+import ma.esoftech.esoftrade.model.Person.Civility;
 import ma.esoftech.esoftrade.model.Role;
 import ma.esoftech.esoftrade.model.User;
-import ma.esoftech.esoftrade.model.Permission.Module;
+import ma.esoftech.esoftrade.service.ServiceUtils;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -27,7 +23,8 @@ public class test {
 	public static void main(String[] args) {
 
 		//createPermis();
-		setAllPermToRoles();
+		//setAllPermToRoles();
+		initDataBase();
 //		SimpleDateFormat f=new SimpleDateFormat("dd/MM/yyyy");
 //		try {
 //			Date date=f.parse("11/11/2017");
@@ -92,6 +89,26 @@ public class test {
 
 	}
 
+	public static void initDataBase() {
+		Hibernate.generate();
+		SessionFactory sessionFactory = new Configuration().configure(
+				"hibernate2.cfg.xml").buildSessionFactory();
+
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		generateManufacturingPermissions(session);
+		generateProductPermissions(session);
+		generateRolePermissions(session);
+		generateUserPermissions(session);
+		generatePostePermissions(session);
+		generateWareHousePermissions(session);
+		User user=createUser(session);
+		Role role=CreateRole(user, session);
+	    updateUser(role, user, session);
+		session.getTransaction().commit();
+		session.close();
+
+	}
 	public static Permission create(String label, String desc) {
 		Permission permission = new Permission();
 		permission.setDeleted(false);
@@ -247,6 +264,49 @@ public class test {
 		System.out.println("lignes " + query.list().size());
 		session.close();
 
+	}
+	
+	public static User createUser( Session session){
+		User user = new User();
+		user.setActive(true);
+		user.setName("Salma");
+		user.setLastName("ANNAGREBAH");
+		user.setBirdDay(new Date());
+		user.setRef("U-01");
+		user.setLogin("admin");
+		user.setPasswd(ServiceUtils.getHashedPasswordBySHA("admin"));
+		user.setCivility(Civility.Mr);
+		 long id=(Long)session.save(user);
+		 user.setId(id);
+		 return user;
+		}
+	public static void updateUser(Role role,User user,Session session){
+		user=(User) session.get(User.class, new Long( user.getId()));
+		user.getRoles().add(role);
+		session.flush();
+		session.clear();
+		session.update(user);
+	}
+	public static Role CreateRole(User user,Session session){
+	
+		Role role=new Role();
+		role.setRole("ADMIN");
+		role.setCreateDate(new Date());
+		role.setCreator(user);
+		role.setModifier(user);
+		role.setLastEdit(new Date());
+		role.setDeleted(false);
+		List<Permission> list =session.createQuery("from Permission as perm").list();
+		Set<Permission> set=new HashSet<Permission>();
+		for (Permission permission : list) {
+			set.add(permission);
+		}
+		role.setPermissions(set);
+		session.flush();
+		session.clear();
+		 long id=(Long)session.save(role);
+		 role.setId(id);
+		return role;
 	}
 
 }
