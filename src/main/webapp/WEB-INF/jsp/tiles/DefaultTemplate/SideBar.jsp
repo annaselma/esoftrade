@@ -9,15 +9,8 @@
 			<!-- sidebar: style can be found in sidebar.less -->
 			<section class="sidebar">
 				<!-- sidebar menu: : style can be found in sidebar.less -->
-				<form action="#" method="get" class="sidebar-form">
-                        <div class="input-group">
-                            <input type="text" name="q" class="form-control" placeholder="Search...">
-                            <span class="input-group-btn">
-                                <button type="submit" name="seach" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
-                            </span>
-                        </div>
-                    </form>
-				<ul class="sidebar-menu margin-top: 51 px">
+				
+				<ul class="sidebar-menu margin-top: 51 px" style="padding-top: 25%;">
 					<li class="active"><a href="${baseURL}/dashboard"> <i
 							class="fa fa-dashboard"></i> <span>Tableau de bord</span>
 					</a></li>

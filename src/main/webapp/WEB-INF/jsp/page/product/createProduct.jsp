@@ -86,8 +86,8 @@
 				</label>
 				<div class="col-md-4">
 					<form:select path="nature" cssClass="form-control ">
-						<form:option value="manufacturé">manufacture</form:option>
-						<form:option value="matière première">raw material</form:option>
+						<form:option value="manufacturé">manufacturé</form:option>
+						<form:option value="matière première">matière première</form:option>
 						</form:select>
 						<form:errors path="nature" cssClass="error" />
 						</div></div>

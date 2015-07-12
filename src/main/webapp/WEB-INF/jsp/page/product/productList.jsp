@@ -20,12 +20,10 @@
 			<thead>
 				<tr>
 					<th>Rèfèrence</th>
-					<th>Libellé</th>					
+					<th>Libellé</th>
 					<th>catégorie</th>
-					<th>prix de vente unitaire</th>
-					<th>valorisation vente</th>
-					<th>Prix moyen pondéré (PMP)</th>
-					<th>valorisation achat (PMP)</th>
+					<th>Stock désiré</th>
+					<th>Prix</th>
 					<th>Vente</th>
 					<th>achat</th>
 					<th>Actions</th>
@@ -37,11 +35,10 @@
 				<tr>
 					<th>Rèfèrence</th>
 					<th>Libellé</th>
+					
 					<th>catégorie</th>
-					<th>prix de vente unitaire</th>
-					<th>valorisation vente</th>
-					<th>Prix moyen pondéré (PMP)</th>
-					<th>valorisation achat (PMP)</th>
+					<th>Stock désiré</th>
+					<th>Prix</th>
 					<th>Vente</th>
 					<th>achat</th>
 					<th>Actions</th>
@@ -83,18 +80,12 @@
                         "data": function(data) {
                             planify(data);  
                         } 
-                    }, language: {
-                        url: '${baseURL}/ajax/fr_FR.json'
                     },
                     "columnDefs":[{
                     	"targets":[0],
                     	"name":"ref",
                     	"data":"ref",
-                    	"render": function ( data, type, full, meta ) {
-                    		$link='<a href="${baseURL}/product/profile?id='+full.id+'">'+data+'</a>';
-                      	
-                      	      return $link;
-                      	    }
+                    
                     },
                     {
                     	"targets":[1],
@@ -110,24 +101,18 @@
                     },
                     {
                     	"targets":[3],
-                    	"name":"price",
-                    	"data":"price",
-                    
-                    },
-                    {
-                    	"targets":[4],
                     	"name":"desieredTreshold",
                     	"data":"desieredTreshold",
                     
                     },
                     {
-                    	"targets":[5],
+                    	"targets":[4],
                     	"name":"price",
                     	"data":"price",
                     
                     },
                     {
-                    	"targets":[6],
+                    	"targets":[5],
                     	"name":"sellingState",
                     	"data":"sellingState",
                     	"render": function ( data, type, full, meta ) {
@@ -141,7 +126,7 @@
                     
                     },
                     {
-                    	"targets":[7],
+                    	"targets":[6],
                     	"name":"purchasingState",
                     	"data":"purchasingState",
                     	 "render": function ( data, type, full, meta ) {
@@ -155,7 +140,7 @@
                     
                     },
                     {
-                    	"targets":[8],
+                    	"targets":[7],
                     	"name":"id",
                     	"data":"id",
                     	"orderable": false,
