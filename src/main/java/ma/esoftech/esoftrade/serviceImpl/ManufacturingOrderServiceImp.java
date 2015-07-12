@@ -124,6 +124,7 @@ public void deleteOF(OrderManufacturingDTO OrderFacturing) {
 	OrderManufacturing OFEntity=mapper.map(OrderFacturing, OrderManufacturing.class);
 	OFEntity= new OrderManufacturing();
 	OFEntity.setId(OrderFacturing.getId());
+	System.out.println("deleted");
 	manufacturingDao.deleteOF(OFEntity);
 	
 }

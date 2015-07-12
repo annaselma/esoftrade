@@ -151,6 +151,7 @@ public class ManufacturingController extends AbstractController {
 	@RequestMapping(value="/delete",method= RequestMethod.GET)
 	public String DeleteOF(@RequestParam long id){
 		 OrderManufacturingDTO manufacturing= new OrderManufacturingDTO();
+		 manufacturing.setId(id);
 		 manufacturService.deleteOF(manufacturing);
 		return "redirect:/manufacturing/list";
 	}
